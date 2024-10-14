@@ -8,5 +8,25 @@
 </head>
 <body>
     <header>
-        <h1>헤더</h1>
+        <nav class="">
+        	<ul class="">
+        		<li class="nav--menu--li">
+    				<a href="/movie/movies">가해자</a>
+        		</li>
+        		<li class="nav--menu--li">
+        			<a href="/cinema/cinema">피해자</a>
+        		</li>
+        		<li class="nav--menu--li">
+        			<a href="/reservation/reservation">변호사</a>
+        		</li>
+        		<li class="nav--menu--li">
+        		    <a href="/event/event">이벤트</a>
+        		</li>
+        		<li class="date nav--menu--li">
+        			<a href="/reservation/reservation">마이페이지</a>
+        		</li>
+        	</ul>
+        </nav>
+
+
     </header>
