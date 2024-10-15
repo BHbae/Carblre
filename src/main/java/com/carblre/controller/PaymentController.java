@@ -10,6 +10,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,18 +32,47 @@ public class PaymentController {
     private final HttpSession session;
     private final PaymentService service;
 
+    public static  final String PRINCIPAL = "principal";
+
     /**
      * 결제창으로 이동
      *
      * @return
      */
     @GetMapping("/payment")
-    public String tosspay() {
-//        User principal = (User) session.getAttribute("principal"); // 유저 세션 가져옴
-//        System.out.println("payController /toss : " + principal);
+    public String tosspay(Model model) {
+    // 테스트용 임시값 ( @RequestParam 이용시 , 임시값 지워도됨 )
+    int amount = 10000;
+    String orderId = "order_12345";
+    String orderName = "상품";
+    String customerName = "피해자";
+    model.addAttribute("amount",amount);
+    model.addAttribute("orderId",orderId);
+    model.addAttribute("orderName",orderName);
+    model.addAttribute("customerName",customerName);
+
+        User principal = (User) session.getAttribute("principal"); // 유저 세션 가져옴
+        System.out.println("payController /toss : " + principal);
+
+        session.setAttribute(PRINCIPAL, principal);
+
         return "payment";
     }
 
+    @GetMapping("/store")
+    public String store(Model model){
+
+        int amount = 10000;
+        String orderId = "order_12345";
+        String orderName = "상품";
+        String customerName = "피해자";
+        model.addAttribute("amount",amount);
+        model.addAttribute("orderId",orderId);
+        model.addAttribute("orderName",orderName);
+        model.addAttribute("customerName",customerName);
+
+        return "store";
+    }
 
     /**
      * 결제 성공
@@ -90,7 +120,8 @@ public class PaymentController {
             System.err.println("Error response body: " + e.getResponseBodyAsString());
         }
 
-        return "/payment/success";
+
+        return "success";
 
     }
 
