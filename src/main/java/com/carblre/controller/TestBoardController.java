@@ -1,5 +1,10 @@
 package com.carblre.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import com.carblre.ropository.model.Post;
 import com.carblre.service.TestBoardService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/")
@@ -32,6 +40,36 @@ public class TestBoardController {
 		
 		return "/Board/postDetail";
 	}
+	
+	@GetMapping("/download")
+    public StreamingResponseBody stream(HttpServletRequest req, @RequestParam("fileName") String fileName) throws Exception {
+        
+		String DIR = "C:\\Users\\KDP\\git\\Carblre\\src\\main\\resources\\static\\uploardVidio/";
+		
+		File file = new File(DIR + fileName);
+        final InputStream is = new FileInputStream(file);
+        return os -> {
+            readAndWrite(is, os);
+        };
+    }
+	
+	private void readAndWrite(final InputStream is, OutputStream os) throws IOException {
+	    byte[] data = new byte[8192]; // 8KB 버퍼
+	    int totalRead = 0;
+	    int read;
+
+	    while ((read = is.read(data)) > 0) {
+	        totalRead += read;
+	        if (totalRead > 20 * 1024 * 1024) { // 20MB 초과 체크
+	            throw new IOException("파일 크기가 20MB를 초과했습니다.");
+	        }
+	        os.write(data, 0, read);
+	    }
+	    
+	    os.flush();
+	}
+
+
 	
 	
 	// --- 게시글 리스트 

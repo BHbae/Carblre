@@ -13,11 +13,9 @@
 	</tr>
 	<tr>
 		<c:if test="${post.uploardFileName != null}">
-		<td>
-			<video width="600" controls>
-                    <source src="/uploardVidio/${post.uploardFileName}" type="video/mp4">
-                </video>
-		</td>
+			<td><video width="600" controls>
+					<source src="/uploardVidio/test.mp4" type="video/mp4">
+				</video></td>
 		</c:if>
 		<td>${post.content}</td>
 	</tr>
