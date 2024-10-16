@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.carblre.ropository.Interface.TestBoardRepository;
-import com.carblre.ropository.model.Post;
+import com.carblre.repository.TestBoardRepository;
+import com.carblre.repository.Post;
 import com.carblre.utils.Define;
 
 @Service

@@ -1,10 +1,8 @@
-package com.carblre.ropository.Interface;
+package com.carblre.repository;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-
-import com.carblre.ropository.model.Post;
 
 @Mapper
 public interface TestBoardRepository {

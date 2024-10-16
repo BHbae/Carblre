@@ -18,10 +18,9 @@
 				<td>${boards.createdAt}</td>
 			</tr>
 	</c:forEach>
-		</table>
+
 </main>
 
-
-
-
 <%@ include file="../layout/footer.jsp"%>
+
+

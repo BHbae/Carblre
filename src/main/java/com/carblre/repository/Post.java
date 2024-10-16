@@ -1,4 +1,4 @@
-package com.carblre.ropository.model;
+package com.carblre.repository;
 
 import java.sql.Timestamp;
 
