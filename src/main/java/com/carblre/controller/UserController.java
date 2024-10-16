@@ -62,13 +62,13 @@ public class UserController {
 
 	private final HttpSession session;
 
-	@GetMapping("/signin")
+	@GetMapping("/signIn")
 	public String signPage() {
 
 		return "user/signin";
 	}
 
-	@PostMapping("/signin")
+	@PostMapping("/signIn")
 	public String signInProc(SignDTO dto, Model model) {
 		UserDTO principial = userService.findByNickId(dto.getNickName());
 

@@ -50,11 +50,6 @@
             </button>
         </div>
 
-        <div class="form-group">
-            <label for="phoneNumber">전화번호</label>
-            <input type="tel" class="form-control" id="phoneNumber" maxlength="13" oninput="autoHyphen(this)" placeholder="전화번호를 입력해주세요." name="phoneNumber">
-        </div>
-
         <!-- 제출 버튼 -->
         <button type="submit">가입하기</button>
     </form>

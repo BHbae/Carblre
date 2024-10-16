@@ -41,10 +41,22 @@ dependencies {
 
     // Password Security Dependency
     implementation 'org.springframework.security:spring-security-crypto'
+
     // E-mail Dependency
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'com.sun.mail:jakarta.mail:2.0.1'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0' // 최신 버전을 확인하고 필요에 따라 업데이트
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0' // 최신 버전을 확인하고 필요에 따라 업데이트
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0' // 최신 버전을 확인하고 필요에 따라 업데이트
+
+    // ini4j
+    implementation 'org.ini4j:ini4j:0.5.4' // 최신 버전을 확인하고 필요에 따라 업데이트
+
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+//    implementation 'com.coolsms:coolsms-java-sdk:1.0.0'
 }
 
 tasks.named('test') {
