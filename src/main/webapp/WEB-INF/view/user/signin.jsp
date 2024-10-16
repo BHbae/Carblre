@@ -1,22 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="../layout/header.jsp"%>
+
 <link rel="stylesheet" href="/css/signin.css">
+
+
     <div class="container">
 <h1>로그인</h1>
 
     <!-- 일반 로그인 폼 -->
-    <div class-"login-form">
-    <form action="/user/signin" method="POST">
-        <label for="nickName">닉네임:</label>
-        <input type="text" id="nickName" name="nickName" required>
-        <br>
-        <label for="password">비밀번호:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <button type="submit">로그인</button>
-    </form>
+    <div class="login">
+	    <form action="/user/signin" method="POST">
+	        <label for="nickName">닉네임:</label>
+	        <input type="text" id="nickName" name="nickName" required>
+	        <br>
+	        <label for="password">비밀번호:</label>
+	        <input type="password" id="password" name="password" required>
+	        <br>
+	        <button type="submit">로그인</button>
+	    </form>
     </div>
     <a href="/user/signin">아이디 찾기</a>
     <a href="/user/signup">비밀번호 찾기</a>
@@ -47,5 +50,11 @@
 
     
     </div>
-
+<script type="text/javascript">
+    // alertMessage가 있을 때만 alert 띄우기
+    <c:if test="${not empty alertMessage}">
+        var message = "${alertMessage}";
+        alert(message);
+    </c:if>
+</script>
 <%@ include file="../layout/footer.jsp" %>

@@ -70,11 +70,14 @@ public class UserController {
 		UserDTO principial = userService.findByNickId(dto.getNickName());
 
 		if (principial == null) {
-
-			model.addAttribute("errorMessage", "잘못된 아이디 혹은 잘못된 비밀번호 입니다.");// 익셉션 핸들러 필요
+			model.addAttribute("alertMessage", "아이디를 확인해주세요.");
 			return "user/signin";
 		}
-
+		if(!principial.getPassword().equals(dto.getPassword())) {
+			model.addAttribute("alertMessage", "비밀번호를 확인해주세요");
+			return "user/signin";
+		}
+		
 		session.setAttribute("principal", principial);
 		return "redirect:/user/tempindex";// 임시 인덱스 장소로 이동함
 	}
