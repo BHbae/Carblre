@@ -30,6 +30,9 @@
 		SELECT * FROM post_tb
 	</select>
 	
+	<select id="findById" resultType="com.carblre.ropository.model.Post">
+		SELECT * FROM post_tb WHERE id = #{id}
+	</select>
 	
 
 </mapper>

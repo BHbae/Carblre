@@ -28,6 +28,11 @@ public class TestBoardService {
 	private TestBoardRepository boardRepository;
 
 	
+	public Post fiinById(int postId) {
+		Post post = boardRepository.findById(postId);
+		return post;
+	}
+	
 	
 	
 	
