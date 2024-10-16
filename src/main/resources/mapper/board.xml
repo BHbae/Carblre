@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.carblre.ropository.Interface.TestBoardRepository">
+	
+	<insert id="savePost">
+		INSERT INTO post_tb (
+		user_id,
+		status,
+		category,
+		title,
+		content,
+		origin_file_name,
+		uploard_file_name,
+		create_at
+		) VALUES (
+		1,
+		#{status},
+		#{category},
+		#{title},
+		#{content},
+		#{originFileName},
+		#{uploardFileName},
+		NOW()
+		)
+	</insert>
+	
+	<select id="findAllBoard" resultType="com.carblre.ropository.model.Post">
+		SELECT * FROM post_tb
+	</select>
+	
+	
+
+</mapper>
