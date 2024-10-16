@@ -16,13 +16,13 @@
 
 	<!-- 간편유저 정보 조회 by nick -->
 	<select id="findByNickId" resultType="com.carblre.dto.userdto.UserDTO">
-		SELECT * FROM user_tb WHERE nick_name = #{nick}
+		SELECT * FROM user_tb WHERE nick_name = #{nickname}
 	</select>
 
 
 
 	<!-- id와 password로 유저 조회 -->
-	<select id="findByIdPassword"  resultType="com.carblre.repository.model.User">
+	<select id="findByNickPassword"  resultType="com.carblre.dto.userdto.UserDTO">
 		SELECT * FROM user_tb
 		WHERE nick_name = #{nickName}
 		AND password = #{password}
@@ -30,7 +30,7 @@
 
 
 	<!-- 간편유저 정보 저장 -->
-	<insert id="saveUser" parameterType="com.carblre.dto.userdto.SignDTO">
+	<insert id="saveApiUser" parameterType="com.carblre.repository.model.User">
 		INSERT INTO user_tb (user_name, nick_name, email)
 		VALUES ( #{userName},#{nickName}, #{email} )
 	</insert>

@@ -2,7 +2,11 @@ package com.carblre.repository.model;
 
 import com.carblre.dto.userdto.SignDTO;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
@@ -19,8 +23,8 @@ public class User {
     private String role;
     
     
-    public SignDTO toSign(User user) {
-     return	SignDTO.builder()
+    public SignDTO toSign() {
+	     return	SignDTO.builder()
     	.email(email)
     	.nickName(nickName)
     	.userName(userName)

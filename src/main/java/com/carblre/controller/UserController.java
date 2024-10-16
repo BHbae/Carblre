@@ -68,16 +68,21 @@ public class UserController {
 		return "user/signin";
 	}
 
-	@PostMapping("/signinup")
+	@PostMapping("/signin")
 	public String signInProc(SignDTO dto, Model model) {
-		if (dto.getNickName() == null || dto.getPassword() == null) {
-			model.addAttribute("errorMessage", "닉네임과 비밀번호를 입력해 주세요.");
+		UserDTO principial = userService.findByNickId(dto.getNickName());
+
+		if (principial == null) {
+			model.addAttribute("alertMessage", "아이디를 확인해주세요.");
 			return "user/signin";
 		}
-		UserDTO principial = userService.login(dto.getNickName(), dto.getPassword());
+		if(!principial.getPassword().equals(dto.getPassword())) {
+			model.addAttribute("alertMessage", "비밀번호를 확인해주세요");
+			return "user/signin";
+		}
 
 		session.setAttribute("principal", principial);
-		return "/tempindex";// 임시 인덱스 장소로 이동함
+		return "redirect:/user/tempindex";// 임시 인덱스 장소로 이동함
 	}
 
 	@GetMapping("/signUp")
@@ -351,7 +356,7 @@ public class UserController {
 			if (principial == null) {
 				SignDTO signDTO = SignDTO.builder().email(email).nickName(googleId).userName(name).build();
 
-				userService.saveUser(signDTO); // 사용자 정보 저장
+				userService.saveApiUser(signDTO); // 사용자 정보 저장
 				principial = userService.findByNickId(googleId); // 다시 조회하여 세션에 저장
 			}
 

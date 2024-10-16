@@ -12,24 +12,28 @@ import com.carblre.repository.model.User;
 
 @Mapper
 public interface UserRepository {
-	
-	User findById(int id);
-	UserDTO findById(String id);
+	//id(pk)
+	UserDTO findById(int id);
 
-    List<User> findAll();
+	// 전체 조회
+    List<UserDTO> findAll();
 
-    void save(User user);
-
+    // 일반회원 가입
+    void saveUser(User user);
+    
+    // 회원수정 (쿼리 실행안해봄)
     void update(User user);
 
+    // 회원 탈퇴( 쿼리실행안해봄)
     void deleteById(int id);
 
-	User findByUsername(String username);
+    // 간편회원 가입
+	void saveApiUser(User user);
 
-	void saveUser(SignDTO dto);
-
+	// 로그인
 	UserDTO findByNickPassword(@Param("nickName") String nickName, @Param("password") String password);
 	
+	// 아이디 찾기
 	UserDTO findByNickId(String nick);
 
 	// 회원가입
