@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.carblre.repository.interfaces.UserRepository">
+
+	<select id="readAllGeneralUser"
+		resultType="com.carblre.repository.model.User">
+		select * from user_tb where role = 'general'
+	</select>
+	<select id="readAllCorporateUser"
+		resultType="com.carblre.dto.LawyerUserDTO">
+		select u.user_name, u.nick_name, u.password, u.email, u.phone_num,
+		u.role, ld.id, ld.user_id, ld.uploard_profile_name, ld.introduction,
+		ld.law_firm, ld.office_num from user_tb u
+		left join lawyer_detail_tb ld
+		on u.id = ld.user_id
+		where u.role = 'corporate'
+	</select>
+
+
+</mapper>
