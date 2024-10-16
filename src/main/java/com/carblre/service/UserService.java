@@ -47,7 +47,7 @@ public class UserService {
     /**
      * 아이디 찾기
      * @param
-     * @return
+     * @return ㅇㅇ
      */
 	public UserDTO findByNickId(String nick) {
 		
