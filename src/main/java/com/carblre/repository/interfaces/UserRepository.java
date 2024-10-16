@@ -12,7 +12,7 @@ import com.carblre.repository.model.User;
 @Mapper
 public interface UserRepository {
 	//id(pk)
-	UserDTO findById(String id);
+	UserDTO findById(int id);
 
 	// 전체 조회
     List<UserDTO> findAll();

@@ -25,6 +25,9 @@
 
     <div class="social">
 
+    
+    <a href="/user/signup">가입하기</a>
+
     <!-- 카카오 로그인 버튼 -->
     <a href="https://kauth.kakao.com/oauth/authorize?client_id=74ae415425bf1b53dc8f8dcf38efc2d4&redirect_uri=http://localhost:8080/user/kakao&response_type=code">
         <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png" alt="카카오 로그인 버튼">
@@ -40,6 +43,9 @@
 	</a>
     </div>
 
+    
+
+    
     </div>
 
 <%@ include file="../layout/footer.jsp" %>

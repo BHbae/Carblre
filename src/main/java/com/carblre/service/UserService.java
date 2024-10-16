@@ -20,7 +20,7 @@ public class UserService {
 	 * @param id
 	 * @return
 	 */
-	 public UserDTO findById(String id) {
+	 public UserDTO findById(int id) {
 		 return userRepository.findById(id);
 	 }
 
@@ -53,4 +53,10 @@ public class UserService {
 		
 		 return userRepository.findByNickId(nick);
 	}
+	 
+
+	    public void saveUser(SignDTO dto) {
+	    	User user= dto.toUsern();
+	    	userRepository.saveApiUser(user);
+	    }
 }

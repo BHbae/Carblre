@@ -24,7 +24,7 @@ public class User {
     
     
     public SignDTO toSign() {
-     return	SignDTO.builder()
+	     return	SignDTO.builder()
     	.email(email)
     	.nickName(nickName)
     	.userName(userName)
