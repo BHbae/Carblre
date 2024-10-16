@@ -2,15 +2,13 @@ package com.carblre.repository.model;
 
 import com.carblre.dto.userdto.SignDTO;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Builder
 public class User {
     private int id;
     private String userName;

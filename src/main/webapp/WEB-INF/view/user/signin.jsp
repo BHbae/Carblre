@@ -15,7 +15,7 @@
         <button type="submit">로그인</button>
     </form>
     
-    <a href="/user/signup">가입하기</a>
+    <a href="/user/signUp">가입하기</a>
 
     <h2>카카오 로그인</h2>
     <!-- 카카오 로그인 버튼 -->

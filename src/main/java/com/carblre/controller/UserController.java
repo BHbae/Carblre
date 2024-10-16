@@ -3,6 +3,7 @@ package com.carblre.controller;
 import java.util.Map;
 import java.util.UUID;
 
+import com.carblre.dto.SignUpDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -79,9 +80,25 @@ public class UserController {
 		return "/tempindex";// 임시 인덱스 장소로 이동함
 	}
 
-	@GetMapping("/signup")
+	@GetMapping("/signUp")
 	public String signupPage() {
+		System.out.println("Here in signUpPage(UserController)");
 		return "user/signup";
+	}
+
+	/**
+	 * [POST] 회원가입 로직
+	 * @param signUpDTO = 사용자의 입력값
+	 * @return signIn.jsp
+	 */
+	@PostMapping("/signUp")
+	public String signUpProc(SignUpDTO signUpDTO)
+	{
+		// HTML required 속성으로 null 체크 X
+		userService.createUser(signUpDTO);
+
+		// signIn (Login Page) 이동 처리
+		return "redirect:/user/signin";
 	}
 
 	/**

@@ -11,6 +11,8 @@ server:
 spring:
   profiles:
     default: secure
+  thymeleaf:
+    enabled: false
   mvc:
     view:
       prefix: /WEB-INF/view/ # JSP 파일 경로 설정
@@ -33,7 +35,7 @@ spring:
     url: jdbc:mysql://localhost:3306/carblre?serverTimezone=Asia/Seoul
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: asd123
+    password: qkrxogus0228!@#
 
   h2:
     console:

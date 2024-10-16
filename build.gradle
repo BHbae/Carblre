@@ -37,6 +37,13 @@ dependencies {
     testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
     implementation 'net.nurigo:sdk:4.3.0'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // Password Security Dependency
+    implementation 'org.springframework.security:spring-security-crypto'
+    // E-mail Dependency
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'com.sun.mail:jakarta.mail:2.0.1'
 }
 
 tasks.named('test') {

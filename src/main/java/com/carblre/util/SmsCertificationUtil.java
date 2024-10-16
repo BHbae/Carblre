@@ -8,11 +8,11 @@ import net.nurigo.sdk.message.service.DefaultMessageService;
 import org.springframework.beans.factory.annotation.Value;
 
 public class SmsCertificationUtil {
-    @Value("${spring.sms.api-key")
+    @Value("${spring.sms.api-key}")
     private String apiKey;
-    @Value("$")
+    @Value("${spring.sms.api-secret}")
     private String apiSecret;
-
+    @Value("${spring.sms.from-number}")
     private String fromNumber;
 
     DefaultMessageService messageService;

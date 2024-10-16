@@ -2,6 +2,7 @@ package com.carblre.repository.interfaces;
 
 import java.util.List;
 
+import com.carblre.dto.SignUpDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -30,4 +31,11 @@ public interface UserRepository {
 	UserDTO findByNickPassword(@Param("nickName") String nickName, @Param("password") String password);
 	
 	UserDTO findByNickId(String nick);
+
+	// 회원가입
+	public void insert(User user);
+
+	// E-mail 중복 체크
+	public int checkDuplicateEmail(String email);
+
 }
