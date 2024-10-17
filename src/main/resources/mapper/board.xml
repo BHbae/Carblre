@@ -27,7 +27,7 @@
 	</insert>
 	
 	<select id="findAllBoard" resultType="com.carblre.ropository.model.Post">
-		SELECT * FROM post_tb
+		SELECT * FROM post_tb ORDER BY id DESC
 	</select>
 	
 	<select id="findById" resultType="com.carblre.ropository.model.Post">

@@ -2,6 +2,7 @@ package com.carblre.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -43,8 +44,10 @@ public class TestBoardService {
 
 	@Transactional
 	public void savePost(int status, String category, String tile, String content, MultipartFile vidio) {
-
+		
+		// 파일 업로드 로직
 		String[] fileName = uploadFile(vidio);
+		
 		Post post = Post.builder().userId(1).status(status).category(content).title(tile).content(content)
 				.originFileName(fileName[0]).uploardFileName(fileName[1]).build();
 
@@ -52,32 +55,41 @@ public class TestBoardService {
 
 	}
 
-	// 업로드 파일 내일으로 바꾸는 메서드
+	// 업로드 파일 이름 바꾸는 메서드
 
 	private String[] uploadFile(MultipartFile mFile) {
 
-		// 크기
+		// 크기 20MB확인
 		if (mFile.getSize() > Define.MAX_FILE_SIZE) {
 
 		}
-		String saveDirectory = uploadDir;
+		// 확장자가 mp4인지 확인
+		String contentType = mFile.getContentType();
+		if (!contentType.equals("video/mp4")) {
+			
+		}
 
 		String uploadFileName = UUID.randomUUID() + "_" + mFile.getOriginalFilename();
 
-		String uploadPath = saveDirectory + File.separator + uploadFileName;
 
-		File destination = new File(uploadPath);
 
+		String saveDirectory = uploadDir;
+		
+		
 		Path uploadPath1 = Paths.get(uploadDir);
 		if (!Files.exists(uploadPath1)) {
 			try {
 				Files.createDirectories(uploadPath1);
 			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
 
-		try {
-			mFile.transferTo(destination);
+		Path filePath = Paths.get(saveDirectory, uploadFileName);
+		
+		
+		try (OutputStream os = Files.newOutputStream(filePath)){
+			os.write(mFile.getBytes());
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		}
