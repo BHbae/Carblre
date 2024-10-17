@@ -2,7 +2,7 @@ package com.carblre.controller;
 
 
 import com.carblre.dto.TossResponseDTO;
-import com.carblre.repository.User;
+import com.carblre.repository.model.User;
 import com.carblre.service.PaymentService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

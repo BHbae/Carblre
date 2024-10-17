@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
 
+import com.carblre.dto.DetailDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.carblre.repository.TestBoardRepository;
-import com.carblre.repository.Post;
+import com.carblre.repository.model.Post;
 import com.carblre.utils.Define;
 
 @Service
@@ -27,9 +28,13 @@ public class TestBoardService {
 	@Autowired
 	private TestBoardRepository boardRepository;
 
+	public DetailDTO selectByPostId(int id){
+		DetailDTO dto = boardRepository.selectByPostId(id);
+		return dto;
+	}
 	
-	
-	
+
+
 	
 	public List<Post> findAllBoards() {
 		List<Post> boards = boardRepository.findAllBoard();
@@ -41,7 +46,7 @@ public class TestBoardService {
 
 		String[] fileName = uploadFile(vidio);
 		Post post = Post.builder().userId(1).status(status).category(content).title(tile).content(content)
-				.originFileName(fileName[0]).uploardFileName(fileName[1]).build();
+				.originFileName(fileName[0]).uploadFileName(fileName[1]).build();
 
 		boardRepository.savePost(post);
 

@@ -1,4 +1,4 @@
-package com.carblre.repository;
+package com.carblre.repository.model;
 
 import lombok.*;
 
