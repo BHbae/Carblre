@@ -12,8 +12,8 @@ import java.sql.Timestamp;
 public class Comment {
 
     private int id;
-    private int user_id;
-    private int post_id;
+    private int userId;
+    private int postId;
     private String comment;
     private Timestamp createAt;
 
