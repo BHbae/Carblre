@@ -15,4 +15,5 @@ public interface TestBoardRepository {
 	public List<Post> findAllBoard();
 
 	public DetailDTO selectByPostId(@Param("id")int id);
+
 }

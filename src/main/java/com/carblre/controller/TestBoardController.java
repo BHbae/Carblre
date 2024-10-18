@@ -148,8 +148,4 @@ public class TestBoardController {
 		return commentList;
 	}
 
-
-
-
-
 }
