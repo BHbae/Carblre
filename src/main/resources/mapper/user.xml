@@ -19,14 +19,21 @@
 		SELECT * FROM user_tb WHERE nick_name = #{nickname}
 	</select>
 
-
-
 	<!-- id와 password로 유저 조회 -->
 	<select id="findByNickPassword"  resultType="com.carblre.dto.userdto.UserDTO">
 		SELECT * FROM user_tb
 		WHERE nick_name = #{nickName}
 		AND password = #{password}
 	</select>
+
+
+	<!-- 이름과 E-mail 로 유저 조회 -->
+	<select id="findByEmail"  resultType="com.carblre.dto.userdto.UserDTO">
+		SELECT * FROM user_tb
+		WHERE email = #{email}
+		and user_name = #{userName}
+	</select>
+
 
 
 	<!-- 간편유저 정보 저장 -->

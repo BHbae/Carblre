@@ -3,6 +3,7 @@ package com.carblre.repository.interfaces;
 import java.util.List;
 
 import com.carblre.dto.SignUpDTO;
+import com.carblre.dto.userdto.FindIdDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -33,7 +34,7 @@ public interface UserRepository {
 	// 로그인
 	UserDTO findByNickPassword(@Param("nickName") String nickName, @Param("password") String password);
 	
-	// 아이디 찾기
+	// 아이디 로 정보찾기
 	UserDTO findByNickId(String nick);
 
 	// 회원가입
@@ -42,4 +43,6 @@ public interface UserRepository {
 	// E-mail 중복 체크
 	public int checkDuplicateEmail(String email);
 
+	// 이메일로 아이디찾기
+	UserDTO findByEmail(String email);
 }

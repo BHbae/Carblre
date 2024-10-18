@@ -33,7 +33,7 @@ spring:
     url: jdbc:mysql://localhost:3306/carblre?serverTimezone=Asia/Seoul
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: qkrxogus0228!@#
+    password: asd123
 
   h2:
     console:

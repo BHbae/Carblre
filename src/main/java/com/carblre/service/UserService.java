@@ -72,14 +72,17 @@ public class UserService {
 		}
 
 		/**
-		 * 아이디 찾기
+		 * 아이디로 찾기
 		 * @param
-		 * @return ㅇㅇ
+		 * @return
 		 */
 		public UserDTO findByNickId (String nick){
 			return userRepository.findByNickId(nick);
 		}
 
+		public boolean findPassword(CharSequence changedPass,String originPass){
+			return passwordEncoder.matches(changedPass,originPass);
+		}
 
 		public void saveUser (SignDTO dto){
 			User user = dto.toUsern();
@@ -97,6 +100,21 @@ public class UserService {
 			}
 			return 0;
 		}
+
+		// 아이디찾기
+	public UserDTO findIdByEmail(String email) {
+		UserDTO userDTO=userRepository.findByEmail(email);
+			return userDTO;
 	}
+
+	/**
+	 *  qr코드 토큰
+	 * @param token
+	 * @return
+	 */
+//	public UserDTO findByToken(String token) {
+//
+//	}
+}
 
 

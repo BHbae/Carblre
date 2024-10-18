@@ -9,6 +9,9 @@
     <c:when test="${not empty principal}">
         <p>안녕하세요, ${principal.userName}님!</p>
         <p>이메일: ${principal.email}</p>
+        <a href="/user/logout">로그아웃</a>
+
+
     </c:when>
     <c:otherwise>
         <p>로그인이 필요합니다.</p>
