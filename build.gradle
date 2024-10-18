@@ -31,7 +31,6 @@ dependencies {
     compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
     implementation 'org.springframework.security:spring-security-crypto'
 
-    implementation 'com.googlecode.json-simple:json-simple:1.1.1' // json 의존성 추가
     implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:2.0.0' // JSTL 의존성 추가
     implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:2.0.0' // JSTL 구현 추가
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -75,6 +74,10 @@ dependencies {
 
     //WebSocket
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+    // JSON
+    implementation 'org.json:json:20210307' // XML to JSON 의존성 추가
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1' // json 의존성 추가
 }
 
 tasks.named('test') {
