@@ -1,9 +1,11 @@
 package com.carblre.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 import com.carblre.dto.SignUpDTO;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -371,6 +373,33 @@ public class UserController {
 			System.out.println("구글 인증 과정에서 오류 발생");
 			return "redirect:/user/signup";
 		}
+	}
+
+	/**
+	 * signUp.jsp checkDuplicate Method(In JavaScript)
+	 * @param userId = 유저가 입력한 값 (아이디)
+	 * @return ResponseEntity(OK or Error)
+	 */
+	@GetMapping("/checkId")
+	public ResponseEntity<Map<String, Object>> checkId(@RequestParam(name = "userId") String userId)
+	{
+		System.out.println("User ID : " + userId);
+		// 응답(ResponseEntity)을 담을 HashMap<> 선언
+		Map<String, Object> responseMessage = new HashMap<>();
+
+		// 사용자가 입력한 nickName
+		UserDTO userDTO = userService.findByNickId(userId);
+
+		if(userDTO == null)
+		{
+			responseMessage.put("message", true);
+		}
+		else
+		{
+			responseMessage.put("message", false);
+		}
+
+		return ResponseEntity.ok(responseMessage);
 	}
 
 }

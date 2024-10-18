@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="../layout/header.jsp"%>
 
 <link rel="stylesheet" href="/css/signin.css">
@@ -21,9 +20,9 @@
 	        <button type="submit">로그인</button>
 	    </form>
     </div>
-    <a href="/user/signin">아이디 찾기</a>
+    <a href="/user/signIn">아이디 찾기</a>
     <a href="/user/signup">비밀번호 찾기</a>
-    <a href="/user/signup">가입하기</a>
+    <a href="/user/signUp">가입하기</a>
 
 
     <div class="social">

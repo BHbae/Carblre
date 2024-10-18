@@ -51,7 +51,7 @@
         </div>
 
         <!-- 제출 버튼 -->
-        <button type="submit">가입하기</button>
+        <button type="submit" disabled="disabled" id="signUp">가입하기</button>
     </form>
 </div>
 <script>
@@ -75,9 +75,6 @@
                 console.log('Success:', data);
                 // EmailController에서 보낸 response를 alert으로 표시
                 alert(data.message);
-                // let username = document.getElementById('username').value;
-                // console.log(data.message.toString());
-                // username.innerText = data.message.toString();
                 const sendBtn = document.getElementById('emailCode');
                 const checkValidate = document.getElementById('checkValidate');
                 sendBtn.disabled = true;
@@ -105,9 +102,22 @@
                 return response.json();  // 응답을 JSON 형식으로 변환
             })
             .then(data => {
-                console.log('Success:', data);
-                alert(data.message);
-                document.getElementById('userId').readOnly = true;
+                if (data.message)
+                {
+                    alert("사용 가능한 아이디입니다.");
+                    const result = confirm("해당 아이디를 사용하시겠습니까?");
+
+                    if (result)
+                    {
+                        const inputUserId = document.getElementById('nickName');
+                        inputUserId.disabled = true;
+                    }
+
+                }
+                else
+                {
+                    alert("사용 중인 아이디입니다.");
+                }
             })
             .catch(error => {
                 console.log('Error:', error);
@@ -133,7 +143,7 @@
                 // 서버에서 보낸 메시지를 alert으로 표시
                 alert(data.message);
                 const signUpBtn = document.getElementById('signUp');
-                const emailInput = document.getElementById('userEmail');
+                const emailInput = document.getElementById('email');
                 const checkValidateBtn = document.getElementById('checkValidate');
 
                 signUpBtn.disabled = false;
@@ -147,6 +157,7 @@
                 alert(error.message);
             });
     }
+
 
     const autoHyphen = (target) => {
         target.value = target.value

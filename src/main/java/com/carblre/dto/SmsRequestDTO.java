@@ -10,4 +10,6 @@ import lombok.NoArgsConstructor;
 public class SmsRequestDTO {
 
     private String phoneNumber;
+    private String certificationCode;
+    private String userInputCode;
 }

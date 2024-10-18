@@ -25,20 +25,27 @@ repositories {
 }
 
 dependencies {
+    // 의존성 추가
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '3.0.0'
+    compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
+    implementation 'org.springframework.security:spring-security-crypto'
+
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1' // json 의존성 추가
+
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
-    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-    implementation 'javax.servlet:jstl:1.2' // 버전을 명시합니다.
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'com.mysql:mysql-connector-j'
     annotationProcessor 'org.projectlombok:lombok'
+    runtimeOnly 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
-    implementation 'net.nurigo:sdk:4.3.0'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
+    implementation 'net.nurigo:sdk:4.3.0'
     // Password Security Dependency
     implementation 'org.springframework.security:spring-security-crypto'
 

@@ -16,7 +16,7 @@ public class SmsService {
         String phoneNumber = smsRequestDTO.getPhoneNumber(); // 요청에서 전화번호 가져오기
         System.out.println("Phone Number : " + phoneNumber);
         String certificationCode = Integer.toString((int)(Math.random() * (999999 - 100000 + 1)) + 100000);
-
+        smsRequestDTO.setCertificationCode(certificationCode);
         // SMS 전송
         smsCertificationUtil.sendSMS(phoneNumber, "인증번호는 " + certificationCode + "입니다."); // 메시지에 인증 코드 포함
     }

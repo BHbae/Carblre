@@ -79,6 +79,4 @@ public class SmsCertificationUtil {
             return null;
         }
     }
-
-    // 나머지 메소드...
 }
