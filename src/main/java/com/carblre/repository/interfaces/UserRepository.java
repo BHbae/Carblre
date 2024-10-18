@@ -3,7 +3,6 @@ package com.carblre.repository.interfaces;
 import java.util.List;
 
 import com.carblre.dto.SignUpDTO;
-import com.carblre.dto.userdto.FindIdDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
