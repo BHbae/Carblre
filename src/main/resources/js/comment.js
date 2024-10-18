@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
          event.preventDefault();
 
          const formData = new FormData(this); // 폼데이터 수집
-         const url = '/write/comment'; // 댓글 제출 URL
+         const url = '/comment'; // 댓글 제출 URL
 
          // AJAX 요청으로 댓글 제출
          fetch(url,{
@@ -43,10 +43,10 @@ document.addEventListener('DOMContentLoaded', function() {
                  event.preventDefault(); // 새로고침 방지
              }
 
-             const bookId = document.querySelector('input[name="bookId"]').value; // bookId 가져오기
+             const postId = document.querySelector('input[name="postId"]').value;
 
              // AJAX 요청을 통해 댓글을 불러옴
-             fetch(`/write/workDetail/comments?bookId=${bookId}&sortBy=${sortBy}`)
+             fetch(`/Board/postDetail/comments?postId=${postId}&sortBy=${sortBy}`)
                  .then(response => response.json())
                  .then(comments => {
                      const commentSection = document.getElementById('commentSection');
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
                          commentElement.innerHTML = `
                              <div style="border-bottom: solid 1px #d1d1d1; width:800px; display:flex;">
                              <div>
-                             <strong>${comment.nickName}</strong>
+                             <strong>${comment.userName}</strong>
                              <div>
                              <p>${comment.comment}</p>
                              </div>

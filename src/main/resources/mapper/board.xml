@@ -32,26 +32,6 @@
 		SELECT * FROM post_tb
 	</select>
 
-	<select id="selectByPostId" resultType="com.carblre.dto.DetailDTO">
-		SELECT
-		p.id AS postId,
-		p.user_id AS userId,
-		p.status,
-		p.category,
-		p.title,
-		p.content,
-		p.create_at AS createdAt,
-		u.user_name AS userName,
-		u.nick_name AS nickName,
-		u.email AS userEmail,
-		u.phone_num AS userPhone,
-		u.role AS userRole
-		FROM
-		post_tb p
-		LEFT JOIN
-		user_tb u ON p.user_id = u.id
-		WHERE
-		p.id = #{id};
-	</select>
+
 
 </mapper>

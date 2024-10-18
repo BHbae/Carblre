@@ -29,7 +29,7 @@ public class CommentService {
         return commentRepository.insertComment(commentDTO.toBoardComment(userId));
     }
 
-    public List<Comment> getCommentsByCriteria(int postId , String sortBy){
+    public List<CommentDTO> getCommentsByCriteria(int postId , String sortBy){
         return commentRepository.selectCommentsByCriteria(postId, sortBy);
     }
 

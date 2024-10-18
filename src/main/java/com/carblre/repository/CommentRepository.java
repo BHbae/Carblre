@@ -25,7 +25,7 @@ public interface CommentRepository {
      * @param sortBy
      * @return 댓글 리스트
      */
-     List<Comment> selectCommentsByCriteria(
+     List<CommentDTO> selectCommentsByCriteria(
              @Param("postId")int postId,
              @Param("sortBy")String sortBy
      );

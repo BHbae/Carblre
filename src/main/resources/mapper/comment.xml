@@ -3,13 +3,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.carblre.repository.CommentRepository">
 
-    <select id="selectCommentsByCriteria" resultType="com.carblre.repository.model.Comment">
-        SELECT bc.post_id AS postId,
-        bc.user_id AS userId,
-        bc.comment,
-        bc.created_at AS creatAt
-        FROM book_comment_tb bc
-        WHERE bc.book_id = #{postId}  <!-- postId로 수정 -->
+    <select id="selectCommentsByCriteria" resultType="com.carblre.dto.CommentDTO">
+        SELECT
+        p.id AS postId,
+        p.title,
+        p.content,
+        p.create_at AS createdAt,
+        c.comment
+        c.create_at
+        c.user_id
+        u.user_name AS userName,
+        u.role AS userRole
+        FROM
+        post_tb p
+        LEFT JOIN
+        user_tb u ON p.user_id = u.id
+        LEFT JOIN
+        comment_tb c ON p.user_id = c.user_id
+        WHERE
+        p.id = #{id};  <!-- postId로 수정 -->
         <choose>
             <when test="sortBy == 'newest'">
                 ORDER BY bc.created_at DESC  <!-- 최신순 -->
@@ -24,7 +36,7 @@
     </select>
 
     <insert id="insertComment" parameterType="com.carblre.dto.CommentDTO">
-        INSERT INTO book_comment_tb (book_id, user_id, comment, created_at)
+        INSERT INTO comment_tb (post_id, user_id, comment, create_at)
         VALUES (#{postId}, #{userId}, #{comment}, NOW())
     </insert>
 
