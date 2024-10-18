@@ -1,10 +1,14 @@
 package com.carblre.controller;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.UUID;
 
+import com.carblre.config.MyWebSocketHandler;
 import com.carblre.dto.SignUpDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.carblre.dto.userdto.FindIdDTO;
+import com.carblre.service.QrcodeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -14,10 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -29,6 +30,7 @@ import com.carblre.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/user")
@@ -59,8 +61,11 @@ public class UserController {
 
 
 	private final UserService userService;
+	private final QrcodeService qrcodeService;
 
 	private final HttpSession session;
+
+	private final MyWebSocketHandler webSocketHandler;
 
 	@GetMapping("/signIn")
 	public String signPage() {
@@ -71,18 +76,32 @@ public class UserController {
 	@PostMapping("/signIn")
 	public String signInProc(SignDTO dto, Model model) {
 		UserDTO principial = userService.findByNickId(dto.getNickName());
-
 		if (principial == null) {
 			model.addAttribute("alertMessage", "아이디를 확인해주세요.");
 			return "user/signin";
 		}
-		if(!principial.getPassword().equals(dto.getPassword())) {
+		if(!userService.findPassword( dto.getPassword(),principial.getPassword())) {
 			model.addAttribute("alertMessage", "비밀번호를 확인해주세요");
 			return "user/signin";
 		}
 
 		session.setAttribute("principal", principial);
-		return "redirect:/user/tempindex";// 임시 인덱스 장소로 이동함
+		return "user/tempindex";// 임시 인덱스 장소로 이동함
+	}
+
+	@GetMapping("/signIn/token={token}")
+	public String signinQrcode(@PathVariable(name = "token") String token, HttpSession session) throws IOException {
+		System.out.println(token);
+		if (qrcodeService.isValid(token)) {
+			if (webSocketHandler.getActiveSessionsCount() > 0) {  // 세션이 있는 경우에만 메시지 전송
+				webSocketHandler.sendMessageToAll("login_success");
+			} else {
+				log.warn("No active WebSocket sessions found. Cannot send message.");
+			}
+			return "user/successphone";  // 핸드폰에서의 처리
+		} else {
+			return "error";
+		}
 	}
 
 	@GetMapping("/signUp")
@@ -103,8 +122,28 @@ public class UserController {
 		userService.createUser(signUpDTO);
 
 		// signIn (Login Page) 이동 처리
-		return "redirect:/user/signin";
+		return "redirect:/user/signIn";
 	}
+
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		// 세션 무효화
+		session.invalidate();
+		// 로그아웃 후 리다이렉트
+		return "redirect:/user/signIn";
+	}
+
+	@ResponseBody
+	@GetMapping("/findId")
+	public UserDTO findPage(@RequestParam(name = "email")String email)
+	{
+		// HTML required 속성으로 null 체크 X
+		UserDTO dto=userService.findIdByEmail(email);
+		// signIn (Login Page) 이동 처리
+		return  dto;
+	}
+
+
 
 	/**
 	 * 임시 인덱스
