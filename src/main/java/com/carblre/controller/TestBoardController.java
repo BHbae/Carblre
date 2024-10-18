@@ -39,8 +39,9 @@ public class TestBoardController {
 	
 	@Autowired
 	private TestBoardService boardService;
-	
-	
+
+	@Autowired
+	private CommentService commentService;
 	
 	//-----게시글 상세보기
 	@GetMapping("/detail/{id}")

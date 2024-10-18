@@ -1,6 +1,5 @@
 package com.carblre.service;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
@@ -9,14 +8,15 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
 
+import com.carblre.dto.DetailDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.carblre.ropository.Interface.TestBoardRepository;
-import com.carblre.ropository.model.Post;
+import com.carblre.repository.interfaces.TestBoardRepository;
+import com.carblre.repository.model.Post;
 import com.carblre.utils.Define;
 
 @Service
