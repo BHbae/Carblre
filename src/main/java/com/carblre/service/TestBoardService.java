@@ -28,13 +28,17 @@ public class TestBoardService {
 	@Autowired
 	private TestBoardRepository boardRepository;
 
-	
+	public DetailDTO selectByPostId(int id){
+		DetailDTO dto = boardRepository.selectByPostId(id);
+		return dto;
+	}
+
 	public Post fiinById(int postId) {
 		Post post = boardRepository.findById(postId);
 		return post;
 	}
-	
-	
+
+
 	
 	
 	public List<Post> findAllBoards() {
@@ -44,12 +48,12 @@ public class TestBoardService {
 
 	@Transactional
 	public void savePost(int status, String category, String tile, String content, MultipartFile vidio) {
-		
+
 		// 파일 업로드 로직
 		String[] fileName = uploadFile(vidio);
-		
+
 		Post post = Post.builder().userId(1).status(status).category(content).title(tile).content(content)
-				.originFileName(fileName[0]).uploardFileName(fileName[1]).build();
+				.originFileName(fileName[0]).uploadFileName(fileName[1]).build();
 
 		boardRepository.savePost(post);
 
@@ -66,7 +70,7 @@ public class TestBoardService {
 		// 확장자가 mp4인지 확인
 		String contentType = mFile.getContentType();
 		if (!contentType.equals("video/mp4")) {
-			
+
 		}
 
 		String uploadFileName = UUID.randomUUID() + "_" + mFile.getOriginalFilename();
@@ -74,8 +78,8 @@ public class TestBoardService {
 
 
 		String saveDirectory = uploadDir;
-		
-		
+
+
 		Path uploadPath1 = Paths.get(uploadDir);
 		if (!Files.exists(uploadPath1)) {
 			try {
@@ -86,8 +90,8 @@ public class TestBoardService {
 		}
 
 		Path filePath = Paths.get(saveDirectory, uploadFileName);
-		
-		
+
+
 		try (OutputStream os = Files.newOutputStream(filePath)){
 			os.write(mFile.getBytes());
 		} catch (IllegalStateException | IOException e) {

@@ -14,7 +14,7 @@
 	<c:forEach items="${boards}" var="boards">
 			<tr>
 				<td>${boards.id}</td>
-				<td><a href="/detail/${boards.id}">${boards.title}</a></td>
+				<td><a href="/detail/{boards.id}">${boards.title}</a></td>
 				<td>${boards.createdAt}</td>
 			</tr>
 	</c:forEach>
