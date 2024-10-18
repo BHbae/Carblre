@@ -6,7 +6,7 @@ server:
   port: 8080
   error:
     whitelabel:
-      enabled: true # 에러 페이지 표시 여부 설정
+      enabled: true # ? ??? ?? ??? ??
 
 spring:
   profiles:
@@ -14,25 +14,26 @@ spring:
   thymeleaf:
     enabled: false
   mvc:
+    contentnegotiation:
+      media-types:
+        mp4: video/mp4
     view:
-      prefix: /WEB-INF/view/ # JSP 파일 경로 설정
-      suffix: .jsp # JSP 파일 확장자 설정
+      prefix: /WEB-INF/view/ #JSP??? ??? ???? ???? ?????.
+      suffix: .jsp #? ??? ???? ??? ?? ???? ?????.
   servlet:
     multipart:
       enabled: true
-      max-file-size: 20MB # 업로드 가능한 최대 파일 크기
-      max-request-size: 20MB # 요청 가능한 최대 크기
+      max-file-size: 20MB #?? ?? ??? 20MB
+      max-request-size: 20MB #???? ?? ?? ?? 20MB??
   devtools:
     livereload:
       enabled: true
-
-
 
   datasource:
     url: jdbc:mysql://localhost:3306/carblre?serverTimezone=Asia/Seoul
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: qkrxogus0228!@#
+    password: asd123
 
   h2:
     console:
@@ -40,18 +41,19 @@ spring:
 
   output:
     ansi:
-      enabled: always # ANSI 컬러 로그 활성화
+      enabled: always #?? ??? ANSI ?? ??? ??? ? ??? ??
 
-# MyBatis 설정
+#mybatis ??
 mybatis:
   mapper-locations:
-    - classpath:mapper/**/*.xml  # MyBatis 매퍼 경로 설정
+    - classpath:mapper/**/*.xml  #MyBatis ?? ?? ??? ?????. **? ?? ????, *.xml ? ?? XML ??? ?????.
   configuration:
-    map-underscore-to-camel-case: true # 언더스코어 표기법을 카멜 케이스로 변환
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # SQL 로깅 설정
+    map-underscore-to-camel-case: true #??????? ????? ???(column_name)? ?? ???(columnName)? ?? ?????.
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #SQL ?? ???? ?????.
 
 logging:
   level:
-    org.apache.ibatis: DEBUG # MyBatis SQL 로깅 설정
+    org.apache.ibatis: DEBUG #MyBatis ?? ??? DEBUG? ???? ???? SQL ??? ?? ?? ??? ??? ?????.
 
-
+file:
+  upload-dir: C:\Users\KDP\git\Carblre\src\main\resources\static\uploardVidio

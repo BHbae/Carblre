@@ -13,7 +13,7 @@
         <nav class="">
         	<ul class="">
         		<li class="nav--menu--li">
-    				<a href="/movie/movies">가해자</a>
+    				<a href="/boardList">가해자</a>
         		</li>
         		<li class="nav--menu--li">
         			<a href="/cinema/cinema">피해자</a>
