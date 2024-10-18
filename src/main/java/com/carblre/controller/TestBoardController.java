@@ -19,6 +19,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
@@ -28,17 +33,16 @@ import com.carblre.service.TestBoardService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-@RequiredArgsConstructor
 @Controller
 @RequestMapping("/")
 public class TestBoardController {
-
-
+	
+	@Autowired
 	private TestBoardService boardService;
 
-	private final CommentService commentService;
-
-
+	@Autowired
+	private CommentService commentService;
+	
 	//-----게시글 상세보기
 	@GetMapping("/detail/{id}")
 	public String detailPage(@PathVariable(name ="id")int postId,Model model ,@RequestParam(name = "sortBy")String sortBy) {
@@ -85,35 +89,35 @@ public class TestBoardController {
 	public String getMethodName(Model model) {
 
 		List<Post> boards =  boardService.findAllBoards();
-
+		
 		model.addAttribute("boards",boards);
-
+		
 		return "/Board/BoardList";
 	}
-	// --- END 게시글 리스트 로직
-
-
-
-	// --- 게시글 작성
+	// --- END 게시글 리스트 로직 
+	
+	
+	
+	// --- 게시글 작성 
 	@GetMapping("/createBoard")
-	public String test(){
-
-		return "/Board/createPost";
-	}
+    public String test(){
+    	
+        return "/Board/createPost";
+    }
 
 	@PostMapping("/savePost")
 	// TODO - 세션값 받아와서 User_id 셋 해야됨
-	public String postMethodName(@RequestParam(name="status")int status,
-								 @RequestParam(name="category")String category,
-								 @RequestParam(name="title")String title,
-								 @RequestParam(name="content")String content,
-								 @RequestParam(name="uploardFileName")MultipartFile vidio) {
-
+    public String postMethodName(@RequestParam(name="status")int status,
+    							@RequestParam(name="category")String category,
+    							@RequestParam(name="title")String title,
+    							@RequestParam(name="content")String content,
+    							@RequestParam(name="uploardFileName")MultipartFile vidio) {
+        
 		boardService.savePost(status, category, title, content, vidio);
-
-
-		return "redirect:/createBoard";
-	}
+		
+		
+        return "redirect:/createBoard";
+    }
 	// --- END 게시글 작성 로직
 
 	// 댓글

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
-	namespace="com.carblre.repository.TestBoardRepository">
+	namespace="com.carblre.repository.interfaces.TestBoardRepository">
 
 
 
@@ -31,7 +31,6 @@
 	<select id="findAllBoard" resultType="com.carblre.repository.model.Post">
 		SELECT * FROM post_tb
 	</select>
-
 
 
 </mapper>

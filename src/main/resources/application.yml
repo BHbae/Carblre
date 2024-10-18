@@ -9,7 +9,14 @@ server:
       enabled: true # ? ??? ?? ??? ??
 
 spring:
+  profiles:
+    default: secure
+  thymeleaf:
+    enabled: false
   mvc:
+    contentnegotiation:
+      media-types:
+        mp4: video/mp4
     view:
       prefix: /WEB-INF/view/ #JSP??? ??? ???? ???? ?????.
       suffix: .jsp #? ??? ???? ??? ?? ???? ?????.
@@ -22,11 +29,7 @@ spring:
     livereload:
       enabled: true
 
-  datasource:
-    url: jdbc:mysql://192.168.0.36:3306/carblre?serverTimezone=Asia/Seoul
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: kda
-    password: 1234
+
 
   h2:
     console:
@@ -55,4 +58,4 @@ payment:
     success_url : "http://localhost:8080/api/v1/payments/toss/success"
     fail_url : "http://localhost:8080/api/v1/payments/toss/fail"
 file:
-  upload-dir: C:\Users\KDP\git\Carblre\src\main\resources\uploadVideo
+  upload-dir: C:\Users\KDP\git\Carblre\src\main\resources\static\uploardVidio
