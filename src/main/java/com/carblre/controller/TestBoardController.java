@@ -15,8 +15,10 @@ import com.carblre.repository.model.Comment;
 import com.carblre.repository.model.User;
 import com.carblre.service.CommentService;
 import com.carblre.utils.Define;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,15 +44,23 @@ public class TestBoardController {
 
 	@Autowired
 	private CommentService commentService;
+
+	@Autowired
+	private HttpSession session;
 	
 	//-----게시글 상세보기
 	@GetMapping("/detail/{id}")
-	public String detailPage(@PathVariable(name ="id")int postId,Model model ,@RequestParam(name = "sortBy")String sortBy) {
+	public String detailPage(@PathVariable(name = "id") int postId, Model model,
+							 @RequestParam(name = "sortBy", required = false, defaultValue = "newest") String sortBy) {
+		System.out.println("Post Id : " + postId);
+		System.out.println("Sort By : " + sortBy);
 		DetailDTO detailDTO = boardService.selectByPostId(postId);
-		List <CommentDTO> commentDTO = commentService.getCommentsByCriteria(postId,sortBy);
-		model.addAttribute("post",detailDTO);
+		List<CommentDTO> commentDTOs = commentService.getCommentsByCriteria(postId, sortBy);
 
-		return "Board/postDetail";
+		model.addAttribute("post", detailDTO);
+		model.addAttribute("comments", commentDTOs); // 댓글 목록 추가
+
+		return "Board/postDetail"; // 게시글 상세보기 뷰 리턴
 	}
 
 	@GetMapping("/download")
@@ -118,38 +128,63 @@ public class TestBoardController {
 		
         return "redirect:/createBoard";
     }
+
 	// --- END 게시글 작성 로직
 
 	// 댓글
 
+	/**
+	 * 댓글 작성
+	 * @param commentDTO
+	 * @return
+	 */
 	@PostMapping("/comment")
-	public  @ResponseBody Map<String , Object> handleCommentInsert(
-			@ModelAttribute CommentDTO commentDTO,
-			@SessionAttribute(Define.PRINCIPAL) User principal){
+	public ResponseEntity<Map<String, Object>> handleCommentInsert(@RequestBody CommentDTO commentDTO) {
 
-		Map<String ,Object> response = new HashMap<>();
+		System.out.println("HERERERE");
+		User principal = (User)session.getAttribute("principal");
+		commentDTO.setUserId(1); // 하드 코딩
+		System.out.println("Post ID : " + commentDTO.getPostId());
+		System.out.println("Comment : " + commentDTO.getComment());
 
-		// TODO! 세션에 유저 정보를 저장할수 있을때 주석 해제
-		// int result = commentService.writeComment(commentDTO , principal.getUserId());
+		commentDTO = CommentDTO.builder()
+				.postId(commentDTO.getPostId())
+				.userId(principal.getId())
+				.comment(commentDTO.getComment())
+				.createAt(commentDTO.getCreateAt())
+				.userName(principal.getUserName())
+				.build();
 
-//        if(result > 0){
-//            response.put("success" , true);
-//        } else {
-//            response.put("success" ,false);
-//        }
+		int result = commentService.writeComment(commentDTO);
+		System.out.println(commentDTO.toString());
 
-		return  response; // JSON 형태로 응답
+		// 1 = 글쓰기 성공 . 0 = 실패
+		Map<String, Object> response = new HashMap<>();
+		if(result == 1){
+			response.put("success", true); // 응답으로 성공 여부를 전송
+		}else if( result == 0){
+			response.put("fail" , false);
+		}
 
+		return ResponseEntity.ok(response);
 	}
 
+	/**
+	 * 댓글 리스트
+	 * @param postId
+	 * @param sortBy
+	 * @return
+	 */
 	@GetMapping("/detail/comment")
-	public @ResponseBody List<CommentDTO> getComments(
-			@PathVariable("postId") int postId,
-			@RequestParam(name = "sortBy")String sortBy ){
-
-		List<CommentDTO> commentList = commentService.getCommentsByCriteria(postId , sortBy);
-
-		return commentList;
+	public ResponseEntity<List<CommentDTO>> getComments(
+			@RequestParam("postId") String id,  // 수정된 부분
+			@RequestParam("sortBy") String sortBy) {
+		System.out.println("Post ID : " + id);
+		System.out.println("SortBy : " + sortBy);
+		int postId = Integer.parseInt(id);
+		List<CommentDTO> commentList = commentService.getCommentsByCriteria(postId, sortBy);
+		System.out.println("Comment List : " + commentList);
+		return ResponseEntity.ok(commentList);
 	}
 
 }
