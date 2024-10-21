@@ -7,16 +7,16 @@ import java.util.UUID;
 
 import com.carblre.config.MyWebSocketHandler;
 import com.carblre.dto.SignUpDTO;
+import com.carblre.dto.userdto.*;
+import com.carblre.handler.exception.DataDeliveryException;
+import com.carblre.utils.Define;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.carblre.dto.userdto.FindIdDTO;
 import com.carblre.service.QrcodeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
@@ -25,9 +25,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import com.carblre.dto.userdto.KakaoOAuthToken;
-import com.carblre.dto.userdto.SignDTO;
-import com.carblre.dto.userdto.UserDTO;
 import com.carblre.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -70,26 +67,42 @@ public class UserController {
 
 	private final MyWebSocketHandler webSocketHandler;
 
+	private final PasswordEncoder passwordEncoder;
+
 	@GetMapping("/signIn")
 	public String signPage() {
 
 		return "user/signin";
 	}
 
+	/**
+	 * [POST] 로그인 프로세스입니다.
+	 * @param dto = SignInDTO <- String nickName, String password
+	 * @return 유효성 검사, 회원 존재 여부, 회원 정보 일치 여부 확인 후 맞는 응답(Exception OR Return jsp) 내려줌
+	 */
 	@PostMapping("/signIn")
-	public String signInProc(SignDTO dto, Model model) {
-		UserDTO principial = userService.findByNickId(dto.getNickName());
+	public String signInProc(SignInDTO dto) {
 
-		if (principial == null) {
-			model.addAttribute("alertMessage", "아이디를 확인해주세요.");
-			return "user/signin";
-		}
-		if(!principial.getPassword().equals(dto.getPassword())) {
-			model.addAttribute("alertMessage", "비밀번호를 확인해주세요");
-			return "user/signin";
+		String nickName = dto.getNickName();
+		String password = dto.getPassword();
+
+		UserDTO userDTO = userService.findByNickId(password);
+
+		if (userDTO == null)
+		{
+			throw new DataDeliveryException(Define.NOT_EXISTING_USER, HttpStatus.BAD_REQUEST);
 		}
 
-		session.setAttribute("principal", principial);
+
+		String hashedPassword = userDTO.getPassword();
+		boolean isMatch = passwordEncoder.matches(password, hashedPassword);
+
+		if (!isMatch)
+		{
+			throw new DataDeliveryException(Define.NOT_MATCH_ACCOUNT_INFO, HttpStatus.BAD_REQUEST);
+		}
+
+		session.setAttribute("principal", userDTO);
 		return "redirect:/user/tempindex";// 임시 인덱스 장소로 이동함
 	}
 
