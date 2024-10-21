@@ -143,7 +143,6 @@ public class TestBoardController {
 
 		System.out.println("HERERERE");
 		User principal = (User)session.getAttribute("principal");
-		commentDTO.setUserId(1); // 하드 코딩
 		System.out.println("Post ID : " + commentDTO.getPostId());
 		System.out.println("Comment : " + commentDTO.getComment());
 
@@ -171,7 +170,7 @@ public class TestBoardController {
 
 	/**
 	 * 댓글 리스트
-	 * @param postId
+	 * @param
 	 * @param sortBy
 	 * @return
 	 */
