@@ -109,7 +109,7 @@
 
                     if (result)
                     {
-                        const inputUserId = document.getElementById('nickName');
+                        const inputUserId = document.getElementById('nickName').value;
                         inputUserId.disabled = true;
                     }
 
