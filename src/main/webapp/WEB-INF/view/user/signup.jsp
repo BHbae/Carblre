@@ -51,7 +51,7 @@
         </div>
 
         <!-- 제출 버튼 -->
-        <button type="submit" disabled="disabled" id="signUp">가입하기</button>
+        <button type="submit"  id="signUp">가입하기</button>
     </form>
 </div>
 <script>
@@ -109,7 +109,8 @@
 
                     if (result)
                     {
-                        const inputUserId = document.getElementById('nickName');
+                        const inputUserId = document.getElementById('nickName').value;
+                        console.log('inputUserId', inputUserId);
                         inputUserId.disabled = true;
                     }
 

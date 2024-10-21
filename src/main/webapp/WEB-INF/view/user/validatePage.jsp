@@ -110,10 +110,7 @@
 
     <div class="content">
         <p>Perfect Folio로 돌아가 회원가입을 완료해주세요.</p>
-        <form action="/user/completeValidateEmail" method="get">
-            <button type="submit" class="button">돌아가기</button>
-            <input type="hidden" name="action" value="isCompleted">
-        </form>
+            <button type="submit" class="button" onclick="close()">돌아가기</button>
     </div>
 
     <div class="footer">
@@ -121,5 +118,4 @@
     </div>
 </div>
 </body>
-
 <%@ include file="../layout/footer.jsp" %>
