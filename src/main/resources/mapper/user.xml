@@ -31,7 +31,6 @@
 	<select id="findByEmail"  resultType="com.carblre.dto.userdto.UserDTO">
 		SELECT * FROM user_tb
 		WHERE email = #{email}
-		and user_name = #{userName}
 	</select>
 
 
@@ -74,5 +73,19 @@
 		SELECT count(email) FROM user_tb WHERE
 			email = #{email}
 	</select>
+
+	<!-- 닉네임과 E-mail 로 유저 조회 -->
+	<select id="findByEmailNick"  resultType="com.carblre.dto.userdto.UserDTO">
+		SELECT * FROM user_tb
+		WHERE email = #{email}
+		and nick_name= #{nickName}
+	</select>
+
+	<update id="updatePass" >
+		UPDATE user_tb
+		SET password = #{password}
+		WHERE id = #{id}
+	</update>
+
 
 </mapper>

@@ -44,4 +44,10 @@ public interface UserRepository {
 
 	// 이메일로 아이디찾기
 	UserDTO findByEmail(String email);
+
+	// 닉네임(아이디) 이메일 비밀번호 찾기
+	UserDTO findByEmailNick(@Param("email")String email,@Param("nickName") String nickName);
+
+	// 비밀번호 변경
+	int updatePass(@Param("password")String password,@Param("id")int id);
 }

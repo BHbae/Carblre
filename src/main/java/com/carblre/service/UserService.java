@@ -107,6 +107,41 @@ public class UserService {
 			return userDTO;
 	}
 
+	public UserDTO findIdByEmailNick(String email,String nickName) {
+			return userRepository.findByEmailNick(email, nickName);
+	}
+
+	@Transactional
+	/**
+	 * 비밀번호 변경
+	 */
+	public int updatePassword(String password1,int id) {
+
+			return  userRepository.updatePass(passwordEncoder.encode(password1),id);
+	}
+
+	/**
+	 *  변호사 가입
+	 * @param signUpDTO
+	 */
+	@Transactional
+	public void createLawyerUser(SignUpDTO signUpDTO) {
+		try {
+			System.out.println("Here in Create User Method");
+			System.out.println("User Name : " + signUpDTO.getUserName());
+			System.out.println("User Nickname : " + signUpDTO.getNickName());
+			System.out.println("User Password : " + signUpDTO.getPassword());
+			System.out.println("User Email : " + signUpDTO.getEmail());
+			System.out.println("User phoneNumber : " + signUpDTO.getPhoneNum());
+			String hashPassword = passwordEncoder.encode(signUpDTO.getPassword());
+			signUpDTO.setRole("lawyer[temp]"); // 임시 변호사 role
+			signUpDTO.setPassword(hashPassword);
+			userRepository.insert(signUpDTO.toUser());
+		} catch (Exception e) {
+			System.out.println("Error in Create User : " + e.getMessage());
+		}
+	}
+
 	/**
 	 *  qr코드 토큰
 	 * @param token

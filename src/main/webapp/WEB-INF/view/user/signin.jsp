@@ -11,7 +11,7 @@
 
     <!-- 일반 로그인 폼 -->
     <div class="login">
-	    <form action="/user/signin" method="POST">
+	    <form action="/user/signIn" method="POST">
 	        <label for="nickName">닉네임:</label>
 	        <input type="text" id="nickName" name="nickName" required>
 	        <br>
@@ -23,16 +23,13 @@
     </div>
 
         <div  onclick="findId()">아이디찾기</div>
-        <a href="/user/signIp">비밀번호 찾기</a>
-        <a href="/user/signUp">가입하기</a>
+        <div  onclick="findPass()">패스워드 찾기</div>
+        <a href="/user/selectSignup">가입하기</a>
         <!-- <a href="/qr/login">QR로그인</a> -->
         </div>
 
 
     <div class="social">
-
-    
-    <a href="/user/signUp">가입하기</a>
 
     <!-- 카카오 로그인 버튼 -->
     <a class="image-link" href="https://kauth.kakao.com/oauth/authorize?client_id=74ae415425bf1b53dc8f8dcf38efc2d4&redirect_uri=http://localhost:8080/user/kakao&response_type=code">
@@ -58,6 +55,10 @@
 function findId()
 {
     window.open("/user/findId", "popupWindow", "width=400,height=500")
+}
+function findPass()
+{
+    window.open("/user/findPass", "popupWindow", "width=400,height=500")
 }
 
 

@@ -79,12 +79,13 @@ public class UserController {
 	@PostMapping("/signIn")
 	public String signInProc(SignDTO dto, Model model) {
 		UserDTO principial = userService.findByNickId(dto.getNickName());
-
+		boolean checkcPass=userService.findPassword(dto.getPassword(),principial.getPassword());
+		System.out.println(checkcPass);
 		if (principial == null) {
-			model.addAttribute("alertMessage", "아이디를 확인해주세요.");
-			return "user/signin";
+			// TODO 모델삭제하기
+			model.addAttribute("alertMessage", "아이디를 확인해주d세요.");
 		}
-		if(!principial.getPassword().equals(dto.getPassword())) {
+		if(!checkcPass) {
 			model.addAttribute("alertMessage", "비밀번호를 확인해주세요");
 			return "user/signin";
 		}
@@ -137,15 +138,38 @@ public class UserController {
 		return "redirect:/user/signIn";
 	}
 
-	@ResponseBody
+	/**
+	 *   홈페이지 이동(아이디찾기)
+	 * @return
+	 */
 	@GetMapping("/findId")
-	public UserDTO findPage(@RequestParam(name = "email")String email)
+	public String findPage(){
+
+		// signIn (Login Page) 이동 처리
+		return  "user/findId";
+	}
+
+	/**
+	 *  ID찾기
+	 * @param email
+	 * @return
+	 */
+	@ResponseBody
+	@GetMapping("/email")
+	public UserDTO FindPageGetEmail(@RequestParam(name = "email")String email)
 	{
 		// HTML required 속성으로 null 체크 X
 		UserDTO dto=userService.findIdByEmail(email);
+		System.out.println(dto);
+		if(!dto.getSite().equals("서버")||dto == null || dto.getEmail() == null){// 값이 없거나 서버가 안맞거나
+			return  new UserDTO();
+
+		}
 		// signIn (Login Page) 이동 처리
 		return  dto;
 	}
+
+
 
 	/**
 	 * 임시 인덱스
@@ -441,4 +465,69 @@ public class UserController {
 		return ResponseEntity.ok(responseMessage);
 	}
 
+	@GetMapping("/findPass")
+	public String findPassPage(){
+
+		// signIn (Login Page) 이동 처리
+		return  "user/findPass";
+	}
+
+
+	@GetMapping("/emailNick")
+	public String FindPageGetEmail(@RequestParam(name = "email") String email, @RequestParam(name = "nickName") String nickName
+	,Model model)
+	{
+		// HTML required 속성으로 null 체크 X
+		UserDTO dto=userService.findIdByEmailNick(email,nickName);
+		System.out.println(dto);
+		model.addAttribute("UserId",dto.getId());
+		// signIn (Login Page) 이동 처리
+		return "user/updatePass";
+	}
+
+	@PostMapping("/updatePass")
+	public ResponseEntity<Map<String, Object>> updatePassProc(@RequestBody Map<String, String> reqData)
+	{
+		String changedPassword = reqData.get("changedPassword");
+		String checkedPassword = reqData.get("checkedPassword");
+		int id = Integer.parseInt(reqData.get("id"));
+		Map<String, Object> response = new HashMap<>();
+		// HTML required 속성으로 null 체크 X
+
+			int result = userService.updatePassword(changedPassword,id);
+		System.out.println(result);
+			if (result == 1) {
+				response.put("status", 1);  // 성공
+				response.put("message", "비밀번호 변경 성공");
+			}
+
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping("/lawyerSignUp")
+	public String lawyerSignupPage() {
+		System.out.println("Here in lawyerSignUpPage(UserController)");
+		return "user/lawyerSignup";
+	}
+
+	/**
+	 * [POST] 회원가입 로직
+	 * @param signUpDTO = 사용자의 입력값
+	 * @return signIn.jsp
+	 */
+	@PostMapping("/lawyerSignUp")
+	public String lawyerSignUpProc(SignUpDTO signUpDTO)
+	{
+		// HTML required 속성으로 null 체크 X
+		userService.createLawyerUser(signUpDTO);
+
+		// signIn (Login Page) 이동 처리
+		return "redirect:/user/signIn";
+	}
+
+	@GetMapping("/selectSignup")
+	public String selectSignupPage() {
+		System.out.println("Here in selectSignupPage(UserController)");
+		return "user/selectSignup";
+	}
 }
