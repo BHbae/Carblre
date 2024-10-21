@@ -1,37 +1,32 @@
 package com.carblre.controller;
 
-import java.util.HashMap;
-import java.io.IOException;
-import java.util.Map;
-import java.util.UUID;
-
 import com.carblre.config.MyWebSocketHandler;
 import com.carblre.dto.SignUpDTO;
-import org.apache.coyote.Response;
-import org.springframework.beans.factory.annotation.Autowired;
-import com.carblre.dto.userdto.FindIdDTO;
+import com.carblre.dto.userdto.KakaoOAuthToken;
+import com.carblre.dto.userdto.SignDTO;
+import com.carblre.dto.userdto.SignInDTO;
+import com.carblre.dto.userdto.UserDTO;
+import com.carblre.handler.exception.DataDeliveryException;
 import com.carblre.service.QrcodeService;
+import com.carblre.service.UserService;
+import com.carblre.utils.Define;
+import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import com.carblre.dto.userdto.KakaoOAuthToken;
-import com.carblre.dto.userdto.SignDTO;
-import com.carblre.dto.userdto.UserDTO;
-import com.carblre.service.UserService;
-
-import jakarta.servlet.http.HttpSession;
-import lombok.RequiredArgsConstructor;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 @Slf4j
 @Controller
@@ -70,26 +65,50 @@ public class UserController {
 
 	private final MyWebSocketHandler webSocketHandler;
 
+	private final PasswordEncoder passwordEncoder;
+
 	@GetMapping("/signIn")
 	public String signPage() {
 
 		return "user/signin";
 	}
 
+	/**
+	 * [POST] 로그인 프로세스입니다.
+	 * @param dto = SignInDTO <- String nickName, String password(유저가 입력한 값)
+	 * @return 유효성 검사, 회원 존재 여부, 회원 정보 일치 여부 확인 후 맞는 응답(Exception OR Return jsp) 내려줌
+	 */
 	@PostMapping("/signIn")
-	public String signInProc(SignDTO dto, Model model) {
-		UserDTO principial = userService.findByNickId(dto.getNickName());
+	public String signInProc(SignInDTO dto) {
 
-		if (principial == null) {
-			model.addAttribute("alertMessage", "아이디를 확인해주세요.");
-			return "user/signin";
-		}
-		if(!principial.getPassword().equals(dto.getPassword())) {
-			model.addAttribute("alertMessage", "비밀번호를 확인해주세요");
-			return "user/signin";
+		String nickName = dto.getNickName(); // 유저가 입력한 아이디
+		String password = dto.getPassword(); // 유저가 입력한 비밀번호
+
+		// nickName 을 사용하여 유저가 존재하는지 판단합니다.
+		UserDTO userDTO = userService.findByNickId(nickName);
+
+		if (userDTO == null)
+		{
+			// 유저가 존재하지 않는다면 DataDeliveryException 을 사용하여 Alert
+			throw new DataDeliveryException(Define.NOT_EXISTING_USER, HttpStatus.BAD_REQUEST);
 		}
 
-		session.setAttribute("principal", principial);
+		// DB에 존재하는 유저의 암호화된 비밀번호를 받아옵니다.
+		String hashedPassword = userDTO.getPassword();
+
+		// PasswordEncoder 의 matches 를 이용하여 유저가 입력한 비밀번호와 DB에 있는 암호화된 비밀번호를 비교합니다.
+		boolean isMatch = passwordEncoder.matches(password, hashedPassword);
+
+		if (!isMatch)
+		{
+			// 비밀번호가 일치하지 않는다면 DataDeliveryException 을 이용하여 Alert
+			throw new DataDeliveryException(Define.NOT_MATCH_ACCOUNT_INFO, HttpStatus.BAD_REQUEST);
+		}
+
+		// 위의 검사를 모두 통과했다면 'principal' Session 부여합니다.
+		session.setAttribute("principal", userDTO);
+
+		// 마지막으로 페이지 이동 처리를 진행합니다.
 		return "redirect:/user/tempindex";// 임시 인덱스 장소로 이동함
 	}
 
