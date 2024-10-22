@@ -5,25 +5,30 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.carblre.dto.LawyerUserDTO;
-import com.carblre.repository.interfaces.UserRepository;
-import com.carblre.repository.model.User;
+import com.carblre.dto.admin.AdminLawyerUserDTO;
+import com.carblre.dto.admin.AdminPostDTO;
+import com.carblre.repository.interfaces.AdminRepository;
+import com.carblre.repository.model.AdminUser;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class AdminService {
 
-	private final UserRepository userRepository;
+	private final AdminRepository adminRepository;
 
 	@Transactional
-	public List<User> readAllGeneralUser() {
-		return userRepository.readAllGeneralUser();
+	public List<AdminUser> readAllGeneralUser() {
+		return adminRepository.readAllGeneralUser();
 	}
 
-	public List<LawyerUserDTO> readAllCorporateUser() {
-		return userRepository.readAllCorporateUser();
+	public List<AdminLawyerUserDTO> readAllCorporateUser() {
+		return adminRepository.readAllCorporateUser();
+	}
+
+	public List<AdminPostDTO> readAllPost() {
+		return adminRepository.readAllPost();
 	}
 
 }

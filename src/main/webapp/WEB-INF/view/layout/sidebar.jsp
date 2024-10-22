@@ -1,19 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <nav class="navbar-default navbar-side" role="navigation">
 	<div class="sidebar-collapse">
 		<ul class="nav" id="main-menu">
 
 			<li><a
-				class="${status == 'dashboard' ? 'active-menu waves-effect waves-dark' : 'waves-effect waves-dark'}"
+				class="${status == 'dashboard' ? 'active-menu' : ''} waves-effect waves-dark"
 				href="/admin"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-			<li><a href="#" class="waves-effect waves-dark"><i
-					class="collapse fa fa-sitemap"></i> 회원 관리<span class="fa arrow"></span></a>
-				<ul class="nav nav-second-level">
+			<li><a href="#"
+				class="${fn:contains(status, 'UserList') ? 'active-menu' : ''} waves-effect waves-dark"><i
+					class="<c:if test='${status}'>'active'</c:if>collapse fa fa-sitemap"></i>
+					회원 관리<span class="fa arrow"></span></a>
+				<ul
+					class="nav nav-second-level ${fn:contains(status, 'UserList') ? 'collapse in' : ''}">
 					<li><a href="/admin/general-user"
-						class=" waves-effect waves-dark">일반 회원</a></li>
+						class="${status == 'generalUserList' ? 'active-menu' : ''} waves-effect waves-dark">일반
+							회원</a></li>
 					<li><a href="/admin/corporate-user"
-						class="waves-effect waves-dark">법인 회원</a></li>
+						class="${status == 'corporateUserList' ? 'active-menu' : ''} waves-effect waves-dark">법인
+							회원</a></li>
 				</ul></li>
 			<li><a href="/admin/payment"
 				class="${status == 'paymentList' ? 'active-menu waves-effect waves-dark' : 'waves-effect waves-dark'}"><i

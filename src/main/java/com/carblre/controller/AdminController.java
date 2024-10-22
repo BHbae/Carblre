@@ -7,9 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.carblre.dto.LawyerUserDTO;
-import com.carblre.repository.model.User;
-import com.carblre.service.UserService;
+import com.carblre.dto.admin.AdminLawyerUserDTO;
+import com.carblre.dto.admin.AdminPostDTO;
+import com.carblre.repository.model.AdminUser;
+import com.carblre.service.AdminService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AdminController {
 
-	private final UserService userService;
+	private final AdminService adminService;
 
 	/**
 	 * 관리자 메인페이지
@@ -31,7 +32,7 @@ public class AdminController {
 		// TODO 관리자 권한 확인
 
 		model.addAttribute("status", "dashboard");
-		
+
 		return "admin/dashboard";
 	}
 
@@ -43,7 +44,7 @@ public class AdminController {
 	 */
 	@GetMapping("/general-user")
 	public String generalUserListPage(Model model) {
-		List<User> generalUserList = userService.readAllGeneralUser();
+		List<AdminUser> generalUserList = adminService.readAllGeneralUser();
 
 		model.addAttribute("status", "generalUserList");
 		model.addAttribute("generalUserList", generalUserList);
@@ -59,7 +60,7 @@ public class AdminController {
 	 */
 	@GetMapping("/corporate-user")
 	public String corporateUserListPage(Model model) {
-		List<LawyerUserDTO> corporateUserList = userService.readAllCorporateUser();
+		List<AdminLawyerUserDTO> corporateUserList = adminService.readAllCorporateUser();
 
 		model.addAttribute("status", "corporateUserList");
 		model.addAttribute("corporateUserList", corporateUserList);
@@ -79,10 +80,10 @@ public class AdminController {
 
 	@GetMapping("board")
 	public String boardListPage(Model model) {
-//		List<LawyerUserDTO> corporateUserList = userService.readAllCorporateUser();
+		List<AdminPostDTO> postList = adminService.readAllPost();
 		model.addAttribute("status", "boardList");
-//		model.addAttribute("corporateUserList", corporateUserList);
+		model.addAttribute("postList", postList);
 
-		return "admin/boardList";
+		return "admin/postList";
 	}
 }

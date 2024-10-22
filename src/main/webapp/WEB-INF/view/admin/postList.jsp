@@ -1,7 +1,5 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -72,29 +70,19 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<th>id</th>
-												<th>user_id</th>
-												<th>status</th>
-												<th>category</th>
-												<th>title</th>
-												<th>content</th>
-												<th>origin_file_name</th>
-												<th>uploard_file_name</th>
-												<th>created_at</th>
-											</tr>
-											<%-- <c:forEach var="user" items="${generalUserList}">
+											<c:forEach var="post" items="${postList}">
 												<tr class="gradeA">
-													<td>${user.id}</td>
-													<td>${user.userName}</td>
-													<td>${user.nickName}</td>
-													<td>${user.password}</td>
-													<td>${user.email}</td>
-													<td>${user.phoneNum}</td>
-													<td>${user.role}</td>
-													<td>${user.role}</td>
+													<td>${post.id}</td>
+													<td>${post.userId}</td>
+													<td>${post.status}</td>
+													<td>${post.category}</td>
+													<td>${post.title}</td>
+													<td>${post.content}</td>
+													<td>${post.originFileName}</td>
+													<td>${post.uploardFileName}</td>
+													<td>${post.createAt}</td>
 												</tr>
-											</c:forEach> --%>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>

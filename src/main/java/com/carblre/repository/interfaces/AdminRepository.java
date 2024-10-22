@@ -4,14 +4,20 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.carblre.dto.LawyerUserDTO;
-import com.carblre.repository.model.User;
+import com.carblre.dto.admin.AdminLawyerUserDTO;
+import com.carblre.dto.admin.AdminPostDTO;
+import com.carblre.repository.model.AdminUser;
 
 @Mapper
-public interface UserRepository {
+public interface AdminRepository {
 
-	public List<User> readAllGeneralUser();
+	// 전체 일반회원 조회
+	public List<AdminUser> readAllGeneralUser();
 
-	public List<LawyerUserDTO> readAllCorporateUser();
+	// 전체 법인회원 조회
+	public List<AdminLawyerUserDTO> readAllCorporateUser();
+
+	// 전체 게시글 조회
+	public List<AdminPostDTO> readAllPost();
 
 }

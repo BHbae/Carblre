@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.carblre.repository.interfaces.UserRepository">
+<mapper namespace="com.carblre.repository.interfaces.AdminRepository">
 
 	<select id="readAllGeneralUser"
-		resultType="com.carblre.repository.model.User">
-		select * from user_tb where role = 'general'
+		resultType="com.carblre.repository.model.AdminUser">
+		select * from user_tb where role is null
 	</select>
+	
 	<select id="readAllCorporateUser"
-		resultType="com.carblre.dto.LawyerUserDTO">
+		resultType="com.carblre.dto.admin.AdminLawyerUserDTO">
 		select u.user_name, u.nick_name, u.password, u.email, u.phone_num,
 		u.role, ld.id, ld.user_id, ld.uploard_profile_name, ld.introduction,
 		ld.law_firm, ld.office_num from user_tb u
@@ -16,5 +17,9 @@
 		where u.role = 'corporate'
 	</select>
 
+	<select id="readAllPost"
+		resultType="com.carblre.dto.admin.AdminPostDTO">
+		select * from post_tb
+	</select>
 
 </mapper>

@@ -1,4 +1,4 @@
-package com.carblre.dto;
+package com.carblre.dto.admin;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 @ToString
-public class LawyerUserDTO {
+public class AdminLawyerUserDTO {
 	private int id;
 	
 	private int userId;
