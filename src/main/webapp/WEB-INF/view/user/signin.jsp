@@ -11,7 +11,7 @@
 
     <!-- 일반 로그인 폼 -->
     <div class="login">
-	    <form action="/user/signin" method="POST">
+	    <form action="/user/signIn" method="POST">
 	        <label for="nickName">닉네임:</label>
 	        <input type="text" id="nickName" name="nickName" required>
 	        <br>
