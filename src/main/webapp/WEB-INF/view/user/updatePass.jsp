@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,33 +16,30 @@
     </c:when>
 
     <c:otherwise>
-    <form  onsubmit="handleSubmit(event)">
+    <form onsubmit="handleSubmit(event)">
         <%-- password 입력란 --%>
         <div class="form-group">
             <label for="nickName">변경할 비밀번호</label>
-        <input type="password" class="form-control" id="changePassword" placeholder="비밀번호 입력" oninput="checkPasswordMatch()" required>
+            <input type="password" class="form-control" id="changePassword" placeholder="비밀번호 입력" oninput="checkPasswordMatch()" required>
         </div>
-                <%-- password 입력란 --%>
 
+        <%-- password 입력란 --%>
         <div class="form-group">
             <label for="email">비밀번호 확인</label>
-        <input type="password" class="form-control" id="checkPassword" placeholder="비밀번호 확인" oninput="checkPasswordMatch()" required>
-    </div>
+            <input type="password" class="form-control" id="checkPassword" placeholder="비밀번호 확인" oninput="checkPasswordMatch()" required>
         </div>
 
-    <input type="hidden" id="id" name="id" value="${UserId}">
-
-            <p id="passwordMessage"></p>
+        <input type="hidden" id="id" name="id" value="${UserId}">
+        <p id="passwordMessage"></p>
 
         <button type="submit" disabled>비밀번호 변경</button>
     </form>
 
-        <p id="message"></p>
+    <p id="message"></p>
     </c:otherwise>
 </c:choose>
 
-   <script>
-
+<script>
     // 비밀번호 확인 함수
     function checkPasswordMatch() {
         const changedPassword = document.getElementById('changePassword').value;
@@ -65,24 +62,26 @@
         }
     }
 
+    // 폼 제출 함수
+    function handleSubmit(event) {
+        event.preventDefault(); // 기본 폼 제출 방지
 
- function handleSubmit(event) {
-     const changedPassword = document.getElementById('changePassword').value;
-     const checkedPassword = document.getElementById('checkPassword').value;
-    const id = document.getElementById('id').value;
-    try {
-        const requestData : {
-            "changedPassword" : changedPassword,
-            "checkedPassword" : checkedPassword,
-            "id" : id
-        }
+        const changedPassword = document.getElementById('changePassword').value;
+        const checkedPassword = document.getElementById('checkPassword').value;
+        const id = document.getElementById('id').value;
+
+        const requestData = {
+            changedPassword: changedPassword,
+            checkedPassword: checkedPassword,
+            id: id
+        };
 
         fetch('/user/updatePass', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'  // JSON 형식으로 전송
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify(requestData)  // 비밀번호를 Request Body에 담아서 전송
+            body: JSON.stringify(requestData)
         })
         .then(response => {
             if (!response.ok) {
@@ -91,18 +90,15 @@
             return response.json();
         })
         .then(data => {
-            console.log(data.message);  // console.log 오타 수정
+            console.log(data.message);
             alert(data.message);
+            window.location.href = "/user/index";
         })
         .catch(error => {
-            console.log("catch부분에서 실패로 받음");  // console.log 오타 수정
+            console.error("Error:", error);
+            alert("오류가 발생했습니다: " + error.message);
         });
-
-}
-
-
-
-
-    </script>
+    }
+</script>
 </body>
 </html>

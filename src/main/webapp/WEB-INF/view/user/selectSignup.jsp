@@ -24,16 +24,23 @@ p {
 
     <h1> 회원가입 <h1>
 
-        <div>
+        <div class="select-signup">
 
-        <div class="signup-btn" onclick="signUpUserId()"> 일반 유저 가입하기</div>
-        <p>~_~_~~_ 뭐시기 양식 </p>
-        <div class="signup-btn" onclick="signUpLawyerId()"> 변호사 가입하기</div>
-        <p style="">~_~_~~_ 뭐시기 양식
-                변호사 에 대한 책임 뭐시기~~~~~~
-                ~~ 확인을 위해 최대 *일의 기한이 걸립니다.
-        </p>
+            <div class="common-signup">
+                <div class="signup-btn" onclick="signUpUserId()"> 일반 유저 가입하기</div>
+                <p>~_~_~~_ 뭐시기 양식 </p>
+            </div>
+            <div class="lawyer-signup">
+                  <div class="signup-btn" onclick="signUpLawyerId()"> 변호사 가입하기</div>
+                  <p style="">~_~_~~_ 뭐시기 양식
+                                변호사 에 대한 책임 뭐시기~~~~~~
+                                ~~ 확인을 위해 최대 *일의 기한이 걸립니다.
+                  </p>
+            </div>
         </div>
+
+
+
  <script type="text/javascript">
 
 function signUpUserId() {

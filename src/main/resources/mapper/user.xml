@@ -5,12 +5,12 @@
 	namespace="com.carblre.repository.interfaces.UserRepository">
 
 	<!-- 유저 정보 조회 by ID -->
-	<select id="findById" resultType="com.carblre.repository.model.User">
+	<select id="findById" resultType="com.carblre.dto.userdto.UserDTO">
 		SELECT * FROM user_tb WHERE id = #{id}
 	</select>
 
 	<!-- 모든 유저 정보 조회 -->
-	<select id="findAll" resultType="com.carblre.repository.model.User">
+	<select id="findAll" resultType="com.carblre.dto.userdto.UserDTO">
 		SELECT * FROM user_tb
 	</select>
 

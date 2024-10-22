@@ -7,16 +7,16 @@ import java.util.UUID;
 
 import com.carblre.config.MyWebSocketHandler;
 import com.carblre.dto.SignUpDTO;
+import com.carblre.handler.GlobalControllerAdvice;
+import com.carblre.handler.exception.UnAuthorizedException;
 import org.apache.coyote.Response;
+import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.carblre.dto.userdto.FindIdDTO;
 import com.carblre.service.QrcodeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
@@ -91,7 +91,7 @@ public class UserController {
 		}
 
 		session.setAttribute("principal", principial);
-		return "redirect:/user/tempindex";// 임시 인덱스 장소로 이동함
+		return "redirect:/user/index";// 임시 인덱스 장소로 이동함
 	}
 
 	@GetMapping("/signIn/token={token}")
@@ -172,14 +172,14 @@ public class UserController {
 
 
 	/**
-	 * 임시 인덱스
+	 * 임시 인덱스-> 인덱스로 수정
 	 * 
 	 * @return
 	 */
-	@GetMapping("/tempindex")
-	public String tempIndex() {
+	@GetMapping("/index")
+	public String Index() {
 
-		return "user/tempindex";
+		return "index";
 	}
 
 	/**
@@ -255,7 +255,7 @@ public class UserController {
 
 		// DB에 사용자 정보 저장
 
-		return "redirect:/user/tempindex";
+		return "redirect:/user/index";
 
 	}
 
@@ -352,7 +352,7 @@ public class UserController {
 		System.out.println("프린시펄" + principial);
 		session.setAttribute("principal", principial);
 
-		return "redirect:/user/tempindex";
+		return "redirect:/user/index";
 	}
 
 	// 구글
@@ -426,7 +426,7 @@ public class UserController {
 			}
 
 			session.setAttribute("principal", principial);
-			return "redirect:/user/tempindex";
+			return "redirect:/user/index";
 
 		} catch (HttpClientErrorException e) {
 			System.out.println("Google API 호출 시 오류 발생: " + e.getResponseBodyAsString());
@@ -465,26 +465,41 @@ public class UserController {
 		return ResponseEntity.ok(responseMessage);
 	}
 
+	/**
+	 *  비밀번호 찾기 경로
+	 * @return
+	 */
 	@GetMapping("/findPass")
 	public String findPassPage(){
 
-		// signIn (Login Page) 이동 처리
 		return  "user/findPass";
 	}
 
 
+
+	/**
+	 * 비밀번호 변경을 위한 아이디 확인 로직( 아이디,이메일)
+	 * @param email
+	 * @param nickName
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/emailNick")
 	public String FindPageGetEmail(@RequestParam(name = "email") String email, @RequestParam(name = "nickName") String nickName
 	,Model model)
 	{
-		// HTML required 속성으로 null 체크 X
 		UserDTO dto=userService.findIdByEmailNick(email,nickName);
 		System.out.println(dto);
 		model.addAttribute("UserId",dto.getId());
-		// signIn (Login Page) 이동 처리
 		return "user/updatePass";
 	}
 
+	/**
+	 * 비밀번호 변경 로직
+	 * 비밀번호 찾기-> 비밀번호 변경 , 내정보 수정 -> 비밀번호 변경
+	 * @param reqData
+	 * @return
+	 */
 	@PostMapping("/updatePass")
 	public ResponseEntity<Map<String, Object>> updatePassProc(@RequestBody Map<String, String> reqData)
 	{
@@ -492,7 +507,6 @@ public class UserController {
 		String checkedPassword = reqData.get("checkedPassword");
 		int id = Integer.parseInt(reqData.get("id"));
 		Map<String, Object> response = new HashMap<>();
-		// HTML required 속성으로 null 체크 X
 
 			int result = userService.updatePassword(changedPassword,id);
 		System.out.println(result);
@@ -504,6 +518,21 @@ public class UserController {
 		return ResponseEntity.ok(response);
 	}
 
+
+	/**
+	 * 유저 가입 선택 페이지
+	 * @return
+	 */
+	@GetMapping("/selectSignUp")
+	public String selectSignupPage() {
+		System.out.println("Here in selectSignUpPage(UserController)");
+		return "user/selectSignup";
+	}
+
+	/**
+	 * 변호사 가입페지이 이동
+	 * @return
+	 */
 	@GetMapping("/lawyerSignUp")
 	public String lawyerSignupPage() {
 		System.out.println("Here in lawyerSignUpPage(UserController)");
@@ -511,7 +540,7 @@ public class UserController {
 	}
 
 	/**
-	 * [POST] 회원가입 로직
+	 * [POST] 변호사 회원가입 로직
 	 * @param signUpDTO = 사용자의 입력값
 	 * @return signIn.jsp
 	 */
@@ -525,9 +554,78 @@ public class UserController {
 		return "redirect:/user/signIn";
 	}
 
-	@GetMapping("/selectSignup")
-	public String selectSignupPage() {
-		System.out.println("Here in selectSignupPage(UserController)");
-		return "user/selectSignup";
+	@GetMapping("/myPage")
+	public String myPage(){
+		UserDTO userDTO= (UserDTO) session.getAttribute("principal");
+		if (userDTO == null) {
+			// 엔티티가 존재하지 않을 때 NotFoundException 던짐
+			throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
+		}
+
+		return  "user/myPage";
+	}
+
+
+
+	@GetMapping("/infoUpdate")
+	public String infoUpdatePage(Model model) throws NotFoundException {
+        UserDTO userDTO= (UserDTO) session.getAttribute("principal");
+		if (userDTO == null) {
+			// 엔티티가 존재하지 않을 때 NotFoundException 던짐
+			throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
+		}
+
+        UserDTO originUser=userService.findById(Integer.parseInt( userDTO.getId()));
+
+		model.addAttribute("originUser",originUser);
+		return  "user/infoUpdate";
+	}
+
+	/**
+	 *  TODO 정확히 어떤 정보를 수정할껀지 모르겠음 -ex:email 밖에 안떠오름 ,handler(email 중복에대한)
+	 * @param updateDto
+	 * @return
+	 */
+	@PostMapping("/infoUpdate")
+	public String infoUpdateProc(UserDTO updateDto){
+
+
+		userService.updateInfo(updateDto.getEmail(),Integer.parseInt( updateDto.getId()));
+
+		return  "redirect:/user/index";
+	}
+
+	@GetMapping("/infoUpdatePass")
+	public String infoUpdatePassPage(Model model){
+
+
+		return  "user/infoUpdatePass";
+	}
+
+	/**
+	 *  비동기 비밀번호 대조
+	 * @param reqData
+	 * @return
+	 */
+	@PostMapping("/checkOriginPass")
+	public ResponseEntity<Map<String, Object>> checkOriginPassProc(@RequestBody Map<String, String> reqData){
+		UserDTO userDTO= (UserDTO) session.getAttribute("principal");
+
+		String originPass=userService.findById(Integer.parseInt( userDTO.getId())).getPassword();
+		System.out.println("db비번"+originPass);
+		String changePassword = reqData.get("password");
+		System.out.println("바꿀비번"+changePassword);
+		Map<String, Object> response = new HashMap<>();
+		boolean result = userService.findPassword(changePassword,originPass);// 패스워드 확인
+
+		System.out.println(result);
+		if (result ) {
+			response.put("status", 1);  // 성공
+			response.put("message", "비밀번호 일치");
+		} else {
+			response.put("status", 0);  // 실패
+			response.put("message", "비밀번호 불일치");
+		}
+		return  ResponseEntity.ok(response);
 	}
 }

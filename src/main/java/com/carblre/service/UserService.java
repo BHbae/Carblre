@@ -120,6 +120,15 @@ public class UserService {
 			return  userRepository.updatePass(passwordEncoder.encode(password1),id);
 	}
 
+	@Transactional
+	/**
+	 * 회원정보 변경
+	 */
+	public int updateInfo(String email,int id) {
+
+		return  userRepository.updateInfo(email,id);
+	}
+
 	/**
 	 *  변호사 가입
 	 * @param signUpDTO

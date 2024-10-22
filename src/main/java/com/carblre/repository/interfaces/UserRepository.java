@@ -21,7 +21,7 @@ public interface UserRepository {
     // 일반회원 가입
     void saveUser(User user);
     
-    // 회원수정 (쿼리 실행안해봄)
+    // 회원수정 (쿼리 실행안해봄) //삭제예정
     void update(User user);
 
     // 회원 탈퇴( 쿼리실행안해봄)
@@ -50,4 +50,7 @@ public interface UserRepository {
 
 	// 비밀번호 변경
 	int updatePass(@Param("password")String password,@Param("id")int id);
+
+	// 회원정보 변경
+	int updateInfo(String email, int id);
 }

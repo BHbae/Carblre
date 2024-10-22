@@ -7,28 +7,7 @@
 
 
     <div class="container">
-<h1>로그인</h1>
-
-    <!-- 일반 로그인 폼 -->
-    <div class="login">
-	    <form action="/user/signIn" method="POST">
-	        <label for="nickName">닉네임:</label>
-	        <input type="text" id="nickName" name="nickName" required>
-	        <br>
-	        <label for="password">비밀번호:</label>
-	        <input type="password" id="password" name="password" required>
-	        <br>
-	        <button type="submit">로그인</button>
-	    </form>
-    </div>
-
-        <div  onclick="findId()">아이디찾기</div>
-        <div  onclick="findPass()">패스워드 찾기</div>
-        <a href="/user/selectSignup">가입하기</a>
-        <!-- <a href="/qr/login">QR로그인</a> -->
-        </div>
-
-
+    <h1>로그인</h1>
     <div class="social">
 
     <!-- 카카오 로그인 버튼 -->
@@ -46,7 +25,28 @@
 	</a>
     </div>
 
-    
+
+
+
+    <!-- 일반 로그인 폼 -->
+    <div class="login">
+	    <form action="/user/signIn" method="POST">
+	        <input class="input-info" type="text" id="nickName" name="nickName" placeholder="ID" required>
+	        <br>
+	        <input class="input-info" type="password" id="password" name="password"placeholder="비밀번호" required>
+	        <br>
+	        <button type="submit">로그인</button>
+	    </form>
+    </div>
+
+    <div class="login-side">
+        <div  onclick="findId()" class="find-info">아이디찾기</div>
+        <div  onclick="findPass()" class="find-info">패스워드 찾기</div>
+        <a href="/user/selectSignup" class="find-info">가입하기</a>
+        <!-- <a href="/qr/login">QR로그인</a> -->
+    </div>
+
+
 
     
     </div>
