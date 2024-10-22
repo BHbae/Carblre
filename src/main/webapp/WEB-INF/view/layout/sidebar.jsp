@@ -24,11 +24,14 @@
 							회원</a></li>
 				</ul></li>
 			<li><a href="/admin/payment"
-				class="${status == 'paymentList' ? 'active-menu waves-effect waves-dark' : 'waves-effect waves-dark'}"><i
+				class="${status == 'paymentList' ? 'active-menu' : ''} waves-effect waves-dark"><i
 					class="fa fa-table"></i> 결제 내역 관리</a></li>
 			<li><a href="/admin/board"
-				class="${status == 'boardList' ? 'active-menu waves-effect waves-dark' : 'waves-effect waves-dark'}"><i
+				class="${status == 'boardList' ? 'active-menu' : ''} waves-effect waves-dark"><i
 					class="fa fa-table"></i> 게시글 관리</a></li>
+			<li><a href="/admin/crush"
+				class="${status == 'crushList' ? 'active-menu' : ''} waves-effect waves-dark"><i
+					class="fa fa-table"></i> 사고 관리</a></li>
 			<li><a href="ui-elements.html" class="waves-effect waves-dark"><i
 					class="fa fa-desktop"></i> UI Elements</a></li>
 			<li><a href="chart.html" class="waves-effect waves-dark"><i

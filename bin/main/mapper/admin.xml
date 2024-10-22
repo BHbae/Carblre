@@ -6,7 +6,7 @@
 		resultType="com.carblre.repository.model.AdminUser">
 		select * from user_tb where role is null
 	</select>
-	
+
 	<select id="readAllCorporateUser"
 		resultType="com.carblre.dto.admin.AdminLawyerUserDTO">
 		select u.user_name, u.nick_name, u.password, u.email, u.phone_num,
@@ -20,6 +20,11 @@
 	<select id="readAllPost"
 		resultType="com.carblre.dto.admin.AdminPostDTO">
 		select * from post_tb
+	</select>
+
+	<select id="readAllCrush"
+		resultType="com.carblre.repository.model.AdminCrush">
+		select * from crushapi_tb order by acc_year desc
 	</select>
 
 </mapper>

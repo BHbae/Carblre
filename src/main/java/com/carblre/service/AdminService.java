@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.carblre.dto.admin.AdminLawyerUserDTO;
 import com.carblre.dto.admin.AdminPostDTO;
 import com.carblre.repository.interfaces.AdminRepository;
+import com.carblre.repository.model.AdminCrush;
 import com.carblre.repository.model.AdminUser;
 
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,10 @@ public class AdminService {
 
 	public List<AdminPostDTO> readAllPost() {
 		return adminRepository.readAllPost();
+	}
+
+	public List<AdminCrush> readAllCrush() {
+		return adminRepository.readAllCrush();
 	}
 
 }

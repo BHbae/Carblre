@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.carblre.dto.admin.AdminLawyerUserDTO;
 import com.carblre.dto.admin.AdminPostDTO;
+import com.carblre.repository.model.AdminCrush;
 import com.carblre.repository.model.AdminUser;
 
 @Mapper
@@ -19,5 +20,8 @@ public interface AdminRepository {
 
 	// 전체 게시글 조회
 	public List<AdminPostDTO> readAllPost();
+
+	// 전체 사고 조회
+	public List<AdminCrush> readAllCrush();
 
 }

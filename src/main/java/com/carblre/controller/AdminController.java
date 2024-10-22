@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.carblre.dto.admin.AdminLawyerUserDTO;
 import com.carblre.dto.admin.AdminPostDTO;
+import com.carblre.repository.model.AdminCrush;
 import com.carblre.repository.model.AdminUser;
 import com.carblre.service.AdminService;
 
@@ -68,7 +69,13 @@ public class AdminController {
 		return "admin/corporateUserList";
 	}
 
-	@GetMapping("payment")
+	/**
+	 * 결제 내역 관리 페이지
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/payment")
 	public String paymentListPage(Model model) {
 //		List<LawyerUserDTO> corporateUserList = userService.readAllCorporateUser();
 //
@@ -78,12 +85,33 @@ public class AdminController {
 		return "admin/paymentList";
 	}
 
-	@GetMapping("board")
-	public String boardListPage(Model model) {
+	/**
+	 * 게시글 관리 페이지
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/board")
+	public String boardListPage(Model 	model) {
 		List<AdminPostDTO> postList = adminService.readAllPost();
 		model.addAttribute("status", "boardList");
 		model.addAttribute("postList", postList);
 
 		return "admin/postList";
+	}
+	
+	/**
+	 * 사고 관리 페이지
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/crush")
+	public String crushListPage(Model 	model) {
+		List<AdminCrush> crushList = adminService.readAllCrush();
+		model.addAttribute("status", "crushList");
+		model.addAttribute("crushList", crushList);
+
+		return "admin/crushList";
 	}
 }
