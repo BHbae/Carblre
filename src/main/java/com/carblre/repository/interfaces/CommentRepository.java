@@ -1,4 +1,4 @@
-package com.carblre.repository;
+package com.carblre.repository.interfaces;
 
 import com.carblre.dto.CommentDTO;
 import com.carblre.repository.model.Comment;
@@ -16,7 +16,7 @@ public interface CommentRepository {
      * @return
      */
     int insertComment(CommentDTO dto);
-//    int insertComment(int postId, int userId, String comment);
+
 
     /**
      * 댓글 정렬
@@ -25,6 +25,9 @@ public interface CommentRepository {
      * @param sortBy
      * @return 댓글 리스트
      */
+     List<CommentDTO> selectCommentsByCriteria(
+             @Param("id")int postId,
+             @Param("sortBy")String sortBy
+     );
 
-    List<CommentDTO> selectCommentsByCriteria(@Param("id") int postId, @Param("sortBy") String sortBy);
 }

@@ -109,7 +109,7 @@ public class UserController {
 		session.setAttribute("principal", userDTO);
 
 		// 마지막으로 페이지 이동 처리를 진행합니다.
-		return "redirect:/user/tempindex";// 임시 인덱스 장소로 이동함
+		return "redirect:/user/tempindex";// TODO 임시 인덱스 장소로 이동함
 	}
 
 	@GetMapping("/signIn/token={token}")

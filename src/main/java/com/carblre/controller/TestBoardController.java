@@ -11,6 +11,7 @@ import java.util.Map;
 
 import com.carblre.dto.CommentDTO;
 import com.carblre.dto.DetailDTO;
+import com.carblre.dto.userdto.UserDTO;
 import com.carblre.repository.model.Comment;
 import com.carblre.repository.model.User;
 import com.carblre.service.CommentService;
@@ -36,7 +37,7 @@ import com.carblre.service.TestBoardService;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/board")
 public class TestBoardController {
 	
 	@Autowired
@@ -50,17 +51,13 @@ public class TestBoardController {
 	
 	//-----게시글 상세보기
 	@GetMapping("/detail/{id}")
-	public String detailPage(@PathVariable(name = "id") int postId, Model model,
-							 @RequestParam(name = "sortBy", required = false, defaultValue = "newest") String sortBy) {
-		System.out.println("Post Id : " + postId);
-		System.out.println("Sort By : " + sortBy);
+	public String detailPage(@PathVariable(name ="id") int postId, Model model) {
+		System.out.println("HERE INT DETAIL PAGE");
+		System.out.println("ID : " + postId);
 		DetailDTO detailDTO = boardService.selectByPostId(postId);
-		List<CommentDTO> commentDTOs = commentService.getCommentsByCriteria(postId, sortBy);
+		model.addAttribute("post",detailDTO);
 
-		model.addAttribute("post", detailDTO);
-		model.addAttribute("comments", commentDTOs); // 댓글 목록 추가
-
-		return "Board/postDetail"; // 게시글 상세보기 뷰 리턴
+		return "Board/postDetail";
 	}
 
 	@GetMapping("/download")
@@ -128,62 +125,47 @@ public class TestBoardController {
 		
         return "redirect:/createBoard";
     }
-
 	// --- END 게시글 작성 로직
 
-	// 댓글
+	/**
+	 * [GET] 댓글 목록 불러옵니다.
+	 * @param postId 글 고유 식별 아이디입니다.
+	 * @param sortBy 정렬 기준입니다.
+	 * @return commentList ToJSON 이라 생각하시면 됩니다.(ResponseBody)
+	 */
+	@GetMapping("/comment")
+	@ResponseBody
+	public List<CommentDTO> getComment(@RequestParam(name="id") int postId, @RequestParam(name="sortBy") String sortBy) {
+        return commentService.getCommentsByCriteria(postId, sortBy); // List 반환
+	}
 
 	/**
-	 * 댓글 작성
-	 * @param commentDTO
+	 * [POST] 댓글 작성 기능입니다.
+	 * @param commentDTO postDetail.jsp 를 통해서 받아온 값 (postId, userId, comment) 을 DTO/BUILDER 이용으로 작성
 	 * @return
 	 */
 	@PostMapping("/comment")
-	public ResponseEntity<Map<String, Object>> handleCommentInsert(@RequestBody CommentDTO commentDTO) {
+	public ResponseEntity<?> addComment(@RequestBody CommentDTO commentDTO) {
 
-		System.out.println("HERERERE");
-		User principal = (User)session.getAttribute("principal");
-		System.out.println("Post ID : " + commentDTO.getPostId());
-		System.out.println("Comment : " + commentDTO.getComment());
-
-		commentDTO = CommentDTO.builder()
+		UserDTO principal = (UserDTO) session.getAttribute("principal");
+		CommentDTO commentBuilder = CommentDTO.builder()
 				.postId(commentDTO.getPostId())
 				.userId(principal.getId())
 				.comment(commentDTO.getComment())
-				.createAt(commentDTO.getCreateAt())
+				.creatAt(commentDTO.getCreatAt())
 				.userName(principal.getUserName())
 				.build();
 
-		int result = commentService.writeComment(commentDTO);
-		System.out.println(commentDTO.toString());
+		commentService.writeComment(commentBuilder);
 
-		// 1 = 글쓰기 성공 . 0 = 실패
-		Map<String, Object> response = new HashMap<>();
-		if(result == 1){
-			response.put("success", true); // 응답으로 성공 여부를 전송
-		}else if( result == 0){
-			response.put("fail" , false);
-		}
-
-		return ResponseEntity.ok(response);
+		return ResponseEntity.ok(commentBuilder);
 	}
 
-	/**
-	 * 댓글 리스트
-	 * @param
-	 * @param sortBy
-	 * @return
-	 */
-	@GetMapping("/detail/comment")
-	public ResponseEntity<List<CommentDTO>> getComments(
-			@RequestParam("postId") String id,  // 수정된 부분
-			@RequestParam("sortBy") String sortBy) {
-		System.out.println("Post ID : " + id);
-		System.out.println("SortBy : " + sortBy);
-		int postId = Integer.parseInt(id);
-		List<CommentDTO> commentList = commentService.getCommentsByCriteria(postId, sortBy);
-		System.out.println("Comment List : " + commentList);
-		return ResponseEntity.ok(commentList);
-	}
+
+
+
+
+
+
 
 }
