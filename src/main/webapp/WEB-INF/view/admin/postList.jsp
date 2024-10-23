@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Track Material Design Bootstrap Admin Template</title>
+<title>게시글관리</title>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -65,13 +65,16 @@
 												<th>title</th>
 												<th>content</th>
 												<th>origin_file_name</th>
-												<th>uploard_file_name</th>
+												<th>upload_file_name</th>
 												<th>created_at</th>
+												<th>기능</th>
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach var="post" items="${postList}">
-												<tr class="gradeA">
+												<tr class="gradeA"
+													onclick="window.location.href='/admin/posts/${post.id}'"
+													style="cursor: pointer;">
 													<td>${post.id}</td>
 													<td>${post.userId}</td>
 													<td>${post.status}</td>
@@ -81,6 +84,8 @@
 													<td>${post.originFileName}</td>
 													<td>${post.uploardFileName}</td>
 													<td>${post.createAt}</td>
+													<td><button onclick="deletePost(${post.id})"
+															class="btn btn-danger">삭제하기</button></td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -131,6 +136,22 @@
 			$(document).ready(function() {
 				$('#dataTables-example').dataTable();
 			});
+			
+			function deletePost(postId) {
+				if (confirm('정말 삭제하시겠습니까?')) {
+					$.ajax({
+						url: '/admin/posts/' + postId,
+						type: 'DELETE',
+						success: function(result) {
+							// 삭제 성공 시 페이지 새로고침
+							location.reload();
+						},
+						error: function(xhr, status, error) {
+							alert('삭제 실패: ' + xhr.responseText);
+						}
+					});
+				}
+			}
 		</script>
 		<!-- Custom Js -->
 		<script src="/assets/js/custom-scripts.js"></script>

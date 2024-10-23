@@ -18,13 +18,21 @@
 	</select>
 
 	<select id="readAllPost"
-		resultType="com.carblre.dto.admin.AdminPostDTO">
+		resultType="com.carblre.repository.model.AdminPost">
 		select * from post_tb
 	</select>
 
 	<select id="readAllCrush"
 		resultType="com.carblre.repository.model.AdminCrush">
-		select * from crushapi_tb order by acc_year desc
+		select * from crushapi_tb
 	</select>
+
+	<select id="existsById" resultType="boolean">
+		select count(*) > 0 from post_tb where id = #{id}
+	</select>
+
+	<delete id="deleteById">
+		delete from post_tb where id = #{id}
+	</delete>
 
 </mapper>

@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Track Material Design Bootstrap Admin Template</title>
+<title>회원관리</title>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -58,14 +58,12 @@
 										id="dataTables-example">
 										<thead>
 											<tr>
-												<th>id</th>
-												<th>user_name</th>
-												<th>nick_name</th>
-												<th>password</th>
-												<th>email</th>
-												<th>phone_num</th>
-												<th>role</th>
-												<th>created_at</th>
+												<th>ID</th>
+												<th>이름</th>
+												<th>닉네임</th>
+												<th>Email</th>
+												<th>Phone</th>
+												<th>Role</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -74,10 +72,8 @@
 													<td>${user.id}</td>
 													<td>${user.userName}</td>
 													<td>${user.nickName}</td>
-													<td>${user.password}</td>
 													<td>${user.email}</td>
 													<td>${user.phoneNum}</td>
-													<td>${user.role}</td>
 													<td>${user.role}</td>
 												</tr>
 											</c:forEach>
@@ -130,6 +126,7 @@
 				$('#dataTables-example').dataTable();
 			});
 		</script>
+
 		<!-- Custom Js -->
 		<script src="/assets/js/custom-scripts.js"></script>
 </body>

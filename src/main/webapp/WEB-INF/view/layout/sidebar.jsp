@@ -26,8 +26,8 @@
 			<li><a href="/admin/payment"
 				class="${status == 'paymentList' ? 'active-menu' : ''} waves-effect waves-dark"><i
 					class="fa fa-table"></i> 결제 내역 관리</a></li>
-			<li><a href="/admin/board"
-				class="${status == 'boardList' ? 'active-menu' : ''} waves-effect waves-dark"><i
+			<li><a href="/admin/posts"
+				class="${status == 'postList' ? 'active-menu' : ''} waves-effect waves-dark"><i
 					class="fa fa-table"></i> 게시글 관리</a></li>
 			<li><a href="/admin/crush"
 				class="${status == 'crushList' ? 'active-menu' : ''} waves-effect waves-dark"><i

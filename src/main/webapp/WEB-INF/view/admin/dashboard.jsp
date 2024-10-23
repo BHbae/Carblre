@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Target Material Design Bootstrap Admin Template</title>
+<title>대시보드</title>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <link rel="stylesheet"
@@ -58,7 +58,7 @@
 										<h3>84,198</h3>
 									</div>
 									<div class="card-action">
-										<strong>REVENUE</strong>
+										<strong>방문자수</strong>
 									</div>
 								</div>
 							</div>
@@ -75,7 +75,7 @@
 										<h3>36,540</h3>
 									</div>
 									<div class="card-action">
-										<strong>SALES</strong>
+										<strong>결제금액</strong>
 									</div>
 								</div>
 							</div>
@@ -91,7 +91,7 @@
 										<h3>24,225</h3>
 									</div>
 									<div class="card-action">
-										<strong>PRODUCTS</strong>
+										<strong>ㅇㅇㅇ</strong>
 									</div>
 								</div>
 							</div>
@@ -108,7 +108,7 @@
 										<h3>88,658</h3>
 									</div>
 									<div class="card-action">
-										<strong>VISITS</strong>
+										<strong>ㅎㅎㅎ</strong>
 									</div>
 								</div>
 							</div>
