@@ -597,8 +597,14 @@ public class UserController {
 
 	@GetMapping("/infoUpdatePass")
 	public String infoUpdatePassPage(Model model){
-
-
+		UserDTO userDTO= (UserDTO) session.getAttribute("principal");
+		if (userDTO == null) {
+			// 엔티티가 존재하지 않을 때 NotFoundException 던짐
+			throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
+		}
+		UserDTO dto=userService.findIdByEmailNick(userDTO.getEmail(),userDTO.getNickName());
+		System.out.println(dto);
+		model.addAttribute("UserId",dto.getId());
 		return  "user/infoUpdatePass";
 	}
 
@@ -610,15 +616,15 @@ public class UserController {
 	@PostMapping("/checkOriginPass")
 	public ResponseEntity<Map<String, Object>> checkOriginPassProc(@RequestBody Map<String, String> reqData){
 		UserDTO userDTO= (UserDTO) session.getAttribute("principal");
+		String dbCheckPass=userService.findById(Integer.parseInt( userDTO.getId())).getPassword();
+		System.out.println("db비번"+dbCheckPass);
 
-		String originPass=userService.findById(Integer.parseInt( userDTO.getId())).getPassword();
-		System.out.println("db비번"+originPass);
-		String changePassword = reqData.get("password");
-		System.out.println("바꿀비번"+changePassword);
+		String originpass = reqData.get("originPass");
+		System.out.println("기입비번"+originpass);
+
 		Map<String, Object> response = new HashMap<>();
-		boolean result = userService.findPassword(changePassword,originPass);// 패스워드 확인
-
-		System.out.println(result);
+		boolean result = userService.findPassword(originpass,dbCheckPass);// 패스워드 확인
+		System.out.println("result"+result);
 		if (result ) {
 			response.put("status", 1);  // 성공
 			response.put("message", "비밀번호 일치");

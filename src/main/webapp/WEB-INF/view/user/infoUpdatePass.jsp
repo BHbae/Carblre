@@ -32,25 +32,24 @@
 <button onclick="history.back()">뒤로가기</button>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  // 비밀번호 확인 시간
-  let debounceTimer;
+let debounceTimer;
 
-  function debounceCheckPassword() {
-      clearTimeout(debounceTimer);  // 기존 타이머 취소
-      debounceTimer = setTimeout(checkOriginPass, 1000);  // 1000ms 대기 후 실행
-  }
+function debounceCheckPassword() {
+    clearTimeout(debounceTimer);  // 기존 타이머 취소
+    debounceTimer = setTimeout(checkOriginPass, 1000);  // 1000ms 대기 후 실행
+}
 
-  // 기존 비밀번호 확인
+ // 기존 비밀번호 확인
   function checkOriginPass() {
       const originPass = document.getElementById('originPass').value;
+        console.log("originpass",originPass);
 
       fetch('/user/checkOriginPass', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ password: originPass })
+          body: JSON.stringify({ originPass: originPass })
       })
       .then(response => {
           if (!response.ok) {
@@ -77,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
           feedbackElement.style.color = 'red';
       });
   }
+
 
   // 비밀번호 확인 함수
   function checkPasswordMatch() {
@@ -128,13 +128,14 @@ document.addEventListener("DOMContentLoaded", function() {
       .then(data => {
           console.log(data.message);
           alert(data.message);
+          window.location.href="/user/index";
       })
       .catch(error => {
           console.error("Error:", error);
           alert("오류가 발생했습니다: " + error.message);
       });
   }
-});
+
 </script>
 
 <%@ include file="../layout/footer.jsp" %>
