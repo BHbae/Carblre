@@ -1,11 +1,11 @@
 package com.carblre.service;
 
 import com.carblre.dto.CommentDTO;
-import com.carblre.repository.CommentRepository;
-import com.carblre.repository.model.Comment;
+import com.carblre.repository.interfaces.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.logging.Logger;
 import org.mybatis.logging.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +14,7 @@ import java.util.List;
 @Service
 public class CommentService {
 
+    @Autowired
     private CommentRepository commentRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(CommentService.class);
@@ -25,8 +26,8 @@ public class CommentService {
      * @param userId
      * @return
      */
-    public int writeComment(CommentDTO commentDTO , int userId){
-        return commentRepository.insertComment(commentDTO.toBoardComment(userId));
+    public int writeComment(CommentDTO commentDTO){
+        return commentRepository.insertComment(commentDTO);
     }
 
     public List<CommentDTO> getCommentsByCriteria(int postId , String sortBy){

@@ -32,5 +32,8 @@
 		SELECT * FROM post_tb
 	</select>
 
+	<select id="selectByPostId" parameterType="int" resultType="com.carblre.dto.DetailDTO">
+		SELECT * FROM post_tb WHERE id = #{id}
+	</select>
 
 </mapper>

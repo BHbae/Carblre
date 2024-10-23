@@ -1,36 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.carblre.repository.CommentRepository">
+<mapper namespace="com.carblre.repository.interfaces.CommentRepository">
 
     <select id="selectCommentsByCriteria" resultType="com.carblre.dto.CommentDTO">
         SELECT
-        p.id AS postId,
         p.title,
         p.content,
-        p.create_at AS createdAt,
-        c.comment
+        u.user_name,
+        u.nick_name,
+        u.role,
+        p.create_at,
+        c.comment,
         c.create_at
-        c.user_id
-        u.user_name AS userName,
-        u.role AS userRole
         FROM
-        post_tb p
-        LEFT JOIN
-        user_tb u ON p.user_id = u.id
-        LEFT JOIN
-        comment_tb c ON p.user_id = c.user_id
-        WHERE
-        p.id = #{id};  <!-- postId로 수정 -->
+        post_tb AS p
+        LEFT JOIN comment_tb AS c
+        ON p.id = c.post_id
+        LEFT JOIN user_tb AS u
+        ON p.user_id = u.id
+        WHERE p.id = #{id}
         <choose>
             <when test="sortBy == 'newest'">
-                ORDER BY bc.created_at DESC  <!-- 최신순 -->
+                ORDER BY c.create_at DESC  <!-- 최신순 -->
             </when>
             <when test="sortBy == 'oldest'">
-                ORDER BY bc.created_at ASC   <!-- 오래된 순 -->
+                ORDER BY c.create_at ASC   <!-- 오래된 순 -->
             </when>
             <otherwise>
-                ORDER BY bc.created_at DESC  <!-- 기본값: 최신순 -->
+                ORDER BY c.create_at DESC  <!-- 기본값: 최신순 -->
             </otherwise>
         </choose>
     </select>

@@ -1,7 +1,6 @@
-package com.carblre.repository;
+package com.carblre.repository.interfaces;
 
 import com.carblre.dto.CommentDTO;
-import com.carblre.repository.model.Comment;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -15,7 +14,7 @@ public interface CommentRepository {
      * @param dto
      * @return
      */
-    int insertComment(@Param("Comment") CommentDTO dto);
+    int insertComment(CommentDTO dto);
 
 
     /**
@@ -26,7 +25,7 @@ public interface CommentRepository {
      * @return 댓글 리스트
      */
      List<CommentDTO> selectCommentsByCriteria(
-             @Param("postId")int postId,
+             @Param("id")int postId,
              @Param("sortBy")String sortBy
      );
 
