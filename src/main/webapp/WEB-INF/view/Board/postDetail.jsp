@@ -27,7 +27,7 @@
             댓글 전체
         </div>
     </div>
-
+0
 
     <section class="comments--content">
         <form id="commentForm">
