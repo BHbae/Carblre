@@ -16,6 +16,7 @@ public class CounselService {
        Counsel counsel= counselRepository.findCounselOfUserById(id);
        MyCounselDTO myCounselDTO=new MyCounselDTO();
 
+       return  myCounselDTO;
     }
 
 }
