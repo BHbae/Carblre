@@ -37,7 +37,7 @@
 				<a href="/boardList">의뢰자</a>
 			</li>
 			<li>
-				<a href="/cinema/cinema">AI 간편상담</a>
+				<a href="/aiounseling">AI 간편상담</a>
 			</li>
 			<li>
 				<a href="/reservation/reservation">변호사</a>
