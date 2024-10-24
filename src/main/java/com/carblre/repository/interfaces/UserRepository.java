@@ -44,4 +44,6 @@ public interface UserRepository {
 
 	// 이메일로 아이디찾기
 	UserDTO findByEmail(String email);
+
+
 }

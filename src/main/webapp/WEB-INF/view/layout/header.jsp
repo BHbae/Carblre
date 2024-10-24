@@ -25,10 +25,10 @@
         		    <a href="/event/event">이벤트</a>
         		</li>
         		<li class="date nav--menu--li">
-        			<a href="/reservation/reservation">마이페이지</a>
+        			<a href="/user/myPage">마이페이지</a>
         		</li>
         	</ul>
         </nav>
 
-
+-
     </header>

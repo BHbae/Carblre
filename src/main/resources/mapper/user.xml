@@ -1,78 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
-	namespace="com.carblre.repository.interfaces.UserRepository">
+        namespace="com.carblre.repository.interfaces.UserRepository">
 
-	<!-- 유저 정보 조회 by ID -->
-	<select id="findById" resultType="com.carblre.repository.model.User">
-		SELECT * FROM user_tb WHERE id = #{id}
-	</select>
+    <!-- 유저 정보 조회 by ID -->
+    <select id="findById" resultType="com.carblre.repository.model.User">
+        SELECT * FROM user_tb WHERE id = #{id}
+    </select>
 
-	<!-- 모든 유저 정보 조회 -->
-	<select id="findAll" resultType="com.carblre.repository.model.User">
-		SELECT * FROM user_tb
-	</select>
+    <!-- 모든 유저 정보 조회 -->
+    <select id="findAll" resultType="com.carblre.repository.model.User">
+        SELECT * FROM user_tb
+    </select>
 
-	<!-- 간편유저 정보 조회 by nick -->
-	<select id="findByNickId" resultType="com.carblre.dto.userdto.UserDTO">
-		SELECT * FROM user_tb WHERE nick_name = #{nickname}
-	</select>
+    <!-- 간편유저 정보 조회 by nick -->
+    <select id="findByNickId" resultType="com.carblre.dto.userdto.UserDTO">
+        SELECT * FROM user_tb WHERE nick_name = #{nickname}
+    </select>
 
-	<!-- id와 password로 유저 조회 -->
-	<select id="findByNickPassword"  resultType="com.carblre.dto.userdto.UserDTO">
-		SELECT * FROM user_tb
-		WHERE nick_name = #{nickName}
-		AND password = #{password}
-	</select>
-
-
-	<!-- 이름과 E-mail 로 유저 조회 -->
-	<select id="findByEmail"  resultType="com.carblre.dto.userdto.UserDTO">
-		SELECT * FROM user_tb
-		WHERE email = #{email}
-		and user_name = #{userName}
-	</select>
+    <!-- id와 password로 유저 조회 -->
+    <select id="findByNickPassword" resultType="com.carblre.dto.userdto.UserDTO">
+        SELECT * FROM user_tb
+        WHERE nick_name = #{nickName}
+        AND password = #{password}
+    </select>
 
 
+    <!-- 이름과 E-mail 로 유저 조회 -->
+    <select id="findByEmail" resultType="com.carblre.dto.userdto.UserDTO">
+        SELECT * FROM user_tb
+        WHERE email = #{email}
+        and user_name = #{userName}
+    </select>
 
-	<!-- 간편유저 정보 저장 -->
-	<insert id="saveApiUser" parameterType="com.carblre.repository.model.User">
-		INSERT INTO user_tb (user_name, nick_name, email)
-		VALUES ( #{userName},#{nickName}, #{email} )
-	</insert>
 
-	<!-- 유저 정보 업데이트 -->
-	<update id="update">
-		UPDATE user_tb
-		SET user_name = #{userName},
-		nick_name = #{nickName},
-		password = #{password},
-		email = #{email},
-		phone_num = #{phoneNum},
-		role = #{role}
-		WHERE id = #{id}
-	</update>
+    <!-- 간편유저 정보 저장 -->
+    <insert id="saveApiUser" parameterType="com.carblre.repository.model.User">
+        INSERT INTO user_tb (user_name, nick_name, email)
+        VALUES ( #{userName},#{nickName}, #{email} )
+    </insert>
 
-	<!-- 유저 정보 삭제 -->
-	<delete id="deleteById">
-		DELETE FROM user_tb WHERE id = #{id}
-	</delete>
+    <!-- 유저 정보 업데이트 -->
+    <update id="update">
+        UPDATE user_tb
+        SET user_name = #{userName},
+        nick_name = #{nickName},
+        password = #{password},
+        email = #{email},
+        phone_num = #{phoneNum},
+        role = #{role}
+        WHERE id = #{id}
+    </update>
 
-	<insert id="insert">
-		INSERT INTO user_tb(user_name, nick_name,
-							password, email,
-		                    phone_num, role)
-		VALUES (
-				   #{userName}, #{nickName},
-		           #{password}, #{email},
-				   #{phoneNum},#{role})
-	</insert>
+    <!-- 유저 정보 삭제 -->
+    <delete id="deleteById">
+        DELETE FROM user_tb WHERE id = #{id}
+    </delete>
 
-	<!-- E-mail 중복 체크 -->
-	<select id="checkDuplicateEmail">
-		SELECT count(email) FROM user_tb WHERE
-			email = #{email}
-	</select>
+    <insert id="insert">
+        INSERT INTO user_tb(user_name, nick_name,
+        password, email,
+        phone_num, role)
+        VALUES (
+        #{userName}, #{nickName},
+        #{password}, #{email},
+        #{phoneNum},#{role})
+    </insert>
+
+    <!-- E-mail 중복 체크 -->
+    <select id="checkDuplicateEmail">
+        SELECT count(email) FROM user_tb WHERE
+        email = #{email}
+    </select>
 
 </mapper>

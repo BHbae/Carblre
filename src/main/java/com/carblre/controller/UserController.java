@@ -7,6 +7,7 @@ import com.carblre.dto.userdto.SignDTO;
 import com.carblre.dto.userdto.SignInDTO;
 import com.carblre.dto.userdto.UserDTO;
 import com.carblre.handler.exception.DataDeliveryException;
+import com.carblre.repository.model.User;
 import com.carblre.service.QrcodeService;
 import com.carblre.service.UserService;
 import com.carblre.utils.Define;
@@ -463,5 +464,9 @@ public class UserController {
 
 		return ResponseEntity.ok(responseMessage);
 	}
+
+
+
+
 
 }
