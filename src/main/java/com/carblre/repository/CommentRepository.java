@@ -15,8 +15,8 @@ public interface CommentRepository {
      * @param dto
      * @return
      */
-    int insertComment(@Param("Comment") CommentDTO dto);
-
+    int insertComment(CommentDTO dto);
+//    int insertComment(int postId, int userId, String comment);
 
     /**
      * 댓글 정렬
@@ -25,9 +25,6 @@ public interface CommentRepository {
      * @param sortBy
      * @return 댓글 리스트
      */
-     List<CommentDTO> selectCommentsByCriteria(
-             @Param("postId")int postId,
-             @Param("sortBy")String sortBy
-     );
 
+    List<CommentDTO> selectCommentsByCriteria(@Param("id") int postId, @Param("sortBy") String sortBy);
 }

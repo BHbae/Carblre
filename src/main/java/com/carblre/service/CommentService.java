@@ -14,23 +14,24 @@ import java.util.List;
 @Service
 public class CommentService {
 
-    private CommentRepository commentRepository;
+    private final CommentRepository commentRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(CommentService.class);
 
 
     /**
      * 댓글 작성
-     * @param commentDTO
+     * @param commentDTO = te
      * @param userId
      * @return
      */
-    public int writeComment(CommentDTO commentDTO , int userId){
-        return commentRepository.insertComment(commentDTO.toBoardComment(userId));
+    public int writeComment(CommentDTO dto){
+//    public int writeComment(int postId, int userId, String comment){
+        return commentRepository.insertComment(dto);
     }
 
-    public List<CommentDTO> getCommentsByCriteria(int postId , String sortBy){
-        return commentRepository.selectCommentsByCriteria(postId, sortBy);
+    public List<CommentDTO> getCommentsByCriteria(int id , String sortBy){
+        return commentRepository.selectCommentsByCriteria(id, sortBy);
     }
 
 

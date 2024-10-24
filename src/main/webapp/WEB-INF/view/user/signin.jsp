@@ -23,6 +23,7 @@
         </form>
     </div>
 
+
     <!-- 변호사 로그인 폼 -->
     <div id="lawyer-login-form" class="login-form">
         <h2>변호사 로그인</h2>
@@ -31,7 +32,6 @@
             <input type="password" name="password" placeholder="비밀번호" required><br>
             <button type="submit">로그인</button>
         </form>
-    </div>
 
     <div class="login-side">
         <div  onclick="findId()" class="find-info">아이디찾기</div>

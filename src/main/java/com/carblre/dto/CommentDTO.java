@@ -11,19 +11,19 @@ import java.sql.Timestamp;
 @ToString
 @Builder
 public class CommentDTO {
-
-    private int postId;
     private int userId;
+    private String userName;
+    private int postId;
     private String comment;
-    private Timestamp creatAt; // TODO! createdAt 으로 수정 요청 !
+    private Timestamp createAt;
 
 
-    public  CommentDTO toBoardComment(int userId){
+    public  CommentDTO toBoardComment(){
         return CommentDTO.builder()
                 .postId(postId)
                 .userId(userId)
                 .comment(comment)
-                .creatAt(creatAt)
+                .createAt(createAt)
                 .build();
     }
 }

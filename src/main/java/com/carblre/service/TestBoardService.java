@@ -28,12 +28,12 @@ public class TestBoardService {
 	@Autowired
 	private TestBoardRepository boardRepository;
 
-	public DetailDTO selectByPostId(int id){
-		DetailDTO dto = boardRepository.selectByPostId(id);
+	public DetailDTO selectByPostId(int postId){
+		DetailDTO dto = boardRepository.selectByPostId(postId);
 		return dto;
 	}
 
-	public Post fiinById(int postId) {
+	public Post findById(int postId) {
 		Post post = boardRepository.findById(postId);
 		return post;
 	}

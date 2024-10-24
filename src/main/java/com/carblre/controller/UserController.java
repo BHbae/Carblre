@@ -13,10 +13,20 @@ import com.carblre.handler.exception.UnAuthorizedException;
 import org.apache.coyote.Response;
 import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.carblre.dto.userdto.KakaoOAuthToken;
+import com.carblre.dto.userdto.SignDTO;
+import com.carblre.dto.userdto.UserDTO;
+import com.carblre.handler.exception.DataDeliveryException;
 import com.carblre.service.QrcodeService;
+import com.carblre.service.UserService;
+import com.carblre.utils.Define;
+import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
+import org.springframework.http.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
@@ -29,6 +39,10 @@ import com.carblre.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 @Slf4j
 @Controller
@@ -67,27 +81,50 @@ public class UserController {
 
 	private final MyWebSocketHandler webSocketHandler;
 
+	private final PasswordEncoder passwordEncoder;
+
 	@GetMapping("/signIn")
 	public String signPage() {
 
 		return "user/signin";
 	}
 
+	/**
+	 * [POST] 로그인 프로세스입니다.
+	 * @param dto = SignInDTO <- String nickName, String password(유저가 입력한 값)
+	 * @return 유효성 검사, 회원 존재 여부, 회원 정보 일치 여부 확인 후 맞는 응답(Exception OR Return jsp) 내려줌
+	 */
 	@PostMapping("/signIn")
-	public String signInProc(SignDTO dto, Model model) {
-		UserDTO principial = userService.findByNickId(dto.getNickName());
-		boolean checkcPass=userService.findPassword(dto.getPassword(),principial.getPassword());
-		System.out.println(checkcPass);
-		if (principial == null) {
-			// TODO 모델삭제하기
-			model.addAttribute("alertMessage", "아이디를 확인해주d세요.");
-		}
-		if(!checkcPass) {
-			model.addAttribute("alertMessage", "비밀번호를 확인해주세요");
-			return "user/signin";
+	public String signInProc(SignInDTO dto) {
+
+		String nickName = dto.getNickName(); // 유저가 입력한 아이디
+		String password = dto.getPassword(); // 유저가 입력한 비밀번호
+
+		// nickName 을 사용하여 유저가 존재하는지 판단합니다.
+		UserDTO userDTO = userService.findByNickId(nickName);
+
+		if (userDTO == null)
+		{
+			// 유저가 존재하지 않는다면 DataDeliveryException 을 사용하여 Alert
+			throw new DataDeliveryException(Define.NOT_EXISTING_USER, HttpStatus.BAD_REQUEST);
 		}
 
-		session.setAttribute("principal", principial);
+		// DB에 존재하는 유저의 암호화된 비밀번호를 받아옵니다.
+		String hashedPassword = userDTO.getPassword();
+
+		// PasswordEncoder 의 matches 를 이용하여 유저가 입력한 비밀번호와 DB에 있는 암호화된 비밀번호를 비교합니다.
+		boolean isMatch = passwordEncoder.matches(password, hashedPassword);
+
+		if (!isMatch)
+		{
+			// 비밀번호가 일치하지 않는다면 DataDeliveryException 을 이용하여 Alert
+			throw new DataDeliveryException(Define.NOT_MATCH_ACCOUNT_INFO, HttpStatus.BAD_REQUEST);
+		}
+
+		// 위의 검사를 모두 통과했다면 'principal' Session 부여합니다.
+		session.setAttribute("principal", userDTO);
+
+		// 마지막으로 페이지 이동 처리를 진행합니다.
 		return "redirect:/user/index";// 임시 인덱스 장소로 이동함
 	}
 
@@ -121,8 +158,12 @@ public class UserController {
 	public String signUpProc(SignUpDTO signUpDTO)
 	{
 		// HTML required 속성으로 null 체크 X
+		if(signUpDTO.getNickName() == null)
+		{
+			System.out.println("HBERERRERE");
+		}
 		userService.createUser(signUpDTO);
-
+		System.out.println(signUpDTO);
 		// signIn (Login Page) 이동 처리
 		return "redirect:/user/signIn";
 	}
@@ -153,7 +194,7 @@ public class UserController {
 	 */
 	@ResponseBody
 	@GetMapping("/email")
-	public UserDTO FindPageGetEmail(@RequestParam(name = "email")String email)
+	public UserDTO FindPageProc(@RequestParam(name = "email")String email)
 	{
 		// HTML required 속성으로 null 체크 X
 		UserDTO dto=userService.findIdByEmail(email);
@@ -165,8 +206,6 @@ public class UserController {
 		// signIn (Login Page) 이동 처리
 		return  dto;
 	}
-
-
 
 	/**
 	 * 임시 인덱스-> 인덱스로 수정
