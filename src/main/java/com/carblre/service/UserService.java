@@ -160,9 +160,9 @@ public class UserService {
 			signUpDTO.setUserId(userRepository.getLastInsertId());
 			// 파일 저장 경로 설정 (상대 경로, 로컬 디렉토리)
 			signUpDTO.setGetProfileName(signUpDTO.getProfileImage().getOriginalFilename()); // 파일객체에서 파일이름
-			String uploadName=signUpDTO.getUPLOAD_DIR() + signUpDTO.UUIDUploardProfileName(); //파일경로와 UUID파일이름
+			String uploadName=signUpDTO.getUPLOAD_DIR() + signUpDTO.UUIDUploadProfileName(); //파일경로와 UUID파일이름
 			Path path = Paths.get(uploadName); // 경로설정
-			signUpDTO.setUploardProfileName(signUpDTO.UUIDUploardProfileName());
+			signUpDTO.setUploadProfileName(signUpDTO.UUIDUploadProfileName());
 			// 디렉토리가 존재하지 않을 경우 생성
 			File directory = new File(signUpDTO.getUPLOAD_DIR());
 			if (!directory.exists()) {
