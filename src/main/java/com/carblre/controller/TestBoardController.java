@@ -11,6 +11,7 @@ import java.util.Map;
 
 import com.carblre.dto.CommentDTO;
 import com.carblre.dto.DetailDTO;
+import com.carblre.dto.ReplyCommentDTO;
 import com.carblre.dto.userdto.UserDTO;
 import com.carblre.repository.model.Comment;
 import com.carblre.repository.model.User;
@@ -149,6 +150,7 @@ public class TestBoardController {
 
 		UserDTO principal = (UserDTO) session.getAttribute("principal");
 		CommentDTO commentBuilder = CommentDTO.builder()
+				.commentId(commentDTO.getCommentId())
 				.postId(commentDTO.getPostId())
 				.userId(principal.getId())
 				.comment(commentDTO.getComment())
@@ -159,6 +161,46 @@ public class TestBoardController {
 		commentService.writeComment(commentBuilder);
 
 		return ResponseEntity.ok(commentBuilder);
+	}
+
+	/**
+	 * [GET] 대댓글을 불러오는 기능입니다.
+	 * @param postId = 게시글 아이디입니다.
+	 * @return
+	 */
+	@GetMapping("replyComment")
+	@ResponseBody
+	public List<ReplyCommentDTO> getReplyComment(@RequestParam(name="id") int postId)
+	{
+		System.out.println("POST ID : " + postId);
+		List<ReplyCommentDTO> replyCommentList = commentService.getReplyComments(postId);
+		System.out.println("Reply Comment List 입니다 : " + replyCommentList.toString());
+		return commentService.getReplyComments(postId);
+	}
+
+
+	/**
+	 * [POST] 대댓글을 작성하는 기능입니다.
+	 * @param replyCommentDTO commentId, userId, comment 를 받습니다.
+	 * @return
+	 */
+	@PostMapping("/replyComment")
+	public ResponseEntity<?> addReplyComment(@RequestBody ReplyCommentDTO replyCommentDTO) {
+		UserDTO principal = (UserDTO) session.getAttribute("principal");
+		System.out.println("Reply Comment " + replyCommentDTO.getPostId());
+		System.out.println("Reply Comment " + replyCommentDTO.getCommentId());
+		System.out.println("Reply Comment " + principal.getId());
+		System.out.println("Reply Comment " + replyCommentDTO.getComment());
+		ReplyCommentDTO replyCommentBuilder = ReplyCommentDTO.builder()
+				.commentId(replyCommentDTO.getCommentId())
+				.postId(replyCommentDTO.getPostId())
+				.userId(principal.getId())
+				.userName(principal.getUserName())
+				.comment(replyCommentDTO.getComment())
+				.build();
+		commentService.writeReplyComment(replyCommentBuilder);
+
+		return ResponseEntity.ok(replyCommentBuilder);
 	}
 
 

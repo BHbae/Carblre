@@ -12,6 +12,7 @@ import java.sql.Timestamp;
 @Builder
 public class CommentDTO {
 
+    private int commentId;
     private int postId;
     private String userName;
     private int userId;
@@ -21,6 +22,7 @@ public class CommentDTO {
 
     public  CommentDTO toBoardComment(int userId){
         return CommentDTO.builder()
+                .commentId(commentId)
                 .postId(postId)
                 .userName(userName)
                 .userId(userId)

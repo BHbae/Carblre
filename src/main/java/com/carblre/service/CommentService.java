@@ -1,12 +1,14 @@
 package com.carblre.service;
 
 import com.carblre.dto.CommentDTO;
+import com.carblre.dto.ReplyCommentDTO;
 import com.carblre.repository.interfaces.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.logging.Logger;
 import org.mybatis.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -34,6 +36,15 @@ public class CommentService {
         return commentRepository.selectCommentsByCriteria(postId, sortBy);
     }
 
+    @Transactional
+    public int writeReplyComment(ReplyCommentDTO replyCommentDTO){
+        return commentRepository.insertReplyComment(replyCommentDTO);
+    }
+
+    @Transactional
+    public List<ReplyCommentDTO> getReplyComments(int postId){
+        return commentRepository.selectReplyComments(postId);
+    }
 
 }
 

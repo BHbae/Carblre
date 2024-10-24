@@ -5,8 +5,8 @@
 
     <select id="selectCommentsByCriteria" resultType="com.carblre.dto.CommentDTO">
         SELECT
-        p.title,
-        p.content,
+        c.id AS comment_id,
+        p.id AS post_id,
         u.user_name,
         u.nick_name,
         u.role,
@@ -38,8 +38,24 @@
         VALUES (#{postId}, #{userId}, #{comment}, NOW())
     </insert>
 
+    <insert id="insertReplyComment" parameterType="com.carblre.dto.ReplyCommentDTO">
+        INSERT INTO reply_comment_tb (comment_id, post_id, user_id, comment, create_at)
+        VALUES (#{commentId}, #{postId}, #{userId}, #{comment}, NOW())
+    </insert>
 
-
+    <select id="selectReplyComments" parameterType="com.carblre.dto.ReplyCommentDTO">
+        SELECT
+            r.id AS reply_id,
+            r.comment_id,
+            r.post_id,
+            u.id AS user_id,
+            u.user_name,
+            r.comment
+        FROM reply_comment_tb AS r
+        LEFT JOIN user_tb AS u
+        ON r.user_id = u.id
+        WHERE r.post_id = #{id}
+    </select>
 
 
 
