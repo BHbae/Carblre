@@ -19,6 +19,7 @@ public class LawyerDetail {
     private String lawFirm ;
     private String officeNum ;
 
+    //깃푸쉬
     public LawyerSignUpDTO toLawyerDetail() {
         return LawyerSignUpDTO.builder()
                 .UserId(UserId).introduction(introduction).uploardProfileName(uploardProfileName)
