@@ -17,7 +17,7 @@ public class CommentDTO {
     private String userName;
     private int userId;
     private String comment;
-    private Timestamp creatAt; // TODO! createdAt 으로 수정 요청 !
+    private String createdAt; // TODO! createdAt 으로 수정 요청 !
 
 
     public  CommentDTO toBoardComment(int userId){
@@ -27,7 +27,7 @@ public class CommentDTO {
                 .userName(userName)
                 .userId(userId)
                 .comment(comment)
-                .creatAt(creatAt)
+                .createdAt(createdAt)
                 .build();
     }
 }

@@ -1,7 +1,224 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
+<style>
+    /* 기본 스타일 */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        color: #333333;
+        margin: 0;
+        padding: 0;
+    }
 
+    h1 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333333;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+    }
+
+    th {
+        text-align: left;
+        background-color: #f2f2f2;
+        padding: 10px;
+    }
+
+    td {
+        padding: 10px;
+        background-color: #ffffff;
+        border-bottom: 1px solid #dddddd;
+    }
+
+    /* 댓글 섹션 스타일 */
+    .comments--content {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
+
+    /* 댓글 목록 스타일 */
+    .comment {
+        margin-top: 15px;
+        padding: 10px 0;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    /* 댓글 작성자 스타일 */
+    .comment--author {
+        font-size: 14px;
+        font-weight: bold;
+        color: #555;
+        margin-bottom: 5px;
+    }
+
+    /* 댓글 내용 스타일 */
+    .comment--content {
+        font-size: 14px;
+        color: #333;
+        line-height: 1.5;
+        word-break: break-word;
+    }
+
+    /* 대댓글 목록 스타일 */
+    .reply-comment-section {
+        margin-left: 50px; /* 대댓글을 원 댓글보다 들여쓰기 */
+        padding-top: 10px;
+    }
+
+    /* 대댓글 컨테이너 스타일 */
+    .reply-comment-container {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #f1f1f1;
+        border-radius: 8px;
+    }
+
+    /* 대댓글 작성자 및 작성일 스타일 */
+    .reply--header {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: #888;
+        margin-bottom: 5px;
+    }
+
+    /* 대댓글 작성자 스타일 */
+    .reply--author {
+        font-weight: bold;
+        color: #666;
+    }
+
+    /* 대댓글 작성일 스타일 */
+    .reply--timestamp {
+        font-size: 12px;
+        color: #999;
+    }
+
+    /* 대댓글 내용 스타일 */
+    .reply--content {
+        text-align: left; /* 텍스트를 왼쪽 정렬 */
+        font-size: 14px;
+        color: #444;
+        line-height: 1.5;
+        word-break: break-word;
+    }
+
+    /* 댓글 달기 버튼 스타일 */
+    .comment button, .reply-comment-container button {
+        margin-top: 10px;
+        background-color: #065fd4;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .comment button:hover, .reply-comment-container button:hover {
+        background-color: #004ba0;
+    }
+    /* 댓글 작성 텍스트 박스 */
+    .write--box {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .write--box textarea {
+        border: 1px solid #d3d3d3;
+        padding: 10px;
+        border-radius: 4px;
+        font-size: 14px;
+        resize: none;
+    }
+
+    .write--box button {
+        align-self: flex-end;
+        margin-top: 10px;
+        background-color: #1a73e8;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    /* 대댓글 영역 */
+    .reply-comment-section {
+        padding-left: 20px;
+        margin-top: 10px;
+        border-left: 2px solid #e6e6e6;
+    }
+
+    .reply-comment {
+        padding: 10px 0;
+        border-bottom: 1px solid #e6e6e6;
+    }
+
+    .reply--header {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+    }
+
+    .reply--author {
+        font-weight: bold;
+        color: #606060;
+    }
+
+    .reply--timestamp {
+        color: #909090;
+    }
+
+    .reply--content {
+        margin-top: 5px;
+        color: #333333;
+        font-size: 14px;
+    }
+
+    /* 대댓글 작성 박스 */
+    .reply--comment--box {
+        margin-top: 10px;
+        padding-left: 20px;
+    }
+
+    .reply--comment--box textarea {
+        border: 1px solid #d3d3d3;
+        padding: 8px;
+        width: 100%;
+        border-radius: 4px;
+        font-size: 14px;
+        resize: none;
+    }
+
+    .reply--comment--box button {
+        margin-top: 5px;
+        background-color: #1a73e8;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 12px;
+        cursor: pointer;
+    }
+
+    /* 댓글 영역 아래 공간 확보 */
+    .comments--option {
+        margin-bottom: 20px;
+    }
+</style>
 <h1>게시글 상세보기</h1>
 <table>
 	<tr>
@@ -96,23 +313,29 @@
                 const commentSection = document.getElementById('commentSection');
                 commentSection.innerHTML = ''; // 기존 댓글 초기화
 
-                if (Array.isArray(data) && data.length > 0)
+                if (Array.isArray(data) && data.length > 0 )
                 {
                     console.log('comment is not null');
                     // 받아온 데이터를 동적으로 HTML에 추가
                     data.forEach(comment => {
                         const commentContent = comment.comment;  // 댓글 내용
                         const userName = comment.userName;  // 작성자
+                        const userId = comment.userId;
                         const commentId = comment.commentId;  // 댓글 ID 등
+                        const createdAt = comment.createdAt;
 
                         const commentDiv = document.createElement('div');
                         commentDiv.classList.add('comment', 'comment-' + commentId);  // 고유 class 추가
 
                         // 댓글 내용을 포함한 동적 HTML 요소 생성
                         commentDiv.innerHTML = `
-                        <div class="comment--author">` + "닉네임 : "  + userName + `</div>
-                        <div class="comment--content">` +  commentContent + `</div>
-                        <div><button type="button" onclick="showReplyContent(` + commentId + `)">댓글 달기</button></div>`;
+                        <div class="comment--author">닉네임 : ` + userName + `</div>
+                        <button type="button" onclick="deleteComment(` + commentId + ',' + userId +  `)" style="margin-left: 5px;">삭제</button>
+                        <div class="reply--timestamp" style="color: #d12d2d; margin-left: 15px;">작성일 : ` + createdAt + `</div>
+                        <div class="comment--content">` + commentContent + `</div>
+                        <div>
+                            <button type="button" onclick="showReplyContent(` + commentId + `)">댓글 달기</button>
+                        </div>`;
 
                         // commentSection에 추가
                         commentSection.appendChild(commentDiv);
@@ -129,8 +352,6 @@
     {
         const textArea = document.getElementById('comment');
         textArea.innerHTML = '';
-        const commentId = ${post.id};
-        console.log('commentId : ', commentId);
         const commentData = document.getElementById('comment').value;
         const requestData = {
             "postId" : ${post.id},
@@ -248,12 +469,12 @@
                 // 대댓글 목록을 댓글 아래에 추가하는 로직
                 if (Array.isArray(data) && data.length > 0) {
                     data.forEach(reply => {
+                        const userId = reply.userId;
                         const commentId = reply.commentId;
                         const replyId = reply.replyId;  // 대댓글 고유 ID
                         const replyContent = reply.comment;  // 대댓글 내용
                         const userName = reply.userName;  // 작성자
                         const createdAt = reply.createdAt ? reply.createdAt : "작성일 없음";  // 작성일, 없으면 '작성일 없음'으로 표시
-
                         // 댓글에 해당하는 div 찾기
                         const commentDiv = document.querySelector('.comment-' + commentId);
 
@@ -274,12 +495,13 @@
                                 replyDiv.classList.add('reply-' + replyId);  // 대댓글 고유 class 추가
                                 replyDiv.innerHTML = `
                             <div class="reply-comment-container">
-                                <div class="reply--header">
-                                    <div class="reply--author" style="color: #d12d2d">닉네임 : ` + userName + `</div>
-                                    <div class="reply--timestamp" style="color: #d12d2d">작성일 : ` + createdAt + `</div>
-                                </div>
-                                <div class="reply--content" style="color: #d12d2d">` + replyContent + `</div>
-                            </div>`;
+                            <div class="reply--header">
+                                <div class="reply--author" style="color: #d12d2d">닉네임 : ` + userName + `</div>
+                                <button type="button" onclick="deleteReply(` + replyId + ',' +  userId + `)" style="margin-left: 5px;">삭제</button>
+                                <div class="reply--timestamp" style="color: #d12d2d; margin-left: 15px;">작성일 : ` + createdAt + `</div>
+                            </div>
+                            <div class="reply--content" style="color: #d12d2d">` + replyContent + `</div>
+                        </div>`;
 
                                 // 기존 대댓글을 유지하고, 새로운 대댓글만 추가
                                 replyCommentSection.appendChild(replyDiv);
@@ -293,6 +515,64 @@
             });
     }
 
+    function removeReplyContent(commentId) {
+        const existingReplyBox = document.getElementById('replyBox-' + commentId);
+
+        // replyBox가 존재하면 제거
+        if (existingReplyBox) {
+            existingReplyBox.remove();
+        }
+    }
+
+
+    function deleteComment(commentId, userId) {
+
+        fetch('http://localhost:8080/board/deleteComment?commentId=' + commentId + '&userId=' + userId)
+            .then(response => {
+                if (response.status === 500) {
+                    throw new Error('댓글 삭제 실패: 서버 오류가 발생했습니다.');
+                }
+                return response.text(); // 성공적인 응답일 경우 JSON으로 변환
+            })
+            .then(data => {
+                alert(data);
+                // 추가적인 성공 처리 로직을 여기에 작성
+                refreshCommentsAndReplies();
+                if(data.message === 'success')
+                {
+
+                }
+            })
+            .catch(error => {
+                console.error(error.message);
+                // 오류 처리 로직을 여기에 작성
+            });
+    }
+
+
+    function deleteReply(replyId, userId)
+    {
+        fetch('http://localhost:8080/board/deleteReply?replyId=' + replyId + '&userId=' + userId)
+            .then(response => {
+                if (response.status === 500) {
+                    throw new Error('댓글 삭제 실패: 서버 오류가 발생했습니다.');
+                }
+                return response.text(); // 성공적인 응답일 경우 JSON으로 변환
+            })
+            .then(data => {
+                alert(data);
+                // 추가적인 성공 처리 로직을 여기에 작성
+                refreshCommentsAndReplies();
+                if(data.message === 'success')
+                {
+
+                }
+            })
+            .catch(error => {
+                console.error(error.message);
+                // 오류 처리 로직을 여기에 작성
+            });
+    }
 
 </script>
 

@@ -10,13 +10,11 @@ import java.util.List;
 @Mapper
 public interface CommentRepository {
 
-    /**
-     * 댓글 추가
-     * @param dto
-     * @return
-     */
+    // 댓글을 작성하는 메소드입니다.
     int insertComment(CommentDTO dto);
 
+    // 댓글을 삭제하는 메소드입니다.
+    int deleteComment(@Param("commentId") int commentId);
 
     /**
      * 댓글 정렬
@@ -37,4 +35,6 @@ public interface CommentRepository {
      // 대댓글 리스트를 불러오는 메소드입니다.
     List<ReplyCommentDTO> selectReplyComments(@Param("id") int postId);
 
+    // 대댓글 삭제하는 메소드입니다.
+    int deleteReply(@Param("replyId") int replyId);
 }

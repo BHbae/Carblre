@@ -46,6 +46,26 @@ public class CommentService {
         return commentRepository.selectReplyComments(postId);
     }
 
+    /**
+     * 대댓글 삭제 기능
+     * @param replyId
+     * @return
+     */
+    @Transactional
+    public int deleteReply(int replyId){
+        return commentRepository.deleteReply(replyId);
+    }
+
+    /**
+     * 댓글 삭제 기능
+     * @param commentId
+     * @return
+     */
+    @Transactional
+    public int deleteComment(int commentId){
+        return commentRepository.deleteComment(commentId);
+    }
+
 }
 
 

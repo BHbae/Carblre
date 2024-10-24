@@ -12,7 +12,9 @@ import java.util.Map;
 import com.carblre.dto.CommentDTO;
 import com.carblre.dto.DetailDTO;
 import com.carblre.dto.ReplyCommentDTO;
+import com.carblre.dto.Response;
 import com.carblre.dto.userdto.UserDTO;
+import com.carblre.handler.exception.DataDeliveryException;
 import com.carblre.repository.model.Comment;
 import com.carblre.repository.model.User;
 import com.carblre.service.CommentService;
@@ -20,6 +22,7 @@ import com.carblre.utils.Define;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -154,13 +157,45 @@ public class TestBoardController {
 				.postId(commentDTO.getPostId())
 				.userId(principal.getId())
 				.comment(commentDTO.getComment())
-				.creatAt(commentDTO.getCreatAt())
+				.createdAt(commentDTO.getCreatedAt())
 				.userName(principal.getUserName())
 				.build();
 
 		commentService.writeComment(commentBuilder);
 
 		return ResponseEntity.ok(commentBuilder);
+	}
+
+	/**
+	 * [GET] 댓글 삭제 기능입니다.
+	 * @param commentId fetch 를 통해 commentId를 받고 WHERE 절에 넣어 쿼리를 진행합니다.
+	 * @return ResponseEntity
+	 */
+	@GetMapping("/deleteComment")
+	public ResponseEntity<String> deleteComment(@RequestParam(name="commentId") int commentId, @RequestParam(name="userId") int userId)
+	{
+		System.out.println("HELLO IT IS DELETE METHOD");
+		UserDTO principal = (UserDTO) session.getAttribute("principal");
+
+		if (principal == null)
+		{
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Define.ENTER_YOUR_LOGIN);
+		}
+
+		if (principal.getId() != userId)
+		{
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Define.NOT_AN_AUTHENTICATED_USER);
+		}
+
+		int result = commentService.deleteComment(commentId);
+
+		if(result != 1)
+		{
+			return ResponseEntity.status(500).build();
+		}
+
+		return ResponseEntity.ok("삭제하였습니다.");
+
 	}
 
 	/**
@@ -185,7 +220,8 @@ public class TestBoardController {
 	 * @return
 	 */
 	@PostMapping("/replyComment")
-	public ResponseEntity<?> addReplyComment(@RequestBody ReplyCommentDTO replyCommentDTO) {
+	public ResponseEntity<?> addReplyComment(@RequestBody ReplyCommentDTO replyCommentDTO)
+	{
 		UserDTO principal = (UserDTO) session.getAttribute("principal");
 		System.out.println("Reply Comment " + replyCommentDTO.getPostId());
 		System.out.println("Reply Comment " + replyCommentDTO.getCommentId());
@@ -203,11 +239,35 @@ public class TestBoardController {
 		return ResponseEntity.ok(replyCommentBuilder);
 	}
 
+	/**
+	 * [GET] 대댓글 삭제 기능입니다.
+	 * @param replyId fetch 를 통해 replyId를 받고 WHERE 절에 넣어 쿼리를 진행합니다.
+	 * @return ResponseEntity
+	 */
+	@GetMapping("/deleteReply")
+	public ResponseEntity<String> deleteReply(@RequestParam(name="replyId") int replyId, @RequestParam(name="userId") int userId)
+	{
+		UserDTO principal = (UserDTO) session.getAttribute("principal");
 
+		if (principal == null)
+		{
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Define.ENTER_YOUR_LOGIN);
+		}
 
+		if (principal.getId() != userId)
+		{
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Define.NOT_AN_AUTHENTICATED_USER);
+		}
 
+		int result = commentService.deleteReply(replyId);
 
+		if(result != 1)
+		{
+			return ResponseEntity.status(500).build();
+		}
 
+		return ResponseEntity.ok("삭제하였습니다.");
 
+	}
 
 }

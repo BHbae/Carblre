@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,6 +17,6 @@ public class ReplyCommentDTO {
     private Integer userId; // 유저 아이디(user_tb의 PK)
     private String userName; // 유저 이름
     private String comment; // 내용
-    private Timestamp createdAt;
+    private String createdAt;
 
 }
