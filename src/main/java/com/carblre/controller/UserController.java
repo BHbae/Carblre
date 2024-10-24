@@ -1,15 +1,14 @@
 package com.carblre.controller;
 
-import java.util.HashMap;
+import java.util.*;
 import java.io.IOException;
-import java.util.Map;
-import java.util.UUID;
 
 import com.carblre.config.MyWebSocketHandler;
 import com.carblre.dto.SignUpDTO;
 import com.carblre.dto.userdto.*;
 import com.carblre.handler.GlobalControllerAdvice;
 import com.carblre.handler.exception.UnAuthorizedException;
+import com.carblre.repository.model.LawyerDetail;
 import org.apache.coyote.Response;
 import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +74,7 @@ public class UserController {
 
     @Value("${kakao.redirect-uri}")
     private String kakaoRedirectUri;
+
 
 
     private final UserService userService;
@@ -658,7 +658,12 @@ public class UserController {
 
 
 
-
+	@GetMapping("/lawyers")
+	public String getAllLawyers(Model model) {
+		List<LawyerDetail> lawyers = userService.LawyerList();
+		model.addAttribute("lawyers", lawyers);
+		return "lawyerList";
+	}
 
 
 

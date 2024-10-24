@@ -2,6 +2,7 @@ package com.carblre.service;
 
 import com.carblre.dto.SignUpDTO;
 import com.carblre.dto.userdto.LawyerSignUpDTO;
+import com.carblre.repository.model.LawyerDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,8 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -185,6 +188,17 @@ public class UserService {
 //	public UserDTO findByToken(String token) {
 //
 //	}
+
+
+	public List<LawyerDetail> LawyerList(){
+		List<LawyerDetail> lawyers = new ArrayList<LawyerDetail>();
+		try {
+			lawyers = userRepository.getAllLawyers();
+		}catch (Exception e){
+
+		}
+		return lawyers;
+	}
 }
 
 
