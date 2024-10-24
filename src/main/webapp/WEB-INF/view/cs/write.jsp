@@ -8,14 +8,14 @@
     <div class="section--background" id="notice--background">
       <div class="inner--container">
         <sub class="eng">Notice</sub>
-        <h1 class="sub--title">공지사항</h1>
+        <h1 class="sub--title">고객센터</h1>
       </div>
     </div>
     <div style="border-bottom: 1px solid #bababa;">
       <div class="inner--container">
         <ul class="sub--top--menu">
-          <li class="subtop--active"><a href="/notice/notice">공지사항</a></li>
-          <li><a href="/cs/cs">고객센터</a></li>
+          <li><a href="/notice/notice">공지사항</a></li>
+          <li class="subtop--active"><a href="/cs/cs">고객센터</a></li>
         </ul>
       </div>
     </div>
@@ -24,7 +24,7 @@
 
   <div class="inner--container">
     <div class="sub--content">
-      <h2 class="prih2">공지사항</h2>
+      <h2 class="prih2">고객센터</h2>
 
       <form action="/notice/notice" method="POST" enctype="multipart/form-data">
         <input class="" type="text" name="title" id="title" placeholder="제목을 입력해주세요">
@@ -32,8 +32,8 @@
       </form>
 
       <div class="btn btn--wrap">
-        <div id="list--button"><a href="/notice/notice">목록</a></div>
-        <div id="enter--button"><a href="/notice/notice">글쓰기</a></div>
+        <div id="list--button"><a href="/cs/cs">목록</a></div>
+        <div id="enter--button"><a href="/cs/cs">글쓰기</a></div>
       </div>
     </div>
 
