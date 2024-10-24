@@ -4,7 +4,7 @@
 
 <h1>게시글 목록</h1>
 
-<main>
+<main>      
 		<table>
 			<tr>
 				<th>게시글 번호</th>
