@@ -594,7 +594,7 @@ public class UserController {
             throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
         }
 
-        UserDTO originUser = userService.findById(Integer.parseInt(userDTO.getId()));
+        UserDTO originUser = userService.findById((userDTO.getId()));
 
         model.addAttribute("originUser", originUser);
         return "user/infoUpdate";
@@ -610,7 +610,7 @@ public class UserController {
     public String infoUpdateProc(UserDTO updateDto) {
 
 
-        userService.updateInfo(updateDto.getEmail(), Integer.parseInt(updateDto.getId()));
+        userService.updateInfo(updateDto.getEmail(),(updateDto.getId()));
 
         return "redirect:/user/index";
     }
@@ -637,7 +637,7 @@ public class UserController {
     @PostMapping("/checkOriginPass")
     public ResponseEntity<Map<String, Object>> checkOriginPassProc(@RequestBody Map<String, String> reqData) {
         UserDTO userDTO = (UserDTO) session.getAttribute("principal");
-        String dbCheckPass = userService.findById(Integer.parseInt(userDTO.getId())).getPassword();
+        String dbCheckPass = userService.findById((userDTO.getId())).getPassword();
         System.out.println("db비번" + dbCheckPass);
 
         String originpass = reqData.get("originPass");
