@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.carblre.repository.interfaces.CounselRepository">
+
+
+	<!-- 유저의  변호사 예약 상황 -->
+	<select id="findCounselOfUserById"  resultType="com.carblre.repository.model.Counsel">
+		SELECT * FROM counsel_request_tb c
+		join user_tb u on u.id=c.user_id
+		where user_id = #{userId}
+		order by reservation_time asc;
+	</select>
+</mapper>

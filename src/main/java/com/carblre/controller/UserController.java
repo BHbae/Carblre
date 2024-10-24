@@ -1,7 +1,18 @@
 package com.carblre.controller;
 
+import java.util.HashMap;
+import java.io.IOException;
+import java.util.Map;
+import java.util.UUID;
+
 import com.carblre.config.MyWebSocketHandler;
 import com.carblre.dto.SignUpDTO;
+import com.carblre.dto.userdto.*;
+import com.carblre.handler.GlobalControllerAdvice;
+import com.carblre.handler.exception.UnAuthorizedException;
+import org.apache.coyote.Response;
+import org.apache.ibatis.javassist.NotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.carblre.dto.userdto.KakaoOAuthToken;
 import com.carblre.dto.userdto.SignDTO;
 import com.carblre.dto.userdto.SignInDTO;
@@ -16,13 +27,20 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
+import org.springframework.http.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+
+import com.carblre.service.UserService;
+
+import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -34,33 +52,33 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
-	@Value("${google.client-id}")
-	private String googleClientId;
+    @Value("${google.client-id}")
+    private String googleClientId;
 
-	@Value("${google.client-secret}")
-	private String googleClientSecret;
+    @Value("${google.client-secret}")
+    private String googleClientSecret;
 
-	@Value("${google.redirect-uri}")
-	private String googleRedirectUri;
+    @Value("${google.redirect-uri}")
+    private String googleRedirectUri;
 
-	@Value("${naver.client-id}")
-	private String naverClientId;
+    @Value("${naver.client-id}")
+    private String naverClientId;
 
-	@Value("${naver.client-secret}")
-	private String naverClientSecret;
+    @Value("${naver.client-secret}")
+    private String naverClientSecret;
 
-	@Value("${naver.redirect-uri}")
-	private String naverRedirectUri;
+    @Value("${naver.redirect-uri}")
+    private String naverRedirectUri;
 
-	@Value("${kakao.client-id}")
-	private String kakaoClientId;
+    @Value("${kakao.client-id}")
+    private String kakaoClientId;
 
-	@Value("${kakao.redirect-uri}")
-	private String kakaoRedirectUri;
+    @Value("${kakao.redirect-uri}")
+    private String kakaoRedirectUri;
 
 
-	private final UserService userService;
-	private final QrcodeService qrcodeService;
+    private final UserService userService;
+    private final QrcodeService qrcodeService;
 
 	private final HttpSession session;
 
@@ -109,9 +127,9 @@ public class UserController {
 		// 위의 검사를 모두 통과했다면 'principal' Session 부여합니다.
 		session.setAttribute("principal", userDTO);
 
-		// 마지막으로 페이지 이동 처리를 진행합니다.
-		return "redirect:/user/tempindex";// TODO 임시 인덱스 장소로 이동함
-	}
+        // 마지막으로 페이지 이동 처리를 진행합니다.
+        return "redirect:/user/index";// 임시 인덱스 장소로 이동함
+    }
 
 	@GetMapping("/signIn/token={token}")
 	public String signinQrcode(@PathVariable(name = "token") String token, HttpSession session) throws IOException {
@@ -464,6 +482,182 @@ public class UserController {
 
 		return ResponseEntity.ok(responseMessage);
 	}
+
+    /**
+     * 비밀번호 찾기 경로
+     *
+     * @return
+     */
+    @GetMapping("/findPass")
+    public String findPassPage() {
+
+        return "user/findPass";
+    }
+
+
+    /**
+     * 비밀번호 변경을 위한 아이디 확인 로직( 아이디,이메일)
+     *
+     * @param email
+     * @param nickName
+     * @param model
+     * @return
+     */
+    @GetMapping("/emailNick")
+    public String FindPageGetEmail(@RequestParam(name = "email") String email, @RequestParam(name = "nickName") String nickName
+            , Model model) {
+        UserDTO dto = userService.findIdByEmailNick(email, nickName);
+        System.out.println(dto);
+        model.addAttribute("UserId", dto.getId());
+        return "user/updatePass";
+    }
+
+    /**
+     * 비밀번호 변경 로직
+     * 비밀번호 찾기-> 비밀번호 변경 , 내정보 수정 -> 비밀번호 변경
+     *
+     * @param reqData
+     * @return
+     */
+    @PostMapping("/updatePass")
+    public ResponseEntity<Map<String, Object>> updatePassProc(@RequestBody Map<String, String> reqData) {
+        String changedPassword = reqData.get("changedPassword");
+        String checkedPassword = reqData.get("checkedPassword");
+        int id = Integer.parseInt(reqData.get("id"));
+        Map<String, Object> response = new HashMap<>();
+
+        int result = userService.updatePassword(changedPassword, id);
+        System.out.println(result);
+        if (result == 1) {
+            response.put("status", 1);  // 성공
+            response.put("message", "비밀번호 변경 성공");
+        }
+
+        return ResponseEntity.ok(response);
+    }
+
+
+    /**
+     * 유저 가입 선택 페이지
+     *
+     * @return
+     */
+    @GetMapping("/selectSignUp")
+    public String selectSignupPage() {
+        System.out.println("Here in selectSignUpPage(UserController)");
+        return "user/selectSignup";
+    }
+
+    /**
+     * 변호사 가입페지이 이동
+     *
+     * @return
+     */
+    @GetMapping("/lawyerSignUp")
+    public String lawyerSignupPage() {
+        System.out.println("Here in lawyerSignUpPage(UserController)");
+        return "user/lawyerSignup";
+    }
+
+    /**
+     * [POST] 변호사 회원가입 로직
+     *
+     * @param lawyerSignUpDTO = 사용자의 입력값
+     * @return signIn.jsp
+     */
+    @PostMapping("/lawyerSignUp")
+    public String lawyerSignUpProc(LawyerSignUpDTO lawyerSignUpDTO) {
+        // HTML required 속성으로 null 체크 X
+        userService.createLawyerUser(lawyerSignUpDTO);
+
+        // signIn (Login Page) 이동 처리
+        return "redirect:/user/signIn";
+    }
+
+    @GetMapping("/myPage")
+    public String myPage(Model model) {
+        UserDTO userDTO = (UserDTO) session.getAttribute("principal");
+        if (userDTO == null) {
+            // 엔티티가 존재하지 않을 때 NotFoundException 던짐
+            throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
+        }
+        // 유저 인포 해야됨
+        return "user/myPage";
+    }
+
+
+    @GetMapping("/infoUpdate")
+    public String infoUpdatePage(Model model) throws NotFoundException {
+        UserDTO userDTO = (UserDTO) session.getAttribute("principal");
+        if (userDTO == null) {
+            // 엔티티가 존재하지 않을 때 NotFoundException 던짐
+            throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
+        }
+
+        UserDTO originUser = userService.findById(Integer.parseInt(userDTO.getId()));
+
+        model.addAttribute("originUser", originUser);
+        return "user/infoUpdate";
+    }
+
+    /**
+     * TODO 정확히 어떤 정보를 수정할껀지 모르겠음 -ex:email 밖에 안떠오름 ,handler(email 중복에대한)
+     *
+     * @param updateDto
+     * @return
+     */
+    @PostMapping("/infoUpdate")
+    public String infoUpdateProc(UserDTO updateDto) {
+
+
+        userService.updateInfo(updateDto.getEmail(), Integer.parseInt(updateDto.getId()));
+
+        return "redirect:/user/index";
+    }
+
+    @GetMapping("/infoUpdatePass")
+    public String infoUpdatePassPage(Model model) {
+        UserDTO userDTO = (UserDTO) session.getAttribute("principal");
+        if (userDTO == null) {
+            // 엔티티가 존재하지 않을 때 NotFoundException 던짐
+            throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
+        }
+        UserDTO dto = userService.findIdByEmailNick(userDTO.getEmail(), userDTO.getNickName());
+        System.out.println(dto);
+        model.addAttribute("UserId", dto.getId());
+        return "user/infoUpdatePass";
+    }
+
+    /**
+     * 비동기 비밀번호 대조
+     *
+     * @param reqData
+     * @return
+     */
+    @PostMapping("/checkOriginPass")
+    public ResponseEntity<Map<String, Object>> checkOriginPassProc(@RequestBody Map<String, String> reqData) {
+        UserDTO userDTO = (UserDTO) session.getAttribute("principal");
+        String dbCheckPass = userService.findById(Integer.parseInt(userDTO.getId())).getPassword();
+        System.out.println("db비번" + dbCheckPass);
+
+        String originpass = reqData.get("originPass");
+        System.out.println("기입비번" + originpass);
+
+        Map<String, Object> response = new HashMap<>();
+        boolean result = userService.findPassword(originpass, dbCheckPass);// 패스워드 확인
+        System.out.println("result" + result);
+        if (result) {
+            response.put("status", 1);  // 성공
+            response.put("message", "비밀번호 일치");
+        } else {
+            response.put("status", 0);  // 실패
+            response.put("message", "비밀번호 불일치");
+        }
+        return ResponseEntity.ok(response);
+    }
+
+
+
 
 
 

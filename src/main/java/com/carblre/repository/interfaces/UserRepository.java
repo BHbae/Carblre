@@ -21,7 +21,7 @@ public interface UserRepository {
     // 일반회원 가입
     void saveUser(User user);
     
-    // 회원수정 (쿼리 실행안해봄)
+    // 회원수정 (쿼리 실행안해봄) //삭제예정
     void update(User user);
 
     // 회원 탈퇴( 쿼리실행안해봄)
@@ -45,5 +45,20 @@ public interface UserRepository {
 	// 이메일로 아이디찾기
 	UserDTO findByEmail(String email);
 
+	// 닉네임(아이디) 이메일 비밀번호 찾기
+	UserDTO findByEmailNick(@Param("email")String email,@Param("nickName") String nickName);
 
+	// 비밀번호 변경
+	int updatePass(@Param("password")String password,@Param("id")int id);
+
+	// 회원정보 변경
+	int updateInfo(String email, int id);
+
+
+	// 가장 최근 auto_increment된 id
+	@Select("SELECT LAST_INSERT_ID()")
+	int getLastInsertId();
+
+	// 변호사 디테일
+	int insertLawyerDetail(LawyerDetail lawyerDetail);
 }
