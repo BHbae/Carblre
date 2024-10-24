@@ -37,3 +37,6 @@ form {
 .input-info{
     width:200px;
 }
+#lawyer-login-form {
+    display: none;
+}

@@ -3,12 +3,14 @@ package com.carblre.repository.interfaces;
 import java.util.List;
 
 import com.carblre.dto.SignUpDTO;
+import com.carblre.repository.model.LawyerDetail;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.carblre.dto.userdto.SignDTO;
 import com.carblre.dto.userdto.UserDTO;
 import com.carblre.repository.model.User;
+import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface UserRepository {
@@ -53,4 +55,12 @@ public interface UserRepository {
 
 	// 회원정보 변경
 	int updateInfo(String email, int id);
+
+
+	// 가장 최근 auto_increment된 id
+	@Select("SELECT LAST_INSERT_ID()")
+	int getLastInsertId();
+
+	// 변호사 디테일
+	int insertLawyerDetail(LawyerDetail lawyerDetail);
 }

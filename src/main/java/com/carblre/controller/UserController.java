@@ -7,12 +7,12 @@ import java.util.UUID;
 
 import com.carblre.config.MyWebSocketHandler;
 import com.carblre.dto.SignUpDTO;
+import com.carblre.dto.userdto.*;
 import com.carblre.handler.GlobalControllerAdvice;
 import com.carblre.handler.exception.UnAuthorizedException;
 import org.apache.coyote.Response;
 import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.carblre.dto.userdto.FindIdDTO;
 import com.carblre.service.QrcodeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,9 +25,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import com.carblre.dto.userdto.KakaoOAuthToken;
-import com.carblre.dto.userdto.SignDTO;
-import com.carblre.dto.userdto.UserDTO;
 import com.carblre.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -541,14 +538,14 @@ public class UserController {
 
 	/**
 	 * [POST] 변호사 회원가입 로직
-	 * @param signUpDTO = 사용자의 입력값
+	 * @param lawyerSignUpDTO = 사용자의 입력값
 	 * @return signIn.jsp
 	 */
 	@PostMapping("/lawyerSignUp")
-	public String lawyerSignUpProc(SignUpDTO signUpDTO)
+	public String lawyerSignUpProc(LawyerSignUpDTO lawyerSignUpDTO)
 	{
 		// HTML required 속성으로 null 체크 X
-		userService.createLawyerUser(signUpDTO);
+		userService.createLawyerUser(lawyerSignUpDTO);
 
 		// signIn (Login Page) 이동 처리
 		return "redirect:/user/signIn";

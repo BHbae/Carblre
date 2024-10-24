@@ -87,5 +87,14 @@
 		WHERE id = #{id}
 	</update>
 
+	<insert id="insertLawyerDetail" parameterType="com.carblre.repository.model.LawyerDetail">
+		INSERT INTO lawyer_detail_tb(user_id, introduction ,
+		uploard_profile_name, law_firm,
+		office_num)
+		VALUES (
+		#{UserId}, #{introduction},
+		#{uploardProfileName}, #{lawFirm},
+		#{officeNum})
+	</insert>
 
 </mapper>
