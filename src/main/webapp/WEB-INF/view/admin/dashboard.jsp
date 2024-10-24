@@ -72,10 +72,10 @@
 								</div>
 								<div class="card-stacked orange">
 									<div class="card-content">
-										<h3>36,540</h3>
+										<h3>300,000,000</h3>
 									</div>
 									<div class="card-action">
-										<strong>결제금액</strong>
+										<strong>이 달의 결제금액</strong>
 									</div>
 								</div>
 							</div>
@@ -88,10 +88,10 @@
 								</div>
 								<div class="card-stacked blue">
 									<div class="card-content">
-										<h3>24,225</h3>
+										<h3>5</h3>
 									</div>
 									<div class="card-action">
-										<strong>ㅇㅇㅇ</strong>
+										<strong>법인 회원가입 대기자수</strong>
 									</div>
 								</div>
 							</div>

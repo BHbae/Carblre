@@ -13,17 +13,22 @@ import lombok.ToString;
 @ToString
 public class AdminLawyerUserDTO {
 	private int id;
-	
+
 	private int userId;
 	private String userName;
 	private String nickName;
 	private String password;
 	private String email;
 	private String phoneNum;
-	private String role;
-	
-	private String uploardProfileName;
-	private String introduction;
 	private String lawFirm;
+	private String role;
+	private int status;
+
+	private String originProfileName;
+	private String uploardProfileName;
+	private String originLicenseName;
+	private String uploardLicenseName;
+	private String introduction;
 	private String officeNum;
+	private String counselingAmount;
 }

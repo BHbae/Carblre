@@ -1,5 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -8,11 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>게시글관리</title>
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="/assets/materialize/css/materialize.min.css"
-	media="screen,projection" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="/assets/materialize/css/materialize.min.css" media="screen,projection" />
 <!-- Bootstrap Styles-->
 <link href="/assets/css/bootstrap.css" rel="stylesheet" />
 <!-- FontAwesome Styles-->
@@ -22,8 +18,7 @@
 <!-- Custom Styles-->
 <link href="/assets/css/custom-styles.css" rel="stylesheet" />
 <!-- Google Fonts-->
-<link href='http://fonts.googleapis.com/css?family=Open+Sans'
-	rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 <link rel="stylesheet" href="/assets/js/Lightweight-Chart/cssCharts.css">
 </head>
 <body>
@@ -54,13 +49,12 @@
 							<div class="card-action">Advanced Tables</div>
 							<div class="card-content">
 								<div class="table-responsive">
-									<table class="table table-striped table-bordered table-hover"
-										id="dataTables-example">
+									<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 										<thead>
 											<tr>
 												<th>id</th>
 												<th>user_id</th>
-												<th>status</th>
+												<th>nick_name</th>
 												<th>category</th>
 												<th>title</th>
 												<th>content</th>
@@ -72,20 +66,17 @@
 										</thead>
 										<tbody>
 											<c:forEach var="post" items="${postList}">
-												<tr class="gradeA"
-													onclick="window.location.href='/admin/posts/${post.id}'"
-													style="cursor: pointer;">
+												<tr class="gradeA" onclick="window.location.href='/admin/posts/${post.id}'" style="cursor: pointer;">
 													<td>${post.id}</td>
 													<td>${post.userId}</td>
-													<td>${post.status}</td>
+													<td>${post.nickName}</td>
 													<td>${post.category}</td>
 													<td>${post.title}</td>
 													<td>${post.content}</td>
 													<td>${post.originFileName}</td>
 													<td>${post.uploardFileName}</td>
 													<td>${post.createAt}</td>
-													<td><button onclick="deletePost(${post.id})"
-															class="btn btn-danger">삭제하기</button></td>
+													<td><button onclick="deletePost(${post.id})" class="btn btn-danger">삭제하기</button></td>
 												</tr>
 											</c:forEach>
 										</tbody>

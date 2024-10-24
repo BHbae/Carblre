@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -31,7 +31,7 @@
 		<!-- /. NAV SIDE  -->
 		<div id="page-wrapper">
 			<div class="header">
-				<h1 class="page-header">일반 회원 관리</h1>
+				<h1 class="page-header">법인 회원 관리</h1>
 				<ol class="breadcrumb">
 					<li><a href="#">Home</a></li>
 					<li><a href="#">Tables</a></li>
@@ -58,13 +58,13 @@
 												<th>Email</th>
 												<th>Phone</th>
 												<th>Role</th>
-												<th>Site</th>
+												<th>로펌</th>
 												<th>Status</th>
 												<th>기능</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="user" items="${generalUserList}">
+											<c:forEach var="user" items="${lawyerUserList}">
 												<tr class="gradeA">
 													<td>${user.id}</td>
 													<td>${user.userName}</td>
@@ -72,9 +72,16 @@
 													<td>${user.email}</td>
 													<td>${user.phoneNum}</td>
 													<td>${user.role}</td>
-													<td>${user.site}</td>
-													<td>${user.status == 1 ? '정상' : '계정정지'}</td>
+													<td>${user.lawFirm}</td>
 													<td><c:choose>
+															<c:when test="${user.status == 0}">승인대기</c:when>
+															<c:when test="${user.status == 1}">정상</c:when>
+															<c:otherwise>계정정지</c:otherwise>
+														</c:choose></td>
+													<td><c:choose>
+															<c:when test="${user.status == 0}">
+																<button class="btn btn-primary" onclick="toggleStatus('${user.id}', 1)">승인</button>
+															</c:when>
 															<c:when test="${user.status == 1}">
 																<button class="btn btn-warning" onclick="toggleStatus('${user.id}', 2)">계정정지</button>
 															</c:when>
@@ -154,7 +161,6 @@
 				}
 			}
 		</script>
-
 		<!-- Custom Js -->
 		<script src="/assets/js/custom-scripts.js"></script>
 </body>

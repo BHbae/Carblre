@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.carblre.dto.admin.AdminLawyerUserDTO;
+import com.carblre.dto.admin.AdminPostDTO;
 import com.carblre.repository.interfaces.AdminRepository;
 import com.carblre.repository.model.AdminCrush;
-import com.carblre.repository.model.AdminPost;
 import com.carblre.repository.model.AdminUser;
 
 import lombok.RequiredArgsConstructor;
@@ -25,12 +25,12 @@ public class AdminService {
 	}
 
 	@Transactional
-	public List<AdminLawyerUserDTO> readAllCorporateUser() {
-		return adminRepository.readAllCorporateUser();
+	public List<AdminLawyerUserDTO> readAlllawyerUser() {
+		return adminRepository.readAlllawyerUser();
 	}
 
 	@Transactional
-	public List<AdminPost> readAllPost() {
+	public List<AdminPostDTO> readAllPost() {
 		return adminRepository.readAllPost();
 	}
 
@@ -48,6 +48,19 @@ public class AdminService {
 			return true; // 삭제 성공
 		}
 		return false; // 게시글이 존재하지 않음
+	}
+
+	// 유저 계정 정지/해제 기능
+	@Transactional
+	public boolean updateUserStatus(int id, int status) {
+		adminRepository.updateUserStatus(id, status);
+		return true; // 업데이트 성공 시 true 반환
+	}
+
+	// 게시글 상세보기 페이지
+	@Transactional
+	public AdminPostDTO readPostById(int id) {
+		return adminRepository.readPostById(id);
 	}
 
 }

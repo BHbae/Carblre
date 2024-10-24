@@ -8,12 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.carblre.dto.admin.AdminLawyerUserDTO;
-import com.carblre.repository.model.AdminCrush;
-import com.carblre.repository.model.AdminPost;
+import com.carblre.dto.admin.AdminPostDTO;
 import com.carblre.repository.model.AdminUser;
 import com.carblre.service.AdminService;
 
@@ -63,14 +64,45 @@ public class AdminController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/corporate-user")
+	@GetMapping("/lawyer-user")
 	public String corporateUserListPage(Model model) {
-		List<AdminLawyerUserDTO> corporateUserList = adminService.readAllCorporateUser();
+		List<AdminLawyerUserDTO> lawyerUserList = adminService.readAlllawyerUser();
 
-		model.addAttribute("status", "corporateUserList");
-		model.addAttribute("corporateUserList", corporateUserList);
+		model.addAttribute("status", "lawyerUserList");
+		model.addAttribute("lawyerUserList", lawyerUserList);
 
-		return "admin/corporateUserList";
+		return "admin/lawyerUserList";
+	}
+
+	/**
+	 * 가입 대기 법인 유저 관리 페이지
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/waiting-user")
+	public String waitingUserListPage(Model model) {
+		List<AdminLawyerUserDTO> waitingList = adminService.readAlllawyerUser();
+
+		model.addAttribute("status", "waitingUserList");
+		model.addAttribute("waitingList", waitingList);
+
+		return "admin/waitingUserList";
+	}
+
+	/**
+	 * 유저 계정 정지/해제 기능
+	 * 
+	 * @param id
+	 * @param status
+	 * @return
+	 */
+	@PostMapping("/user-status")
+	public ResponseEntity<String> toggleUserStatus(@RequestParam(name = "id") int id,
+			@RequestParam(name = "status") int status) {
+		System.out.println(" status  : " + status);
+		adminService.updateUserStatus(id, status);
+		return ResponseEntity.ok("상태 변경 성공");
 	}
 
 	/**
@@ -97,16 +129,20 @@ public class AdminController {
 	 */
 	@GetMapping("/posts")
 	public String boardListPage(Model model) {
-		List<AdminPost> postList = adminService.readAllPost();
+		List<AdminPostDTO> postList = adminService.readAllPost();
 		model.addAttribute("status", "postList");
 		model.addAttribute("postList", postList);
 
 		return "admin/postList";
 	}
-	
+
 	// 게시글 상세보기 페이지
 	@GetMapping("/posts/{id}")
-	public String boardDetailPage(Model model) {
+	public String boardDetailPage(@PathVariable(name = "id") int id, Model model) {
+		AdminPostDTO post = adminService.readPostById(id);
+		model.addAttribute("status", "postList");
+		model.addAttribute("post", post);
+
 		return "admin/postDetail";
 	}
 
@@ -127,17 +163,32 @@ public class AdminController {
 	}
 
 	/**
-	 * 사고 관리 페이지
+	 * AI 대화내역 관리 페이지
 	 * 
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/crush")
-	public String crushListPage(Model model) {
-		List<AdminCrush> crushList = adminService.readAllCrush();
-		model.addAttribute("status", "crushList");
-		model.addAttribute("crushList", crushList);
+	@GetMapping("/ai-chat")
+	public String aiChatListPage(Model model) {
+//		List<AdminPost> aiChatList = adminService.readAllPost();
+		model.addAttribute("status", "aiChatList");
+//		model.addAttribute("aiChatList", aiChatList);
 
-		return "admin/crushList";
+		return "admin/aiChatList";
 	}
+
+//	/**
+//	 * 사고 관리 페이지
+//	 * 
+//	 * @param model
+//	 * @return
+//	 */
+//	@GetMapping("/crush")
+//	public String crushListPage(Model model) {
+//		List<AdminCrush> crushList = adminService.readAllCrush();
+//		model.addAttribute("status", "crushList");
+//		model.addAttribute("crushList", crushList);
+//
+//		return "admin/crushList";
+//	}
 }

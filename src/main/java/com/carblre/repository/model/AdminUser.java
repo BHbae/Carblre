@@ -19,4 +19,6 @@ public class AdminUser {
 	private String email;
 	private String phoneNum;
 	private String role;
+	private String site;
+	private int status;
 }

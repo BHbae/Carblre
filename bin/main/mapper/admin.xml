@@ -4,23 +4,37 @@
 
 	<select id="readAllGeneralUser"
 		resultType="com.carblre.repository.model.AdminUser">
-		select * from user_tb where role is null
+		select * from user_tb where role = 'user' or role = 'admin'
 	</select>
 
-	<select id="readAllCorporateUser"
+	<select id="readAlllawyerUser"
 		resultType="com.carblre.dto.admin.AdminLawyerUserDTO">
-		select u.user_name, u.nick_name, u.password, u.email, u.phone_num,
-		u.role, ld.id, ld.user_id, ld.uploard_profile_name, ld.introduction,
-		ld.law_firm, ld.office_num from user_tb u
-		left join lawyer_detail_tb ld
-		on u.id = ld.user_id
-		where u.role = 'corporate'
+		select u.id, u.user_name, u.nick_name, u.email, u.phone_num,
+		u.role, u.status, l.id lawyer_id, l.origin_profile_name,
+		l.uploard_profile_name,
+		l.origin_license_name, l.uploard_license_name, l.introduction,
+		l.law_firm, l.office_num, l.counseling_amount from user_tb u
+		left join lawyer_detail_tb l
+		on u.id = l.user_id
+		where u.role = 'lawyer'
+		order by field(status, 0, 1, 2)
 	</select>
 
 	<select id="readAllPost"
 		resultType="com.carblre.repository.model.AdminPost">
-		select * from post_tb
+		select p.*, u.nick_name from post_tb p
+		left join user_tb u
+		p.user_id = u.id
 	</select>
+
+	<select id="readPostById"
+		resultType="com.carblre.repository.model.AdminPost">
+		select p.*, u.nick_name from post_tb p
+		left join user_tb u
+		p.user_id = u.id
+		where id = #{id}
+	</select>
+
 
 	<select id="readAllCrush"
 		resultType="com.carblre.repository.model.AdminCrush">
@@ -34,5 +48,11 @@
 	<delete id="deleteById">
 		delete from post_tb where id = #{id}
 	</delete>
+
+	<update id="updateUserStatus" parameterType="map">
+		update user_tb
+		set status = #{status}
+		where id = #{id}
+	</update>
 
 </mapper>

@@ -17,7 +17,7 @@ public class AdminPostDTO {
 
 	private int id;
 	private int userId;
-	private int status; // 1. 가해자 , 2.피해자
+	private int nickName;
 	private String category;
 	private String title;
 	private String content;

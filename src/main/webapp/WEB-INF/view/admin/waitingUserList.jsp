@@ -1,4 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -7,8 +8,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>회원관리</title>
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="/assets/materialize/css/materialize.min.css" media="screen,projection" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="/assets/materialize/css/materialize.min.css"
+	media="screen,projection" />
 <!-- Bootstrap Styles-->
 <link href="/assets/css/bootstrap.css" rel="stylesheet" />
 <!-- FontAwesome Styles-->
@@ -18,7 +22,8 @@
 <!-- Custom Styles-->
 <link href="/assets/css/custom-styles.css" rel="stylesheet" />
 <!-- Google Fonts-->
-<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans'
+	rel='stylesheet' type='text/css' />
 <link rel="stylesheet" href="/assets/js/Lightweight-Chart/cssCharts.css">
 </head>
 <body>
@@ -31,7 +36,7 @@
 		<!-- /. NAV SIDE  -->
 		<div id="page-wrapper">
 			<div class="header">
-				<h1 class="page-header">일반 회원 관리</h1>
+				<h1 class="page-header">회원 가입 대기</h1>
 				<ol class="breadcrumb">
 					<li><a href="#">Home</a></li>
 					<li><a href="#">Tables</a></li>
@@ -49,39 +54,39 @@
 							<div class="card-action">Advanced Tables</div>
 							<div class="card-content">
 								<div class="table-responsive">
-									<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+									<table class="table table-striped table-bordered table-hover"
+										id="dataTables-example">
 										<thead>
 											<tr>
-												<th>ID</th>
-												<th>이름</th>
-												<th>닉네임</th>
-												<th>Email</th>
-												<th>Phone</th>
-												<th>Role</th>
-												<th>Site</th>
-												<th>Status</th>
-												<th>기능</th>
+												<th>id</th>
+												<th>user_name</th>
+												<th>nick_name</th>
+												<th>password</th>
+												<th>email</th>
+												<th>phone_num</th>
+												<th>role</th>
+												<th>created_at</th>
+												<th>introduction</th>
+												<th>law_firm</th>
+												<th>office_num</th>
+												<th>uploard_profile_name</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="user" items="${generalUserList}">
+											<c:forEach var="user" items="${corporateUserList}">
 												<tr class="gradeA">
 													<td>${user.id}</td>
 													<td>${user.userName}</td>
 													<td>${user.nickName}</td>
+													<td>${user.password}</td>
 													<td>${user.email}</td>
 													<td>${user.phoneNum}</td>
 													<td>${user.role}</td>
-													<td>${user.site}</td>
-													<td>${user.status == 1 ? '정상' : '계정정지'}</td>
-													<td><c:choose>
-															<c:when test="${user.status == 1}">
-																<button class="btn btn-warning" onclick="toggleStatus('${user.id}', 2)">계정정지</button>
-															</c:when>
-															<c:otherwise>
-																<button class="btn btn-success" onclick="toggleStatus('${user.id}', 1)">정지해제</button>
-															</c:otherwise>
-														</c:choose></td>
+													<td>${user.role}</td>
+													<td>${user.introduction}</td>
+													<td>${user.lawFirm}</td>
+													<td>${user.officeNum}</td>
+													<td>${user.uploardProfileName}</td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -132,29 +137,7 @@
 			$(document).ready(function() {
 				$('#dataTables-example').dataTable();
 			});
-
-			function toggleStatus(userId, newStatus) {
-				if (confirm('정말 변경하시겠습니까?')) {
-					$.ajax({
-						type : 'POST',
-						url : '/admin/user-status',
-						data : {
-							id : userId,
-							status : newStatus
-						},
-						success : function(response) {
-							alert(response);
-							// 성공적으로 상태가 변경되었을 때의 처리
-							location.reload(); // 페이지 새로고침
-						},
-						error : function(error) {
-							alert('오류가 발생했습니다. 다시 시도해 주세요.');
-						}
-					});
-				}
-			}
 		</script>
-
 		<!-- Custom Js -->
 		<script src="/assets/js/custom-scripts.js"></script>
 </body>
