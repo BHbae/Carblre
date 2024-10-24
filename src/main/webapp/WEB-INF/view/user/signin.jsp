@@ -32,7 +32,7 @@
             <input type="password" name="password" placeholder="비밀번호" required><br>
             <button type="submit">로그인</button>
         </form>
-
+    </div>
     <div class="login-side">
         <div  onclick="findId()" class="find-info">아이디찾기</div>
         <div  onclick="findPass()" class="find-info">패스워드 찾기</div>
