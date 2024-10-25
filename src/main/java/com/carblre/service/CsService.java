@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.carblre.dto.CsAllDTO;
+import com.carblre.dto.CsFindByIdDTO;
 import com.carblre.handler.exception.DataDeliveryException;
 import com.carblre.repository.interfaces.CsRepository;
 import com.carblre.utils.Define;
@@ -36,6 +37,16 @@ public class CsService {
 
 	public int countAllCs() {
 		return csRepository.countAllCs();
+	}
+
+
+	public CsFindByIdDTO findById(int id) {
+		 return csRepository.findById(id);
+	}
+
+
+	public int updateByIdAndUserId(int id, String title, String content) {
+		return csRepository.updateByIdAndUserId(id,title,content);
 	}
 	
 	

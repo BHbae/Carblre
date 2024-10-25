@@ -1,59 +1,66 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="../layout/header.jsp" %>
 
-<div class="container">
-    <h1>회원가입</h1>
+<div class="wrap">
+    <section style="margin-bottom: 100px"></section>
+    <div class="inner--container">
+        <div class="sub--content">
+            <h2 class="prih2">회원가입</h2>
 
-    <form action="/user/signUp" method="POST">
-        <!-- 사용자 이름 -->
-        <div class="form-group">
-            <label for="userName">이름 </label>
-            <input type="text" class="form-control" id="userName" placeholder="이름을 입력하세요." name="userName" required>
+
+            <form action="/user/signUp" method="POST" class="infoupdate">
+                <!-- 사용자 이름 -->
+                <div class="form-group">
+                    <label for="userName">이름 </label>
+                    <input type="text" class="form-control" id="userName" placeholder="이름을 입력하세요." name="userName"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label for="nickName">아이디</label>
+                    <input type="text" class="form-control" id="nickName" placeholder="아이디를 입력하세요." name="nickName"
+                           required>
+                    <button type="button" class="check--btn" id="checkId" onclick="checkDuplicate()">
+                        중복 확인
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력하세요." name="password"
+                           oninput="pwCheck()" minlength="8" maxlength="20" required>
+                    <p class="pw--info">
+                        8자 이상 20자 이하 입력 (공백 제외) <br>영문/숫자/특수문자(!@#$%^&*)포함
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="passwordCheck">비밀번호 확인
+                        <span id="pwConfirm"></span>
+                    </label>
+                    <input type="password" class="form-control" id="passwordCheck" placeholder="비밀번호를 한 번 더 입력하세요."
+                           name="passwordCheck" oninput="pwCheck()" minlength="8" maxlength="20" required>
+                </div>
+
+                <!-- 이메일 입력란 -->
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" class="form-control" id="email" placeholder="example@carblre.com" name="email"
+                           value="" required>
+                    <button type="button" class="check--btn" id="emailCode" onclick="sendValidate()">발송</button>
+                    <button type="button" class="check--btn" id="checkValidate" onclick="checkValidate()"
+                            disabled="disabled" style="cursor: pointer;">인증 확인
+                    </button>
+                </div>
+
+                <!-- 제출 버튼 -->
+                <button type="submit" id="signUp">가입하기</button>
+            </form>
         </div>
-
-        <div class="form-group">
-            <label for="nickName">아이디</label>
-            <input type="text" class="form-control" id="nickName" placeholder="아이디를 입력하세요." name="nickName" required>
-            <button type="button" class="check--btn" id="checkId" onclick="checkDuplicate()">
-                중복 확인
-            </button>
-        </div>
-
-        <div class="form-group">
-            <label for="password">비밀번호</label>
-            <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력하세요." name="password" oninput="pwCheck()" minlength="8" maxlength="20" required>
-            <p class="pw--info">
-                8자 이상 20자 이하 입력 (공백 제외) <br>영문/숫자/특수문자(!@#$%^&*)포함
-            </p>
-        </div>
-
-        <div class="form-group">
-            <label for="passwordCheck">비밀번호 확인
-                <span id="pwConfirm">
-
-                </span>
-            </label>
-            <input type="password" class="form-control" id="passwordCheck" placeholder="비밀번호를 한 번 더 입력하세요." name="passwordCheck" oninput="pwCheck()" minlength="8" maxlength="20" required>
-        </div>
-
-        <!-- 이메일 입력란 -->
-        <div class="form-group">
-            <label for="email">이메일</label>
-            <input type="email" class="form-control" id="email" placeholder="example@carblre.com" name="email" value="" required>
-        </div>
-
-        <!-- 이메일 인증코드 발송 -->
-        <div class="form-group">
-            <button type="button" class="check--btn" id="emailCode" onclick="sendValidate()">발송</button>
-            <button type="button" class="check--btn" id="checkValidate" onclick="checkValidate()"
-                    disabled="disabled" style="cursor: pointer;">인증 확인
-            </button>
-        </div>
-
-        <!-- 제출 버튼 -->
-        <button type="submit"  id="signUp">가입하기</button>
-    </form>
+    </div>
 </div>
+
+
 <script>
 
     function sendValidate() {
@@ -104,20 +111,16 @@
                 return response.json();  // 응답을 JSON 형식으로 변환
             })
             .then(data => {
-                if (data.message)
-                {
+                if (data.message) {
                     alert("사용 가능한 아이디입니다.");
                     const result = confirm("해당 아이디를 사용하시겠습니까?");
 
-                    if (result)
-                    {
+                    if (result) {
                         const inputUserId = document.getElementById('nickName').value;
                         inputUserId.disabled = true;
                     }
 
-                }
-                else
-                {
+                } else {
                     alert("사용 중인 아이디입니다.");
                 }
             })

@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../layout/header.jsp"%>
 
@@ -15,7 +16,7 @@
 			<div class="inner--container">
 				<ul class="sub--top--menu">
 					<li><a href="/notice/notice">의뢰자</a></li>
-					<li><a href="/aiounseling">AI 간편상담</a></li>
+					<li class="subtop--active"><a href="/aiounseling">AI 간편상담</a></li>
 					<li><a href="/notice/notice">변호사</a></li>
 					<li><a href="/notice/notice">공지사항</a></li>
 					<li class="subtop--active"><a href="/cs/cs">고객센터</a></li>
@@ -28,40 +29,22 @@
 	<div class="inner--container">
 		<div class="sub--content">
 			<h2 class="prih2">고객센터</h2>
-			<div class="board--info">
-				<div class="board--title">제목</div>
-				<div class="board--detail">
-					<span>작성자: ${dto.userName}</span> 
-					<span>작성일: ${dto.requestTime}</span>
-				</div>
-			</div>
-			<div class="board--content">
-				<div>${dto.request}</div>
-			</div>
-			<div class="board--content">
-				<c:choose>
-					<c:when test="${dto.response != null}">
-						<div>${dto.response}</div>
-						<div>${dto.responseTime}</div>
-					</c:when>
-					<c:otherwise>
-						<div>답변을 기다리는중입니다</div>
-					</c:otherwise>
-				</c:choose>
 
+			<form action="/cs/edit/${dto.id}" method="POST" enctype="multipart/form-data">
+				<input class="" type="text" name="title" id="title" value="${dto.title}">
+				<textarea type="text" name="content" id="content">${dto.request}</textarea>
 
-			</div>
 			<div class="btn btn--wrap">
 				<div id="list--button">
 					<a href="/cs/cs">목록</a>
 				</div>
-				<div id="edit--button">
-					<button onclick="location.href='/cs/edit/${dto.id}'">수정하기</button>
+				<div id="enter--button">
+					<button type="submit">수정하기</button>
 				</div>
 			</div>
+			</form>
 		</div>
+
 	</div>
 
-</div>
-
-<%@ include file="../layout/footer.jsp"%>
+	<%@ include file="../layout/footer.jsp"%>

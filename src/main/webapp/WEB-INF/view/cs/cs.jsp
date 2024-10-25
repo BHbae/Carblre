@@ -40,8 +40,8 @@
 					<c:forEach items="${csList}" var="csList">
 						<tr>
 							<td class="notice--no">${csList.id}</td>
-							<td class="notice--con">${csList.title}</td>
-							<td class="notice--name">${csList.title}</td>
+							<td class="notice--con"><a href="/cs/detail/${csList.id}">${csList.title}</a></td>
+							<td class="notice--name">${csList.userName}</td>
 							<td class="notice--date">${csList.requestTime}</td>
 						</tr>
 					</c:forEach>
@@ -60,7 +60,6 @@
 				<c:forEach begin="1" end="${totalPages}" var="page">
                     <li class="<c:if test="${currentPage == page}">page--active</c:if>" ><a href="/cs/cs?page=${page}">${page}</a></li>
                 </c:forEach>
-
 				<li
 					class="page-item <c:if test='${currentPage == totalPages}'>disabled</c:if>">
 					<a class="page-link" href="/cs/cs?page=${currentPage + 1}">▶</a>

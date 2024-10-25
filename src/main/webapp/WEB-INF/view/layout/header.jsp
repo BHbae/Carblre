@@ -30,7 +30,7 @@
 <header>
 	<div id="in--header">
 		<div id="logo">
-			<a href="/" alt="헤더 로고">logo</a>
+			<a href="/" alt="헤더 로고"><img src="/image/logo.png"></a>
 		</div>
 
 		<ul id="menu--container">

@@ -39,7 +39,7 @@
         <a href="/user/selectSignUp" class="find-info">가입하기</a>
         <!-- <a href="/qr/login">QR로그인</a> -->
     </div>
-    <p style="color:grey">----------소셜 로그인 시작</P>
+    <p style="color:grey">----------소셜 로그인 시작----------</P>
 
     <div class="social">
 

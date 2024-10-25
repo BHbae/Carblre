@@ -29,12 +29,25 @@
         flex-direction: column;
         background-color: #ffffff;
     }
-
     .chat-box {
         flex-grow: 1;
         padding: 20px;
-        overflow-y: auto;
+        overflow: auto;
         border-bottom: 1px solid #ddd;
+    }
+
+    .chat-box::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
+
+    .chat-box::-webkit-scrollbar-thumb {
+        background: #666;
+        border-radius: 10px;
+    }
+
+    .chat-box::-webkit-scrollbar-track {
+        background: rgba(27, 27, 27, 0.1);
     }
 
     .chat-box .message {
@@ -46,10 +59,10 @@
     }
 
     .chat-box .message.user span {
-        background-color: #0084ff;
+        background-color: #b19837;
         color: white;
         padding: 8px 12px;
-        border-radius: 15px;
+        border-radius: 5px;
         display: inline-block;
         max-width: 70%;
     }
@@ -71,7 +84,7 @@
 
     #chat-input {
         flex: 1;
-        padding: 10px;
+        padding: 18px 5px;
         border: 1px solid #ddd;
         border-radius: 5px;
         font-size: 14px;
@@ -80,16 +93,13 @@
     #send-button {
         padding: 10px 15px;
         margin-left: 10px;
-        background-color: #0084ff;
+        background-color: #b19837;
         color: white;
         border: none;
         border-radius: 5px;
         cursor: pointer;
     }
 
-    #send-button:hover {
-        background-color: #006bbd;
-    }
 </style>
 <body>
 <div class="wrap">
@@ -123,8 +133,8 @@
                     <!-- 채팅 메시지가 여기에 추가됩니다 -->
                 </div>
                 <div class="chat-input-area">
-                    <input type="text" id="chat-input" placeholder="Type a message...">
-                    <button id="send-button">Send</button>
+                    <input type="text" id="chat-input" placeholder="메세지를 입력해주세요.">
+                    <button id="send-button">보내기</button>
                 </div>
             </div>
 
