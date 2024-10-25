@@ -87,6 +87,8 @@
             });
     }
 
+    ㄴㅇㄴ
+
     // '중복 확인' 버튼을 클릭하면 실행됩니다.
     function checkDuplicate() {
         const userId = document.getElementById('nickName').value;

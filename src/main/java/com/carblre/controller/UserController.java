@@ -9,12 +9,9 @@ import com.carblre.config.MyWebSocketHandler;
 import com.carblre.dto.MyCounselDTO;
 import com.carblre.dto.SignUpDTO;
 import com.carblre.dto.userdto.*;
-import com.carblre.handler.GlobalControllerAdvice;
 import com.carblre.handler.exception.UnAuthorizedException;
 import com.carblre.service.CounselService;
-import org.apache.coyote.Response;
 import org.apache.ibatis.javassist.NotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.carblre.dto.userdto.KakaoOAuthToken;
 import com.carblre.dto.userdto.SignDTO;
 import com.carblre.dto.userdto.UserDTO;
@@ -27,7 +24,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
-import org.springframework.http.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,15 +33,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import com.carblre.service.UserService;
-
-import jakarta.servlet.http.HttpSession;
-import lombok.RequiredArgsConstructor;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 @Slf4j
 @Controller
@@ -149,7 +136,7 @@ public class UserController {
     @GetMapping("/signUp")
     public String signupPage() {
         System.out.println("Here in signUpPage(UserController)");
-        return "user/signUp";
+        return "user/signup";
     }
 
     /**
@@ -615,7 +602,6 @@ public class UserController {
 
         UserDTO originUser = userService.findById((userDTO.getId()));
 
-
         model.addAttribute("originUser", originUser);
         return "user/infoUpdate";
     }
@@ -629,8 +615,8 @@ public class UserController {
     @PostMapping("/infoUpdate")
     public String infoUpdateProc(UserDTO updateDto) {
 
-        userService.updateInfo(updateDto.getEmail(), updateDto.getId());
 
+        userService.updateInfo(updateDto.getEmail(),(updateDto.getId()));
 
         return "redirect:/user/index";
     }
@@ -657,9 +643,7 @@ public class UserController {
     @PostMapping("/checkOriginPass")
     public ResponseEntity<Map<String, Object>> checkOriginPassProc(@RequestBody Map<String, String> reqData) {
         UserDTO userDTO = (UserDTO) session.getAttribute("principal");
-
-        String dbCheckPass = userService.findById(userDTO.getId()).getPassword();
-
+        String dbCheckPass = userService.findById((userDTO.getId())).getPassword();
         System.out.println("db비번" + dbCheckPass);
 
         String originpass = reqData.get("originPass");

@@ -2,6 +2,7 @@
 .table {
     width: 100%;
     border-collapse: collapse;
+    color: #333;
 }
 
 .table thead th, .table thead td {
@@ -36,7 +37,10 @@ input{
     padding: 10px;
     box-sizing: border-box;
 }
-#write--button, #delete--button, #enter--button, #list--button {
+button{
+    font-size: 16px;
+}
+#write--button, #delete--button, #enter--button, #list--button, #edit--button {
     width: 75px;
     height: 35px;
     background-color: #b19837;
@@ -45,7 +49,17 @@ input{
     color: #fff;
     border-radius: 5px;
 }
-#write--button a, #delete--button a, #enter--button a, #list--button a {
+#mypage--edit, #mypage--password{
+    width: 100px;
+    height: 35px;
+    background-color: #b19837;
+    text-align: center;
+    line-height: 35px;
+    color: #fff;
+    border-radius: 5px;
+    margin-top: 50px;
+}
+#write--button a, #delete--button a, #enter--button a, #list--button a, #edit--button a {
     display: block;
 }
 textarea{
@@ -75,4 +89,40 @@ textarea{
 }
 .page--button li.page--active{
     background-color: #b19837;
+}
+.page--button li a{
+    display: block;
+}
+#enter--button button{
+    border: 0;
+    background-color: inherit;
+    color: #fff;
+}
+#edit--button button{
+    border: 0;
+    background-color: inherit;
+    color: #fff;
+}
+.board--info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid #bababa;
+    padding: 0 10px 10px 10px;
+}
+.board--title{
+    font-size: 24px;
+}
+.board--detail{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #333;
+}
+.board--content{
+    width: 100%;
+    height: 300px;
+    margin-bottom: 50px;
+    padding: 50px 10px;
+    line-height: 1.5;
 }

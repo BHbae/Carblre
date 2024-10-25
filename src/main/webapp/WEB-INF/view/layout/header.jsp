@@ -15,6 +15,7 @@
 	<link href="/css/common.css" rel="stylesheet">
 	<link href="/css/notice.css" rel="stylesheet">
 	<link href="/css/privacy.css" rel="stylesheet">
+	<link href="/css/mypage.css" rel="stylesheet">
 	<link href="/css/font.css" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
