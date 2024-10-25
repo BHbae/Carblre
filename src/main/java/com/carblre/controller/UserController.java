@@ -451,7 +451,7 @@ public class UserController {
 	}
 
 	/**
-	 * signUp.jsp checkDuplicate Method(In JavaScript)
+	 * signup.jsp checkDuplicate Method(In JavaScript)
 	 * @param userId = 유저가 입력한 값 (아이디)
 	 * @return ResponseEntity(OK or Error)
 	 */
