@@ -10,13 +10,16 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+
+
 public class DetailDTO {
+    private String uploardFileName;
     private int id;
-    private int userId;
+    private int nickName;
     private int status; //  1. 가해자 , 2.피해자
     private String title;
     private String content;
     private String comment;
     private String userName;
-    private Timestamp createdAt;
+    private String createdAt;
 }

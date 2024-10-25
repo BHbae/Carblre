@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="../layout/header.jsp"%>
 
-    <h1> 로그인 <h1>
 
-<%@ include file="../layout/footer.jsp"%>
+
+<script>
+
+</script>
+
+<%@ include file="../layout/footer.jsp" %>
