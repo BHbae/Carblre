@@ -8,7 +8,7 @@
 
     <div class="container">
 
-
+<img src="/image/lawyer/6086c936-77ed-4909-82ee-964077625b73_btnW_아이콘사각.png" alt="아이콘">
     <!-- 유저와 변호사 선택 버튼 -->
     <button onclick="showUserLogin()">유저 로그인</button>
     <button onclick="showLawyerLogin()">변호사 로그인</button>
