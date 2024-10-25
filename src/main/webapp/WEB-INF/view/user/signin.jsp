@@ -8,7 +8,6 @@
 
     <div class="container">
 
-
     <!-- 유저와 변호사 선택 버튼 -->
     <button onclick="showUserLogin()">유저 로그인</button>
     <button onclick="showLawyerLogin()">변호사 로그인</button>

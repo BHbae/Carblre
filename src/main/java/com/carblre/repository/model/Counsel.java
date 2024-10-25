@@ -15,11 +15,13 @@ import java.time.format.DateTimeFormatter;
 @AllArgsConstructor
 @Builder
 public class Counsel {
+    private int id;
     private int userId;
     private Timestamp reservationTime;
     private String content;
     private int lawyerId;
     private int status;
+    private int userStatus;
 
     public MyCounselDTO toMycounselDTO(){
         // Timestamp를 분까지 String타입으로 변환
@@ -30,8 +32,10 @@ public class Counsel {
         String formattedDate = localDateTime.format(formatter);
 
         return  MyCounselDTO.builder()
+                .id(id)
                 .userId(userId).reservationTime(formattedDate).content(content)
-                .lawyerId(lawyerId).status(status)
+                .lawyerId(lawyerId).status(status).userStatus(userStatus)
                 .build();
     }
+
 }
