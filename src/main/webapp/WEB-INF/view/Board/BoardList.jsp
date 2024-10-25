@@ -15,7 +15,7 @@
 			<tr>
 				<td>${boards.id}</td>
 				<td>
-    				<a href="<c:url value='/detail/${boards.id}' />">${boards.title}</a>
+    				<a href="<c:url value='/board/detail/${boards.id}' />">${boards.title}</a>
 				</td>
 				<td>${boards.createdAt}</td>
 			</tr>

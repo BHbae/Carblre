@@ -5,42 +5,66 @@
 
     <select id="selectCommentsByCriteria" resultType="com.carblre.dto.CommentDTO">
         SELECT
-        p.title,
-        p.content,
+        c.id AS comment_id,
+        p.id AS post_id,
         u.user_name,
         u.nick_name,
         u.role,
-        p.create_at,
+        u.id AS user_id,
+        p.created_at,
         c.comment,
-        c.create_at
+        c.created_at
         FROM
-        post_tb AS p
-        LEFT JOIN comment_tb AS c
-        ON p.id = c.post_id
+        comment_tb AS c
+        LEFT JOIN post_tb AS p
+        ON c.post_id = p.id
         LEFT JOIN user_tb AS u
-        ON p.user_id = u.id
-        WHERE p.id = #{id}
+        ON c.user_id = u.id
+        WHERE p.id = ${id}
         <choose>
             <when test="sortBy == 'newest'">
-                ORDER BY c.create_at DESC  <!-- 최신순 -->
+                ORDER BY c.created_at DESC  <!-- 최신순 -->
             </when>
             <when test="sortBy == 'oldest'">
-                ORDER BY c.create_at ASC   <!-- 오래된 순 -->
+                ORDER BY c.created_at ASC   <!-- 오래된 순 -->
             </when>
             <otherwise>
-                ORDER BY c.create_at DESC  <!-- 기본값: 최신순 -->
+                ORDER BY c.created_at DESC  <!-- 기본값: 최신순 -->
             </otherwise>
         </choose>
     </select>
 
     <insert id="insertComment" parameterType="com.carblre.dto.CommentDTO">
-        INSERT INTO comment_tb (post_id, user_id, comment, create_at)
+        INSERT INTO comment_tb (post_id, user_id, comment, created_at)
         VALUES (#{postId}, #{userId}, #{comment}, NOW())
     </insert>
 
+    <insert id="insertReplyComment" parameterType="com.carblre.dto.ReplyCommentDTO">
+        INSERT INTO reply_comment_tb (comment_id, post_id, user_id, comment, created_at)
+        VALUES (#{commentId}, #{postId}, #{userId}, #{comment}, NOW())
+    </insert>
 
+    <select id="selectReplyComments" parameterType="com.carblre.dto.ReplyCommentDTO">
+        SELECT
+            r.id AS reply_id,
+            r.comment_id,
+            r.post_id,
+            u.id AS user_id,
+            u.user_name,
+            r.comment,
+            r.created_at
+        FROM reply_comment_tb AS r
+        LEFT JOIN user_tb AS u
+        ON r.user_id = u.id
+        WHERE r.post_id = #{id}
+    </select>
 
+    <delete id="deleteComment">
+        DELETE FROM comment_tb WHERE id = #{commentId};
+    </delete>
 
-
+    <delete id="deleteReply">
+        DELETE FROM reply_comment_tb WHERE id = #{replyId};
+    </delete>
 
 </mapper>
