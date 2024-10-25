@@ -2,12 +2,10 @@ package com.carblre.repository.interfaces;
 
 import java.util.List;
 
-import com.carblre.dto.SignUpDTO;
 import com.carblre.repository.model.LawyerDetail;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.carblre.dto.userdto.SignDTO;
 import com.carblre.dto.userdto.UserDTO;
 import com.carblre.repository.model.User;
 import org.apache.ibatis.annotations.Select;

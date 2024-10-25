@@ -9,14 +9,11 @@ import com.carblre.config.MyWebSocketHandler;
 import com.carblre.dto.MyCounselDTO;
 import com.carblre.dto.SignUpDTO;
 import com.carblre.dto.userdto.*;
-import com.carblre.handler.GlobalControllerAdvice;
 import com.carblre.handler.exception.UnAuthorizedException;
 import com.carblre.service.CounselService;
-import org.apache.coyote.Response;
 import org.apache.ibatis.javassist.NotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.carblre.dto.userdto.KakaoOAuthToken;
-import com.carblre.dto.userdto.SignDTO;
+import com.carblre.dto.userdto.SocialSignUpDTO;
 import com.carblre.dto.userdto.UserDTO;
 import com.carblre.handler.exception.DataDeliveryException;
 import com.carblre.service.QrcodeService;
@@ -27,7 +24,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
-import org.springframework.http.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,16 +32,6 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
-
-import com.carblre.service.UserService;
-
-import jakarta.servlet.http.HttpSession;
-import lombok.RequiredArgsConstructor;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 @Slf4j
 @Controller
@@ -284,9 +270,10 @@ public class UserController {
         // 최초 시도
         if (principial == null) {
 
-            SignDTO signDTO = SignDTO.builder().email(email).nickName(kakaoIdStr).userName(nickname).build();
-
-            userService.saveUser(signDTO); // MyBatis Mapper를 사용하여 DB에 저장
+            SocialSignUpDTO socialSignUpDTO = SocialSignUpDTO.builder().email(email).nickName(kakaoIdStr).userName(nickname)
+                    .site("카카오").role("user").status(1)
+                    .build();
+            userService.saveUser(socialSignUpDTO); // MyBatis Mapper를 사용하여 DB에 저장
 
         }
 
@@ -383,9 +370,11 @@ public class UserController {
         UserDTO principial = userService.findByNickId(naverId);
 
         if (principial == null) {
-            SignDTO signDTO = SignDTO.builder().email(email).nickName(naverId).userName(name).build();
+            SocialSignUpDTO socialSignUpDTO = SocialSignUpDTO.builder().email(email).nickName(naverId).userName(name)
+                    .site("네이버").role("user").status(1)
+                    .build();
 
-            userService.saveUser(signDTO);
+            userService.saveUser(socialSignUpDTO);
             principial = userService.findByNickId(naverId);
         }
         System.out.println("프린시펄" + principial);
@@ -458,9 +447,11 @@ public class UserController {
             UserDTO principial = userService.findByNickId(googleId);
 
             if (principial == null) {
-                SignDTO signDTO = SignDTO.builder().email(email).nickName(googleId).userName(name).build();
-
-                userService.saveApiUser(signDTO); // 사용자 정보 저장
+                SocialSignUpDTO socialSignUpDTO = SocialSignUpDTO.builder().email(email).nickName(googleId).userName(name)
+                        .site("구글").role("user").status(1)
+                        .build();
+                System.out.println(socialSignUpDTO);
+                userService.saveApiUser(socialSignUpDTO); // 사용자 정보 저장
                 principial = userService.findByNickId(googleId); // 다시 조회하여 세션에 저장
             }
 

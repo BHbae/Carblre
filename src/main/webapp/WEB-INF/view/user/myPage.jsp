@@ -22,16 +22,17 @@
 
 </style>
 <h2> 유저 정보</h2>
+<div class="info">
 <c:if test="${principal.site != '서버'}">
 <p>  이름: ${principal.userName}</p>
 <p>  아이디: ${principal.site}</p>
 <p>  이메일: ${principal.email}</p>
 </c:if>
-<div class="info">
+<c:if test="${principal.site == '서버'}">
 <p>  이름: ${principal.userName}</p>
 <p>  아이디: ${principal.nickName}</p>
 <p>  이메일: ${principal.email}</p>
-
+</c:if>
 </div>
 
 <c:choose>
