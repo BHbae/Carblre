@@ -106,7 +106,7 @@ public class UserController {
 		}
 
 		// 위의 검사를 모두 통과했다면 'principal' Session 부여합니다.
-		session.setAttribute("principal", userDTO);
+		session.setAttribute(Define.PRINCIPAL, userDTO);
 
 		// 마지막으로 페이지 이동 처리를 진행합니다.
 		return "redirect:/user/tempindex";// TODO 임시 인덱스 장소로 이동함
