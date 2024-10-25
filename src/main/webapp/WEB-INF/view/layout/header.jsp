@@ -35,7 +35,7 @@
 
 		<ul id="menu--container">
 			<li>
-				<a href="/boardList">의뢰자</a>
+				<a href="/board/boardList">의뢰자</a>
 			</li>
 			<li>
 				<a href="/aiounseling">AI 간편상담</a>
