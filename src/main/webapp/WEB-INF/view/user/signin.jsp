@@ -12,11 +12,11 @@
     <!-- 일반 로그인 폼 -->
     <div class="login">
 	    <form action="/user/signIn" method="POST">
-	        <label for="nickName">닉네임:</label>
-	        <input type="text" id="nickName" name="nickName" required>
+	        <label for="nickName" >닉네임:</label>
+	        <input type="text" id="nickName" name="nickName" required value="test1">
 	        <br>
 	        <label for="password">비밀번호:</label>
-	        <input type="password" id="password" name="password" required>
+	        <input type="password" id="password" name="password" required value="asd123!!">
 	        <br>
 	        <button type="submit">로그인</button>
 	    </form>

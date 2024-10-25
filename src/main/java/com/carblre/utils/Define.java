@@ -15,15 +15,7 @@ public class Define {
 	public static final String UPLOAD_FILE_DERECTORY = "C:\\work_spring\\upload/";
 	public static final int MAX_FILE_SIZE = 1024 * 1024 * 20; // 20MB
 
-	// Movie
-	public static final String ERROR_INVALID_SHOWTIME = "선택하신 상영 시간은 유효하지 않습니다";
-	public static final String ERROR_SEAT_NOT_AVAILABLE = "좌석을 선택하여 주십시오.";
-	public static final String ERROR_INCORRECT_NUMBER_OF_PEOPLE = "인원수가 맞지 않습니다";
-	public static final String ERROR_CHECK_VIEWING_RATING = "관람등급을 확인해주세요";
-	public static final String ERROR_AGE_RESTRICTION = "관람 연령 제한에 따라 이 영화를 관람할 수 없습니다";
-	public static final String ERROR_MOVIE_SOLD_OUT = "이미 매진된 영화입니다";
-	public static final String ERROR_INVALID_SCREEN = "선택하신 상영관은 존재하지 않습니다";
-	public static final String ERROR_INVALID_MOVIE = "선택하신 영화는 더 이상 존재하지 않습니다";
+	
 
 	// pay
 	public static final String ERROR_PAYMENT_FAILED = "결제에 실패하였습니다. 다시 시도해 주세요";
@@ -64,11 +56,6 @@ public class Define {
 	public static final String FAILED_PROCESSING = "정상 처리 되지 않았습니다.";
 	public static final String ERROR_SIGNUP_REQUIRED = "회원 가입 후 이용 가능합니다";
 
-	// review
-	public static final String DUPLICATION_REVIEW = "이미 리뷰를 작성한 영화입니다.";
-	public static final String NOT_FOUND_REVIEW = "수정할 리뷰가 존재하지 않습니다.";
-	public static final String INPUT_STAR_RATING = "평점을 입력하세요.";
-	public static final String NO_RESERVATION = "실관람객에 한하여 관람평 작성이 가능합니다.";
 
 	// paging
 	public static final String NOT_FOUND_PREVIOUS = "첫 번째 페이지 입니다.";
@@ -80,7 +67,11 @@ public class Define {
 	public static final String MISSING_REQUIRED_FILES = "첫 번째와 두 번째 사진은 반드시 등록하셔야 합니다.";
 	
 	
-	// DateSignIn 
+	// cd
+	public static final String CREATED_CS_ERROR = "게시물 업로드중 오류발생";
+	
+	
+	// SignIn 
 	public static final String PROFILE_SUSPENDING = "현재 이계정은 정지 상태입니다.";
 	
 }
