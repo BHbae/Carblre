@@ -26,7 +26,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
-import org.springframework.http.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,12 +35,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import com.carblre.service.UserService;
 
-import jakarta.servlet.http.HttpSession;
-import lombok.RequiredArgsConstructor;
-
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -656,14 +650,6 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
-
-
-	@GetMapping("/lawyers")
-	public String getAllLawyers(Model model) {
-		List<LawyerDetail> lawyers = userService.LawyerList();
-		model.addAttribute("lawyers", lawyers);
-		return "lawyerList";
-	}
 
 
 

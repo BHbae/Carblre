@@ -190,15 +190,7 @@ public class UserService {
 //	}
 
 
-	public List<LawyerDetail> LawyerList(){
-		List<LawyerDetail> lawyers = new ArrayList<LawyerDetail>();
-		try {
-			lawyers = userRepository.getAllLawyers();
-		}catch (Exception e){
 
-		}
-		return lawyers;
-	}
 }
 
 

@@ -64,5 +64,5 @@ public interface UserRepository {
 	// 변호사 디테일
 	int insertLawyerDetail(LawyerDetail lawyerDetail);
 
-	public List<LawyerDetail> getAllLawyers();
+
 }
