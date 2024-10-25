@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.carblre.dto.CsAllDTO;
+import com.carblre.dto.CsFindByIdDTO;
 import com.carblre.dto.userdto.UserDTO;
+import com.carblre.handler.exception.DataDeliveryException;
 import com.carblre.handler.exception.UnAuthorizedException;
 import com.carblre.service.CsService;
 import com.carblre.utils.Define;
@@ -81,5 +83,27 @@ public class CsController {
 
 		return "redirect:/cs/cs";
 	}
-
+	
+	/**
+	 * 상세보기
+	 */
+	@GetMapping("/detail/{id}")
+    public String csListPage(@PathVariable(name="id")int id,Model model
+    						,@SessionAttribute(name = Define.PRINCIPAL, required = false)UserDTO userDTO){
+		if (userDTO == null) {
+			throw new UnAuthorizedException(Define.ENTER_YOUR_LOGIN, HttpStatus.UNAUTHORIZED);
+		}
+		
+		CsFindByIdDTO dto = csService.findById(id);
+		if(userDTO.getId() != dto.getUserId()) {
+			throw new DataDeliveryException(Define.NOT_CS_AN_USER, HttpStatus.BAD_REQUEST);
+		}
+		
+		model.addAttribute("dto", dto);
+		
+        return "cs/detail";
+    } 
+	
+	
+	
 }

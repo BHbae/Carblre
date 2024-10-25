@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.carblre.dto.CsAllDTO;
+import com.carblre.dto.CsFindByIdDTO;
 
 @Mapper
 public interface CsRepository {
@@ -15,5 +16,7 @@ public interface CsRepository {
 	List<CsAllDTO> findAllCs(@Param("limit")int limit,@Param("offset")int offset);
 	
 	int countAllCs();
+
+	CsFindByIdDTO findById(int id);
 
 }
