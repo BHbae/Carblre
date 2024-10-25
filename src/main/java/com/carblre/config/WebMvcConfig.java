@@ -17,8 +17,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	// 프로젝트 상에서(클라이언트가 HTML 소스로 보이는 경로는) /images/uploads/**
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/vidio/**").addResourceLocations(
-                "file:\\C:\\Users\\KDP\\git\\Carblre\\src\\main\\resources\\static\\uploardVidio/");
+        registry.addResourceHandler("/video/**").addResourceLocations(
+                "file:\\C:\\spring_jpa_work_class\\Carblre\\src\\main\\resources\\static\\uploardVidio/");
 
     }
 

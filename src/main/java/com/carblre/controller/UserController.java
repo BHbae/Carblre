@@ -142,8 +142,12 @@ public class UserController {
 	public String signUpProc(SignUpDTO signUpDTO)
 	{
 		// HTML required 속성으로 null 체크 X
+		if(signUpDTO.getNickName() == null)
+		{
+			System.out.println("HBERERRERE");
+		}
 		userService.createUser(signUpDTO);
-
+		System.out.println(signUpDTO);
 		// signIn (Login Page) 이동 처리
 		return "redirect:/user/signIn";
 	}
