@@ -34,7 +34,17 @@
 
 </div>
 
+<c:choose>
+    <%-- principal.role이 'user'일 경우 --%>
+    <c:when test="${principal.role == 'user'}">
+<p class="update-info"  onclick="checkUserCounsel()"> 예약 현황 </p>
+    </c:when>
 
+    <%-- principal.role이 'lawyer'일 경우 --%>
+    <c:when test="${principal.role == 'lawyer'}">
+<p class="update-info"  onclick="checkLawyerCounsel()"> 변호 예약 현황 </p>
+    </c:when>
+</c:choose>
 <p class="update-info"  onclick="infoUpdate()"> 개인정보 수정 </p>
 <p class="update-info"onclick="infoUpdatePass()" > 비밀번호 변경 </p>
 
@@ -42,6 +52,15 @@
 
 
 <script>
+
+function checkUserCounsel(){
+    window.location.href = "/user/checkUserCounsel";
+}
+function checkLawyerCounsel(){
+    window.location.href = "/user/checkLawyerCounsel";
+}
+
+
 function infoUpdate()
 {
     window.location.href = "/user/infoUpdate";
