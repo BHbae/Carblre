@@ -9,10 +9,14 @@
     <div class="lawyer-list">
         <c:forEach items="${lawyers}" var="lawyer">
             <div class="lawyer-card">
-                <img src="${lawyer.uploadProfileName}" alt="Profile Image" />
+                <img src="/image/lawyer/${lawyer.uploadProfileName}" alt="Profile Image"
+                style = "width : 20%; height :auto;"/>
                 <p>${lawyer.introduction}</p>
+                <p> ${lawyer.userName}<strong> 변호사</strong></p>
                 <p><strong>법무법인:</strong> ${lawyer.lawFirm}</p>
-                <p><strong>사무실 전화:</strong> ${lawyer.officeNum}</p>
+
+                 <button onclick="location.href='/lawyer/lawyerInfo/${lawyer.userId}'">상세보기</button>
+
             </div>
         </c:forEach>
     </div>

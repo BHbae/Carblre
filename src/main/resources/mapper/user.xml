@@ -91,8 +91,8 @@
 		uploard_profile_name, law_firm,
 		office_num)
 		VALUES (
-		#{UserId}, #{introduction},
-		#{uploardProfileName}, #{lawFirm},
+		#{userId}, #{introduction},
+		#{uploadProfileName}, #{lawFirm},
 		#{officeNum})
 	</insert>
 
