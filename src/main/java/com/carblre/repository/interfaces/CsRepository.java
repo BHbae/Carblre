@@ -19,4 +19,6 @@ public interface CsRepository {
 
 	CsFindByIdDTO findById(int id);
 
+	int updateByIdAndUserId(@Param("id")int id,@Param("title")String title, @Param("content")String content);
+
 }

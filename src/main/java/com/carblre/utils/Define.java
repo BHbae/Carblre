@@ -70,6 +70,7 @@ public class Define {
 	// cs
 	public static final String CREATED_CS_ERROR = "게시물 업로드중 오류발생";
 	public static final String NOT_CS_AN_USER = "게시물 열람 권한이 없습니다.";
+	public static final String NOT_CS_UPDATE = "이미 댓글이 달려 수정할수없습니다.";
 	
 	
 	// SignIn 

@@ -43,6 +43,11 @@ public class CsService {
 	public CsFindByIdDTO findById(int id) {
 		 return csRepository.findById(id);
 	}
+
+
+	public int updateByIdAndUserId(int id, String title, String content) {
+		return csRepository.updateByIdAndUserId(id,title,content);
+	}
 	
 	
 }

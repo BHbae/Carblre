@@ -31,10 +31,19 @@
 		,cs.title,u.user_name,cs.request,cs.request_time
 		,cs.response,cs.response_time
 		FROM customer_service_tb cs
-		JOIN user_tb u ON cs.user_id = u.id
+		JOIN user_tb u
+		ON cs.user_id = u.id
 		WHERE cs.id = #{id}
-		ORDER BY cs.id DESC;
+		ORDER BY cs.id DESC
 	</select>
+
+	<update id="updateByIdAndUserId">
+		UPDATE customer_service_tb
+		SET
+		title = #{title},
+		request = #{content}
+		WHERE id = #{id}
+	</update>
 
 
 </mapper>

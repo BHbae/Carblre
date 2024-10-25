@@ -79,31 +79,61 @@ public class CsController {
 	@PostMapping("/created")
 	public String postMethodName(@RequestParam(name = "title") String tilte,
 			@RequestParam(name = "content") String content, @SessionAttribute(name = Define.PRINCIPAL) UserDTO user) {
+		if (user == null) {
+			throw new UnAuthorizedException(Define.ENTER_YOUR_LOGIN, HttpStatus.UNAUTHORIZED);
+		}
 		csService.saveCs(user.getId(), tilte, content);
 
 		return "redirect:/cs/cs";
 	}
-	
+
 	/**
 	 * 상세보기
 	 */
 	@GetMapping("/detail/{id}")
-    public String csListPage(@PathVariable(name="id")int id,Model model
-    						,@SessionAttribute(name = Define.PRINCIPAL, required = false)UserDTO userDTO){
+	public String csListPage(@PathVariable(name = "id") int id, Model model,
+			@SessionAttribute(name = Define.PRINCIPAL, required = false) UserDTO userDTO) {
 		if (userDTO == null) {
 			throw new UnAuthorizedException(Define.ENTER_YOUR_LOGIN, HttpStatus.UNAUTHORIZED);
 		}
-		
+
 		CsFindByIdDTO dto = csService.findById(id);
-		if(userDTO.getId() != dto.getUserId()) {
+		if (userDTO.getId() != dto.getUserId()) {
 			throw new DataDeliveryException(Define.NOT_CS_AN_USER, HttpStatus.BAD_REQUEST);
 		}
-		
+
 		model.addAttribute("dto", dto);
-		
-        return "cs/detail";
-    } 
-	
-	
-	
+
+		return "cs/detail";
+	}
+
+	/**
+	 * 수정하기 폼
+	 */
+	@GetMapping("/edit/{id}")
+	public String getMethodName(@PathVariable(name = "id") int id, Model model) {
+		CsFindByIdDTO dto = csService.findById(id);
+		if (dto.getResponse() != null) {
+			throw new DataDeliveryException(Define.NOT_CS_UPDATE, HttpStatus.BAD_REQUEST);
+		}
+		model.addAttribute("dto", dto);
+		return "cs/edit";
+	}
+
+	/**
+	 * 수정하는 메서드
+	 */
+	@PostMapping("/edit/{id}")
+	public String edit(@PathVariable(name = "id") int id, @RequestParam(name = "title") String title,
+			@RequestParam(name = "content") String content, @SessionAttribute(name = Define.PRINCIPAL) UserDTO user) {
+		CsFindByIdDTO dto = csService.findById(id);
+		if (user.getId() != dto.getUserId()) {
+			throw new DataDeliveryException(Define.NOT_CS_AN_USER, HttpStatus.BAD_REQUEST);
+		}
+
+		csService.updateByIdAndUserId(id, title, content);
+
+		return "redirect:/cs/cs";
+	}
+
 }
