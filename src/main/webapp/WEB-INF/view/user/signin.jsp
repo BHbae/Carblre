@@ -10,7 +10,6 @@
 
     <div class="container">
 
-<img src="/image/lawyer/6086c936-77ed-4909-82ee-964077625b73_btnW_아이콘사각.png" alt="아이콘">
     <!-- 유저와 변호사 선택 버튼 -->
     <button onclick="showUserLogin()">유저 로그인</button>
     <button onclick="showLawyerLogin()">변호사 로그인</button>
@@ -29,7 +28,7 @@
     <!-- 변호사 로그인 폼 -->
     <div id="lawyer-login-form" class="login-form">
         <h2>변호사 로그인</h2>
-        <form action="/lawyer/signIn" method="POST">
+        <form action="/user/signIn" method="POST">
             <input type="text" name="nickName" placeholder="ID" required><br>
             <input type="password" name="password" placeholder="비밀번호" required><br>
             <button type="submit">로그인</button>

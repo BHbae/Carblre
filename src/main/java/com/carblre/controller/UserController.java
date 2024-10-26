@@ -694,14 +694,16 @@ public class UserController {
      */
     @GetMapping("checkLawyerCounsel")
     public String checkLawyerCounselPage(Model model){
-        UserDTO userDTO = (UserDTO) session.getAttribute("principal");
+        UserDTO userDTO = (UserDTO) session.getAttribute("principal"); //dto변경해야함
+        System.out.println("userDTO"+userDTO);
         if (userDTO == null) {
             // 엔티티가 존재하지 않을 때 NotFoundException 던짐
             throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
         }
         // 유저 인포 해야됨
         MyCounselDTO counsel= counselService.findMyCounselByLawyerId(userDTO.getId());
-        UserDTO user=userService.findById(counsel.getLawyerId());
+        UserDTO user=userService.findById(userDTO.getId());
+
         model.addAttribute("counsel",counsel);
         model.addAttribute("user",user);
 
