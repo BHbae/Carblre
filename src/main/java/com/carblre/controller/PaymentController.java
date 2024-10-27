@@ -1,26 +1,31 @@
 package com.carblre.controller;
 
 
+import com.carblre.dto.PrincipalDTO;
 import com.carblre.dto.TossResponseDTO;
+import com.carblre.dto.userdto.UserDTO;
 import com.carblre.repository.model.User;
 import com.carblre.service.PaymentService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.http.HttpHeaders;
 
@@ -42,8 +47,12 @@ public class PaymentController {
     @GetMapping("/payment")
     public String tosspay(Model model) {
     // 테스트용 임시값 ( @RequestParam 이용시 , 임시값 지워도됨 )
+
+    User principal = (User) session.getAttribute("principal"); // 유저 세션 가져옴
+
     int amount = 10000;
-    String orderId = "order_12345";
+    String orderId = "order_12345"; // TODO! 서비스에  getOrderId() 메서드 삭제하고 아래 코드 사용해도되는지 테스트 해보기
+    //String orderId = UUID.randomUUID().toString();
     String orderName = "상품";
     String customerName = "피해자";
     model.addAttribute("amount",amount);
@@ -51,7 +60,7 @@ public class PaymentController {
     model.addAttribute("orderName",orderName);
     model.addAttribute("customerName",customerName);
 
-        User principal = (User) session.getAttribute("principal"); // 유저 세션 가져옴
+
         System.out.println("payController /toss : " + principal);
 
         session.setAttribute(PRINCIPAL, principal);
@@ -120,7 +129,7 @@ public class PaymentController {
             System.err.println("Error response body: " + e.getResponseBodyAsString());
         }
 
-
+        //TODO! 성공 페이지 만들필요없이 , 바로 결제 내역 페이지로 이동
         return "success";
 
     }
@@ -132,7 +141,9 @@ public class PaymentController {
     @GetMapping("/fail")
     public String fail() {
         return "redirect:/";
+
     }
+
 
 }
 
