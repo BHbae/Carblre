@@ -11,6 +11,10 @@ import java.util.Map;
 
 import com.carblre.dto.CommentDTO;
 import com.carblre.dto.DetailDTO;
+import com.carblre.dto.ReplyCommentDTO;
+import com.carblre.dto.Response;
+import com.carblre.dto.userdto.UserDTO;
+import com.carblre.handler.exception.DataDeliveryException;
 import com.carblre.repository.model.Comment;
 import com.carblre.repository.model.User;
 import com.carblre.service.CommentService;
@@ -18,6 +22,7 @@ import com.carblre.utils.Define;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +41,7 @@ import com.carblre.service.TestBoardService;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/board")
 public class TestBoardController {
 	
 	@Autowired
@@ -50,17 +55,13 @@ public class TestBoardController {
 	
 	//-----게시글 상세보기
 	@GetMapping("/detail/{id}")
-	public String detailPage(@PathVariable(name = "id") int postId, Model model,
-							 @RequestParam(name = "sortBy", required = false, defaultValue = "newest") String sortBy) {
-		System.out.println("Post Id : " + postId);
-		System.out.println("Sort By : " + sortBy);
+	public String detailPage(@PathVariable(name ="id") int postId, Model model) {
+		System.out.println("HERE INT DETAIL PAGE");
+		System.out.println("ID : " + postId);
 		DetailDTO detailDTO = boardService.selectByPostId(postId);
-		List<CommentDTO> commentDTOs = commentService.getCommentsByCriteria(postId, sortBy);
+		model.addAttribute("post",detailDTO);
 
-		model.addAttribute("post", detailDTO);
-		model.addAttribute("comments", commentDTOs); // 댓글 목록 추가
-
-		return "Board/postDetail"; // 게시글 상세보기 뷰 리턴
+		return "Board/postDetail";
 	}
 
 	@GetMapping("/download")
@@ -128,62 +129,145 @@ public class TestBoardController {
 		
         return "redirect:/createBoard";
     }
-
 	// --- END 게시글 작성 로직
 
-	// 댓글
-
 	/**
-	 * 댓글 작성
-	 * @param commentDTO
-	 * @return
+	 * [GET] 댓글 목록 불러옵니다.
+	 * @param postId 글 고유 식별 아이디입니다.
+	 * @param sortBy 정렬 기준입니다.
+	 * @return commentList ToJSON 이라 생각하시면 됩니다.(ResponseBody)
 	 */
-	@PostMapping("/comment")
-	public ResponseEntity<Map<String, Object>> handleCommentInsert(@RequestBody CommentDTO commentDTO) {
-
-		System.out.println("HERERERE");
-		User principal = (User)session.getAttribute("principal");
-		System.out.println("Post ID : " + commentDTO.getPostId());
-		System.out.println("Comment : " + commentDTO.getComment());
-
-		commentDTO = CommentDTO.builder()
-				.postId(commentDTO.getPostId())
-				.userId(principal.getId())
-				.comment(commentDTO.getComment())
-				.createAt(commentDTO.getCreateAt())
-				.userName(principal.getUserName())
-				.build();
-
-		int result = commentService.writeComment(commentDTO);
-		System.out.println(commentDTO.toString());
-
-		// 1 = 글쓰기 성공 . 0 = 실패
-		Map<String, Object> response = new HashMap<>();
-		if(result == 1){
-			response.put("success", true); // 응답으로 성공 여부를 전송
-		}else if( result == 0){
-			response.put("fail" , false);
-		}
-
-		return ResponseEntity.ok(response);
+	@GetMapping("/comment")
+	@ResponseBody
+	public List<CommentDTO> getComment(@RequestParam(name="id") int postId, @RequestParam(name="sortBy") String sortBy) {
+        return commentService.getCommentsByCriteria(postId, sortBy); // List 반환
 	}
 
 	/**
-	 * 댓글 리스트
-	 * @param
-	 * @param sortBy
+	 * [POST] 댓글 작성 기능입니다.
+	 * @param commentDTO postDetail.jsp 를 통해서 받아온 값 (postId, userId, comment) 을 DTO/BUILDER 이용으로 작성
 	 * @return
 	 */
-	@GetMapping("/detail/comment")
-	public ResponseEntity<List<CommentDTO>> getComments(
-			@RequestParam("postId") String id,  // 수정된 부분
-			@RequestParam("sortBy") String sortBy) {
-		System.out.println("Post ID : " + id);
-		System.out.println("SortBy : " + sortBy);
-		int postId = Integer.parseInt(id);
-		List<CommentDTO> commentList = commentService.getCommentsByCriteria(postId, sortBy);
-		System.out.println("Comment List : " + commentList);
-		return ResponseEntity.ok(commentList);
+	@PostMapping("/comment")
+	public ResponseEntity<?> addComment(@RequestBody CommentDTO commentDTO) {
+
+		UserDTO principal = (UserDTO) session.getAttribute("principal");
+		CommentDTO commentBuilder = CommentDTO.builder()
+				.commentId(commentDTO.getCommentId())
+				.postId(commentDTO.getPostId())
+				.userId(principal.getId())
+				.comment(commentDTO.getComment())
+				.createdAt(commentDTO.getCreatedAt())
+				.userName(principal.getUserName())
+				.build();
+
+		commentService.writeComment(commentBuilder);
+
+		return ResponseEntity.ok(commentBuilder);
+	}
+
+	/**
+	 * [GET] 댓글 삭제 기능입니다.
+	 * @param commentId fetch 를 통해 commentId를 받고 WHERE 절에 넣어 쿼리를 진행합니다.
+	 * @return ResponseEntity
+	 */
+	@GetMapping("/deleteComment")
+	public ResponseEntity<String> deleteComment(@RequestParam(name="commentId") int commentId, @RequestParam(name="userId") int userId)
+	{
+		System.out.println("HELLO IT IS DELETE METHOD");
+		UserDTO principal = (UserDTO) session.getAttribute("principal");
+
+		if (principal == null)
+		{
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Define.ENTER_YOUR_LOGIN);
+		}
+
+		if (principal.getId() != userId)
+		{
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Define.NOT_AN_AUTHENTICATED_USER);
+		}
+
+		int result = commentService.deleteComment(commentId);
+
+		if(result != 1)
+		{
+			return ResponseEntity.status(500).build();
+		}
+
+		return ResponseEntity.ok("삭제하였습니다.");
+
+	}
+
+	/**
+	 * [GET] 대댓글을 불러오는 기능입니다.
+	 * @param postId = 게시글 아이디입니다.
+	 * @return
+	 */
+	@GetMapping("replyComment")
+	@ResponseBody
+	public List<ReplyCommentDTO> getReplyComment(@RequestParam(name="id") int postId)
+	{
+		System.out.println("POST ID : " + postId);
+		List<ReplyCommentDTO> replyCommentList = commentService.getReplyComments(postId);
+		System.out.println("Reply Comment List 입니다 : " + replyCommentList.toString());
+		return commentService.getReplyComments(postId);
+	}
+
+
+	/**
+	 * [POST] 대댓글을 작성하는 기능입니다.
+	 * @param replyCommentDTO commentId, userId, comment 를 받습니다.
+	 * @return
+	 */
+	@PostMapping("/replyComment")
+	public ResponseEntity<?> addReplyComment(@RequestBody ReplyCommentDTO replyCommentDTO)
+	{
+		UserDTO principal = (UserDTO) session.getAttribute("principal");
+		System.out.println("Reply Comment " + replyCommentDTO.getPostId());
+		System.out.println("Reply Comment " + replyCommentDTO.getCommentId());
+		System.out.println("Reply Comment " + principal.getId());
+		System.out.println("Reply Comment " + replyCommentDTO.getComment());
+		ReplyCommentDTO replyCommentBuilder = ReplyCommentDTO.builder()
+				.commentId(replyCommentDTO.getCommentId())
+				.postId(replyCommentDTO.getPostId())
+				.userId(principal.getId())
+				.userName(principal.getUserName())
+				.comment(replyCommentDTO.getComment())
+				.build();
+		commentService.writeReplyComment(replyCommentBuilder);
+
+		return ResponseEntity.ok(replyCommentBuilder);
+	}
+
+	/**
+	 * [GET] 대댓글 삭제 기능입니다.
+	 * @param replyId fetch 를 통해 replyId를 받고 WHERE 절에 넣어 쿼리를 진행합니다.
+	 * @return ResponseEntity
+	 */
+	@GetMapping("/deleteReply")
+	public ResponseEntity<String> deleteReply(@RequestParam(name="replyId") int replyId, @RequestParam(name="userId") int userId)
+	{
+		UserDTO principal = (UserDTO) session.getAttribute("principal");
+
+		if (principal == null)
+		{
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Define.ENTER_YOUR_LOGIN);
+		}
+
+		if (principal.getId() != userId)
+		{
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Define.NOT_AN_AUTHENTICATED_USER);
+		}
+
+		int result = commentService.deleteReply(replyId);
+
+		if(result != 1)
+		{
+			return ResponseEntity.status(500).build();
+		}
+
+		return ResponseEntity.ok("삭제하였습니다.");
+
 	}
 
 }

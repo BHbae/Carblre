@@ -1,7 +1,9 @@
 package com.carblre.service;
 
 import com.carblre.dto.SignUpDTO;
+import com.carblre.dto.userdto.LawyerDetailDTO;
 import com.carblre.dto.userdto.LawyerSignUpDTO;
+import com.carblre.repository.model.LawyerDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -200,6 +202,17 @@ public class UserService {
 		} catch (Exception e) {
 			System.out.println("Error in Create User : " + e.getMessage());
 		}
+	}
+
+	/**
+	 * 마이페이지 변호사 정보
+	 * @param id
+	 * @return
+	 */
+	public LawyerDetailDTO findLawyerInfoById(int id) {
+	LawyerDetail lawyerDetail=	userRepository.findLawyerInfoById(id);
+
+		return lawyerDetail.toLawyerDetailDTO();
 	}
 
 

@@ -1,5 +1,6 @@
 package com.carblre.repository.model;
 
+import com.carblre.dto.userdto.LawyerDetailDTO;
 import com.carblre.dto.userdto.LawyerSignUpDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,11 +27,20 @@ public class LawyerDetail {
     private int counselingAmount;
 
 
-    //깃푸쉬
-    public LawyerSignUpDTO toLawyerDetail() {
+    //    깃푸쉬
+    public LawyerSignUpDTO toLawyerSignUp() {
         return LawyerSignUpDTO.builder()
                 .userId(userId).introduction(introduction).uploadProfileName(uploadProfileName).getProfileName(getProfileName)
                 .lawFirm(lawFirm).officeNum(officeNum).uploadLicenseName(uploadLicenseName).getLicenseName(getLicenseName)
+                .counselingAmount(counselingAmount).build();
+    }
+    private final String URL_PROFILE_PREFIX = "/image/profile/";  // 웹에서 접근하는 경로
+    private final String URL_LAWYER_PREFIX = "/image/lawyer/";  // 웹에서 접근하는 경로
+
+    public LawyerDetailDTO toLawyerDetailDTO() {
+        return LawyerDetailDTO.builder()
+                .userId(userId).introduction(introduction).uploadProfileName("/image/profile/"+ uploadProfileName).getProfileName(getProfileName)
+                .lawFirm(lawFirm).officeNum(officeNum).uploadLicenseName("/image/lawyer/"+uploadLicenseName).getLicenseName(getLicenseName)
                 .counselingAmount(counselingAmount).build();
     }
 }

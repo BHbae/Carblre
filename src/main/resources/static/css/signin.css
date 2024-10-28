@@ -49,3 +49,7 @@ display:block;
 #lawyer-login-form {
     display: none;
 }
+.login-button{
+    width: 100%;
+    margin-top: 10px;
+}

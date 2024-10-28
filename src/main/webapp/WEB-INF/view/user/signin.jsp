@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+         pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="../layout/header.jsp"%>
-<style>
 
-</style>
 <link rel="stylesheet" href="/css/signin.css">
 
 
-    <div class="container">
+<div class="container">
 
     <!-- 유저와 변호사 선택 버튼 -->
     <button onclick="showUserLogin()">유저 로그인</button>
@@ -16,11 +14,11 @@
 
     <!-- 유저 로그인 폼 -->
     <div id="user-login-form" class="login-form">
-    <h1>로그인</h1>
+        <h1>로그인</h1>
         <form action="/user/signIn" method="POST">
             <input type="text" name="nickName" placeholder="ID" required><br>
             <input type="password" name="password" placeholder="비밀번호" required><br>
-            <button type="submit">로그인</button>
+            <button  class="login-button" type="submit">로그인</button>
         </form>
     </div>
 
@@ -31,7 +29,7 @@
         <form action="/user/signIn" method="POST">
             <input type="text" name="nickName" placeholder="ID" required><br>
             <input type="password" name="password" placeholder="비밀번호" required><br>
-            <button type="submit">로그인</button>
+            <button class="login-button" type="submit">로그인</button>
         </form>
     </div>
     <div class="login-side">
@@ -40,9 +38,9 @@
         <a href="/user/selectSignUp" class="find-info">가입하기</a>
         <!-- <a href="/qr/login">QR로그인</a> -->
     </div>
-    <p style="color:grey">----------소셜 로그인 시작</P>
+    <p style="color:grey">----------소셜 로그인 시작----------</P>
 
- <div class="social">
+    <div class="social">
 
     <!-- 카카오 로그인 버튼 -->
     <a c href="https://kauth.kakao.com/oauth/authorize?client_id=74ae415425bf1b53dc8f8dcf38efc2d4&redirect_uri=http://localhost:8080/user/kakao&response_type=code">
@@ -59,8 +57,8 @@
     </div>
 
 
-    
-    </div>
+
+</div>
 <script type="text/javascript">
 
 // 유저 로그인 폼 표시

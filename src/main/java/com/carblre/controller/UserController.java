@@ -10,6 +10,7 @@ import com.carblre.dto.MyCounselDTO;
 import com.carblre.dto.SignUpDTO;
 import com.carblre.dto.userdto.*;
 import com.carblre.handler.exception.UnAuthorizedException;
+import com.carblre.repository.model.LawyerDetail;
 import com.carblre.service.CounselService;
 import org.apache.ibatis.javassist.NotFoundException;
 import com.carblre.dto.userdto.KakaoOAuthToken;
@@ -32,6 +33,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+
 
 @Slf4j
 @Controller
@@ -590,7 +592,11 @@ public class UserController {
             // 엔티티가 존재하지 않을 때 NotFoundException 던짐
             throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
         }
-
+        if(userDTO.getRole().equals("lawyer")){
+         LawyerDetailDTO lawyerDetailDTO= userService.findLawyerInfoById(userDTO.getId());
+            System.out.println(lawyerDetailDTO);
+         model.addAttribute("lawyer",lawyerDetailDTO);
+        }
         // 유저 인포 해야됨
         return "user/myPage";
     }
@@ -695,7 +701,6 @@ public class UserController {
     @GetMapping("checkLawyerCounsel")
     public String checkLawyerCounselPage(Model model){
         UserDTO userDTO = (UserDTO) session.getAttribute("principal"); //dto변경해야함
-        System.out.println("userDTO"+userDTO);
         if (userDTO == null) {
             // 엔티티가 존재하지 않을 때 NotFoundException 던짐
             throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);

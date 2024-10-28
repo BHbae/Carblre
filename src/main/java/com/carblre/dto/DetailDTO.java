@@ -21,5 +21,5 @@ public class DetailDTO {
     private String content;
     private String comment;
     private String userName;
-    private Timestamp createdAt;
+    private String createdAt;
 }
