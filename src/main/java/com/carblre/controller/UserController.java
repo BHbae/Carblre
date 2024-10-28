@@ -5,28 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-<<<<<<< HEAD
 import org.apache.ibatis.javassist.NotFoundException;
-=======
-import com.carblre.config.MyWebSocketHandler;
-import com.carblre.dto.MyCounselDTO;
-import com.carblre.dto.SignUpDTO;
-import com.carblre.dto.userdto.*;
-import com.carblre.handler.exception.UnAuthorizedException;
-import com.carblre.repository.model.LawyerDetail;
-import com.carblre.service.CounselService;
-import org.apache.ibatis.javassist.NotFoundException;
-import com.carblre.dto.userdto.KakaoOAuthToken;
-import com.carblre.dto.userdto.SocialSignUpDTO;
-import com.carblre.dto.userdto.UserDTO;
-import com.carblre.handler.exception.DataDeliveryException;
-import com.carblre.service.QrcodeService;
-import com.carblre.service.UserService;
-import com.carblre.utils.Define;
-import jakarta.servlet.http.HttpSession;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
->>>>>>> 67e32f4b04d7f2f816fba6640c8d6e066bccba6e
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -52,9 +31,10 @@ import com.carblre.config.MyWebSocketHandler;
 import com.carblre.dto.MyCounselDTO;
 import com.carblre.dto.SignUpDTO;
 import com.carblre.dto.userdto.KakaoOAuthToken;
+import com.carblre.dto.userdto.LawyerDetailDTO;
 import com.carblre.dto.userdto.LawyerSignUpDTO;
-import com.carblre.dto.userdto.SignDTO;
 import com.carblre.dto.userdto.SignInDTO;
+import com.carblre.dto.userdto.SocialSignUpDTO;
 import com.carblre.dto.userdto.UserDTO;
 import com.carblre.handler.exception.DataDeliveryException;
 import com.carblre.handler.exception.UnAuthorizedException;
@@ -625,14 +605,11 @@ public class UserController {
             // 엔티티가 존재하지 않을 때 NotFoundException 던짐
             throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
         }
-<<<<<<< HEAD
-=======
         if(userDTO.getRole().equals("lawyer")){
          LawyerDetailDTO lawyerDetailDTO= userService.findLawyerInfoById(userDTO.getId());
             System.out.println(lawyerDetailDTO);
          model.addAttribute("lawyer",lawyerDetailDTO);
         }
->>>>>>> 67e32f4b04d7f2f816fba6640c8d6e066bccba6e
         // 유저 인포 해야됨
         return "user/myPage";
     }

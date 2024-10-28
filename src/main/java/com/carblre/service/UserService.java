@@ -154,11 +154,6 @@ public class UserService {
 			System.out.println("User Password : " + signUpDTO.getPassword());
 			System.out.println("User Email : " + signUpDTO.getEmail());
 			System.out.println("User phoneNumber : " + signUpDTO.getPhoneNum());
-			System.out.println("user_id: " + signUpDTO.getUserId());
-			System.out.println("introduction: " + signUpDTO.getIntroduction());
-
-			System.out.println("law_firm: " + signUpDTO.getLawFirm());
-			System.out.println("office_num: " + signUpDTO.getOfficeNum());
 			String hashPassword = passwordEncoder.encode(signUpDTO.getPassword());
 			signUpDTO.setPassword(hashPassword);
 			signUpDTO.setRole("lawyer"); // 임시 변호사 role
@@ -166,14 +161,6 @@ public class UserService {
 
 			// 이름지정
 			signUpDTO.setGetProfileName(signUpDTO.getProfileImage().getOriginalFilename()); // 파일객체에서 파일이름
-<<<<<<< HEAD
-			String uuidName=signUpDTO.UUIDUploadProfileName();
-			System.out.println("uuid"+uuidName);
-			String uploadName=signUpDTO.getUPLOAD_DIR() +uuidName  ;//파일경로와 UUID파일이름
-			Path path = Paths.get(uploadName); // 경로설정
-			signUpDTO.setUploadProfileName(uuidName);
-			System.out.println("uploard_profile_name: " + signUpDTO.getUploadProfileName());
-=======
 			signUpDTO.setGetLicenseName(signUpDTO.getLicenseImage().getOriginalFilename());
 			String uuidProFileName=signUpDTO.UUIDUploardProfileName();
 			String uuidLawyerName=signUpDTO.UUIDUploardLawyerName();
@@ -190,14 +177,12 @@ public class UserService {
 			// site,status 삽입
 			signUpDTO.setSite("서버");
 			signUpDTO.setStatus(0);
->>>>>>> 67e32f4b04d7f2f816fba6640c8d6e066bccba6e
 			// 여기까지 user_tb insert
 			userRepository.insert(signUpDTO.toUser()); // USER_TB INSERT TODO 현재 User 모델에 Site가 없어서 추가해야됨
 			// 가장최근 AUTO id값 바로받아 값 이식
 			signUpDTO.setUserId(userRepository.getLastInsertId());
 
 			// 파일 저장 경로 설정 (상대 경로, 로컬 디렉토리)
-
 			// 디렉토리가 존재하지 않을 경우 생성
 			File profileDirectory = new File(signUpDTO.getUPLOAD_PROFILE_DIR());
 			File LicenseDirectory = new File(signUpDTO.getUPLOAD_LAWYER_DIR());
@@ -210,15 +195,9 @@ public class UserService {
 
 			// 파일 저장 (바이트 배열로 파일을 쓰기)
 			Files.write(path,signUpDTO.getProfileImage().getBytes());
-<<<<<<< HEAD
-
-
-=======
 			Files.write(LicensePath,signUpDTO.getLicenseImage().getBytes());
 			System.out.println(signUpDTO.toString());
->>>>>>> 67e32f4b04d7f2f816fba6640c8d6e066bccba6e
 			int result =userRepository.insertLawyerDetail(signUpDTO.toLawyerDetail()); // laywer_detail_tb insert
-
 			System.out.println("성공여부:"+result);
 		} catch (Exception e) {
 			System.out.println("Error in Create User : " + e.getMessage());
@@ -240,6 +219,8 @@ public class UserService {
 //	public UserDTO findByToken(String token) {
 //
 //	}
+
+
 }
 
 

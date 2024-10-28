@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-        namespace="com.carblre.repository.interfaces.UserRepository">
+<mapper namespace="com.carblre.repository.interfaces.UserRepository">
 
-	<!-- 유저 정보 조회 by ID -->
-	<select id="findById" resultType="com.carblre.dto.userdto.UserDTO">
-		SELECT * FROM user_tb WHERE id = #{id}
-	</select>
+    <!-- 유저 정보 조회 by ID -->
+    <select id="findById" resultType="com.carblre.dto.userdto.UserDTO">
+        SELECT * FROM user_tb WHERE id = #{id}
+    </select>
 
-
-	<!-- 모든 유저 정보 조회 -->
-	<select id="findAll" resultType="com.carblre.dto.userdto.UserDTO">
-		SELECT * FROM user_tb
-	</select>
+    <!-- 모든 유저 정보 조회 -->
+    <select id="findAll" resultType="com.carblre.dto.userdto.UserDTO">
+        SELECT * FROM user_tb
+    </select>
 
     <!-- 간편유저 정보 조회 by nick -->
     <select id="findByNickId" resultType="com.carblre.dto.userdto.UserDTO">
@@ -23,125 +21,63 @@
     <!-- id와 password로 유저 조회 -->
     <select id="findByNickPassword" resultType="com.carblre.dto.userdto.UserDTO">
         SELECT * FROM user_tb
-        WHERE nick_name = #{nickName}
-        AND password = #{password}
+        WHERE nick_name = #{nickName} AND password = #{password}
     </select>
 
-
-	<!-- 이름과 E-mail 로 유저 조회 -->
-	<select id="findByEmail"  resultType="com.carblre.dto.userdto.UserDTO">
-		SELECT * FROM user_tb
-		WHERE email = #{email}
-	</select>
+    <!-- 이름과 E-mail 로 유저 조회 -->
+    <select id="findByEmail" resultType="com.carblre.dto.userdto.UserDTO">
+        SELECT * FROM user_tb WHERE email = #{email}
+    </select>
 
     <!-- 간편유저 정보 저장 -->
     <insert id="saveApiUser" parameterType="com.carblre.repository.model.User">
         INSERT INTO user_tb (user_name, nick_name, email)
-        VALUES ( #{userName},#{nickName}, #{email} )
+        VALUES (#{userName}, #{nickName}, #{email})
     </insert>
 
     <!-- 유저 정보 업데이트 -->
-    <update id="update">
+    <update id="updateUser">
         UPDATE user_tb
         SET user_name = #{userName},
-        nick_name = #{nickName},
-        password = #{password},
-        email = #{email},
-        phone_num = #{phoneNum},
-        role = #{role}
+            nick_name = #{nickName},
+            password = #{password},
+            email = #{email},
+            phone_num = #{phoneNum},
+            role = #{role}
         WHERE id = #{id}
     </update>
 
-<<<<<<< HEAD
     <!-- 유저 정보 삭제 -->
     <delete id="deleteById">
         DELETE FROM user_tb WHERE id = #{id}
     </delete>
-=======
-	<!-- 간편유저 정보 저장 -->
-	<insert id="saveApiUser" parameterType="com.carblre.repository.model.User">
-		INSERT INTO user_tb (user_name, nick_name, email, role, site, status)
-		VALUES ( #{userName},#{nickName}, #{email}, #{role}, #{site}, #{status} )
-	</insert>
->>>>>>> 67e32f4b04d7f2f816fba6640c8d6e066bccba6e
 
-    <insert id="insert">
-        INSERT INTO user_tb(user_name, nick_name,
-        password, email,
-        phone_num, role)
-        VALUES (
-        #{userName}, #{nickName},
-        #{password}, #{email},
-        #{phoneNum},#{role})
-    </insert>
-
-<<<<<<< HEAD
     <!-- E-mail 중복 체크 -->
     <select id="checkDuplicateEmail">
-        SELECT count(email) FROM user_tb WHERE
-        email = #{email}
+        SELECT count(email) FROM user_tb WHERE email = #{email}
     </select>
-=======
-	<!-- 유저 정보 삭제 -->
-	<delete id="deleteById">
-		DELETE FROM user_tb WHERE id = #{id}
-	</delete>
 
-	<insert id="insert">
-		INSERT INTO user_tb(user_name, nick_name,
-							password, email,
-		                    phone_num, role,
-							site, status)
-		VALUES (
-				   #{userName}, #{nickName},
-		           #{password}, #{email},
-				   #{phoneNum},#{role},
-			       #{site}, #{status})
-	</insert>
+    <!-- 닉네임과 E-mail 로 유저 조회 -->
+    <select id="findByEmailNick" resultType="com.carblre.dto.userdto.UserDTO">
+        SELECT * FROM user_tb WHERE email = #{email} AND nick_name = #{nickName}
+    </select>
 
-	<!-- E-mail 중복 체크 -->
-	<select id="checkDuplicateEmail">
-		SELECT count(email) FROM user_tb WHERE
-			email = #{email}
-	</select>
->>>>>>> 67e32f4b04d7f2f816fba6640c8d6e066bccba6e
+    <update id="updatePassword">
+        UPDATE user_tb
+        SET password = #{password}
+        WHERE id = #{id}
+    </update>
 
-	<!-- 닉네임과 E-mail 로 유저 조회 -->
-	<select id="findByEmailNick"  resultType="com.carblre.dto.userdto.UserDTO">
-		SELECT * FROM user_tb
-		WHERE email = #{email}
-		and nick_name= #{nickName}
-	</select>
+    <insert id="insertLawyerDetail" parameterType="com.carblre.repository.model.LawyerDetail">
+        INSERT INTO lawyer_detail_tb (user_id, origin_profile_name, upload_profile_name, origin_license_name, upload_license_name,
+                                       introduction, law_firm, office_num)
+        VALUES (#{userId}, #{getProfileName}, #{uploadProfileName}, #{getLicenseName}, #{uploadLicenseName},
+                #{introduction}, #{lawFirm}, #{officeNum})
+    </insert>
 
-	<update id="updatePass" >
-		UPDATE user_tb
-		SET password = #{password}
-		WHERE id = #{id}
-	</update>
-
-	<insert id="insertLawyerDetail" parameterType="com.carblre.repository.model.LawyerDetail">
-		INSERT INTO lawyer_detail_tb(user_id, origin_profile_name ,
-		uploard_profile_name, origin_license_name, uploard_license_name,
-		introduction, law_firm, office_num)
-		VALUES (
-<<<<<<< HEAD
-		#{userId}, #{introduction},
-		#{uploadProfileName}, #{lawFirm},
-		#{officeNum})
-=======
-		#{userId}, #{getProfileName}, #{uploadProfileName},
-		#{getLicenseName}, #{uploadLicenseName},
-		#{introduction}, #{lawFirm}, #{officeNum})
->>>>>>> 67e32f4b04d7f2f816fba6640c8d6e066bccba6e
-	</insert>
-
-	<!-- 변호사 디테일 조회 -->
-	<select id="findLawyerInfoById"  resultType="com.carblre.repository.model.LawyerDetail">
-		SELECT * FROM lawyer_detail_tb
-		WHERE user_id = #{id}
-
-	</select>
-
-
+    <!-- 변호사 디테일 조회 -->
+    <select id="findLawyerInfoById" resultType="com.carblre.repository.model.LawyerDetail">
+        SELECT * FROM lawyer_detail_tb WHERE user_id = #{id}
+    </select>
 
 </mapper>

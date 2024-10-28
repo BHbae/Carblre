@@ -62,9 +62,6 @@ public interface UserRepository {
 	// 변호사 디테일
 	int insertLawyerDetail(LawyerDetail lawyerDetail);
 
-<<<<<<< HEAD
 
-=======
 	 LawyerDetail findLawyerInfoById(int id);
->>>>>>> 67e32f4b04d7f2f816fba6640c8d6e066bccba6e
 }

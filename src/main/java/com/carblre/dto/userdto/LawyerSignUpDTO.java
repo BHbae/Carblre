@@ -22,21 +22,12 @@ public class LawyerSignUpDTO {
     private String phoneNum ;
     private String role ;
     private String site ;
-<<<<<<< HEAD
-=======
     private int status;
->>>>>>> 67e32f4b04d7f2f816fba6640c8d6e066bccba6e
     private int userId;
     private String introduction  ;
     private String lawFirm ;
     private String officeNum ;
-<<<<<<< HEAD
-    private String uploadProfileName ;
-    private MultipartFile profileImage;
-    private String getProfileName;
-=======
     private int counselingAmount;
->>>>>>> 67e32f4b04d7f2f816fba6640c8d6e066bccba6e
 
 
     private String uploadProfileName ;// 변경이름
@@ -61,18 +52,12 @@ public class LawyerSignUpDTO {
 
     public LawyerDetail toLawyerDetail(){
         return  LawyerDetail.builder()
-<<<<<<< HEAD
-                .userId(userId).introduction(introduction).uploadProfileName(uploadProfileName)
-                .lawFirm(lawFirm).officeNum(officeNum)
-                .build();
-=======
                 .userId(userId).introduction(introduction).uploadProfileName(uploadProfileName).getProfileName(getProfileName)
                 .lawFirm(lawFirm).officeNum(officeNum).uploadLicenseName(uploadLicenseName).getLicenseName(getLicenseName)
                 .counselingAmount(counselingAmount).build();
->>>>>>> 67e32f4b04d7f2f816fba6640c8d6e066bccba6e
     }
 
-    public String UUIDUploadProfileName(){
+    public String UUIDUploardProfileName(){
 
         return UUID.randomUUID().toString() + "_" + getProfileName;
     }
