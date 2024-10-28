@@ -21,4 +21,6 @@ public interface CounselRepository {
     Counsel findStatusById(int id);
 
     int updateUserStatusById(@Param("id") int id,@Param("status") int status);
+
+    int insertCounsel(Counsel counsel);
 }

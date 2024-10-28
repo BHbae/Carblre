@@ -4,7 +4,7 @@
 <%@ include file="../layout/header.jsp"%>
 
 
-<section>
+<section id="main--section" class="section">
         <p>${user.userName} 님의 예약 현황 </p>
     <c:choose>
         <c:when test="${empty counsel}">

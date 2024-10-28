@@ -18,5 +18,12 @@ public class UserDTO {
     private String phoneNum;
     private String role;
     private String site;
+
+
+    public LawyerReservationDTO toReservationDTO(){
+    return    LawyerReservationDTO.builder()
+                .lawyerName(userName).lawyerId(id)
+                .build();
+    }
     
 }

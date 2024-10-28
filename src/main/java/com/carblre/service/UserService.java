@@ -1,15 +1,12 @@
 package com.carblre.service;
 
 import com.carblre.dto.SignUpDTO;
-import com.carblre.dto.userdto.LawyerDetailDTO;
-import com.carblre.dto.userdto.LawyerSignUpDTO;
+import com.carblre.dto.userdto.*;
 import com.carblre.repository.model.LawyerDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.carblre.dto.userdto.SocialSignUpDTO;
-import com.carblre.dto.userdto.UserDTO;
 import com.carblre.repository.interfaces.UserRepository;
 import com.carblre.repository.model.User;
 
@@ -20,6 +17,8 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -215,10 +214,24 @@ public class UserService {
 		return lawyerDetail.toLawyerDetailDTO();
 	}
 
+	/**
+	 *
+	 * @return
+	 */
+	public List<UserDTO> findAllLawyer() {
+		return userRepository.findAllLawyer();
 
-//	public UserDTO findByToken(String token) {
-//
-//	}
+	}
+
+	public List<LawyerDetailDTO> findAllLawyerDetail() {
+		List<LawyerDetail> lawyerDetail=userRepository.findAllLawyerDetail();
+		List<LawyerDetailDTO> list=new ArrayList<>();
+		for (LawyerDetail lawyer : lawyerDetail) {
+			list.add(lawyer.toLawyerDetailDTO());
+		}
+		return list;
+	}
+
 
 
 }

@@ -1,19 +1,28 @@
 package com.carblre.controller;
 
 import com.carblre.dto.MyCounselDTO;
+import com.carblre.dto.Response;
+import com.carblre.dto.userdto.LawyerDetailDTO;
+import com.carblre.dto.userdto.LawyerReservationDTO;
 import com.carblre.dto.userdto.UserDTO;
 import com.carblre.repository.model.Counsel;
+import com.carblre.repository.model.LawyerDetail;
+import com.carblre.repository.model.User;
 import com.carblre.service.CounselService;
 import com.carblre.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -24,10 +33,10 @@ public class CounselController {
     private final CounselService counselService;
     private final UserService userService;
 
-    private final HttpSession session;
 
-    @PostMapping("updateStatus")
-    public ResponseEntity<Map<String,Object>> updateStatus(@RequestBody Map<String, String> reqData){
+    @PostMapping("/updateStatus")
+    public ResponseEntity<Map<String,Object>> updateStatus(@RequestBody Map<String, String> reqData,
+                                                           HttpSession session){
         UserDTO userDTO = (UserDTO) session.getAttribute("principal");
         int counselId = Integer.parseInt(reqData.get("counselId"));
         int statusValue = Integer.parseInt(reqData.get("statusValue"));
@@ -56,7 +65,8 @@ public class CounselController {
      * @return
      */
     @PostMapping("/cancelStatus")
-    public ResponseEntity<Map<String, Object>> cancelStatusProc(@RequestBody Map<String, String> reqData) {
+    public ResponseEntity<Map<String, Object>> cancelStatusProc(@RequestBody Map<String, String> reqData,
+                                        HttpSession session ) {
         UserDTO userDTO = (UserDTO) session.getAttribute("principal");
 
         int status = Integer.parseInt(reqData.get("status"));
@@ -75,4 +85,54 @@ public class CounselController {
     }
 
 
+    @GetMapping("/reservation")
+    public String reservation(Model model){
+
+        List<UserDTO> userList =userService.findAllLawyer();
+        List<LawyerDetailDTO> lawyerList= userService.findAllLawyerDetail();
+        List<LawyerReservationDTO> dtoList=new ArrayList<>();
+        for (UserDTO user : userList) {
+            for (LawyerDetailDTO lawyer : lawyerList) {
+            if(user.getId()==lawyer.getUserId()){
+                LawyerReservationDTO reservation = LawyerReservationDTO.builder()
+                        .lawyerId(user.getId())
+                        .lawyerName(user.getUserName())
+                        .counselingAmount(lawyer.getCounselingAmount())
+                        .lawFirm(lawyer.getLawFirm())
+                        .build();
+                dtoList.add(reservation);
+                }
+            }
+        }
+        model.addAttribute("dtoList",dtoList);
+        return "counsel/counselReservation";
+    }
+
+
+    @PostMapping("/reservation")
+    public ResponseEntity<Map<String,Object>> reservationProc(HttpSession session,
+                                                              @RequestBody Map<String, String> reqData){
+        UserDTO userDTO = (UserDTO) session.getAttribute("principal");
+        int lawyerId = Integer.parseInt(reqData.get("lawyerId"));
+        String startTime =reqData.get("startTime");
+        String endTime =reqData.get("endTime");
+        String content =reqData.get("content");
+        startTime = startTime.replace("T", " ");
+        endTime = endTime.replace("T", " ");
+
+         LawyerReservationDTO dto=LawyerReservationDTO.builder()
+                .lawyerId(lawyerId).startTime(startTime)
+                .endTime(endTime).content(content)
+                .build();
+        System.out.println("dto:"+dto);
+        int result =counselService.insertCounselReservation(userDTO.getId(),dto);
+        Map<String, Object> response = new HashMap<>();
+        if (result==1) {
+            response.put("success", true);
+        } else {
+            response.put("success", false);
+        }
+
+        return ResponseEntity.ok(response);
+    }
 }

@@ -1,6 +1,7 @@
 package com.carblre.service;
 
 import com.carblre.dto.MyCounselDTO;
+import com.carblre.dto.userdto.LawyerReservationDTO;
 import com.carblre.repository.interfaces.CounselRepository;
 import com.carblre.repository.model.Counsel;
 import lombok.RequiredArgsConstructor;
@@ -62,5 +63,19 @@ public class CounselService {
 
         return counselRepository.updateUserStatusById( id, status);
 
+    }
+
+    /**
+     *  변호 상담 예약
+     * @param id
+     * @param dto
+     * @return
+     */
+    public int insertCounselReservation(int id, LawyerReservationDTO dto) {
+       Counsel counsel= dto.toCounsel();
+       counsel.setUserId(id);
+       counsel.setStatus(0);
+        System.out.println("counsel:"+counsel);
+       return  counselRepository.insertCounsel(counsel);
     }
 }

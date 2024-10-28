@@ -1,10 +1,8 @@
-package com.carblre.dto;
+package com.carblre.dto.userdto;
 
 import com.carblre.repository.model.Counsel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.carblre.repository.model.LawyerDetail;
+import lombok.*;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -13,19 +11,21 @@ import java.time.format.DateTimeFormatter;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Builder
-public class MyCounselDTO {
-    private int id;
-    private int userId;
+public class LawyerReservationDTO {
+
+    private int lawyerId;
+    private String lawyerName;
+    private int counselingAmount;
+    private String lawFirm ;
     private String startTime;
     private String endTime;
     private String content;
-    private int lawyerId;
-    private int status;
-    private int userStatus;
 
 
-    public Counsel toCounselDTO(){
+    //깃푸쉬
+    public Counsel toCounsel() {
         // Timestamp를 분까지 String타입으로 변환
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
@@ -38,9 +38,7 @@ public class MyCounselDTO {
         Timestamp endTimestamp = Timestamp.valueOf(endDateTime);
 
         return  Counsel.builder()
-                .id(id)
-                .userId(userId).startTime(startTimestamp).endTime(endTimestamp).content(content)
-                .lawyerId(lawyerId).status(status).userStatus(userStatus)
+                .lawyerId(lawyerId).startTime(startTimestamp).endTime(endTimestamp).content(content)
                 .build();
     }
 

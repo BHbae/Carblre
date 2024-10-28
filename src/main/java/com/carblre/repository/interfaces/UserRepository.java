@@ -2,6 +2,7 @@ package com.carblre.repository.interfaces;
 
 import java.util.List;
 
+import com.carblre.dto.userdto.LawyerDetailDTO;
 import com.carblre.repository.model.LawyerDetail;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -62,5 +63,12 @@ public interface UserRepository {
 	// 변호사 디테일
 	int insertLawyerDetail(LawyerDetail lawyerDetail);
 
+	// 변호사 정보
 	 LawyerDetail findLawyerInfoById(int id);
+
+	 // 변호사 전체조회
+	List<UserDTO> findAllLawyer();
+
+	// 변호사 전체정보 조회
+	List<LawyerDetail> findAllLawyerDetail();
 }
