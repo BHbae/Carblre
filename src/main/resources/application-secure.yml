@@ -14,10 +14,10 @@ kakao:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/carblre?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://192.168.0.36:3306/carblre?serverTimezone=Asia/Seoul
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: asd123
+    username: kda
+    password: 1234
 
   mail:
     host: smtp.gmail.com
@@ -39,4 +39,11 @@ spring:
 
 openai:
   api:
-    key: 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
+    key: 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
+
+payment:
+  toss:
+    test_client_api_key : "test_ck_4yKeq5bgrpz5kx50PN943GX0lzW6"
+    test_secret_api_key : "test_sk_Gv6LjeKD8aPB12aJqQeerwYxAdXy"
+    success_url : "http://localhost:8080/api/v1/payments/toss/success"
+    fail_url : "http://localhost:8080/api/v1/payments/toss/fail"

@@ -10,7 +10,7 @@
         SELECT
         ld.user_id AS userId,
         u.user_name AS userName,  <!-- userName을 추가 -->
-        ld.uploard_profile_name AS uploadProfileName,
+        ld.upload_profile_name AS uploadProfileName,
         ld.introduction,
         ld.law_firm AS lawFirm,
         ld.office_num AS officeNum
@@ -25,7 +25,7 @@
         SELECT
         ld.user_id AS userId,
         u.user_name AS userName,
-        ld.uploard_profile_name AS uploadProfileName,
+        ld.upload_profile_name AS uploadProfileName,
         ld.introduction,
         ld.law_firm AS lawFirm,
         ld.office_num AS officeNum

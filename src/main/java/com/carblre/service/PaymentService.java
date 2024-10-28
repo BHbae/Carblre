@@ -2,29 +2,26 @@ package com.carblre.service;
 
 import com.carblre.dto.TossHistoryDTO;
 import com.carblre.dto.TossResponseDTO;
-import com.carblre.repository.PaymentHistoryRepository;
-import com.fasterxml.jackson.core.io.IOContext;
+import com.carblre.repository.interfaces.PaymentHistoryRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Calendar;
-import java.util.Random;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor // Autowierd 없이 생성자 주입가능
+
 public class PaymentService {
 
     private final PaymentHistoryRepository historyRepository;
+
+
 
     /**
      * 결제승인
@@ -67,7 +64,7 @@ public class PaymentService {
 
         String uri = "https://api.tosspayments.com/v1/payments/" + historyDTO.getPaymentKey() +"/cancel" ;
         HttpRequest httpRequest = HttpRequest.newBuilder().uri(URI.create(uri))
-                .header("Authorization", "Basic dGVzdF9za19lcVJHZ1lPMXI1UDdFZ0RLd05KYlZRbk4yRXlhOg==")
+                .header("Authorization", "Basic dGVzdF9ja180eUtlcTViZ3JwejVreDUwUE45NDNHWDBselc2OnRlc3Rfc2tfR3Y2TGplS0Q4YVBCMTJhSnFRZWVyd1l4QWRYeQ==")
                 .header("Content-Type", "application/json")
                 .method("POST", HttpRequest.BodyPublishers.ofString("{\"cancelReason\":\"고객이 취소를 요청함\"}"))
                 .build();
