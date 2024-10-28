@@ -30,6 +30,9 @@ public class CounselService {
      */
     public MyCounselDTO findMyCounselByLawyerId(int id) {
         Counsel counsel= counselRepository.findCounselOfLawyerById(id);
+        if(counsel==null){
+            return  new MyCounselDTO();
+        }
         return  counsel.toMycounselDTO();
     }
 

@@ -13,7 +13,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class SignDTO {
+public class SocialSignUpDTO {
 	
     private String userName;
     private String nickName;
@@ -21,9 +21,10 @@ public class SignDTO {
     private String email;
     private String phoneNum;
     private String role;
-    private String kakaoId;
+    private String site;
+    private int status;
     
-    public User toUsern() {
+    public User toUser() {
         return	User.builder()
        	.email(email)
        	.nickName(nickName)
@@ -31,7 +32,10 @@ public class SignDTO {
        	.role(role)
        	.phoneNum(phoneNum)
        	.password(password)
-       	.build();
+        .role(role)
+        .site(site)
+        .status(status)
+        .build();
        	
        }
 }

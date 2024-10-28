@@ -47,6 +47,7 @@
                     <label for="email">이메일</label>
                     <input type="email" class="form-control" id="email" placeholder="example@carblre.com" name="email"
                            value="" required>
+                <!-- 이메일 인증코드 발송 -->
                     <button type="button" class="check--btn" id="emailCode" onclick="sendValidate()">발송</button>
                     <button type="button" class="check--btn" id="checkValidate" onclick="checkValidate()"
                             disabled="disabled" style="cursor: pointer;">인증 확인
@@ -94,7 +95,6 @@
             });
     }
 
-    ㄴㅇㄴ
 
     // '중복 확인' 버튼을 클릭하면 실행됩니다.
     function checkDuplicate() {

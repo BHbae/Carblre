@@ -5,7 +5,28 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+<<<<<<< HEAD
 import org.apache.ibatis.javassist.NotFoundException;
+=======
+import com.carblre.config.MyWebSocketHandler;
+import com.carblre.dto.MyCounselDTO;
+import com.carblre.dto.SignUpDTO;
+import com.carblre.dto.userdto.*;
+import com.carblre.handler.exception.UnAuthorizedException;
+import com.carblre.repository.model.LawyerDetail;
+import com.carblre.service.CounselService;
+import org.apache.ibatis.javassist.NotFoundException;
+import com.carblre.dto.userdto.KakaoOAuthToken;
+import com.carblre.dto.userdto.SocialSignUpDTO;
+import com.carblre.dto.userdto.UserDTO;
+import com.carblre.handler.exception.DataDeliveryException;
+import com.carblre.service.QrcodeService;
+import com.carblre.service.UserService;
+import com.carblre.utils.Define;
+import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+>>>>>>> 67e32f4b04d7f2f816fba6640c8d6e066bccba6e
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -284,9 +305,10 @@ public class UserController {
         // 최초 시도
         if (principial == null) {
 
-            SignDTO signDTO = SignDTO.builder().email(email).nickName(kakaoIdStr).userName(nickname).build();
-
-            userService.saveUser(signDTO); // MyBatis Mapper를 사용하여 DB에 저장
+            SocialSignUpDTO socialSignUpDTO = SocialSignUpDTO.builder().email(email).nickName(kakaoIdStr).userName(nickname)
+                    .site("카카오").role("user").status(1)
+                    .build();
+            userService.saveUser(socialSignUpDTO); // MyBatis Mapper를 사용하여 DB에 저장
 
         }
 
@@ -383,9 +405,11 @@ public class UserController {
         UserDTO principial = userService.findByNickId(naverId);
 
         if (principial == null) {
-            SignDTO signDTO = SignDTO.builder().email(email).nickName(naverId).userName(name).build();
+            SocialSignUpDTO socialSignUpDTO = SocialSignUpDTO.builder().email(email).nickName(naverId).userName(name)
+                    .site("네이버").role("user").status(1)
+                    .build();
 
-            userService.saveUser(signDTO);
+            userService.saveUser(socialSignUpDTO);
             principial = userService.findByNickId(naverId);
         }
         System.out.println("프린시펄" + principial);
@@ -458,9 +482,11 @@ public class UserController {
             UserDTO principial = userService.findByNickId(googleId);
 
             if (principial == null) {
-                SignDTO signDTO = SignDTO.builder().email(email).nickName(googleId).userName(name).build();
-
-                userService.saveApiUser(signDTO); // 사용자 정보 저장
+                SocialSignUpDTO socialSignUpDTO = SocialSignUpDTO.builder().email(email).nickName(googleId).userName(name)
+                        .site("구글").role("user").status(1)
+                        .build();
+                System.out.println(socialSignUpDTO);
+                userService.saveApiUser(socialSignUpDTO); // 사용자 정보 저장
                 principial = userService.findByNickId(googleId); // 다시 조회하여 세션에 저장
             }
 
@@ -599,6 +625,14 @@ public class UserController {
             // 엔티티가 존재하지 않을 때 NotFoundException 던짐
             throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
         }
+<<<<<<< HEAD
+=======
+        if(userDTO.getRole().equals("lawyer")){
+         LawyerDetailDTO lawyerDetailDTO= userService.findLawyerInfoById(userDTO.getId());
+            System.out.println(lawyerDetailDTO);
+         model.addAttribute("lawyer",lawyerDetailDTO);
+        }
+>>>>>>> 67e32f4b04d7f2f816fba6640c8d6e066bccba6e
         // 유저 인포 해야됨
         return "user/myPage";
     }
@@ -702,14 +736,15 @@ public class UserController {
      */
     @GetMapping("checkLawyerCounsel")
     public String checkLawyerCounselPage(Model model){
-        UserDTO userDTO = (UserDTO) session.getAttribute("principal");
+        UserDTO userDTO = (UserDTO) session.getAttribute("principal"); //dto변경해야함
         if (userDTO == null) {
             // 엔티티가 존재하지 않을 때 NotFoundException 던짐
             throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
         }
         // 유저 인포 해야됨
         MyCounselDTO counsel= counselService.findMyCounselByLawyerId(userDTO.getId());
-        UserDTO user=userService.findById(counsel.getLawyerId());
+        UserDTO user=userService.findById(userDTO.getId());
+
         model.addAttribute("counsel",counsel);
         model.addAttribute("user",user);
 
