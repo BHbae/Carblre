@@ -18,6 +18,7 @@ import com.carblre.handler.exception.DataDeliveryException;
 import com.carblre.repository.model.Comment;
 import com.carblre.repository.model.User;
 import com.carblre.service.CommentService;
+import com.carblre.service.UserService;
 import com.carblre.utils.Define;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -52,7 +53,9 @@ public class TestBoardController {
 
 	@Autowired
 	private HttpSession session;
-	
+    @Autowired
+    private UserService userService;
+
 	//-----게시글 상세보기
 	@GetMapping("/detail/{id}")
 	public String detailPage(@PathVariable(name ="id") int postId, Model model) {
@@ -100,7 +103,7 @@ public class TestBoardController {
 	public String getMethodName(Model model) {
 
 		List<Post> boards =  boardService.findAllBoards();
-		
+
 		model.addAttribute("boards",boards);
 		
 		return "/Board/BoardList";

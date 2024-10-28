@@ -10,12 +10,16 @@
 				<th>게시글 번호</th>
 				<th>제목</th>
 				<th>작성자 ()추후 아이디로 변경)</th>
+				<th>작성일</th>
 			</tr>
-	<c:forEach items="${boards}" var="boards">
+				<c:forEach items="${boards}" var="boards">
 			<tr>
 				<td>${boards.id}</td>
 				<td>
     				<a href="<c:url value='/board/detail/${boards.id}' />">${boards.title}</a>
+				</td>
+				<td>
+
 				</td>
 				<td>${boards.createdAt}</td>
 			</tr>
