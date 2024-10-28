@@ -39,7 +39,7 @@ spring:
 
 openai:
   api:
-    key: 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
+    key: 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
 
 payment:
   toss:
