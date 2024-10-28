@@ -377,11 +377,13 @@
             })
             .then(data => {
                 console.log('Response data:', data);
+                alert(data.message);
                 getComment('newest');
                 getReplyComment(${post.id});
             })
             .catch(error => {
-                console.error('Error:', error.message);
+                alert(error.message);
+                window.location.href = "http://localhost:8080/user/signIn";
             });
 
     }
@@ -446,6 +448,8 @@
                 console.log('getReplyComment 호출 시작');
                 getReplyComment(${post.id});
 
+                alert(data.message);
+
             })
             .catch(error => {
                 console.log(error.message);
@@ -507,11 +511,14 @@
                                 replyCommentSection.appendChild(replyDiv);
                             }
                         }
+
+                        alert(data.message);
                     });
                 }
             })
             .catch(error => {
-                console.log(error.message);
+                alert(error.message);
+                window.location.href = "http://localhost:8080/user/signIn";
             });
     }
 
@@ -535,13 +542,10 @@
                 return response.text(); // 성공적인 응답일 경우 JSON으로 변환
             })
             .then(data => {
-                alert(data);
+                alert(data.message);
                 // 추가적인 성공 처리 로직을 여기에 작성
                 refreshCommentsAndReplies();
-                if(data.message === 'success')
-                {
 
-                }
             })
             .catch(error => {
                 console.error(error.message);
@@ -575,5 +579,8 @@
     }
 
 </script>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 39cb0b06ccbaaa72bb02285140589c80fa7859fc
 <%@ include file="../layout/footer.jsp"%>

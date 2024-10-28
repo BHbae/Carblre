@@ -16,7 +16,7 @@
                 <ul class="sub--top--menu">
                     <li><a href="/board/boardList">의뢰자</a></li>
                     <li><a href="/aiounseling">AI 간편상담</a></li>
-                    <li><a href="/notice/notice">변호사</a></li>
+                    <li><a href="/lawyer/lawyers">변호사</a></li>
                     <li class="subtop--active"><a href="/notice/notice">공지사항</a></li>
                     <li><a href="/cs/cs">고객센터</a></li>
                 </ul>

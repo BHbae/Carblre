@@ -316,20 +316,21 @@ button,
     cursor: pointer;
 }
 .cls-2:hover {
-    fill: #A7B3C8    
+    fill: rgba(177, 152, 55, 0.3);
 }
 .cls-1 {
     fill: #494949;
-    font-family: SUIT-Medium, SUIT;
     font-size: 17px;
     font-weight: 500;
     letter-spacing: -.04em;
     pointer-events: none;
 }
-
 .cls-2:focus-visible  {
     fill: #A7B3C8    
-}  
+}
+.\!fill-\ {
+    fill: #254b80 !important;
+}
 /* 지도 END */
 
 /* qna START */

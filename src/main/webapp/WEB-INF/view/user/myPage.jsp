@@ -8,8 +8,8 @@
     <section class="sub--section">
         <div class="section--background" id="notice--background">
             <div class="inner--container">
-                <sub class="eng">Notice</sub>
-                <h1 class="sub--title">고객센터</h1>
+                <sub class="eng">My Page</sub>
+                <h1 class="sub--title">마이페이지</h1>
             </div>
         </div>
         <div style="border-bottom: 1px solid #bababa;">
@@ -24,20 +24,58 @@
 
     <div class="inner--container">
         <div class="sub--content">
-            <h2 class="prih2">마이페이지</h2>
+            <h2 class="prih2 user--form">마이페이지</h2>
 
             <div class="info infoupdate">
+                <div class="btn btn--wrap">
+                    <div id="mypage--counsel">
+                        <c:choose>
+                            <%-- principal.role이 'user'일 경우 --%>
+                            <c:when test="${principal.role == 'user'}">
+                                <p class="update-info" onclick="checkUserCounsel()"> 예약 현황 </p>
+                            </c:when>
+
+                            <%-- principal.role이 'lawyer'일 경우 --%>
+                            <c:when test="${principal.role == 'lawyer'}">
+                                <p class="update-info" onclick="checkLawyerCounsel()"> 변호 예약 현황 </p>
+                            </c:when>
+                        </c:choose>
+                    </div>
+                </div>
+
+
+
                 <c:if test="${principal.site != '서버'}">
-                    <p> 이름: ${principal.userName}</p>
-                    <p> 아이디: ${principal.site}</p>
-                    <p> 이메일: ${principal.email}</p>
+                    <p class="label--info">이름</p>
+                    <p class="label--value">${principal.userName}</p>
+                    <p class="label--info">아이디</p>
+                    <p class="label--value">${principal.site}</p>
+                    <p class="label--info">이메일</p>
+                    <p class="label--value">${principal.email}</p>
                 </c:if>
                 <c:if test="${principal.site == '서버'}">
-                    <p> 이름: ${principal.userName}</p>
-                    <p> 아이디: ${principal.nickName}</p>
-                    <p> 이메일: ${principal.email}</p>
-                </c:if>
+                    <p class="label--info">이름</p>
+                    <p class="label--value">${principal.userName}</p>
+                    <p class="label--info">아이디</p>
+                    <p class="label--value">${principal.nickName}</p>
+                    <p class="label--info">이메일</p>
+                    <p class="label--value">${principal.email}</p>
 
+                    <c:if test="${principal.role == 'lawyer'}">
+                        <p class="label--info">법인명</p>
+                        <p class="label--value">${lawyer.lawFirm}</p>
+                        <p class="label--info">법인 전화번호</p>
+                        <p class="label--value">${lawyer.officeNum}</p>
+                        <p class="label--info">소개</p>
+                        <p class="label--value">${lawyer.introduction}</p>
+                        <p class="label--info">프로필 사진</p>
+                        <div class="label--value--image"><img src="${lawyer.uploadProfileName}" alt="Profile Image" /></div>
+                        <p class="label--info">법인 사진</p>
+                        <div class="label--value--image"><img src="${lawyer.uploadLicenseName}" alt="Co. Image" /></div>
+                        <p class="label--info">지정 10분 상담가격</p>
+                        <p class="label--value">${lawyer.counselingAmount}</p>
+                    </c:if>
+                </c:if>
                 <div class="btn btn--wrap">
                     <div id="mypage--edit">
                         <p class="update-info" onclick="infoUpdate()"> 개인정보 수정 </p>
@@ -47,18 +85,6 @@
                     </div>
                 </div>
             </div>
-
-            <c:choose>
-                <%-- principal.role이 'user'일 경우 --%>
-                <c:when test="${principal.role == 'user'}">
-                    <p class="update-info" onclick="checkUserCounsel()"> 예약 현황 </p>
-                </c:when>
-
-                <%-- principal.role이 'lawyer'일 경우 --%>
-                <c:when test="${principal.role == 'lawyer'}">
-                    <p class="update-info" onclick="checkLawyerCounsel()"> 변호 예약 현황 </p>
-                </c:when>
-            </c:choose>
         </div>
     </div>
 </div>
