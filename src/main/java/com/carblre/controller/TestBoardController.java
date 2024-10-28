@@ -155,6 +155,11 @@ public class TestBoardController {
 	public ResponseEntity<?> addComment(@RequestBody CommentDTO commentDTO) {
 
 		UserDTO principal = (UserDTO) session.getAttribute("principal");
+		if (principal == null)
+		{
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Define.ENTER_YOUR_LOGIN);
+		}
+
 		CommentDTO commentBuilder = CommentDTO.builder()
 				.commentId(commentDTO.getCommentId())
 				.postId(commentDTO.getPostId())

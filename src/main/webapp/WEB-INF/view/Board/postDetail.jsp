@@ -535,13 +535,10 @@
                 return response.text(); // 성공적인 응답일 경우 JSON으로 변환
             })
             .then(data => {
-                alert(data);
+                alert(data.message);
                 // 추가적인 성공 처리 로직을 여기에 작성
                 refreshCommentsAndReplies();
-                if(data.message === 'success')
-                {
 
-                }
             })
             .catch(error => {
                 console.error(error.message);
