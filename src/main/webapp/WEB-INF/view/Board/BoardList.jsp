@@ -60,6 +60,7 @@
                     <li class="<c:if test="${currentPage == page}">page--active</c:if>" ><a href="/cs/cs?page=${page}">${page}</a></li>
                 </c:forEach>
 
+
 				<li
 					class="page-item <c:if test='${currentPage == totalPages}'>disabled</c:if>">
 					<a class="page-link" href="/cs/cs?page=${currentPage + 1}">▶</a>
