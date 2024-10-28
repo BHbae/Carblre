@@ -22,11 +22,11 @@ public class LawyerSignUpDTO {
     private String phoneNum ;
     private String role ;
     private String site ;
-    private int UserId;
+    private int userId;
     private String introduction  ;
     private String lawFirm ;
     private String officeNum ;
-    private String uploardProfileName ;
+    private String uploadProfileName ;
     private MultipartFile profileImage;
     private String getProfileName;
 
@@ -42,12 +42,12 @@ public class LawyerSignUpDTO {
 
     public LawyerDetail toLawyerDetail(){
         return  LawyerDetail.builder()
-                .UserId(UserId).introduction(introduction).uploardProfileName(uploardProfileName)
+                .userId(userId).introduction(introduction).uploadProfileName(uploadProfileName)
                 .lawFirm(lawFirm).officeNum(officeNum)
                 .build();
     }
 
-    public String UUIDUploardProfileName(){
+    public String UUIDUploadProfileName(){
 
         return UUID.randomUUID().toString() + "_" + getProfileName;
     }

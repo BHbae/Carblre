@@ -18,6 +18,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Calendar;
 import java.util.Random;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor // Autowierd 없이 생성자 주입가능
@@ -82,34 +83,42 @@ public class PaymentService {
 
     }
 
-
     /**
      * 고유 주믄Id (orderId) 생성
      * @return
      */
-    public String getOrderId(){
-        // 현재날짜 + 시간 가져오기
-        Calendar calendar = Calendar.getInstance();
-        int y = calendar.get(Calendar.YEAR);
-        int m = calendar.get(Calendar.MONTH) + 1;  // 현재 월 (0부터 시작 ->  +1)
-        int d = calendar.get(Calendar.DATE);
-
-        // 랜덤 숫자생성
-        Random rd1 = new Random();
-        Random rd2 = new Random();
-        int rd11 = rd1.nextInt(100); // 0-99 까지 무작위 정수
-        int rd22 = rd2.nextInt(100); // 0-99 까지 무작위 정수
-
-        // 연도/월/일 정수값을 문자열로 변환 (year +String)
-        String yStr = Integer.toString(y);
-        String mStr = Integer.toString(m);
-        String dStr = Integer.toString(d);
-        String rd1Str = Integer.toString(rd11); // 첫 번째 무작위 숫자를 문자열로 변환
-        String rd2Str = Integer.toString(rd22); // 두 번째 무작위 숫자를 문자열로 변환
-
-        return mStr + rd1Str + yStr + rd2Str + dStr;
-
+    public String getOrderId() {
+        return UUID.randomUUID().toString();
     }
+
+
+//    /**
+//     * 고유 주믄Id (orderId) 생성
+//     * @return
+//     */
+//    public String getOrderId(){
+//        // 현재날짜 + 시간 가져오기
+//        Calendar calendar = Calendar.getInstance();
+//        int y = calendar.get(Calendar.YEAR);
+//        int m = calendar.get(Calendar.MONTH) + 1;  // 현재 월 (0부터 시작 ->  +1)
+//        int d = calendar.get(Calendar.DATE);
+//
+//        // 랜덤 숫자생성
+//        Random rd1 = new Random();
+//        Random rd2 = new Random();
+//        int rd11 = rd1.nextInt(100); // 0-99 까지 무작위 정수
+//        int rd22 = rd2.nextInt(100); // 0-99 까지 무작위 정수
+//
+//        // 연도/월/일 정수값을 문자열로 변환 (year +String)
+//        String yStr = Integer.toString(y);
+//        String mStr = Integer.toString(m);
+//        String dStr = Integer.toString(d);
+//        String rd1Str = Integer.toString(rd11); // 첫 번째 무작위 숫자를 문자열로 변환
+//        String rd2Str = Integer.toString(rd22); // 두 번째 무작위 숫자를 문자열로 변환
+//
+//        return mStr + rd1Str + yStr + rd2Str + dStr;
+//
+//    }
 
 
 

@@ -13,8 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Builder
 public class LawyerDetail {
 
-    private int UserId;
-    private String uploardProfileName;
+    private int userId;
+    private String uploadProfileName;
     private String introduction ;
     private String lawFirm ;
     private String officeNum ;
@@ -22,7 +22,7 @@ public class LawyerDetail {
     //깃푸쉬
     public LawyerSignUpDTO toLawyerDetail() {
         return LawyerSignUpDTO.builder()
-                .UserId(UserId).introduction(introduction).uploardProfileName(uploardProfileName)
+                .userId(userId).introduction(introduction).uploadProfileName(uploadProfileName)
                 .lawFirm(lawFirm).officeNum(officeNum)
                 .build();
     }

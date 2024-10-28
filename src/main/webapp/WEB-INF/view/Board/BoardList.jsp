@@ -24,6 +24,7 @@
     </section>
     <!-- 상단 이미지 & 서브 페이지 이동 END -->
 
+<<<<<<< HEAD
     <div class="inner--container">
         <div class="sub--content">
             <h2 class="prih2">의뢰자</h2>
@@ -59,6 +60,26 @@
 				<c:forEach begin="1" end="${totalPages}" var="page">
                     <li class="<c:if test="${currentPage == page}">page--active</c:if>" ><a href="/cs/cs?page=${page}">${page}</a></li>
                 </c:forEach>
+=======
+<main>
+		<table>
+			<tr>
+				<th>게시글 번호</th>
+				<th>제목</th>
+				<th>작성자 ()추후 아이디로 변경)</th>
+			</tr>
+	<c:forEach items="${boards}" var="boards">
+			<tr>
+				<td>${boards.id}</td>
+				<td>
+    				<a href="<c:url value='/detail/${boards.id}' />">${boards.title}</a>
+				</td>
+				<td>${boards.createdAt}</td>
+			</tr>
+	</c:forEach>
+		</table>
+</main>
+>>>>>>> 39cb0b06ccbaaa72bb02285140589c80fa7859fc
 
 
 				<li

@@ -1,10 +1,13 @@
 package com.carblre.repository.interfaces;
 
 import com.carblre.repository.model.Counsel;
+import com.carblre.repository.model.LawyerDetail;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import javax.lang.model.element.Name;
+
+import java.util.List;
 
 @Mapper
 public interface CounselRepository {
@@ -21,4 +24,5 @@ public interface CounselRepository {
     Counsel findStatusById(int id);
 
     int updateUserStatusById(@Param("id") int id,@Param("status") int status);
+
 }
