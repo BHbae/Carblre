@@ -377,11 +377,13 @@
             })
             .then(data => {
                 console.log('Response data:', data);
+                alert(data.message);
                 getComment('newest');
                 getReplyComment(${post.id});
             })
             .catch(error => {
-                console.error('Error:', error.message);
+                alert(error.message);
+                window.location.href = "http://localhost:8080/user/signIn";
             });
 
     }
@@ -446,6 +448,8 @@
                 console.log('getReplyComment 호출 시작');
                 getReplyComment(${post.id});
 
+                alert(data.message);
+
             })
             .catch(error => {
                 console.log(error.message);
@@ -507,11 +511,14 @@
                                 replyCommentSection.appendChild(replyDiv);
                             }
                         }
+
+                        alert(data.message);
                     });
                 }
             })
             .catch(error => {
-                console.log(error.message);
+                alert(error.message);
+                window.location.href = "http://localhost:8080/user/signIn";
             });
     }
 

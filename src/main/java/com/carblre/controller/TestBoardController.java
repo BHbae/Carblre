@@ -155,9 +155,13 @@ public class TestBoardController {
 	public ResponseEntity<?> addComment(@RequestBody CommentDTO commentDTO) {
 
 		UserDTO principal = (UserDTO) session.getAttribute("principal");
+
+		Map<String, String> response = new HashMap<>();
+
 		if (principal == null)
 		{
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Define.ENTER_YOUR_LOGIN);
+			response.put("message", Define.ENTER_YOUR_LOGIN);
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
 		}
 
 		CommentDTO commentBuilder = CommentDTO.builder()
@@ -180,19 +184,21 @@ public class TestBoardController {
 	 * @return ResponseEntity
 	 */
 	@GetMapping("/deleteComment")
-	public ResponseEntity<String> deleteComment(@RequestParam(name="commentId") int commentId, @RequestParam(name="userId") int userId)
+	public ResponseEntity<?> deleteComment(@RequestParam(name="commentId") int commentId, @RequestParam(name="userId") int userId)
 	{
 		System.out.println("HELLO IT IS DELETE METHOD");
 		UserDTO principal = (UserDTO) session.getAttribute("principal");
-
+		Map<String, String> response = new HashMap<>();
 		if (principal == null)
 		{
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Define.ENTER_YOUR_LOGIN);
+			response.put("message", Define.ENTER_YOUR_LOGIN);
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
 		}
 
 		if (principal.getId() != userId)
 		{
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Define.NOT_AN_AUTHENTICATED_USER);
+			response.put("message", Define.NOT_AN_AUTHENTICATED_USER);
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
 		}
 
 		int result = commentService.deleteComment(commentId);
@@ -201,8 +207,8 @@ public class TestBoardController {
 		{
 			return ResponseEntity.status(500).build();
 		}
-
-		return ResponseEntity.ok("삭제하였습니다.");
+		response.put("message", "삭제하였습니다.");
+		return ResponseEntity.ok(response);
 
 	}
 
