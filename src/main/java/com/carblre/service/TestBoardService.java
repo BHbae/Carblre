@@ -8,13 +8,13 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
 
-import com.carblre.dto.DetailDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.carblre.dto.DetailDTO;
 import com.carblre.repository.interfaces.TestBoardRepository;
 import com.carblre.repository.model.Post;
 import com.carblre.utils.Define;
@@ -28,7 +28,7 @@ public class TestBoardService {
 	@Autowired
 	private TestBoardRepository boardRepository;
 
-	public DetailDTO selectByPostId(int postId){
+	public DetailDTO selectByPostId(int postId) {
 		DetailDTO dto = boardRepository.selectByPostId(postId);
 		return dto;
 	}
@@ -38,9 +38,6 @@ public class TestBoardService {
 		return post;
 	}
 
-
-	
-	
 	public List<Post> findAllBoards() {
 		List<Post> boards = boardRepository.findAllBoard();
 		return boards;
@@ -75,10 +72,7 @@ public class TestBoardService {
 
 		String uploadFileName = UUID.randomUUID() + "_" + mFile.getOriginalFilename();
 
-
-
 		String saveDirectory = uploadDir;
-
 
 		Path uploadPath1 = Paths.get(uploadDir);
 		if (!Files.exists(uploadPath1)) {
@@ -91,8 +85,7 @@ public class TestBoardService {
 
 		Path filePath = Paths.get(saveDirectory, uploadFileName);
 
-
-		try (OutputStream os = Files.newOutputStream(filePath)){
+		try (OutputStream os = Files.newOutputStream(filePath)) {
 			os.write(mFile.getBytes());
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();

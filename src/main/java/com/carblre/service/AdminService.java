@@ -11,6 +11,7 @@ import com.carblre.dto.admin.AdminTossHistoryDTO;
 import com.carblre.repository.interfaces.AdminRepository;
 import com.carblre.repository.model.AdminCrush;
 import com.carblre.repository.model.AdminUser;
+import com.carblre.repository.model.Notice;
 
 import lombok.RequiredArgsConstructor;
 

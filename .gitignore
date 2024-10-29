@@ -37,5 +37,5 @@ out/
 .vscode/
 
 # Ignore the application-secure.yml file
-application-secure.ymlcaches/
+application-secure.yml
 caches/

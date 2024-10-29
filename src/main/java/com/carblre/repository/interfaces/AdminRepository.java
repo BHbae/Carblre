@@ -10,6 +10,7 @@ import com.carblre.dto.admin.AdminPostDTO;
 import com.carblre.dto.admin.AdminTossHistoryDTO;
 import com.carblre.repository.model.AdminCrush;
 import com.carblre.repository.model.AdminUser;
+import com.carblre.repository.model.Notice;
 
 @Mapper
 public interface AdminRepository {

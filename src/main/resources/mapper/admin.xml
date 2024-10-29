@@ -58,4 +58,5 @@
 	<select id="readAllPayment" resultType="com.carblre.dto.admin.AdminTossHistoryDTO">
 		select * from toss_history_tb
 	</select>
+	
 </mapper>
