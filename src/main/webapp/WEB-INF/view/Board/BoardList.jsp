@@ -14,7 +14,9 @@
 	<c:forEach items="${boards}" var="boards">
 			<tr>
 				<td>${boards.id}</td>
-				<td><a href="/">${boards.title}</a></td>
+				<td>
+    				<a href="<c:url value='/board/detail/${boards.id}' />">${boards.title}</a>
+				</td>
 				<td>${boards.createdAt}</td>
 			</tr>
 	</c:forEach>

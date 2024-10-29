@@ -29,6 +29,8 @@ public class Define {
 	public static final String ERROR_PAYMENT_FAILED = "결제에 실패하였습니다. 다시 시도해 주세요";
 
 	// User
+	public static final String NOT_MATCH_ACCOUNT_INFO = "아이디 혹은 비밀번호가 일치하지 않습니다"; // 아이디, 비밀번호 구분 X
+	public static final String NOT_EXISTING_USER = "회원 정보가 존재하지 않습니다.";
 	public static final String ENTER_YOUR_LOGIN = "로그인 먼저 해주세요.";
 	public static final String ENTER_YOUR_ID = "아이디를 입력해 주세요.";
 	public static final String NOT_ID = "존재하지 않는 아이디입니다.";

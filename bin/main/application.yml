@@ -9,7 +9,14 @@ server:
       enabled: true # ? ??? ?? ??? ??
 
 spring:
+  profiles:
+    default: secure
+  thymeleaf:
+    enabled: false
   mvc:
+    contentnegotiation:
+      media-types:
+        mp4: video/mp4
     view:
       prefix: /WEB-INF/view/ #JSP??? ??? ???? ???? ?????.
       suffix: .jsp #? ??? ???? ??? ?? ???? ?????.
@@ -48,5 +55,11 @@ logging:
   level:
     org.apache.ibatis: DEBUG #MyBatis ?? ??? DEBUG? ???? ???? SQL ??? ?? ?? ??? ??? ?????.
 
+payment:
+  toss:
+    test_client_api_key : test_ck_4yKeq5bgrpz5kx50PN943GX0lzW6
+    test_secrete_api_key : test_sk_Gv6LjeKD8aPB12aJqQeerwYxAdXy
+    success_url : "http://localhost:8080/api/v1/payments/toss/success"
+    fail_url : "http://localhost:8080/api/v1/payments/toss/fail"
 file:
-  upload-dir: C:\Users\KDP\git\Carblre\src\main\resources\uploardVidio
+  upload-dir: C:\Users\KDP\git\Carblre\src\main\resources\static\uploardVidio

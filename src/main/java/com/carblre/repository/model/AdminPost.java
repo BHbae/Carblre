@@ -21,6 +21,6 @@ public class AdminPost {
 	private String title;
 	private String content;
 	private String originFileName; // 업로드 동영상 이름
-	private String uploardFileName; // 업로드 동영상 이름
+	private String uploadFileName; // 업로드 동영상 이름
 	private Timestamp createdAt;
 }
