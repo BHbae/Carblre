@@ -220,6 +220,7 @@ public class EmailController {
     @GetMapping("/getId")
     public ResponseEntity<Map<String, String>> getIdBysendCode(@RequestParam("email") String email,
                                                         ValidationCodeDTO validationCodeDTO) {
+        System.out.println("fetch받음"+email);
         // UUID 랜덤 코드 생성
         String emailValidationCode = UUID.randomUUID().toString();
         // validationCode 를 위의 랜덤 코드로 설정
@@ -260,4 +261,11 @@ public class EmailController {
 
     }
 
+    @GetMapping("/validate")
+    public ResponseEntity<Map<String, String>> tempValidate() {
+        Map<String, String> response = new HashMap<>();
+        System.out.println("fetch 들어옴");
+        response.put("message", "인증이 완료되었습니다.");
+        return ResponseEntity.ok(response);
+    }
 }
