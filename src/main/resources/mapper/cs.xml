@@ -21,6 +21,5 @@
 	<select id="countAllCs" resultType="int">
 		select count(*) from customer_service_tb
 	</select>
-	
 
 </mapper>

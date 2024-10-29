@@ -15,11 +15,11 @@
 		<div style="border-bottom: 1px solid #bababa;">
 			<div class="inner--container">
 				<ul class="sub--top--menu">
-					<li><a href="/board/boardList">의뢰자</a></li>
-					<li><a href="/aiounseling">AI 간편상담</a></li>
+					<li><a href="/notice/notice">의뢰자</a></li>
+					<li class="subtop--active"><a href="/aiounseling">AI 간편상담</a></li>
 					<li><a href="/notice/notice">변호사</a></li>
-					<li><a href="/notice/notice">공지사항</a></li>
-					<li class="subtop--active"><a href="/cs/cs">고객센터</a></li>
+					<li class="subtop--active"><a href="/notice/notice">공지사항</a></li>
+					<li><a href="/cs/cs">고객센터</a></li>
 				</ul>
 			</div>
 		</div>
@@ -28,20 +28,20 @@
 
 	<div class="inner--container">
 		<div class="sub--content">
-			<h2 class="prih2">고객센터</h2>
+			<h2 class="prih2">공지사항</h2>
 
-			<form action="/cs/created" method="POST" enctype="multipart/form-data">
-				<input class="" type="text" name="title" id="title" placeholder="제목을 입력해주세요">
-				<textarea type="text" name="content" id="content" placeholder="내용을 입력해주세요"></textarea>
+			<form action="/cs/edit/${dto.id}" method="POST" enctype="multipart/form-data">
+				<input class="" type="text" name="title" id="title" value="${dto.title}">
+				<textarea type="text" name="content" id="content">${dto.request}</textarea>
 
-				<div class="btn btn--wrap">
-					<div id="list--button">
-						<a href="/cs/cs">목록</a>
-					</div>
-					<div id="enter--button">
-						<button type="submit">글쓰기</button>
-					</div>
+			<div class="btn btn--wrap">
+				<div id="list--button">
+					<a href="/notice/notice">목록</a>
 				</div>
+				<div id="enter--button">
+					<button type="submit">수정하기</button>
+				</div>
+			</div>
 			</form>
 		</div>
 

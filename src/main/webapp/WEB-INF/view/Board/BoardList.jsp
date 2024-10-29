@@ -47,7 +47,7 @@
             </table>
             <div class="btn btn--wrap">
                 <div id="write--button">
-                    <a href="/cs/write">글쓰기</a>
+                    <a href="/board/createBoard">글쓰기</a>
                 </div>
             </div>
             <ul class="page--button btn">

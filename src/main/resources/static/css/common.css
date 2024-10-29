@@ -303,10 +303,10 @@ button,
     justify-content: space-between;
 }
 .map--left{
-    width: 42%;
+    width: 40%;
 }
 .map--right{
-    width: 55%;
+    width: 56%;
 }
 .cls-2 {
     stroke: #8c8c8c40;
@@ -328,9 +328,22 @@ button,
 .cls-2:focus-visible  {
     fill: #A7B3C8    
 }
-.\!fill-\ {
-    fill: #254b80 !important;
+.fill- {
+    fill: #b19837 !important;
 }
+.fill-white {
+    fill: #fff !important;
+}
+.ease-linear{
+    transition-timing-function:linear
+}
+.map--tab div{
+    display: none;
+}
+.map--tab div.active{
+    display: block;
+}
+path{}
 /* 지도 END */
 
 /* qna START */
@@ -342,7 +355,10 @@ button,
     width: 290px;
     margin: 0 auto 50px;
 }
-
+.map--click:focus {
+    outline: 2px solid blue; /* 원하는 색상으로 외곽선 추가 */
+    outline-offset: 2px; /* 외곽선과 요소 사이의 간격 조정 */
+}
 #main--qna h1::after {
     content: '';
     width: 50px;
