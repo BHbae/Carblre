@@ -22,7 +22,6 @@ public class MyCounselDTO {
     private String content;
     private int lawyerId;
     private int status;
-    private int userStatus;
 
 
     public Counsel toCounselDTO(){
@@ -40,7 +39,7 @@ public class MyCounselDTO {
         return  Counsel.builder()
                 .id(id)
                 .userId(userId).startTime(startTimestamp).endTime(endTimestamp).content(content)
-                .lawyerId(lawyerId).status(status).userStatus(userStatus)
+                .lawyerId(lawyerId).status(status)
                 .build();
     }
 

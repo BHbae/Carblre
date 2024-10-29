@@ -223,12 +223,15 @@ public class UserService {
 
 	}
 
-	public List<LawyerReservationDTO> findReservation() {
+	public List<LawyerReservationDTO> findReservation(int id) {
 
-		return userRepository.findReservation();
+		return userRepository.findReservation(id);
 	}
 
+	public List<LawyerReservationDTO> findReservationLawyer() {
 
+		return userRepository.findReservationLawyer();
+	}
 
 }
 

@@ -216,4 +216,48 @@ public class EmailController {
         return ResponseEntity.ok(response);
     }
 
+
+    @GetMapping("/getId")
+    public ResponseEntity<Map<String, String>> getIdBysendCode(@RequestParam("email") String email,
+                                                        ValidationCodeDTO validationCodeDTO) {
+        // UUID 랜덤 코드 생성
+        String emailValidationCode = UUID.randomUUID().toString();
+        // validationCode 를 위의 랜덤 코드로 설정
+        validationCodeDTO.setValidationCode(emailValidationCode);
+        // 유효성 검사, 형식 검증 또는 발송 성공에 대한 response를 Map 자료구조를 사용해서 생성합니다.
+        Map<String, String> response = new HashMap<>();
+        // SELECT 문을 실행시켜서 결과가 있다면 1(중복 O), 결과가 없다면 0(중복 X)
+        int result = userService.checkDuplicateEmail(email);
+
+        if (result == 0) {
+            response.put("message", "존재하지 않는 이메일 입니다.");
+            return ResponseEntity.badRequest().body(response);
+        }
+
+        // 이메일 유효성 검사
+        if (email == null || email.trim().isEmpty()) {
+
+            // 빈값에 대한 response 생성
+            response.put("message", "E-mail을 입력해주세요.");
+            return ResponseEntity.badRequest().body(response);
+        }
+
+        // 이메일 형식 검증 (간단한 정규 표현식 사용)
+        if (!email.matches("^[\\w-_.+]*[\\w-_.]@[\\w]+\\.[a-zA-Z]{2,}$")) {
+            System.out.println("유효하지 않은 곳에 들어왔습니다.");
+
+            // 유효하지 않다는 response 생성
+            response.put("message", "유효하지 않은 E-mail입니다.");
+            return ResponseEntity.badRequest().body(response);
+        }
+        // 발송 버튼을 누른 순간의 시간을 기록합니다.
+        sentTime = System.currentTimeMillis();
+
+        // E-mail을 전송합니다. (수신자, 제목, 내용)
+        emailService.sendMail(email, "이메일 인증번호","sendValidateCode", emailValidationCode);
+        response.put("message", "인증 코드를 발송하였습니다.");
+        return ResponseEntity.ok(response);
+
+    }
+
 }

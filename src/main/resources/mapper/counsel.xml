@@ -30,14 +30,17 @@
 	<select id="findStatusById"  resultType="com.carblre.repository.model.Counsel">
 		select status
 		from counsel_request_tb
-		where user_id = #{id}
+		where user_id = #{userId}
+		and id = #{id}
+
 	</select>
 
 	<!-- 유저 예약 취소 -->
 	<update id="updateUserStatusById" >
 		UPDATE counsel_request_tb
-		SET user_status = #{status}
-		WHERE user_id = #{id}
+		SET status = #{status}
+		WHERE user_id = #{userId}
+		and  id=#{id}
 	</update>
 
 	<!-- 유저 예약 신청 -->

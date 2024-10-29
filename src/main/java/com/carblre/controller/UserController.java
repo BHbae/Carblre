@@ -2,6 +2,7 @@ package com.carblre.controller;
 
 import java.util.HashMap;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -685,10 +686,9 @@ public class UserController {
             throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
         }
         // 유저 인포 해야됨
-        MyCounselDTO counsel= counselService.findMyCounselByUserId(userDTO.getId());
-        UserDTO user=userService.findById(counsel.getLawyerId());
-        model.addAttribute("counsel",counsel);
-        model.addAttribute("user",user);
+        List<MyCounselDTO> counsel= counselService.findMyCounselByUserId(userDTO.getId());
+        System.out.println("counsel확인"+counsel);
+        model.addAttribute("counselList",counsel);
 
         return  "counsel/checkUserCounsel";
     }

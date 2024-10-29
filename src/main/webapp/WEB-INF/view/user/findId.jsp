@@ -34,7 +34,7 @@
            const email = document.getElementById('email').value;
            console.log('Email : ' + email);
 
-           fetch('http://localhost:8080/send-mail/email?email=' + email)
+           fetch('http://localhost:8080/send-mail/getId?email=' + email)
                .then(response => {
                    if (!response.ok) {
                        return response.json().then(data => {
@@ -53,7 +53,6 @@
                    // console.log(data.message.toString());
                    // username.innerText = data.message.toString();
                    const sendBtn = document.getElementById('emailCode');
-                   const checkValidate = document.getElementById('checkValidate');
                    sendBtn.disabled = true;
                    checkValidate.disabled = false;
                })
@@ -64,56 +63,22 @@
                });
        }
 
-    function checkValidate() {
-
-           fetch('http://localhost:8080/send-mail/checkValidate')
-               .then(response => {
-                   if (!response.ok) {
-                       return response.json().then(data => {
-                           throw new Error(data.message || '알 수 없는 에러가 발생했습니다.');
-                       });
-                   }
-                   return response.json();  // 응답을 JSON 형식으로 변환
-               })
-               .then(data => {
-                   // 서버로부터 받은 응답 데이터를 처리
-                   console.log('Success:', data);
-                   // 서버에서 보낸 메시지를 alert으로 표시
-                   alert(data.message);
-                   const signUpBtn = document.getElementById('signUp');
-                   const emailInput = document.getElementById('userEmail');
-                   const checkValidateBtn = document.getElementById('checkValidate');
-
-                   signUpBtn.disabled = false;
-                   checkValidateBtn.disabled = true;
-                   emailInput.readOnly = true;
-
-               })
-               .catch(error => {
-                   console.log('Error:', error);
-                   // 에러 메시지를 alert으로 표시
-                   alert(error.message);
-               });
-       }
-
-       const autoHyphen = (target) => {
-           target.value = target.value
-               .replace(/[^0-9]/g, '')
-               .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
-       }
-
-async function handleSubmit(event) {
+ function handleSubmit(event) {
     event.preventDefault();  // 기본 폼 제출 방지
     const email = document.getElementById('email').value;  // 폼에서 가져오는 이메일 값
 
     try {
-        const response = await fetch('/user/email?email=' + email);
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
-        const data = await response.json();
+      fetch('/user/email?email=' + email);
+       .then(response => {
+           if (!response.ok) {
+               return response.json().then(data => {
+                   throw new Error(data.message || '알 수 없는 에러가 발생했습니다.');
+               });
+           }
+           // 응답을 JSON 형식으로 변환
+           return response.json();
+            })
+        then(data => {
         console.log('Received data:', data);  // 데이터가 제대로 전달되는지 확인
 
         // 데이터가 null이거나 undefined일 경우 기본값 설정

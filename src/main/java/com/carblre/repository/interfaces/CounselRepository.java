@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface CounselRepository {
     // 유저 예약현황
-    Counsel findCounselOfUserById(int userId);
+    List<Counsel> findCounselOfUserById(int userId);
 
     // 변호사 예약 현황
     Counsel findCounselOfLawyerById(int userId);
@@ -19,9 +19,9 @@ public interface CounselRepository {
     int updateStatusById(@Param("id") int id,@Param("status") int status);
 
     // id값으로 조회
-    Counsel findStatusById(int id);
+    Counsel findStatusById(@Param("userId")int userId,@Param("id")int id);
 
-    int updateUserStatusById(@Param("id") int id,@Param("status") int status);
+    int updateUserStatusById(@Param("userId") int userId,@Param("status") int status,@Param("id")int id);
 
     int insertCounsel(Counsel counsel);
 

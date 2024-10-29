@@ -70,6 +70,9 @@ public interface UserRepository {
 	 // 변호사 전체조회
 	List<UserDTO> findAllLawyer();
 
-	// 변호사 전체정보 조회
-	List<LawyerReservationDTO> findReservation();
+	// 변호사 예약 조회
+	List<LawyerReservationDTO> findReservation(int id);
+
+	// 예약된 변호사 정보 조회
+	List<LawyerReservationDTO> findReservationLawyer();
 }

@@ -21,10 +21,14 @@ public class CounselService {
      * @param id //userId
      * @return
      */
-    public MyCounselDTO findMyCounselByUserId(int id){
-       Counsel counsel= counselRepository.findCounselOfUserById(id);
+    public List<MyCounselDTO> findMyCounselByUserId(int id){
+       List<Counsel> counsel= counselRepository.findCounselOfUserById(id);
+        List<MyCounselDTO> dto=new ArrayList<>();
         System.out.println(counsel);
-       return  counsel.toMycounselDTO();
+           for(Counsel coun :counsel){
+              dto.add(coun.toMycounselDTO());
+           }
+       return  dto;
     }
 
     /**
@@ -51,8 +55,8 @@ public class CounselService {
         return counselRepository.updateStatusById(id,status);
     }
 
-    public MyCounselDTO findMyStatusById(int id){
-        Counsel counsel= counselRepository.findStatusById(id);
+    public MyCounselDTO findMyStatusById(int userId,int id){
+        Counsel counsel= counselRepository.findStatusById(userId,id);
         return  MyCounselDTO.builder().status(counsel.getStatus()).build();
     }
 
@@ -62,9 +66,9 @@ public class CounselService {
      * @param status
      * @return
      */
-    public int updateUserStatusById(int id, int status) {
+    public int updateUserStatusById(int userId, int status,int id) {
 
-        return counselRepository.updateUserStatusById( id, status);
+        return counselRepository.updateUserStatusById(userId, status,id);
 
     }
 

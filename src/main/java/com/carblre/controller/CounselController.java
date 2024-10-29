@@ -15,10 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,15 +62,15 @@ public class CounselController {
      * @return
      */
     @PostMapping("/cancelStatus")
-    public ResponseEntity<Map<String, Object>> cancelStatusProc(@RequestBody Map<String, String> reqData,
-                                        HttpSession session ) {
+    public ResponseEntity<Map<String, Object>> cancelStatusProc(@RequestBody Map<String, String> reqData,HttpSession session ) {
         UserDTO userDTO = (UserDTO) session.getAttribute("principal");
 
         int status = Integer.parseInt(reqData.get("status"));
-        System.out.println("status"+status);
+        int id = Integer.parseInt(reqData.get("id"));
+        System.out.println("status"+status+"id"+id);
         Map<String, Object> response = new HashMap<>();
-        int result = counselService.updateUserStatusById(userDTO.getId(),status);// 패스워드 확인
-        MyCounselDTO counselDTO=counselService.findMyStatusById(userDTO.getId());
+        int result = counselService.updateUserStatusById(userDTO.getId(),status,id);// 패스워드 확인
+        MyCounselDTO counselDTO=counselService.findMyStatusById(userDTO.getId(),id);
         System.out.println("result" + result);
         if (result==1) {
             response.put("success", true);
@@ -87,7 +84,7 @@ public class CounselController {
 
     @GetMapping("/reservation")
     public String reservation(Model model){
-        List<LawyerReservationDTO> lawyerList= userService.findReservation();
+        List<LawyerReservationDTO> lawyerList= userService.findReservationLawyer();
         System.out.println(lawyerList);;
         model.addAttribute("dtoList",lawyerList);
         return "counsel/counselReservation";
@@ -120,4 +117,16 @@ public class CounselController {
 
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/getReservation")
+    public ResponseEntity<Map<String,Object>> reservation(@RequestParam(name = "id")int id){
+        System.out.println("sadasdasa");
+        List<LawyerReservationDTO> lawyerList= userService.findReservation(id);
+        System.out.println(lawyerList);
+        Map<String, Object> response = new HashMap<>();
+            response.put("data", lawyerList);
+
+        return ResponseEntity.ok(response);
+    }
+
 }
