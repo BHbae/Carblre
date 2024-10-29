@@ -57,4 +57,15 @@
 		from counsel_request_tb
 	</select>
 
+	<select id="findReservationsByDateTime" resultType="com.carblre.dto.userdto.LawyerReservationDTO">
+		SELECT id, user_id, lawyer_id, status, start_time, end_time, created_at, cancel_at
+		FROM counsel_request_tb
+		WHERE YEAR(start_time) = #{year}
+		  AND MONTH(start_time) = #{month}
+		  AND DAY(start_time) = #{day}
+		  AND HOUR(start_time) = #{hour}
+		  AND MINUTE(start_time) = #{minute}
+		  AND lawyer_id = #{lawyer_id}
+	</select>
+
 </mapper>

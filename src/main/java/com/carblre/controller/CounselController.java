@@ -9,16 +9,15 @@ import com.carblre.repository.model.Counsel;
 import com.carblre.repository.model.LawyerDetail;
 import com.carblre.repository.model.User;
 import com.carblre.service.CounselService;
+import com.carblre.service.LawyerService;
 import com.carblre.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,8 +29,14 @@ import java.util.Map;
 @RequestMapping("/counsel")
 public class CounselController {
 
-    private final CounselService counselService;
-    private final UserService userService;
+    @Autowired
+    private CounselService counselService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private LawyerService lawyerService;
 
 
     @PostMapping("/updateStatus")
@@ -87,7 +92,7 @@ public class CounselController {
 
     @GetMapping("/reservation")
     public String reservation(Model model){
-        List<LawyerReservationDTO> lawyerList= userService.findReservation();
+        List<LawyerReservationDTO> lawyerList= counselService.findReservation();
         System.out.println(lawyerList);;
         model.addAttribute("dtoList",lawyerList);
         return "counsel/counselReservation";
@@ -119,5 +124,18 @@ public class CounselController {
         }
 
         return ResponseEntity.ok(response);
+    }
+
+
+    @GetMapping("/reservations")
+    public List<LawyerReservationDTO> getReservations(
+            @RequestParam("year") int year,
+            @RequestParam("month") int month,
+            @RequestParam("day") int day,
+            @RequestParam("hour") int hour,
+            @RequestParam("minute") int minute,
+            @RequestParam("id") int id) {
+
+        return counselService.findReservationsByDateTime(year, month, day, hour, minute, id);
     }
 }

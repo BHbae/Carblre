@@ -1,5 +1,7 @@
 package com.carblre.repository.interfaces;
 
+import com.carblre.dto.userdto.LawyerReservationDTO;
+import com.carblre.dto.userdto.UserDTO;
 import com.carblre.repository.model.Counsel;
 import com.carblre.repository.model.LawyerDetail;
 import org.apache.ibatis.annotations.Mapper;
@@ -28,4 +30,18 @@ public interface CounselRepository {
 
     List<Counsel> findCounselAll();
 
+
+
+
+
+    // 변호사 전체정보 조회
+    List<LawyerReservationDTO> findReservation();
+    List<LawyerReservationDTO> findReservationsByDateTime(
+            @Param("year") int year,
+            @Param("month") int month,
+            @Param("day") int day,
+            @Param("hour") int hour,
+            @Param("minute") int minute,
+            @Param("id") int id
+    );
 }

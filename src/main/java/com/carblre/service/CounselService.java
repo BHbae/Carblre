@@ -1,12 +1,21 @@
 package com.carblre.service;
 
 import com.carblre.dto.MyCounselDTO;
+import com.carblre.dto.userdto.LawyerDetailDTO;
 import com.carblre.dto.userdto.LawyerReservationDTO;
+import com.carblre.dto.userdto.LawyerSignUpDTO;
+import com.carblre.dto.userdto.UserDTO;
 import com.carblre.repository.interfaces.CounselRepository;
 import com.carblre.repository.model.Counsel;
+import com.carblre.repository.model.LawyerDetail;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +77,25 @@ public class CounselService {
 
     }
 
+
+    /**
+     *  전체 예약현황 조회
+     * @return
+     */
+    public List<LawyerReservationDTO> findCounselAll() {
+        List<LawyerReservationDTO> reservationDTOList=new ArrayList<>();
+        List<Counsel> counsel=counselRepository.findCounselAll();
+        for(Counsel list : counsel){
+            reservationDTOList.add(list.toReservationDTO());
+        }
+        return reservationDTOList;
+    }
+
+    public List<LawyerReservationDTO> findReservation() {
+
+        return counselRepository.findReservation();
+    }
+
     /**
      *  변호 상담 예약
      * @param id
@@ -82,16 +110,7 @@ public class CounselService {
        return  counselRepository.insertCounsel(counsel);
     }
 
-    /**
-     *  전체 예약현황 조회
-     * @return
-     */
-    public List<LawyerReservationDTO> findCounselAll() {
-        List<LawyerReservationDTO> reservationDTOList=new ArrayList<>();
-        List< Counsel> counsel=counselRepository.findCounselAll();
-        for(Counsel list : counsel){
-            reservationDTOList.add(list.toReservationDTO());
-        }
-        return reservationDTOList;
+    public List<LawyerReservationDTO> findReservationsByDateTime(int year, int month, int day, int hour, int minute, int id) {
+        return counselRepository.findReservationsByDateTime(year, month, day, hour, minute, id);
     }
 }

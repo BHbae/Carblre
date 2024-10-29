@@ -119,13 +119,6 @@
     </select>
 
 
-	<!-- 모든 변호사 조회 -->
-	<select id="findAllLawyer" resultType="com.carblre.dto.userdto.UserDTO">
-		SELECT * FROM user_tb
-		where status=1 and
-		role= 'lawyer'
-	</select>
-
 	<!-- 모든 변호사 정보 조회 -->
 	<select id="findReservation" resultType="com.carblre.dto.userdto.LawyerReservationDTO">
 		SELECT

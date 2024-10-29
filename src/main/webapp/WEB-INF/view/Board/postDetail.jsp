@@ -377,7 +377,7 @@
             })
             .then(data => {
                 console.log('Response data:', data);
-                alert(data.message);
+                alert('test : ', data.message);
                 getComment('newest');
                 getReplyComment(${post.id});
             })
@@ -512,7 +512,6 @@
                             }
                         }
 
-                        alert(data.message);
                     });
                 }
             })
@@ -579,8 +578,5 @@
     }
 
 </script>
-<<<<<<< HEAD
 
-=======
->>>>>>> 39cb0b06ccbaaa72bb02285140589c80fa7859fc
 <%@ include file="../layout/footer.jsp"%>
