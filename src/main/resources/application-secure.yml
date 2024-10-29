@@ -39,5 +39,5 @@ spring:
 
 openai:
   api:
-    key: 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
+    key:
 
