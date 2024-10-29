@@ -1,0 +1,38 @@
+form.infoupdate {
+    width: 50%;
+    margin: auto;
+}
+
+.infoupdate {
+    width: 50%;
+    margin: auto;
+}
+
+.info {
+    font-size: 24px;
+    line-height: 1.5;
+    margin-bottom: 50px;
+}
+
+.update-info{
+    font-size: 16px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group.emailsend {
+    margin-bottom: 5px;
+}
+
+form.infoupdate #edit--button {
+    border: 0;
+    margin-top: 50px;
+    float: right;
+}

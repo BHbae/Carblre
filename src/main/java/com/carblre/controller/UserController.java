@@ -6,13 +6,12 @@ import java.util.Map;
 import java.util.UUID;
 
 import com.carblre.config.MyWebSocketHandler;
+import com.carblre.dto.MyCounselDTO;
 import com.carblre.dto.SignUpDTO;
 import com.carblre.dto.userdto.*;
-import com.carblre.handler.GlobalControllerAdvice;
 import com.carblre.handler.exception.UnAuthorizedException;
-import org.apache.coyote.Response;
+import com.carblre.service.CounselService;
 import org.apache.ibatis.javassist.NotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.carblre.dto.userdto.KakaoOAuthToken;
 import com.carblre.dto.userdto.SignDTO;
 import com.carblre.dto.userdto.UserDTO;
@@ -25,7 +24,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
-import org.springframework.http.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,15 +33,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import com.carblre.service.UserService;
-
-import jakarta.servlet.http.HttpSession;
-import lombok.RequiredArgsConstructor;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 @Slf4j
 @Controller
@@ -77,6 +66,7 @@ public class UserController {
 
     private final UserService userService;
     private final QrcodeService qrcodeService;
+    private final CounselService counselService;
 
     private final HttpSession session;
 
@@ -596,6 +586,7 @@ public class UserController {
             // 엔티티가 존재하지 않을 때 NotFoundException 던짐
             throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
         }
+
         // 유저 인포 해야됨
         return "user/myPage";
     }
@@ -609,7 +600,7 @@ public class UserController {
             throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
         }
 
-        UserDTO originUser = userService.findById(userDTO.getId());
+        UserDTO originUser = userService.findById((userDTO.getId()));
 
         model.addAttribute("originUser", originUser);
         return "user/infoUpdate";
@@ -625,7 +616,7 @@ public class UserController {
     public String infoUpdateProc(UserDTO updateDto) {
 
 
-        userService.updateInfo(updateDto.getEmail(), updateDto.getId());
+        userService.updateInfo(updateDto.getEmail(),(updateDto.getId()));
 
         return "redirect:/user/index";
     }
@@ -652,7 +643,7 @@ public class UserController {
     @PostMapping("/checkOriginPass")
     public ResponseEntity<Map<String, Object>> checkOriginPassProc(@RequestBody Map<String, String> reqData) {
         UserDTO userDTO = (UserDTO) session.getAttribute("principal");
-        String dbCheckPass = userService.findById(userDTO.getId()).getPassword();
+        String dbCheckPass = userService.findById((userDTO.getId())).getPassword();
         System.out.println("db비번" + dbCheckPass);
 
         String originpass = reqData.get("originPass");
@@ -671,7 +662,47 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
+    /**
+     *  유저의 예약현황 확인 페이지
+     * @param model
+     * @return
+     */
+    @GetMapping("checkUserCounsel")
+    public String checkUserCounselPage(Model model){
+        UserDTO userDTO = (UserDTO) session.getAttribute("principal");
+        if (userDTO == null) {
+            // 엔티티가 존재하지 않을 때 NotFoundException 던짐
+            throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
+        }
+        // 유저 인포 해야됨
+        MyCounselDTO counsel= counselService.findMyCounselByUserId(userDTO.getId());
+        UserDTO user=userService.findById(counsel.getLawyerId());
+        model.addAttribute("counsel",counsel);
+        model.addAttribute("user",user);
 
+        return  "counsel/checkUserCounsel";
+    }
+
+    /**
+     *  변호사 예약 체크 현황
+     * @param model
+     * @return
+     */
+    @GetMapping("checkLawyerCounsel")
+    public String checkLawyerCounselPage(Model model){
+        UserDTO userDTO = (UserDTO) session.getAttribute("principal");
+        if (userDTO == null) {
+            // 엔티티가 존재하지 않을 때 NotFoundException 던짐
+            throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
+        }
+        // 유저 인포 해야됨
+        MyCounselDTO counsel= counselService.findMyCounselByLawyerId(userDTO.getId());
+        UserDTO user=userService.findById(counsel.getLawyerId());
+        model.addAttribute("counsel",counsel);
+        model.addAttribute("user",user);
+
+        return  "counsel/checkLawyerCounsel";
+    }
 
 
 }

@@ -40,6 +40,7 @@ public class UserService {
 			System.out.println("User phoneNumber : " + signUpDTO.getPhoneNum());
 			String hashPassword = passwordEncoder.encode(signUpDTO.getPassword());
 			signUpDTO.setPassword(hashPassword);
+			signUpDTO.setRole("user");
 			userRepository.insert(signUpDTO.toUser());
 		} catch (Exception e) {
 			System.out.println("Error in Create User : " + e.getMessage());
@@ -151,18 +152,22 @@ public class UserService {
 			System.out.println("User phoneNumber : " + signUpDTO.getPhoneNum());
 			String hashPassword = passwordEncoder.encode(signUpDTO.getPassword());
 			signUpDTO.setPassword(hashPassword);
-			signUpDTO.setRole("lawyer[temp]"); // 임시 변호사 role
+			signUpDTO.setRole("lawyer"); // 임시 변호사 role
 			signUpDTO.setSite("서버");
-			userRepository.insert(signUpDTO.toUser()); // USER_TB INSERT TODO 현재 User 모델에 Site가 없어서 추가해야됨
-			// 여기까지 user_tb insert
 
+			// 이름지정
+			signUpDTO.setGetProfileName(signUpDTO.getProfileImage().getOriginalFilename()); // 파일객체에서 파일이름
+			String uuidName=signUpDTO.UUIDUploardProfileName();
+			System.out.println("uuid"+uuidName);
+			String uploadName=signUpDTO.getUPLOAD_DIR() +uuidName  ;//파일경로와 UUID파일이름
+			Path path = Paths.get(uploadName); // 경로설정
+			signUpDTO.setUploardProfileName(uuidName);
+
+			// 여기까지 user_tb insert
+			userRepository.insert(signUpDTO.toUser()); // USER_TB INSERT TODO 현재 User 모델에 Site가 없어서 추가해야됨
 			// 가장최근 AUTO id값 바로받아 값 이식
 			signUpDTO.setUserId(userRepository.getLastInsertId());
 			// 파일 저장 경로 설정 (상대 경로, 로컬 디렉토리)
-			signUpDTO.setGetProfileName(signUpDTO.getProfileImage().getOriginalFilename()); // 파일객체에서 파일이름
-			String uploadName=signUpDTO.getUPLOAD_DIR() + signUpDTO.UUIDUploardProfileName(); //파일경로와 UUID파일이름
-			Path path = Paths.get(uploadName); // 경로설정
-			signUpDTO.setUploardProfileName(signUpDTO.UUIDUploardProfileName());
 			// 디렉토리가 존재하지 않을 경우 생성
 			File directory = new File(signUpDTO.getUPLOAD_DIR());
 			if (!directory.exists()) {
@@ -177,14 +182,12 @@ public class UserService {
 		}
 	}
 
-	/**
-	 *  qr코드 토큰
-	 * @param token
-	 * @return
-	 */
+
 //	public UserDTO findByToken(String token) {
 //
 //	}
+
+
 }
 
 

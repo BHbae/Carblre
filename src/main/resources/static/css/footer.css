@@ -1,0 +1,46 @@
+footer{
+    width: 100%;
+    padding: 100px 0;
+    background-color: #000;
+}
+#in--footer{
+    width: 90%;
+    margin: auto;
+    color: #bababa;
+}
+#footer--logo{
+    width: 200px;
+    height: 70px;
+    background-color: #fff;
+    margin-bottom: 30px;
+}
+#footer--container p{
+    margin-bottom: 10px;
+}
+#footer--container p:last-child{
+    margin-bottom: 0;
+}
+#scroll--top {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    width: 60px;
+    height: 60px;
+    z-index: 99;
+    background-color: #ffeb60;
+    cursor: pointer;
+}
+#scroll--top a{
+    display: block;
+}
+#scroll--top span{
+    display: block;
+    text-align: center;
+    font-size: 14px;
+}
+#scroll--top div {
+    font-size: 14px;
+    text-align: center;
+    transform: rotateZ(270deg);
+    margin-top: 12px;
+}
