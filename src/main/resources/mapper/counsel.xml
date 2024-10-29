@@ -51,4 +51,10 @@
 		#{lawyerId},#{status})
 	</insert>
 
+	<!-- 전체 counsel 조회 -->
+	<select id="findCounselAll"  resultType="com.carblre.repository.model.Counsel">
+		select *
+		from counsel_request_tb
+	</select>
+
 </mapper>

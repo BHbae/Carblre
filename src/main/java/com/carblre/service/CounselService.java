@@ -7,6 +7,9 @@ import com.carblre.repository.model.Counsel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class CounselService {
@@ -77,5 +80,18 @@ public class CounselService {
        counsel.setStatus(0);
         System.out.println("counsel:"+counsel);
        return  counselRepository.insertCounsel(counsel);
+    }
+
+    /**
+     *  전체 예약현황 조회
+     * @return
+     */
+    public List<LawyerReservationDTO> findCounselAll() {
+        List<LawyerReservationDTO> reservationDTOList=new ArrayList<>();
+        List< Counsel> counsel=counselRepository.findCounselAll();
+        for(Counsel list : counsel){
+            reservationDTOList.add(list.toReservationDTO());
+        }
+        return reservationDTOList;
     }
 }

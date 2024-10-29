@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import javax.lang.model.element.Name;
+import java.util.List;
 
 @Mapper
 public interface CounselRepository {
@@ -23,4 +24,6 @@ public interface CounselRepository {
     int updateUserStatusById(@Param("id") int id,@Param("status") int status);
 
     int insertCounsel(Counsel counsel);
+
+    List<Counsel> findCounselAll();
 }

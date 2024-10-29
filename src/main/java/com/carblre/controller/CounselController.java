@@ -87,24 +87,9 @@ public class CounselController {
 
     @GetMapping("/reservation")
     public String reservation(Model model){
-
-        List<UserDTO> userList =userService.findAllLawyer();
-        List<LawyerDetailDTO> lawyerList= userService.findAllLawyerDetail();
-        List<LawyerReservationDTO> dtoList=new ArrayList<>();
-        for (UserDTO user : userList) {
-            for (LawyerDetailDTO lawyer : lawyerList) {
-            if(user.getId()==lawyer.getUserId()){
-                LawyerReservationDTO reservation = LawyerReservationDTO.builder()
-                        .lawyerId(user.getId())
-                        .lawyerName(user.getUserName())
-                        .counselingAmount(lawyer.getCounselingAmount())
-                        .lawFirm(lawyer.getLawFirm())
-                        .build();
-                dtoList.add(reservation);
-                }
-            }
-        }
-        model.addAttribute("dtoList",dtoList);
+        List<LawyerReservationDTO> lawyerList= userService.findReservation();
+        System.out.println(lawyerList);;
+        model.addAttribute("dtoList",lawyerList);
         return "counsel/counselReservation";
     }
 

@@ -223,13 +223,9 @@ public class UserService {
 
 	}
 
-	public List<LawyerDetailDTO> findAllLawyerDetail() {
-		List<LawyerDetail> lawyerDetail=userRepository.findAllLawyerDetail();
-		List<LawyerDetailDTO> list=new ArrayList<>();
-		for (LawyerDetail lawyer : lawyerDetail) {
-			list.add(lawyer.toLawyerDetailDTO());
-		}
-		return list;
+	public List<LawyerReservationDTO> findReservation() {
+
+		return userRepository.findReservation();
 	}
 
 

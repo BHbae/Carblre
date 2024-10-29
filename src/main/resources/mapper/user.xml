@@ -114,7 +114,20 @@
 	</select>
 
 	<!-- 모든 변호사 정보 조회 -->
-	<select id="findAllLawyerDetail" resultType="com.carblre.repository.model.LawyerDetail">
-		SELECT * FROM lawyer_detail_tb
+	<select id="findReservation" resultType="com.carblre.dto.userdto.LawyerReservationDTO">
+		SELECT
+		l.user_id,
+		u.user_name AS lawyer_name,
+		l.counseling_amount,
+		l.law_firm,
+		c.start_time,
+		c.end_time
+		FROM lawyer_detail_tb AS l
+		LEFT JOIN user_tb AS u
+		ON l.user_id = u.id
+		LEFT JOIN counsel_request_tb AS c
+		ON l.user_id = c.lawyer_id
+		WHERE u.role = 'lawyer' -- 역할(role)이 변호사(lawyer)인 사람만 가져온다
+		AND u.status = 1;
 	</select>
 </mapper>

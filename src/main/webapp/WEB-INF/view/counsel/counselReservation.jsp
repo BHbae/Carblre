@@ -64,22 +64,18 @@ function setEndTimeMin() {
     }
 }
 
-// 변호사 선택 후 예약된 시간을 제외하고 예약 가능 시간대를 필터링하는 함수
 function filterAvailableTimes() {
     const select = document.getElementById("lawyerSelect");
     const selectedOption = select.options[select.selectedIndex];
-    console.log(select);
-    console.log(selectedOption);
 
+    // 예약된 시작 시간과 종료 시간 가져오기
+    let reservedStartTime = selectedOption.getAttribute("data-starttime") ? new Date(selectedOption.getAttribute("data-starttime").replace(" ", "T")) : null;
+    let reservedEndTime = selectedOption.getAttribute("data-endtime") ? new Date(selectedOption.getAttribute("data-endtime").replace(" ", "T")) : null;
 
-    const reservedStartTime = new Date(selectedOption.getAttribute("data-startTime"));
-    const reservedEndTime = new Date(selectedOption.getAttribute("data-endTime"));
-    console.log(reservedStartTime);
-    console.log(reservedEndTime);
+    console.log("예약 시작 시간:", reservedStartTime);
+    console.log("예약 종료 시간:", reservedEndTime);
 
     // 예약 가능한 시간대: 09:00 ~ 18:00
-    const now = new Date();
-    const today = new Date();
     const officeStart = new Date();
     officeStart.setHours(9, 0, 0, 0);
     const officeEnd = new Date();
@@ -87,20 +83,34 @@ function filterAvailableTimes() {
 
     const startInput = document.getElementById("startTime");
     const endInput = document.getElementById("endTime");
-   console.log(startInput);
-   console.log(endInput);
+
+    console.log("시작 시간 입력:", startInput);
+    console.log("종료 시간 입력:", endInput);
+
     // 오늘 날짜 이후부터만 선택 가능하게 설정
     const minDate = new Date();
-    minDate.setDate(today.getDate() + 1); // 오늘 이후로 설정
+    minDate.setDate(minDate.getDate() + 1); // 오늘 이후로 설정
 
-    startInput.min = minDate.toISOString().slice(0, 16);
+    // 예약된 시간이 없으면 기본 시간 설정
+    startInput.min = minDate.toISOString().slice(0, 16); // 오늘 이후
     startInput.max = reservedStartTime ? reservedStartTime.toISOString().slice(0, 16) : officeEnd.toISOString().slice(0, 16);
 
     endInput.min = reservedEndTime ? reservedEndTime.toISOString().slice(0, 16) : officeStart.toISOString().slice(0, 16);
     endInput.max = officeEnd.toISOString().slice(0, 16);
+
+    // 예약된 시간 제외 (예약된 시간과 겹치면 선택 불가)
+    if (reservedStartTime && reservedEndTime) {
+        startInput.addEventListener("change", function () {
+            const selectedStartTime = new Date(startInput.value);
+
+            // 선택한 시간이 예약된 시간과 겹치는지 확인
+            if (selectedStartTime >= reservedStartTime && selectedStartTime <= reservedEndTime) {
+                alert("이 시간은 이미 예약되었습니다. 다른 시간을 선택해주세요.");
+                startInput.value = ""; // 입력한 값 초기화
+            }
+        });
+    }
 }
-
-
 
 function showLawyerInfo() {
     const select = document.getElementById("lawyerInfo");
