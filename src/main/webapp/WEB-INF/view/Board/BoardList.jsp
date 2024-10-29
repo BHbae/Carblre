@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ include file="../layout/header.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="../layout/header.jsp" %>
 
 <div class="wrap">
     <!-- 상단 이미지 & 서브 페이지 이동 START -->
@@ -31,12 +30,16 @@
 				<th>게시글 번호</th>
 				<th>제목</th>
 				<th>작성자 ()추후 아이디로 변경)</th>
+				<th>작성일</th>
 			</tr>
-	<c:forEach items="${boards}" var="boards">
+				<c:forEach items="${boards}" var="boards">
 			<tr>
 				<td>${boards.id}</td>
 				<td>
     				<a href="<c:url value='/board/detail/${boards.id}' />">${boards.title}</a>
+				</td>
+				<td>
+
 				</td>
 				<td>${boards.createdAt}</td>
 			</tr>
@@ -45,6 +48,13 @@
 </main>
 
 
-
+				<li
+					class="page-item <c:if test='${currentPage == totalPages}'>disabled</c:if>">
+					<a class="page-link" href="/cs/cs?page=${currentPage + 1}">▶</a>
+				</li>
+			</ul>
+        </div>
+    </div>
+</div>
 
 <%@ include file="../layout/footer.jsp"%>

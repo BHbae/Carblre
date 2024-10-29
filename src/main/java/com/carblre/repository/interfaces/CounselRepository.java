@@ -1,6 +1,7 @@
 package com.carblre.repository.interfaces;
 
 import com.carblre.repository.model.Counsel;
+import com.carblre.repository.model.LawyerDetail;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -26,4 +27,5 @@ public interface CounselRepository {
     int insertCounsel(Counsel counsel);
 
     List<Counsel> findCounselAll();
+
 }

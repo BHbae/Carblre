@@ -1,11 +1,12 @@
 package com.carblre.repository.interfaces;
 
-import com.carblre.dto.CommentDTO;
-import com.carblre.dto.ReplyCommentDTO;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
+import com.carblre.dto.CommentDTO;
+import com.carblre.dto.ReplyCommentDTO;
 
 @Mapper
 public interface CommentRepository {
@@ -15,6 +16,7 @@ public interface CommentRepository {
 
     // 댓글을 삭제하는 메소드입니다.
     int deleteComment(@Param("commentId") int commentId);
+
 
     /**
      * 댓글 정렬

@@ -1,39 +1,51 @@
 package com.carblre.controller;
 
-import java.util.HashMap;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import com.carblre.config.MyWebSocketHandler;
-import com.carblre.dto.MyCounselDTO;
-import com.carblre.dto.SignUpDTO;
-import com.carblre.dto.userdto.*;
-import com.carblre.handler.exception.UnAuthorizedException;
-import com.carblre.repository.model.LawyerDetail;
-import com.carblre.service.CounselService;
 import org.apache.ibatis.javassist.NotFoundException;
-import com.carblre.dto.userdto.KakaoOAuthToken;
-import com.carblre.dto.userdto.SocialSignUpDTO;
-import com.carblre.dto.userdto.UserDTO;
-import com.carblre.handler.exception.DataDeliveryException;
-import com.carblre.service.QrcodeService;
-import com.carblre.service.UserService;
-import com.carblre.utils.Define;
-import jakarta.servlet.http.HttpSession;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import com.carblre.config.MyWebSocketHandler;
+import com.carblre.dto.MyCounselDTO;
+import com.carblre.dto.SignUpDTO;
+import com.carblre.dto.userdto.KakaoOAuthToken;
+import com.carblre.dto.userdto.LawyerDetailDTO;
+import com.carblre.dto.userdto.LawyerSignUpDTO;
+import com.carblre.dto.userdto.SignInDTO;
+import com.carblre.dto.userdto.SocialSignUpDTO;
+import com.carblre.dto.userdto.UserDTO;
+import com.carblre.handler.exception.DataDeliveryException;
+import com.carblre.handler.exception.UnAuthorizedException;
+import com.carblre.service.CounselService;
+import com.carblre.service.QrcodeService;
+import com.carblre.service.UserService;
+import com.carblre.utils.Define;
+
+import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
@@ -65,36 +77,37 @@ public class UserController {
     private String kakaoRedirectUri;
 
 
+
     private final UserService userService;
     private final QrcodeService qrcodeService;
     private final CounselService counselService;
 
-    private final HttpSession session;
+	private final HttpSession session;
 
-    private final MyWebSocketHandler webSocketHandler;
+	private final MyWebSocketHandler webSocketHandler;
 
-    private final PasswordEncoder passwordEncoder;
+	private final PasswordEncoder passwordEncoder;
 
-    @GetMapping("/signIn")
-    public String signPage() {
+	@GetMapping("/signIn")
+	public String signPage() {
 
-        return "user/signin";
-    }
+		return "user/signin";
+	}
 
-    /**
-     * [POST] 로그인 프로세스입니다.
+	/**
+	 * [POST] 로그인 프로세스입니다.
      *
-     * @param dto = SignInDTO <- String nickName, String password(유저가 입력한 값)
-     * @return 유효성 검사, 회원 존재 여부, 회원 정보 일치 여부 확인 후 맞는 응답(Exception OR Return jsp) 내려줌
-     */
-    @PostMapping("/signIn")
-    public String signInProc(SignInDTO dto) {
+	 * @param dto = SignInDTO <- String nickName, String password(유저가 입력한 값)
+	 * @return 유효성 검사, 회원 존재 여부, 회원 정보 일치 여부 확인 후 맞는 응답(Exception OR Return jsp) 내려줌
+	 */
+	@PostMapping("/signIn")
+	public String signInProc(SignInDTO dto) {
 
-        String nickName = dto.getNickName(); // 유저가 입력한 아이디
-        String password = dto.getPassword(); // 유저가 입력한 비밀번호
+		String nickName = dto.getNickName(); // 유저가 입력한 아이디
+		String password = dto.getPassword(); // 유저가 입력한 비밀번호
 
-        // nickName 을 사용하여 유저가 존재하는지 판단합니다.
-        UserDTO userDTO = userService.findByNickId(nickName);
+		// nickName 을 사용하여 유저가 존재하는지 판단합니다.
+		UserDTO userDTO = userService.findByNickId(nickName);
 
         if (userDTO == null) {
             // 유저가 존재하지 않는다면 DataDeliveryException 을 사용하여 Alert
@@ -714,6 +727,7 @@ public class UserController {
 
         return  "counsel/checkLawyerCounsel";
     }
+
 
 
 }
