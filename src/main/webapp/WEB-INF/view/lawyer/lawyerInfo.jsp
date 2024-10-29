@@ -25,20 +25,28 @@
     </section>
     <!-- 상단 이미지 & 서브 페이지 이동 END -->
 
-    <div class="inner--container">
-        <div class="sub--content">
-            <h2 class="prih2"> 변호사 정보 </h2>
+<div class="inner--container">
+    <div class="sub--content">
+        <h2 class="prih2">변호사 정보</h2>
+        <div class="lawyer-details">
+            <img src="/image/lawyer/${lawyer.uploadProfileName}" alt="Profile Image" class="lawyer-image"/>
+            <div class="lawyer-info">
+                <p class="lawyer-name"><strong>${lawyer.userName}</strong> 변호사</p>
+                <br>
+                <p class="lawyer-Introduction eng"><strong>Introduction</strong><p>
+                 <p>${lawyer.introduction}</p>
+                 <br>
+                 <br>
+                <p><strong>법무법인 :</strong> ${lawyer.lawFirm}</p>
+                <p><strong>사무실 전화 :</strong> ${lawyer.officeNum}</p>
+                <br>
+                <button class="appointment-button">상담예약</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-                <div class="lawyer-details">
-                    <img src="/image/lawyer/${lawyer.uploadProfileName}" alt="Profile Image" style="width: 20%; height: auto;" />
-                    <p>${lawyer.userName} <strong> 변호사</strong></p>
-                    <p><strong>소개:</strong> ${lawyer.introduction}</p>
-                    <p><strong>법무법인:</strong> ${lawyer.lawFirm}</p>
-                    <p><strong>사무실 전화:</strong> ${lawyer.officeNum}</p>
-                </div>
-                    <button>상담예약</button>
-     </div>
-     </div>
+
 </div>
 
 

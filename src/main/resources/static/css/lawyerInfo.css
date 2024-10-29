@@ -1,0 +1,54 @@
+/* 전체 컨테이너 스타일 */
+.inner--container {
+    padding: 20px;
+}
+
+/* 변호사 정보 스타일 */
+.lawyer-details {
+  display: flex;
+  margin: 15px 0;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* 프로필 이미지 스타일 */
+.lawyer-image {
+      width: 300px;
+      margin: 15px;
+      height: auto;
+      margin-right: 100px;
+}
+
+/* 변호사 정보 스타일 */
+.lawyer-info {
+    display: flex;
+    flex-direction: column; /* 세로로 나열 */
+}
+
+/* 텍스트 콘텐츠 스타일 */
+.lawyer-info p {
+    margin: 5px 0;
+    word-wrap: break-word; /* 긴 소개글에서 줄바꿈 */
+}
+
+/* 상담 예약 버튼 스타일 */
+.appointment-button {
+    padding: 10px 15px;
+    background-color: inherit;
+    color: #b19837;
+    border: 1px solid #b19837;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 130px;
+}
+
+.lawyer-name{
+    font-family: 'Pretendard'!important;
+    font-size: 25px;
+}
+
+.lawyer-Introduction{
+    font-size: 18px;
+}
+
