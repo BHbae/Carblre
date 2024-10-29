@@ -54,6 +54,7 @@
                     <p class="label--value">${principal.email}</p>
                 </c:if>
                 <c:if test="${principal.site == '서버'}">
+<<<<<<< HEAD
                     <p class="label--info">이름</p>
                     <p class="label--value">${principal.userName}</p>
                     <p class="label--info">아이디</p>
@@ -74,6 +75,18 @@
                         <div class="label--value--image"><img src="${lawyer.uploadLicenseName}" alt="Co. Image" /></div>
                         <p class="label--info">지정 10분 상담가격</p>
                         <p class="label--value">${lawyer.counselingAmount}</p>
+=======
+                    <p> 이름: ${principal.userName}</p>
+                    <p> 아이디: ${principal.nickName}</p>
+                    <p> 이메일: ${principal.email}</p>
+                    <c:if test="${principal.role == 'lawyer'}">
+                        <p> 법인명: ${lawyer.lawFirm}</p>
+                        <p> 법인 전화번호: ${lawyer.officeNum}</p>
+                        <p> 소개: ${lawyer.introduction}</p>
+                        <p> 프로필 사진: </p>
+                        <img src="${lawyer.uploadProfileName}" alt="Profile Image" />
+                        <p> 지정 10분 상담가격: ${lawyer.counselingAmount}</p>
+>>>>>>> 85fbbfca8fa10b8f4ec427f75e731d5c65e50068
                     </c:if>
                 </c:if>
                 <div class="btn btn--wrap">

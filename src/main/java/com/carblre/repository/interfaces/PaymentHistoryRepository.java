@@ -1,4 +1,4 @@
-package com.carblre.repository;
+package com.carblre.repository.interfaces;
 
 import com.carblre.dto.TossHistoryDTO;
 import org.apache.ibatis.annotations.Mapper;

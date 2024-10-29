@@ -6,10 +6,35 @@
     height: 80vh;
     text-align: center;
 }
+<<<<<<< HEAD
 .social a {
     display: block;
 }
 .image-link {
+=======
+
+form {
+    display: inline-block;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+
+
+.social a{
+display:block;
+}
+.image-link.google{
+    border: 1px solid #bababa;
+    border-radius: 5px;
+    height: 47px;
+    width: 380px;
+}
+
+.image-link{
+
+
+>>>>>>> 85fbbfca8fa10b8f4ec427f75e731d5c65e50068
     height: 49px;
     width: 380px;
 }
@@ -19,6 +44,7 @@
 #lawyer-login-form {
     display: none;
 }
+<<<<<<< HEAD
 .login-side.infoupdate{
     text-align: center;
     display: flex;
@@ -162,4 +188,9 @@
 }
 .find-info{
     cursor: pointer;
+=======
+.login-button{
+    width: 100%;
+    margin-top: 10px;
+>>>>>>> 85fbbfca8fa10b8f4ec427f75e731d5c65e50068
 }

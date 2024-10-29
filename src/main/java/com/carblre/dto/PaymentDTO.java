@@ -13,7 +13,7 @@ public class PaymentDTO {
 
     private int id;
     private int userId;
-    private int amount; // 금액
+    private String amount; // 금액
     private String paymentMethod; // 결제방식
     private String paymentItem; // 구매
     private String oauthCode; // 인증코드

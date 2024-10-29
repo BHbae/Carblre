@@ -38,14 +38,22 @@
 			<div class="board--content">
 				<div>${dto.request}</div>
 			</div>
+<<<<<<< HEAD
 			<div class="board--reply">
+=======
+			<div class="board--content">
+>>>>>>> 85fbbfca8fa10b8f4ec427f75e731d5c65e50068
 				<c:choose>
 					<c:when test="${dto.response != null}">
 						<div>${dto.response}</div>
 						<div>${dto.responseTime}</div>
 					</c:when>
 					<c:otherwise>
+<<<<<<< HEAD
 						<div class="waitingbox">답변을 기다리는중입니다</div>
+=======
+						<div>답변을 기다리는중입니다</div>
+>>>>>>> 85fbbfca8fa10b8f4ec427f75e731d5c65e50068
 					</c:otherwise>
 				</c:choose>
 

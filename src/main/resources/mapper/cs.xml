@@ -11,15 +11,42 @@
 	</insert>
 
 	<select id="findAllCs" resultType="com.carblre.dto.CsAllDTO">
-		SELECT cs.id ,cs.title,u.user_name ,cs.request_time
+		SELECT cs.id
+		,cs.title,u.user_name ,cs.request_time
 		FROM customer_service_tb cs
-		JOIN user_tb u ON cs.user_id = u.id
+		JOIN
+		user_tb u ON cs.user_id = u.id
 		ORDER BY cs.id DESC
-		limit #{limit} offset #{offset}
+		limit #{limit} offset
+		#{offset}
 	</select>
-	
+
 	<select id="countAllCs" resultType="int">
-		select count(*) from customer_service_tb
+		select count(*) from
+		customer_service_tb
 	</select>
+<<<<<<< HEAD
+=======
+
+	<select id="findById" resultType="com.carblre.dto.CsFindByIdDTO">
+		SELECT cs.id,u.id as user_id
+		,cs.title,u.user_name,cs.request,cs.request_time
+		,cs.response,cs.response_time
+		FROM customer_service_tb cs
+		JOIN user_tb u
+		ON cs.user_id = u.id
+		WHERE cs.id = #{id}
+		ORDER BY cs.id DESC
+	</select>
+
+	<update id="updateByIdAndUserId">
+		UPDATE customer_service_tb
+		SET
+		title = #{title},
+		request = #{content}
+		WHERE id = #{id}
+	</update>
+
+>>>>>>> 85fbbfca8fa10b8f4ec427f75e731d5c65e50068
 
 </mapper>
