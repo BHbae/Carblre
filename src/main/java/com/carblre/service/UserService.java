@@ -1,24 +1,24 @@
 package com.carblre.service;
 
 import com.carblre.dto.SignUpDTO;
-import com.carblre.dto.userdto.LawyerSignUpDTO;
+import com.carblre.dto.userdto.*;
+import com.carblre.repository.model.LawyerDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.carblre.dto.userdto.SignDTO;
-import com.carblre.dto.userdto.UserDTO;
 import com.carblre.repository.interfaces.UserRepository;
 import com.carblre.repository.model.User;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -40,6 +40,10 @@ public class UserService {
 			System.out.println("User phoneNumber : " + signUpDTO.getPhoneNum());
 			String hashPassword = passwordEncoder.encode(signUpDTO.getPassword());
 			signUpDTO.setPassword(hashPassword);
+			signUpDTO.setSite("서버");
+			signUpDTO.setRole("user");
+			signUpDTO.setStatus(1);
+			System.out.println(signUpDTO);
 			userRepository.insert(signUpDTO.toUser());
 		} catch (Exception e) {
 			System.out.println("Error in Create User : " + e.getMessage());
@@ -73,8 +77,8 @@ public class UserService {
 		 * 간편로그인 사용자 최초인증
 		 * @param dto
 		 */
-		public void saveApiUser (SignDTO dto){
-			User user = dto.toUsern();
+		public void saveApiUser (SocialSignUpDTO dto){
+			User user = dto.toUser();
 			userRepository.saveApiUser(user);
 		}
 
@@ -91,8 +95,8 @@ public class UserService {
 			return passwordEncoder.matches(changedPass,originPass);
 		}
 
-		public void saveUser (SignDTO dto){
-			User user = dto.toUsern();
+		public void saveUser (SocialSignUpDTO dto){
+			User user = dto.toUser();
 			userRepository.saveApiUser(user);
 		}
 
@@ -151,25 +155,47 @@ public class UserService {
 			System.out.println("User phoneNumber : " + signUpDTO.getPhoneNum());
 			String hashPassword = passwordEncoder.encode(signUpDTO.getPassword());
 			signUpDTO.setPassword(hashPassword);
-			signUpDTO.setRole("lawyer[temp]"); // 임시 변호사 role
+			signUpDTO.setRole("lawyer"); // 임시 변호사 role
 			signUpDTO.setSite("서버");
-			userRepository.insert(signUpDTO.toUser()); // USER_TB INSERT TODO 현재 User 모델에 Site가 없어서 추가해야됨
-			// 여기까지 user_tb insert
 
+			// 이름지정
+			signUpDTO.setGetProfileName(signUpDTO.getProfileImage().getOriginalFilename()); // 파일객체에서 파일이름
+			signUpDTO.setGetLicenseName(signUpDTO.getLicenseImage().getOriginalFilename());
+			String uuidProFileName=signUpDTO.UUIDUploardProfileName();
+			String uuidLawyerName=signUpDTO.UUIDUploardLawyerName();
+			System.out.println("uuid"+uuidProFileName);
+			System.out.println("uuid"+uuidLawyerName);
+			String uploadProfileName=signUpDTO.getUPLOAD_PROFILE_DIR() +uuidProFileName  ;//파일경로와 UUID파일이름
+			String uploadLicenseName=signUpDTO.getUPLOAD_LAWYER_DIR() +uuidLawyerName  ;//파일경로와 UUID파일이름
+
+			Path path = Paths.get(uploadProfileName); // 경로설정
+			Path LicensePath = Paths.get(uploadLicenseName); // 자격증경로설정
+			signUpDTO.setUploadProfileName(uuidProFileName);
+			signUpDTO.setUploadLicenseName(uuidLawyerName);
+
+			// site,status 삽입
+			signUpDTO.setSite("서버");
+			signUpDTO.setStatus(0);
+			// 여기까지 user_tb insert
+			userRepository.insert(signUpDTO.toUser()); // USER_TB INSERT TODO 현재 User 모델에 Site가 없어서 추가해야됨
 			// 가장최근 AUTO id값 바로받아 값 이식
 			signUpDTO.setUserId(userRepository.getLastInsertId());
+
 			// 파일 저장 경로 설정 (상대 경로, 로컬 디렉토리)
-			signUpDTO.setGetProfileName(signUpDTO.getProfileImage().getOriginalFilename()); // 파일객체에서 파일이름
-			String uploadName=signUpDTO.getUPLOAD_DIR() + signUpDTO.UUIDUploardProfileName(); //파일경로와 UUID파일이름
-			Path path = Paths.get(uploadName); // 경로설정
-			signUpDTO.setUploardProfileName(signUpDTO.UUIDUploardProfileName());
 			// 디렉토리가 존재하지 않을 경우 생성
-			File directory = new File(signUpDTO.getUPLOAD_DIR());
-			if (!directory.exists()) {
-				directory.mkdirs();  // 디렉토리가 없으면 생성
+			File profileDirectory = new File(signUpDTO.getUPLOAD_PROFILE_DIR());
+			File LicenseDirectory = new File(signUpDTO.getUPLOAD_LAWYER_DIR());
+			if (!profileDirectory.exists()) {
+				profileDirectory.mkdirs();  // 디렉토리가 없으면 생성
 			}
+			if (!LicenseDirectory.exists()) {
+				LicenseDirectory.mkdirs();  // 디렉토리가 없으면 생성
+			}
+
 			// 파일 저장 (바이트 배열로 파일을 쓰기)
 			Files.write(path,signUpDTO.getProfileImage().getBytes());
+			Files.write(LicensePath,signUpDTO.getLicenseImage().getBytes());
+			System.out.println(signUpDTO.toString());
 			int result =userRepository.insertLawyerDetail(signUpDTO.toLawyerDetail()); // laywer_detail_tb insert
 			System.out.println("성공여부:"+result);
 		} catch (Exception e) {
@@ -178,13 +204,36 @@ public class UserService {
 	}
 
 	/**
-	 *  qr코드 토큰
-	 * @param token
+	 * 마이페이지 변호사 정보
+	 * @param id
 	 * @return
 	 */
-//	public UserDTO findByToken(String token) {
-//
-//	}
+	public LawyerDetailDTO findLawyerInfoById(int id) {
+	LawyerDetail lawyerDetail=	userRepository.findLawyerInfoById(id);
+
+		return lawyerDetail.toLawyerDetailDTO();
+	}
+
+	/**
+	 *
+	 * @return
+	 */
+	public List<UserDTO> findAllLawyer() {
+		return userRepository.findAllLawyer();
+
+	}
+
+	public List<LawyerDetailDTO> findAllLawyerDetail() {
+		List<LawyerDetail> lawyerDetail=userRepository.findAllLawyerDetail();
+		List<LawyerDetailDTO> list=new ArrayList<>();
+		for (LawyerDetail lawyer : lawyerDetail) {
+			list.add(lawyer.toLawyerDetailDTO());
+		}
+		return list;
+	}
+
+
+
 }
 
 

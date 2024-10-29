@@ -36,5 +36,9 @@ out/
 ### VS Code ###
 .vscode/
 
-# Ignore the application-secure.yml file
+# Ignore application-secure.yml file
 application-secure.yml
+
+# Ignore caches directory
+caches/
+

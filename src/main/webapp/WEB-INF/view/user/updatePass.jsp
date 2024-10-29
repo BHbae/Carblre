@@ -92,7 +92,7 @@
         .then(data => {
             console.log(data.message);
             alert(data.message);
-            window.location.href = "/user/index";
+             window.close();
         })
         .catch(error => {
             console.error("Error:", error);
