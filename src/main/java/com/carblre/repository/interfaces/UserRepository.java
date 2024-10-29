@@ -3,6 +3,7 @@ package com.carblre.repository.interfaces;
 import java.util.List;
 
 import com.carblre.dto.userdto.LawyerDetailDTO;
+import com.carblre.dto.userdto.LawyerReservationDTO;
 import com.carblre.repository.model.LawyerDetail;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -70,5 +71,5 @@ public interface UserRepository {
 	List<UserDTO> findAllLawyer();
 
 	// 변호사 전체정보 조회
-	List<LawyerDetail> findAllLawyerDetail();
+	List<LawyerReservationDTO> findReservation();
 }
