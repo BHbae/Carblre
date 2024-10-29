@@ -1,7 +1,3 @@
-/* 전체 컨테이너 스타일 */
-.inner--container {
-    padding: 20px;
-}
 
 /* 변호사 정보 스타일 */
 .lawyer-details {
@@ -50,5 +46,9 @@
 
 .lawyer-Introduction{
     font-size: 18px;
+}
+
+#lawyer--background{
+    background-image: url(/image/lawyerBg.jpg);
 }
 

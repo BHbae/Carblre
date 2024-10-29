@@ -18,6 +18,8 @@
     <link href="/css/notice.css" rel="stylesheet">
     <link href="/css/privacy.css" rel="stylesheet">
     <link href="/css/mypage.css" rel="stylesheet">
+    <link href="/css/lawyerList.css" rel="stylesheet">
+    <link href="/css/lawyerInfo.css" rel="stylesheet">
     <link href="/css/font.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +33,6 @@
 <body>
 
 <header>
-<<<<<<< HEAD
     <div id="in--header">
         <div id="logo">
             <a href="/" alt="헤더 로고"><img src="/image/logo.png"></a>
@@ -54,30 +55,6 @@
                 <a href="/cs/cs">고객센터</a>
             </li>
         </ul>
-=======
-	<div id="in--header">
-		<div id="logo">
-			<a href="/" alt="헤더 로고"><img src="/image/logo.png"></a>
-		</div>
-
-		<ul id="menu--container">
-			<li>
-				<a href="/board/boardList">의뢰자</a>
-			</li>
-			<li>
-				<a href="/aiounseling">AI 간편상담</a>
-			</li>
-			<li>
-				<a href="/lawyer/lawyers">변호사</a>
-			</li>
-			<li>
-				<a href="/notice/notice">공지사항</a>
-			</li>
-			<li>
-				<a href="/cs/cs">고객센터</a>
-			</li>
-		</ul>
->>>>>>> 85fbbfca8fa10b8f4ec427f75e731d5c65e50068
 
         <div id="icon--container">
             <ul class="info--container">
@@ -224,8 +201,3 @@
     });
 </script>
 
-<<<<<<< HEAD
-=======
-</script>
-
->>>>>>> 85fbbfca8fa10b8f4ec427f75e731d5c65e50068

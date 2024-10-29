@@ -245,78 +245,7 @@
                 <button type="submit" id="signUp">가입하기</button>
             </form>
         </div>
-<<<<<<< HEAD
     </div>
-=======
-
-        <!-- 이메일 입력란 -->
-        <div class="form-group">
-            <label for="email">이메일</label>
-            <input type="email" class="form-control" id="email" placeholder="example@carblre.com" name="email" value="" required>
-        </div>
-
-        <!-- 이메일 인증코드 발송 -->
-        <div class="form-group">
-            <button type="button" class="check--btn" id="emailCode" onclick="sendValidate()">발송</button>
-            <button type="button" class="check--btn" id="checkValidate" onclick="checkValidate()"
-                    disabled="disabled" style="cursor: pointer;">인증 확인
-            </button>
-        </div>
-
-        <!-- 전화번호 이름 -->
-        <div class="form-group">
-            <label for="phoneNum">전화번호 </label>
-            <input type="text" class="form-control" id="phoneNum" placeholder="전화번호를 입력하세요." name="phoneNum" required>
-        </div>
-
-       <!-- 이미지  -->
-        <div class="form-group">
-            <label for="profileImage">프로필 </label>
-            <input type="file" class="form-control" id="profileImage" name="profileImage" accept="image/*" onchange="ProfilePreviewImage(event)" placeholder="이미지를 입력하세요." required>
-        </div>
-
-
-
-        <!-- 미리보기를 보여줄 요소 -->
-        <img id="ProfileImagePreview" src="" alt="이미지 미리보기" style="display: none; width: 200px; height: auto;" />
-
-       <!-- 변호증 이미지  -->
-        <div class="form-group">
-            <label for="licenseImage">변호증 </label>
-            <input type="file" class="form-control" id="licenseImage" name="licenseImage" accept="image/*" onchange="LawyerPreviewImage(event)" placeholder="이미지를 입력하세요." required>
-        </div>
-
-
-
-        <!-- 미리보기를 보여줄 요소 -->
-        <img id="LawyerImagePreview" src="" alt="이미지 미리보기" style="display: none; width: 200px; height: auto;" />
-
-
-
-
-        <!-- 자기소개 textarea -->
-        <div class="form-group">
-            <label for="introduction">소개 </label>
-            <textarea class="form-control" id="introduction" placeholder="소개를 입력해주세요" name="introduction" required></textarea>
-        </div>
-
-     <!-- 로펌 이름 -->
-        <div class="form-group">
-            <label for="lawFirm">법인 이름 </label>
-            <input type="text" class="form-control" id="lawFirm" placeholder="법인 이름을 입력하세요." name="lawFirm" required>
-        </div>
-
-     <!-- 법인 번호 -->
-        <div class="form-group">
-            <label for="officeNum">법인 번호 </label>
-            <input type="text" class="form-control" id="officeNum" placeholder="법인 전화번호를 입력하세요." name="officeNum" required>
-        </div>
-
-
-        <!-- 제출 버튼 -->
-        <button type="submit"  id="signUp">가입하기</button>
-    </form>
->>>>>>> 85fbbfca8fa10b8f4ec427f75e731d5c65e50068
 </div>
 
 <script>
@@ -426,39 +355,10 @@
             .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
     }
 
-<<<<<<< HEAD
     // 이미지 띄우기
     function ProfilePreviewImage(event) {
         const file = event.target.files[0];  // 선택한 파일
         const preview = document.getElementById('ProfileImagePreview');  // 미리보기 이미지 요소
-=======
-// 이미지 띄우기
-function ProfilePreviewImage(event) {
-    const file = event.target.files[0];  // 선택한 파일
-    const preview = document.getElementById('ProfileImagePreview');  // 미리보기 이미지 요소
-
-    // 파일이 이미지인지 확인
-    if (file && file.type.startsWith('image/')) {
-        const reader = new FileReader();
-
-        // 파일을 읽고 나면 발생하는 이벤트
-        reader.onload = function(e) {
-            preview.src = e.target.result;  // 이미지의 data URL을 미리보기 요소에 설정
-            preview.style.display = 'block';  // 이미지를 표시
-        };
-
-        reader.readAsDataURL(file);  // 파일을 읽어서 base64 형식의 URL로 변환
-    } else {
-        preview.src = '';  // 이미지가 아닌 경우 미리보기 이미지 제거
-        preview.style.display = 'none';  // 미리보기 숨김
-        alert("이미지 파일을 선택해주세요.");
-        }
-    }
-// 이미지 띄우기
-function LawyerPreviewImage(event) {
-    const file = event.target.files[0];  // 선택한 파일
-    const preview = document.getElementById('LawyerImagePreview');  // 미리보기 이미지 요소
->>>>>>> 85fbbfca8fa10b8f4ec427f75e731d5c65e50068
 
         // 파일이 이미지인지 확인
         if (file && file.type.startsWith('image/')) {

@@ -5,7 +5,6 @@
     <section style="margin-bottom: 100px"></section>
     <div class="inner--container">
         <div class="sub--content">
-<<<<<<< HEAD
             <h2 class="prih2 user--form">일반 회원가입</h2>
 
             <div class="terms--into infoupdate" style="box-sizing: border-box; margin-bottom: 10px;">
@@ -160,10 +159,6 @@
             <div class="checkbox infoupdate">
                 <label>동의 (*필수)<input type="checkbox" required></label>
             </div>
-=======
-            <h2 class="prih2">회원가입</h2>
-
->>>>>>> 85fbbfca8fa10b8f4ec427f75e731d5c65e50068
 
             <form action="/user/signUp" method="POST" class="infoupdate">
                 <!-- 사용자 이름 -->
@@ -204,11 +199,7 @@
                     <label for="email">이메일</label>
                     <input type="email" class="form-control" id="email" placeholder="example@carblre.com" name="email"
                            value="" required>
-<<<<<<< HEAD
                     <!-- 이메일 인증코드 발송 -->
-=======
-                <!-- 이메일 인증코드 발송 -->
->>>>>>> 85fbbfca8fa10b8f4ec427f75e731d5c65e50068
                     <button type="button" class="check--btn" id="emailCode" onclick="sendValidate()">발송</button>
                     <button type="button" class="check--btn" id="checkValidate" onclick="checkValidate()"
                             disabled="disabled" style="cursor: pointer;">인증 확인

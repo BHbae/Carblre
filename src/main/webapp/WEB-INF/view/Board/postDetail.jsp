@@ -380,12 +380,6 @@
     }
 
 </script>
-<<<<<<< HEAD
-<%@ include file="../layout/footer.jsp" %>
-=======
-<<<<<<< HEAD
 
-=======
->>>>>>> 39cb0b06ccbaaa72bb02285140589c80fa7859fc
-<%@ include file="../layout/footer.jsp"%>
->>>>>>> 85fbbfca8fa10b8f4ec427f75e731d5c65e50068
+<%@ include file="../layout/footer.jsp" %>
+
