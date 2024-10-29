@@ -1,5 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -8,11 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>결제관리</title>
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="/assets/materialize/css/materialize.min.css"
-	media="screen,projection" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="/assets/materialize/css/materialize.min.css" media="screen,projection" />
 <!-- Bootstrap Styles-->
 <link href="/assets/css/bootstrap.css" rel="stylesheet" />
 <!-- FontAwesome Styles-->
@@ -22,8 +18,7 @@
 <!-- Custom Styles-->
 <link href="/assets/css/custom-styles.css" rel="stylesheet" />
 <!-- Google Fonts-->
-<link href='http://fonts.googleapis.com/css?family=Open+Sans'
-	rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 <link rel="stylesheet" href="/assets/js/Lightweight-Chart/cssCharts.css">
 </head>
 <body>
@@ -54,49 +49,32 @@
 							<div class="card-action">Advanced Tables</div>
 							<div class="card-content">
 								<div class="table-responsive">
-									<table class="table table-striped table-bordered table-hover"
-										id="dataTables-example">
+									<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 										<thead>
 											<tr>
 												<th>번호</th>
-												<th>회원 ID</th>
-												<th>종류</th>
-												<th>주문상품</th>
-												<th>결제수단</th>
+												<th>결제번호</th>
+												<th>유저번호</th>
+												<th>주문번호</th>
+												<th>주문명</th>
 												<th>결제금액</th>
-												<th>결제승인날짜</th>
-												<th>결제처리상태</th>
-												<th>취소사유</th>
-												<th>취소시간</th>
-												<th>취소처리상태</th>
+												<th>결제요청일</th>
+												<th>결제승인일</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<th>번호</th>
-												<th>회원 ID</th>
-												<th>종류</th>
-												<th>주문상품</th>
-												<th>결제수단</th>
-												<th>결제금액</th>
-												<th>결제승인날짜</th>
-												<th>결제처리상태</th>
-												<th>취소사유</th>
-												<th>취소시간</th>
-												<th>취소처리상태</th>
-											</tr>
-											<%-- <c:forEach var="user" items="${generalUserList}">
+											<c:forEach var="payment" items="${paymentList}">
 												<tr class="gradeA">
-													<td>${user.id}</td>
-													<td>${user.userName}</td>
-													<td>${user.nickName}</td>
-													<td>${user.password}</td>
-													<td>${user.email}</td>
-													<td>${user.phoneNum}</td>
-													<td>${user.role}</td>
-													<td>${user.role}</td>
+													<td>${payment.id}</td>
+													<td>${payment.paymentKey}</td>
+													<td>${payment.userId}</td>
+													<td>${payment.orderId}</td>
+													<td>${payment.orderName}</td>
+													<td>${payment.amount}</td>
+													<td>${payment.requestedAt}</td>
+													<td>${payment.approvedAt}</td>
 												</tr>
-											</c:forEach> --%>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>

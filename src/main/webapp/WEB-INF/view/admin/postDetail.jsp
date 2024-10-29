@@ -48,7 +48,7 @@
 							<div class="card-content">
 								<h4 class="post-title">${post.title}</h4>
 								<p class="post-meta">
-									<strong>작성자:</strong> <span class="post-author">${post.nickName}</span> | <strong>카테고리:</strong> <span class="post-category">${post.category}</span> | <strong>작성일:</strong> <span class="post-date">${post.createAt}</span>
+									<strong>작성자:</strong> <span class="post-author">${post.nickName}</span> | <strong>카테고리:</strong> <span class="post-category">${post.category}</span> | <strong>작성일:</strong> <span class="post-date">${post.createdAt}</span>
 								</p>
 								<hr>
 								<p>
@@ -60,7 +60,7 @@
 									<strong>파일:</strong> <span class="post-file">${post.originFileName}</span>
 								</p>
 								<p>
-									<strong>업로드 파일:</strong> <span class="post-uploaded-file">${post.uploardFileName}</span>
+									<strong>업로드 파일:</strong> <span class="post-uploaded-file">${post.uploadFileName}</span>
 								</p>
 
 								<div class="button-group">

@@ -11,7 +11,6 @@
 				<ul class="nav nav-second-level ${fn:contains(status, 'UserList') ? 'collapse in' : ''}">
 					<li><a href="/admin/general-user" class="${status == 'generalUserList' ? 'active-menu' : ''} waves-effect waves-dark">일반 회원</a></li>
 					<li><a href="/admin/lawyer-user" class="${status == 'lawyerUserList' ? 'active-menu' : ''} waves-effect waves-dark">법인 회원</a></li>
-					<li><a href="/admin/waiting-user" class="${status == 'waitingUserList' ? 'active-menu' : ''} waves-effect waves-dark">가입 대기</a></li>
 				</ul></li>
 			<li><a href="/admin/payment" class="${status == 'paymentList' ? 'active-menu' : ''} waves-effect waves-dark"><i class="fa fa-table"></i> 결제 내역 관리</a></li>
 			<li><a href="/admin/posts" class="${status == 'postList' ? 'active-menu' : ''} waves-effect waves-dark"><i class="fa fa-table"></i> 게시글 관리</a></li>

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.carblre.dto.admin.AdminLawyerUserDTO;
 import com.carblre.dto.admin.AdminPostDTO;
+import com.carblre.dto.admin.AdminTossHistoryDTO;
 import com.carblre.repository.model.AdminCrush;
 import com.carblre.repository.model.AdminUser;
 
@@ -36,5 +37,8 @@ public interface AdminRepository {
 
 	// 유저 정지/해제 기능
 	public void updateUserStatus(@Param("id") int id, @Param("status") int status);
+
+	// 전체 결제 내역 조회
+	public List<AdminTossHistoryDTO> readAllPayment();
 
 }

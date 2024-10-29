@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.carblre.dto.admin.AdminLawyerUserDTO;
 import com.carblre.dto.admin.AdminPostDTO;
+import com.carblre.dto.admin.AdminTossHistoryDTO;
 import com.carblre.repository.model.AdminUser;
 import com.carblre.service.AdminService;
 
@@ -75,22 +76,6 @@ public class AdminController {
 	}
 
 	/**
-	 * 가입 대기 법인 유저 관리 페이지
-	 * 
-	 * @param model
-	 * @return
-	 */
-	@GetMapping("/waiting-user")
-	public String waitingUserListPage(Model model) {
-		List<AdminLawyerUserDTO> waitingList = adminService.readAlllawyerUser();
-
-		model.addAttribute("status", "waitingUserList");
-		model.addAttribute("waitingList", waitingList);
-
-		return "admin/waitingUserList";
-	}
-
-	/**
 	 * 유저 계정 정지/해제 기능
 	 * 
 	 * @param id
@@ -113,10 +98,10 @@ public class AdminController {
 	 */
 	@GetMapping("/payment")
 	public String paymentListPage(Model model) {
-//		List<LawyerUserDTO> corporateUserList = userService.readAllCorporateUser();
+		List<AdminTossHistoryDTO> paymentList = adminService.readAllPayment();
 //
 		model.addAttribute("status", "paymentList");
-//		model.addAttribute("corporateUserList", corporateUserList);
+		model.addAttribute("paymentList", paymentList);
 
 		return "admin/paymentList";
 	}

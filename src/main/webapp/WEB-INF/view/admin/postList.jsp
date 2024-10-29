@@ -74,8 +74,8 @@
 													<td>${post.title}</td>
 													<td>${post.content}</td>
 													<td>${post.originFileName}</td>
-													<td>${post.uploardFileName}</td>
-													<td>${post.createAt}</td>
+													<td>${post.uploadFileName}</td>
+													<td>${post.createdAt}</td>
 													<td><button onclick="deletePost(${post.id})" class="btn btn-danger">삭제하기</button></td>
 												</tr>
 											</c:forEach>

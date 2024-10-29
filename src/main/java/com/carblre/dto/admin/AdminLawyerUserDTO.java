@@ -25,9 +25,9 @@ public class AdminLawyerUserDTO {
 	private int status;
 
 	private String originProfileName;
-	private String uploardProfileName;
+	private String uploadProfileName;
 	private String originLicenseName;
-	private String uploardLicenseName;
+	private String uploadLicenseName;
 	private String introduction;
 	private String officeNum;
 	private String counselingAmount;

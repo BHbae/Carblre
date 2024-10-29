@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.carblre.dto.admin.AdminLawyerUserDTO;
 import com.carblre.dto.admin.AdminPostDTO;
+import com.carblre.dto.admin.AdminTossHistoryDTO;
 import com.carblre.repository.interfaces.AdminRepository;
 import com.carblre.repository.model.AdminCrush;
 import com.carblre.repository.model.AdminUser;
@@ -61,6 +62,12 @@ public class AdminService {
 	@Transactional
 	public AdminPostDTO readPostById(int id) {
 		return adminRepository.readPostById(id);
+	}
+
+	// 결제 내역 조회
+	@Transactional
+	public List<AdminTossHistoryDTO> readAllPayment() {
+		return adminRepository.readAllPayment();
 	}
 
 }

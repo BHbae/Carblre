@@ -4,15 +4,15 @@
 
 	<select id="readAllGeneralUser"
 		resultType="com.carblre.repository.model.AdminUser">
-		select * from user_tb where role = 'user' or role = 'admin'
+		select * from user_tb where not role = 'lawyer' or role is null
 	</select>
 
 	<select id="readAlllawyerUser"
 		resultType="com.carblre.dto.admin.AdminLawyerUserDTO">
 		select u.id, u.user_name, u.nick_name, u.email, u.phone_num,
 		u.role, u.status, l.id lawyer_id, l.origin_profile_name,
-		l.uploard_profile_name,
-		l.origin_license_name, l.uploard_license_name, l.introduction,
+		l.upload_profile_name,
+		l.origin_license_name, l.upload_license_name, l.introduction,
 		l.law_firm, l.office_num, l.counseling_amount from user_tb u
 		left join lawyer_detail_tb l
 		on u.id = l.user_id
@@ -21,18 +21,18 @@
 	</select>
 
 	<select id="readAllPost"
-		resultType="com.carblre.repository.model.AdminPost">
+		resultType="com.carblre.dto.admin.AdminPostDTO">
 		select p.*, u.nick_name from post_tb p
 		left join user_tb u
-		p.user_id = u.id
+		on p.user_id = u.id
 	</select>
 
 	<select id="readPostById"
-		resultType="com.carblre.repository.model.AdminPost">
+		resultType="com.carblre.dto.admin.AdminPostDTO">
 		select p.*, u.nick_name from post_tb p
 		left join user_tb u
-		p.user_id = u.id
-		where id = #{id}
+		on p.user_id = u.id
+		where p.id = #{id}
 	</select>
 
 
@@ -54,5 +54,8 @@
 		set status = #{status}
 		where id = #{id}
 	</update>
-
+	
+	<select id="readAllPayment" resultType="com.carblre.dto.admin.AdminTossHistoryDTO">
+		select * from toss_history_tb
+	</select>
 </mapper>
