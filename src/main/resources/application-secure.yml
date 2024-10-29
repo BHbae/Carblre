@@ -36,3 +36,8 @@ spring:
       key: NCSOBIHPY5PGC43T
       secret: 0YPI29KTFNORDHMB6Y7UH4SUFOS41FB5
       number: 01074418574
+
+openai:
+  api:
+    key: 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
+

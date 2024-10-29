@@ -49,17 +49,18 @@ public class PaymentController {
         // 테스트용 임시값 ( @RequestParam 이용시 , 임시값 지워도됨 )
 
         UserDTO principal = (UserDTO) session.getAttribute("principal"); // 유저 세션 가져옴
+        TossResponseDTO responseDTO = (TossResponseDTO) session.getAttribute("responseDTO");
+
 
         // principal이 null인지 체크
         if (principal == null) {
             return "redirect:/user/signIn"; // 로그인이 필요하다면 로그인 페이지로 리디렉션
         }
 
-        int amount = 10000;
-        // String orderId = "order_12345"; // TODO! 서비스에  getOrderId() 메서드 삭제하고 아래 코드 사용해도되는지 테스트 해보기
+        int amount = 10000; //String amount = responseDTO.getTotalAmount();
         String orderId = UUID.randomUUID().toString();
-        String orderName = "상품";
-        String customerName = "피해자";
+        String orderName = "상품"; // String orderName = responseDTO.getOrderName();
+        String customerName = principal.getUserName();
         model.addAttribute("amount", amount);
         model.addAttribute("orderId", orderId);
         model.addAttribute("orderName", orderName);
@@ -73,26 +74,6 @@ public class PaymentController {
         return "payment";
     }
 
-    @GetMapping("/store")
-    public String store(Model model) {
-
-        UserDTO principal = (UserDTO) session.getAttribute("principal");
-
-        int amount = 10000;
-        //String orderId = "order_12345";
-        String orderId = UUID.randomUUID().toString();
-
-        String orderName = (principal != null) ? "주문 상품" : "상품"; // 예시로 주문 상품 이름 설정
-        String customerName = (principal != null) ? principal.getUserName() : "비회원"; // principal이 null일 경우 처리
-        //String orderName = "상품";
-        //String customerName = "피해자";
-        model.addAttribute("amount", amount);
-        model.addAttribute("orderId", orderId);
-        model.addAttribute("orderName", orderName);
-        model.addAttribute("customerName", customerName);
-
-        return "store";
-    }
 
     /**
      * 결제 성공
@@ -117,11 +98,6 @@ public class PaymentController {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        // 유저명과 비밀번호 설정
-        String username = "your_username"; // 실제 사용자명
-        String password = "your_password"; // 실제 비밀번호
-        String auth = username + ":" + password;
-        String encodedAuth = Base64.getEncoder().encodeToString(auth.getBytes(StandardCharsets.UTF_8));
 
         // 헤더
         HttpHeaders headers = new HttpHeaders();
@@ -142,7 +118,7 @@ public class PaymentController {
                     HttpMethod.POST, requestEntity, TossResponseDTO.class);
 
             TossResponseDTO response2 = response.getBody();
-            service.insertTossHistory(response2, principal.getId());
+            service.insertTossHistory(response2 , principal.getId());
         } catch (HttpClientErrorException e) {
             System.err.println("Error status code: " + e.getStatusCode());
             System.err.println("Error response body: " + e.getResponseBodyAsString());

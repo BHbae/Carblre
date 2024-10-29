@@ -6,9 +6,9 @@
 
     <insert id="insertTossHistory">
         INSERT INTO toss_history_tb(payment_key, user_id,
-        order_id, order_name, amount, method, requested_at, approved_at)
+        order_id, order_name, amount, requested_at, approved_at)
         VALUES ( #{paymentKey}, #{userId}, #{orderId}, #{orderName}, #{amount},
-        #{method}, #{requestedAt}, #{approvedAt})
+         #{requestedAt}, #{approvedAt})
     </insert>
 
     <select id="searchPayment"
