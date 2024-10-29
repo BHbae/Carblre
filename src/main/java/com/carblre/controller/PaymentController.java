@@ -1,16 +1,10 @@
 package com.carblre.controller;
 
-
-import com.carblre.dto.PrincipalDTO;
 import com.carblre.dto.TossResponseDTO;
 import com.carblre.dto.userdto.UserDTO;
-import com.carblre.repository.model.User;
 import com.carblre.service.PaymentService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +15,6 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
@@ -118,7 +111,7 @@ public class PaymentController {
                     HttpMethod.POST, requestEntity, TossResponseDTO.class);
 
             TossResponseDTO response2 = response.getBody();
-            service.insertTossHistory(response2 , principal.getId());
+            service.insertTossHistory(response2, principal.getId());
         } catch (HttpClientErrorException e) {
             System.err.println("Error status code: " + e.getStatusCode());
             System.err.println("Error response body: " + e.getResponseBodyAsString());

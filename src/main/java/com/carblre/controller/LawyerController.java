@@ -26,7 +26,7 @@ public class LawyerController {
         List<LawyerDetailDTO> lawyers = lawyerService.LawyerList();
 
         model.addAttribute("lawyers", lawyers);
-        return "lawyerList";
+        return "lawyer/lawyerList";
     }
 
     // 변호사 상세보기 페이지 조회
@@ -34,7 +34,7 @@ public class LawyerController {
     public String LawyerInfoPage(@PathVariable(name = "userId") int userId , Model model){
         LawyerDetailDTO dto = lawyerService.selectByLawyerId(userId);
         model.addAttribute("lawyer" ,dto);
-        return "/user/lawyerInfo";
+        return "lawyer/lawyerInfo";
     }
 
 }
