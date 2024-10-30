@@ -2,49 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../layout/header.jsp"%>
 <style>
-/* 상세보기 컨테이너 스타일 */
-.inner--container {
-	margin: 20px auto;
-	padding: 20px;
-	background-color: #fdfdfd;
-	border-radius: 5px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* 제목 스타일 */
-.prih2 {
-	font-size: 28px;
-	color: #333;
-	margin-bottom: 15px;
-}
-
-/* 공지사항 상세 내용 스타일 */
-.notice-details {
-	background-color: #ffffff;
-	border: 1px solid #e0e0e0;
-	border-radius: 5px;
-	padding: 15px;
-	margin-bottom: 20px;
-}
-
-.notice-details p {
-	font-size: 16px;
-	color: #555;
-	line-height: 1.6;
-}
-
-.notice-details strong {
-	color: #333;
-}
-
-/* 내용 블록 스타일 */
-.notice-details div {
-	font-size: 14px;
-	color: #444;
-	margin-top: 10px;
-}
-
-/* 돌아가기 버튼 스타일 */
+/* 버튼 공통 스타일 */
 .btn {
 	display: inline-block;
 	background-color: #007bff;
@@ -52,27 +10,27 @@
 	padding: 10px 15px;
 	border-radius: 5px;
 	text-decoration: none;
-	transition: background-color 0.3s;
+	transition: background-color 0.3s, transform 0.2s;
+	border: none; /* 버튼의 기본 테두리 제거 */
+	cursor: pointer; /* 마우스 포인터 변경 */
 }
 
-.btn:hover {
-	background-color: #0056b3;
+/* 작성 버튼 스타일 */
+.btn-submit {
+	background-color: #28a745; /* 초록색 */
 }
 
-/* 반응형 디자인 */
-@media ( max-width : 600px) {
-	.inner--container {
-		padding: 15px;
-	}
-	.prih2 {
-		font-size: 24px;
-	}
-	.notice-details {
-		padding: 10px;
-	}
-	.btn {
-		padding: 8px 12px;
-	}
+.btn-submit:hover {
+	background-color: #218838; /* 어두운 초록색 */
+}
+
+/* 목록으로 돌아가기 버튼 스타일 */
+.btn-back {
+	background-color: #6c757d; /* 회색 */
+}
+
+.btn-back:hover {
+	background-color: #5a6268; /* 어두운 회색 */
 }
 </style>
 <div class="wrap">
@@ -108,12 +66,13 @@
 					<textarea id="content" name="content" required></textarea>
 				</div>
 				<div>
-					<button type="submit">작성</button>
+					<button type="submit" class="btn btn-submit">작성</button>
 				</div>
 			</form>
-			<a href="/notice/notices">목록으로 돌아가기</a>
+			<a href="/notice/notice" class="btn btn-back">목록으로 돌아가기</a>
 		</div>
 	</div>
+
 
 	<%@ include file="../layout/footer.jsp"%>
 </div>

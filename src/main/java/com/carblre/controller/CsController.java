@@ -5,7 +5,12 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.carblre.dto.CsAllDTO;
 import com.carblre.dto.CsFindByIdDTO;
@@ -87,13 +92,13 @@ public class CsController {
 	 */
 	@GetMapping("/detail/{id}")
 	public String csListPage(@PathVariable(name = "id") int id, Model model,
-							 @SessionAttribute(name = Define.PRINCIPAL, required = false) UserDTO userDTO) {
+			@SessionAttribute(name = Define.PRINCIPAL, required = false) UserDTO userDTO) {
 		if (userDTO == null) {
 			throw new UnAuthorizedException(Define.ENTER_YOUR_LOGIN, HttpStatus.UNAUTHORIZED);
 		}
 
 		CsFindByIdDTO dto = csService.findById(id);
-		if (userDTO.getId() != dto.getUserId()) {
+		if (userDTO.getId() != dto.getUserId() && !userDTO.getRole().equals("admin")) {
 			throw new DataDeliveryException(Define.NOT_CS_AN_USER, HttpStatus.BAD_REQUEST);
 		}
 
@@ -106,11 +111,18 @@ public class CsController {
 	 * 수정하기 폼
 	 */
 	@GetMapping("/edit/{id}")
-	public String getMethodName(@PathVariable(name = "id") int id, Model model) {
+	public String getMethodName(@PathVariable(name = "id") int id,
+			@SessionAttribute(name = Define.PRINCIPAL) UserDTO user, Model model) {
 		CsFindByIdDTO dto = csService.findById(id);
+
+		if (user.getId() != dto.getUserId()) {
+			throw new DataDeliveryException(Define.NOT_CS_UPDATE_USER, HttpStatus.BAD_REQUEST);
+		}
+
 		if (dto.getResponse() != null) {
 			throw new DataDeliveryException(Define.NOT_CS_UPDATE, HttpStatus.BAD_REQUEST);
 		}
+
 		model.addAttribute("dto", dto);
 		return "cs/edit";
 	}
@@ -130,6 +142,15 @@ public class CsController {
 
 		return "redirect:/cs/cs";
 
+	}
+
+	/**
+	 * 답변하기 처리
+	 */
+	@PostMapping("/reply/{id}")
+	public String reply(@PathVariable(name = "id") int id, @RequestParam(name = "response") String response) {
+		csService.createResponse(id, response);
+		return "redirect:/cs/detail/" + id;
 	}
 
 }

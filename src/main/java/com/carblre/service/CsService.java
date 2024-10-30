@@ -19,7 +19,6 @@ public class CsService {
 
 	private final CsRepository csRepository;
 
-	
 	public void saveCs(int id, String title, String content) {
 
 		int row = csRepository.insetCs(id, title, content);
@@ -30,8 +29,7 @@ public class CsService {
 
 	} // end saveCs
 
-
-	public List<CsAllDTO> findAllCs(int limit,int offset) {
+	public List<CsAllDTO> findAllCs(int limit, int offset) {
 		return csRepository.findAllCs(limit, offset);
 	} // end findAllCs
 
@@ -39,15 +37,17 @@ public class CsService {
 		return csRepository.countAllCs();
 	}
 
-
 	public CsFindByIdDTO findById(int id) {
-		 return csRepository.findById(id);
+		return csRepository.findById(id);
 	}
-
 
 	public int updateByIdAndUserId(int id, String title, String content) {
-		return csRepository.updateByIdAndUserId(id,title,content);
+		return csRepository.updateByIdAndUserId(id, title, content);
 	}
-	
-	
+
+	// 답변하기 처리
+	public int createResponse(int id, String response) {
+		return csRepository.createResponse(id, response);
+	}
+
 }

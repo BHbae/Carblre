@@ -33,11 +33,6 @@
 		<div id="page-wrapper">
 			<div class="header">
 				<h1 class="page-header">게시글 상세보기</h1>
-				<ol class="breadcrumb">
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Tables</a></li>
-					<li class="active">Data</li>
-				</ol>
 
 			</div>
 
@@ -64,7 +59,6 @@
 								</p>
 
 								<div class="button-group">
-									<a href="/admin/posts/${post.id}/edit" class="btn btn-primary">수정하기</a>
 									<button onclick="deletePost(${post.id})" class="btn btn-danger">삭제하기</button>
 									<a href="/admin/posts" class="btn btn-secondary">목록으로 돌아가기</a>
 								</div>

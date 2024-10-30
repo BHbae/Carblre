@@ -37,11 +37,6 @@
 		<div id="page-wrapper">
 			<div class="header">
 				<h1 class="page-header">AI 대화내역 관리</h1>
-				<ol class="breadcrumb">
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Tables</a></li>
-					<li class="active">Data</li>
-				</ol>
 
 			</div>
 

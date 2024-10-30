@@ -76,7 +76,13 @@
 					</c:forEach>
 				</tbody>
 			</table>
-
+			<c:if test="${principal.role == 'admin'}">
+				<div class="btn btn--wrap">
+					<div id="write--button">
+						<a href="/notice/create">글쓰기</a>
+					</div>
+				</div>
+			</c:if>
 			<div style="display: flex; justify-content: center; align-items: center; margin-top: 0px;">
 				<!-- 중앙 정렬을 위해 변경 -->
 				<ul class="page--button btn" style="display: flex; justify-content: center;">
@@ -91,10 +97,7 @@
 					<c:if test="${currentPage < totalPages}">
 						<li><a href="/notice/notice?page=${currentPage + 1}&size=${size}">▶</a></li>
 					</c:if>
-					<c:if test="${principal.role == 'admin'}">
-						<a href="/notice/create" style="padding: 10px 15px; background-color: #28a745; color: white; border-radius: 4px; text-decoration: none; margin-left: 20px;"> <strong>글쓰기</strong>
-						</a>
-					</c:if>
+
 				</ul>
 			</div>
 		</div>

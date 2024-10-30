@@ -15,10 +15,8 @@
 			<li><a href="/admin/payment" class="${status == 'paymentList' ? 'active-menu' : ''} waves-effect waves-dark"><i class="fa fa-table"></i> 결제 내역 관리</a></li>
 			<li><a href="/admin/posts" class="${status == 'postList' ? 'active-menu' : ''} waves-effect waves-dark"><i class="fa fa-table"></i> 게시글 관리</a></li>
 			<li><a href="/admin/ai-chat" class="${status == 'aiChatList' ? 'active-menu' : ''} waves-effect waves-dark"><i class="fa fa-table"></i> AI 대화내역</a></li>
-			<%-- <li><a href="/admin/crush"
-				class="${status == 'crushList' ? 'active-menu' : ''} waves-effect waves-dark"><i
-					class="fa fa-table"></i> 사고 관리</a></li> --%>
-			<li><a href="ui-elements.html" class="waves-effect waves-dark"><i class="fa fa-desktop"></i> UI Elements</a></li>
+			
+			<!-- <li><a href="ui-elements.html" class="waves-effect waves-dark"><i class="fa fa-desktop"></i> UI Elements</a></li>
 			<li><a href="chart.html" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i> Charts</a></li>
 			<li><a href="tab-panel.html" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> Tabs & Panels</a></li>
 
@@ -38,7 +36,7 @@
 
 						</ul></li>
 				</ul></li>
-			<li><a href="empty.html" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i> Empty Page</a></li>
+			<li><a href="empty.html" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i> Empty Page</a></li>-->
 		</ul>
 	</div>
 </nav>

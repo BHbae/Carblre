@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../layout/header.jsp"%>
-
 <div class="wrap">
 	<!-- 상단 이미지 & 서브 페이지 이동 START -->
 	<section class="sub--section">
@@ -31,8 +30,7 @@
 			<div class="board--info">
 				<div class="board--title">제목</div>
 				<div class="board--detail">
-					<span>작성자: ${dto.userName}</span> 
-					<span>작성일: ${dto.requestTime}</span>
+					<span>작성자: ${dto.userName}</span> <span>작성일: ${dto.requestTime}</span>
 				</div>
 			</div>
 			<div class="board--content">
@@ -51,6 +49,19 @@
 
 
 			</div>
+			<c:if test="${principal.role == 'admin'}">
+				<div class="reply-form">
+					<form action="/cs/reply/${dto.id}" method="post">
+						<div>
+							<label for="response">답변:</label>
+							<textarea id="response" name="response" required style="resize: none;"></textarea>
+						</div>
+						<div id="reply--button">
+							<button type="submit" onclick="location.href='/cs/reply/${dto.id}'">답변하기</button>
+						</div>
+					</form>
+				</div>
+			</c:if>
 			<div class="btn btn--wrap">
 				<div id="list--button">
 					<a href="/cs/cs">목록</a>

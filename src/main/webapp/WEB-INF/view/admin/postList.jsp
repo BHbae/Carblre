@@ -32,11 +32,6 @@
 		<div id="page-wrapper">
 			<div class="header">
 				<h1 class="page-header">게시글 관리</h1>
-				<ol class="breadcrumb">
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Tables</a></li>
-					<li class="active">Data</li>
-				</ol>
 
 			</div>
 
@@ -52,15 +47,15 @@
 									<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 										<thead>
 											<tr>
-												<th>id</th>
-												<th>user_id</th>
-												<th>nick_name</th>
-												<th>category</th>
-												<th>title</th>
-												<th>content</th>
-												<th>origin_file_name</th>
-												<th>upload_file_name</th>
-												<th>created_at</th>
+												<th>번호</th>
+												<th>유저</th>
+												<th>닉네임</th>
+												<th>분류</th>
+												<th>제목</th>
+												<th>내용</th>
+												<th>원본파일이름</th>
+												<th>업로드파일이름</th>
+												<th>작성일</th>
 												<th>기능</th>
 											</tr>
 										</thead>

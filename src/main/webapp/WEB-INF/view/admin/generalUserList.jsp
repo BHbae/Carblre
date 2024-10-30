@@ -32,11 +32,6 @@
 		<div id="page-wrapper">
 			<div class="header">
 				<h1 class="page-header">일반 회원 관리</h1>
-				<ol class="breadcrumb">
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Tables</a></li>
-					<li class="active">Data</li>
-				</ol>
 
 			</div>
 
