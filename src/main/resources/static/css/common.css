@@ -303,13 +303,13 @@ button,
     justify-content: space-between;
 }
 .map--left{
-    width: 40%;
+    width: 37%;
 }
 .map--right{
-    width: 56%;
+    width: 62%;
 }
 .cls-2 {
-    stroke: #8c8c8c40;
+    stroke: #00000040;
     fill: #f9f9f9;
     stroke-width: .25px;
     transition: fill 0.3s ease;
@@ -325,8 +325,14 @@ button,
     letter-spacing: -.04em;
     pointer-events: none;
 }
+.map--click.active .cls-1 {
+    fill: #fff !important;
+}
 .cls-2:focus-visible  {
     fill: #A7B3C8    
+}
+:focus {
+outline: -webkit-focus-ring-color auto 0 !important;
 }
 .fill- {
     fill: #b19837 !important;
@@ -356,8 +362,8 @@ path{}
     margin: 0 auto 50px;
 }
 .map--click:focus {
-    outline: 2px solid blue; /* 원하는 색상으로 외곽선 추가 */
-    outline-offset: 2px; /* 외곽선과 요소 사이의 간격 조정 */
+    outline: 0; /* 원하는 색상으로 외곽선 추가 */
+    outline-offset: 0; /* 외곽선과 요소 사이의 간격 조정 */
 }
 #main--qna h1::after {
     content: '';

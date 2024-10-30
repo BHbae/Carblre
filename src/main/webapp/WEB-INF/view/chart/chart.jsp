@@ -2,140 +2,77 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../layout/header.jsp"%>
 
-<h1> 차트 JS </h1>
-
-<canvas id="accidentTypeChart"></canvas>
-<canvas id="yearCharts"></canvas>
+<h1 style="margin-top: 300px "> 차트 JS </h1>
+<canvas id="myChart" width="300" height="100"></canvas>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script>
-    <!-- 년도별 사망자수 통계 차트 START -->
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const deathChartData = JSON.parse('${deathChartData}');
-        const label = deathChartData.map(deathToYearCount => deathToYearCount.year);
-        const allDeathCount = deathChartData.map(deathToYearCount => deathToYearCount.deathCount);
-        const injuredCount = deathChartData.map(deathToYearCount => deathToYearCount.injuredCount);
-        const seriousInjuriesCount = deathChartData.map(deathToYearCount => deathToYearCount.seriousInjuriesCount);
-        const minorInjuriesCount = deathChartData.map(deathToYearCount => deathToYearCount.minorInjuriesCount);
+    function countChart(data) {
+        const labels = data.map(item => item.asltVtrCd); // 가해자법규위반 유형
+        const deathCounts = data.map(item => item.deathCount); // 사망자 수
+        const injuredCounts = data.map(item => item.injuredCount); // 부상자 수
+        const seriousInjuriesCount = data.map(item => item.seriousInjuriesCount); // 중상자 수
+        const minorInjuriesCount = data.map(item => item.minorInjuriesCount); // 경상자 수
 
-        const data = {
-            labels: label,
-            datasets: [
-                {
-                    label: '사망자 수',
-                    data: allDeathCount,
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                    pointStyle: 'circle',
-                    pointRadius: 10,
-                    pointHoverRadius: 20
-                },{
-                    label: '부상자 수',
-                    data: injuredCount,
-                    borderColor: 'rgb(99,161,255)',
-                    backgroundColor: 'rgba(99,161,255, 0.5)',
-                    pointStyle: 'circle',
-                    pointRadius: 10,
-                    pointHoverRadius: 20
-                },{
-                    label: '중상자 수',
-                    data: seriousInjuriesCount,
-                    borderColor: 'rgb(128,255,99)',
-                    backgroundColor: 'rgba(128,255,99, 0.5)',
-                    pointStyle: 'circle',
-                    pointRadius: 10,
-                    pointHoverRadius: 20
-                },{
-                    label: '경상자 수',
-                    data: minorInjuriesCount,
-                    borderColor: 'rgb(255,229,99)',
-                    backgroundColor: 'rgba(255,229,99, 0.5)',
-                    pointStyle: 'circle',
-                    pointRadius: 10,
-                    pointHoverRadius: 20
-                }
-
-            ]
-        };
-
-        const config = {
-            type: 'line',
-            data: data,
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line', // 차트 타입
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: '사망자 수',
+                        data: deathCounts, // 사망자 수 데이터
+                        backgroundColor: 'rgba(255, 99, 132, 1)',
+                        borderColor: 'rgba(255, 177, 193, 1)',
+                        borderWidth: 2
+                    },
+                    {
+                        label: '부상자 수',
+                        data: injuredCounts, // 부상자 수 데이터
+                        backgroundColor: 'rgba(54, 162, 235, 1)',
+                        borderColor: 'rgba(154, 208, 245, 1)',
+                        borderWidth: 2
+                    },
+                    {
+                        label: '중상자 수',
+                        data: seriousInjuriesCount, // 부상자 수 데이터
+                        backgroundColor: 'rgba(75, 192, 192, 1)',
+                        borderColor: 'rgba(165, 233, 235, 1)',
+                        borderWidth: 2
+                    },
+                    {
+                        label: '경상자 수',
+                        data: minorInjuriesCount, // 부상자 수 데이터
+                        backgroundColor: 'rgba(255, 205, 86, 1)',
+                        borderColor: 'rgba(255, 230, 170, 1)',
+                        borderWidth: 2
+                    }
+                ]
+            },
             options: {
-                responsive: true,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: '년도별 사망자수 통계'
+                scales: {
+                    y: {
+                        beginAtZero: true
                     }
                 }
             }
-        };
-        const ct = document.getElementById('yearCharts').getContext('2d');
-        const yearCharts = new Chart(ct, config);
-    });
+        });
+    }
 
-
-
-
-    <!-- 년도별 사망자수 통계 차트 END -->
-    const accidentChartData = JSON.parse('${accidentChartData}');
-    const label = accidentChartData.map(accidentChartData => accidentChartData.asltVtrNm);
-    const allDeathCount = accidentChartData.map(accidentChartData => accidentChartData.deathCount);
-    const injuredCount = accidentChartData.map(accidentChartData => accidentChartData.injuredCount);
-    const seriousInjuriesCount = accidentChartData.map(accidentChartData => accidentChartData.seriousInjuriesCount);
-    const minorInjuriesCount = accidentChartData.map(accidentChartData => accidentChartData.minorInjuriesCount);
-
-    const DATA_COUNT = 8;
-    const NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
-
-    const labels = Utils.months({count: 8});
-    const data = {
-        labels: labels,
-        datasets: [
-            {
-                label: 'Dataset 1',
-                data: labels.map(() => {
-                    return [Utils.rand(0, 100), Utils.rand(0, 100)];
-                }),
-                backgroundColor: Utils.CHART_COLORS.red,
-            },
-            {
-                label: 'Dataset 2',
-                data: labels.map(() => {
-                    return [Utils.rand(0, 100), Utils.rand(0, 100)];
-                }),
-                backgroundColor: Utils.CHART_COLORS.blue,
-            },
-            {
-                label: 'Dataset 2',
-                data: labels.map(() => {
-                    return [Utils.rand(0, 100), Utils.rand(0, 100)];
-                }),
-                backgroundColor: Utils.CHART_COLORS.green,
-            },
-        ]
-    };
-
-    const config = {
-        type: 'bar',
-        data: data,
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top',
-                },
-                title: {
-                    display: true,
-                    text: 'Chart.js Floating Bar Chart'
-                }
+    // 데이터 fetch 및 차트 생성
+    fetch('/count')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
-        }
-    };
+            return response.json();
+        })
+        .then(data => {
+            countChart(data);
+        })
+        .catch(error => console.error('Error fetching data:', error));
 
-    const ct = document.getElementById('accidentTypeChart').getContext('2d');
-    const accidentTypeChart = new Chart(ct, config);
 </script>
 
 <%@ include file="../layout/footer.jsp"%>

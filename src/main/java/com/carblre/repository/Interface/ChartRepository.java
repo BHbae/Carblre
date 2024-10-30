@@ -9,8 +9,6 @@ import java.util.List;
 @Mapper
 public interface ChartRepository {
 
-    public List<DeathToYearCount> deathToYearCount();
-
-    public List<AccidentDamageCount> accidentDamageCount();
+    public List<DeathToYearCount> seoulCount(int regionCode);
 
 }

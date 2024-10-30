@@ -2,40 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.carblre.repository.Interface.ChartRepository">
 
-    <!-- 년도별 사망자수 통계 -->
-    <select id="deathToYearCount" resultType="com.carblre.repository.model.DeathToYearCount">
-        SELECT ct.acc_year AS 'year', SUM(ct.dth_dnv_cnt) AS 'deathCount', SUM(ct.injpsn_cnt) AS 'injuredCount', SUM(ct.se_dnv_cnt) AS 'seriousInjuriesCount', SUM(ct.sl_dnv_cnt) AS 'minorInjuriesCount'
-        FROM crushApi_tb as ct
-        GROUP BY ct.acc_year
-        ORDER BY ct.acc_year ASC
-    </select>
-
-    <!-- 가해자법규위반명, 법규 위반별 사망, 부상, 중상자수 통계 -->
-    <select id="accidentDamageCount" resultType="com.carblre.repository.model.AccidentDamageCount">
-        SELECT lt.aslt_vtr_nm AS 'asltVtrNm', SUM(ct.dth_dnv_cnt) AS 'dthDnvCnt', SUM(ct.injpsn_cnt) AS 'injpsnCnt', SUM(ct.se_dnv_cnt) AS 'seDnvCnt'
-        FROM crushApi_tb AS ct
-                 LEFT JOIN lawViolation_tb as lt
-                           ON ct.aslt_vtr_cd = lt.aslt_vtr_cd
-        GROUP BY ct.aslt_vtr_cd, lt.aslt_vtr_nm
-        ORDER BY lt.aslt_vtr_nm ASC
-    </select>
-
-    <!-- 차대차 유형 중분류 별로 사망, 경상, 중상자 수 통계 -->
-    <select id="carTypeDamageCount" resultType="com.carblre.repository.model.Chart">
-        SELECT ct.acc_ty_lclas_cd AS '사고유형대분류:차대차', ct.acc_ty_mlsfc_cd AS '사고유형중분류', ct.acc_ty_cd AS '사고유형명', SUM(ct.dth_dnv_cnt) AS '사망자수', SUM(ct.injpsn_cnt) AS '부상자수', SUM(ct.se_dnv_cnt) AS '중상자수'
-        FROM crushApi_tb AS ct
-        WHERE ct.acc_ty_lclas_cd = 02
-        GROUP BY ct.acc_ty_mlsfc_cd
-        ORDER BY ct.acc_ty_mlsfc_cd ASC
-    </select>
-
-    <!-- 도로형태별 통계 -->
-    <select id="roadDamageCount" resultType="com.carblre.repository.model.Chart">
-        SELECT ct.road_frm_cd AS '도로형태코드', COUNT(ct.road_frm_cd) AS '도로형태명'
-        FROM crushApi_tb AS ct
-        WHERE ct.road_frm_cd
-        GROUP BY ct.road_frm_cd
-        ORDER BY road_frm_cd ASC
+    <!-- 서울시 가해자법규위반명별 사망자수, 부상자수, 중상자수 통계 -->
+    <select id="seoulCount" resultType="com.carblre.repository.model.DeathToYearCount">
+        SELECT
+            ct.acc_year AS 'year',
+                st.sido_nm AS 'occrrncLcSidoCd',
+                lt.aslt_vtr_nm AS 'asltVtrCd',
+                SUM(ct.dth_dnv_cnt) AS 'deathCount',
+                SUM(ct.injpsn_cnt) AS 'injuredCount',
+                SUM(ct.se_dnv_cnt) AS 'seriousInjuriesCount',
+                SUM(sl_dnv_cnt) AS 'minorInjuriesCount'
+        FROM
+            crushApi_tb AS ct
+                LEFT JOIN
+            lawViolation_tb AS lt ON ct.aslt_vtr_cd = lt.aslt_vtr_cd
+                LEFT JOIN
+            sido_tb AS st ON ct.occrrnc_lc_sido_cd = st.sido
+        WHERE
+            ct.acc_year = 2023
+          AND ct.occrrnc_lc_sido_cd = #{regionCode}
+        GROUP BY
+            ct.acc_year, st.sido_nm, ct.aslt_vtr_cd, lt.aslt_vtr_nm
+        ORDER BY
+            lt.aslt_vtr_nm ASC;
     </select>
 
 </mapper>

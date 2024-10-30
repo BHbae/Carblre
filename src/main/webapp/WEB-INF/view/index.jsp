@@ -146,32 +146,32 @@
                          viewBox="0 0 544 852">
                         <g>
                             <g id="Layer_1">
-                                <a href="#northGeogngi" class="map--click" data-value="northGeogngi">
-                                    <path aria-label="선택됨" tabindex="0" id="경기북부"
+                                <a href="#northGeogngi" class="map--click" data-value="1200">
+                                    <path aria-label="선택됨" tabindex="0" id="경기·북부"
                                           class="cls-2 transition-[fill] ease-linear focus:outline-none"
                                           d="M167.4,181.8c1.6.7,3,1.4,4.2,1.9.2,0,.3.1.5.2h0s0,0,0,0c0-.2,0-.3.1-.5.5-1.6,1-3,1.3-3.8,1.9-1.2,5-3.1,8.5-5.7,9.7-7.2,11.4-10.5,16.3-10.8,4.6-.3,10.5,2.2,11.1,5.6,0,.3.1.5,0,.9-1.2,5.6-6.2,7.5-2.5,15.5,1.8,3.8,4.4,3.6,7,3.3,5-1.7,7.9-1.8,7.9-1.8,0,0,.5,1.4,11.4,3.7,10.9,2.3,4.7-2.5,11.2-5.1,6.2-2.5,8.5.1,12.9-2-1.9-2.3-.6-5.1,1.4-11,3.5-10.4-5.5-10.4-4.1-16.6,1.4-6.2,25.6-9,5.5-21.4-20-12.4-14.5-14.5-18-22.1-3.5-7.6-14.5,0-20.7-10.4-6.2-10.4-9.7,6.2-14.5-7.6-3.6-10.2-3.4-19.9-7.4-20.8.7.3,1.3.4,1.8.6-1.5-1.5-3.8-1.1-7.8,2.1-3.9,3.2-8.4,4.8-13.5,5.4.4.2.9.4,1.7.4,4.8,0-11.8,1.5-14.9,7-3.1,5.5-13.5,4.5-19,1.4-5.5-3.1-12.1-3.8-14.5,4.1,0,0-9.3-5.2-5.9,11.4,3.5,16.6-14.2,4.1-14.2,4.1,0,0-6.9-6.9-5.9,7.3,1,14.2,7.3,12.1,2.4,16.6-4.8,4.5,6.9,3.1,3.1,12.1-1,2.5-1.3,5-1.3,7.4,10.9,2.9,14.5,13.5,28.6,16.1l4.1-6.2h4.1v2.1c1.2,1.4,1.8,5.1,2.1,9.7,2.7,1,5.6,2.2,8.4,3.4,3,1.2,5.9,2.5,8.2,3.6Z">
                                     </path>
                                 </a>
-                                <a href="#gangwon" class="map--click" data-value="gangwon">
+                                <a href="#gangwon" class="map--click" data-value="1600">
                                     <path aria-label="선택됨" tabindex="1" id="강원"
                                           class="cls-2 transition-[fill] ease-linear focus:outline-none"
                                           d="M480.1,254.5c-.7-4.8-1.4-9.7-2.1-14.5-4.7-12.1-14.2-25.2-20.7-35.3-1.4-5.5-2.8-11.1-4.1-16.6-12.2-22.4-40.3-43-51.9-64.3-10-18.4-32.4-97.9-43.6-105.8-1.6-1.7-2.9-2-4.4-1.7-.4,1.8-.9,4.1-1.6,7.1-3.3,16.5-5.1,17.7-24.3,30.3-19.2,12.6-22.8,2.1-33,6.9-10.2,4.8-10.5,0-20.4-1.8-9.9-1.8-24.9-.9-39,3.9-14.1,4.8-14.1,11.7-25.5,7.8-10.5-3.6-2.5,4.6-8.3,3.3-.5-.1-1.1-.3-1.8-.6,4,.9,3.9,10.7,7.4,20.8,4.8,13.8,8.3-2.8,14.5,7.6,6.2,10.4,17.3,2.8,20.7,10.4,3.5,7.6-2.1,9.7,18,22.1,20.1,12.4-4.1,15.2-5.5,21.4-1.4,6.2,7.6,6.2,4.1,16.6-2,5.9-3.3,8.7-1.4,11,1.4,1.7,4.5,3.2,10.4,5.6,13.8,5.5,13.1,8.3,13.1,8.3,13.9,0,16,4.1,15,7.3-.4,1.1-1.1,2.2-1.8,2.9,0,0,0,0,0,0,0,0,0,0,0,0-.5.5-1,.7-1.3.7-2.1,0-13.1-3.5-6.9,6.2,6.2,9.7,3.5,7.6-1.4,16.6-4.5,8.3-1.8,16.7-3.1,24.5.1,0,.3,0,.4,0,0,.5-.2,1.1-.3,1.6.1-.5.2-1.1.3-1.6,5.2-.4,3.8,5,10.3,11.5,9,9,11.8,2.8,11.8-8.3s7.6-18,7.6-8.3,4.1,7.6,17.3,8.3c13.1.7,18-2.1,29.7.7,5.4,1.3,3.5,2.8-.4,4.8-1,.5-2.2,1.1-3.3,1.7-.4.2-.8.4-1.2.6-3.7,1.9-7.5,4.1-8.3,6.7-2.1,6.9,14.5-3.5,29,2.1,14.5,5.5,17.3-.7,23.5,5.5,1.1,1.1,2.2,2.1,3.4,3,5.7,4.3,12,6.1,13.2-.2,1.4-7.6,7.6-4.9,7.6,2.8s12.5,2.7,20.5-1.4c1.9-1,3.7-2,4.9-3,.6-.5,1.3-.9,1.9-1.2,5.2-2.2,9.7,2.2,16.4,7.6,7.6,6.2,11.1-2.8,16.6-15.2,2-4.4,5.8-6.5,9.8-7.5.2,0,.4,0,.5-.1-3.7-4.5-9.8-6.8-12.4-11.1Z">
                                     </path>
                                 </a>
-                                <a href="#incheon" class="map--click" data-value="incheon">
+                                <a href="#incheon" class="map--click" data-value="1600">
                                     <path aria-label="선택됨" tabindex="2" id="인천·부천"
                                           class="cls-2 transition-[fill] ease-linear focus:outline-none"
                                           d="M203,209.4c0-.3-.1-.6-.1-.8-.2,0-.5,0-.7,0-1,0-2,0-3.1.1-9.3.5-13.3-.3-15.7-2.1-4.2-3-10.6-9.4-11.4-10.2-1.3-1.2-1.5-3.1-1.5-4.4,0-1.3,0-2.8,1.3-6.8.1-.4.3-.9.4-1.3,0,0,0,0,0,0h0c-.2,0-.3-.2-.5-.2-1.2-.6-2.6-1.2-4.2-1.9-2.3-1.1-5.2-2.3-8.2-3.6-2.8-1.2-5.7-2.4-8.4-3.4,0,0,0,0,0,0,.3,5.5-.8,11.9-1,16.9h-2.1c-2.1-4.4-3.7-5.9-4.1-12.4-4.4-.5-8.2-.5-12.4-2.1-2.1,5.9-.7,7.1,0,14.5,19.7-.7,33,11.2,36.9,28.3,0,0,0,0,0,0,2,.4,2.7.6,4.3.6,14.1.5,17.8,7,26.9-1.1,1.5-1.4,2.6-2.6,3.2-3.6,0,0,0,0,0,0,2-3.2.9-5.1.4-6.4Z">
                                     </path>
                                 </a>
-                                <a href="#seoul" class="map--click" data-value="seoul">
+                                <a href="#seoul" class="map--click active" data-value="1100">
                                     <path aria-label="선택됨" tabindex="3" id="서울"
-                                          class="cls-2 transition-[fill] ease-linear fill- focus:outline-none"
+                                          class="cls-2 transition-[fill] ease-linear focus:outline-none"
                                           d="M207.2,185.2c-3.7-8.1,1.2-9.9,2.5-15.5,0-.4,0-.6,0-.9-.7-3.4-6.5-5.9-11.1-5.6-4.9.3-6.6,3.6-16.3,10.8-3.5,2.6-6.6,4.5-8.5,5.7-.3.9-.8,2.2-1.3,3.8,0,.2,0,.3-.1.5-.2.5-.3.9-.4,1.3-1.2,4-1.4,5.4-1.3,6.8,0,1.3.2,3.2,1.5,4.4.9.8,7.2,7.2,11.4,10.2,2.4,1.7,6.4,2.6,15.7,2.1,1.1,0,2.1-.1,3.1-.1.2,0,.5,0,.7,0,.5,0,.9,0,1.4,0,1.7,0,3.4,0,5.1,0,.3-.8,1.1-1.5,2.8-2.3,8.1-3.7,12.4-4.4,9.3-13.7-1.5-4.5-4-4.5-6.6-4.2-.2,0-.4,0-.7,0-2.6.3-5.2.5-7-3.3Z">
                                     </path>
                                 </a>
-                                <a href="#southGeonggi" class="map--click" data-value="southGeonggi">
-                                    <g aria-label="선택됨" id="경기남부" tabindex="4"
+                                <a href="#southGeonggi" class="map--click" data-value="1800">
+                                    <g aria-label="선택됨" id="경기·남부" tabindex="4"
                                        class="cls-2 transition-[fill] ease-linear focus:outline-none">
                                         <path
                                                 d="M223.6,309.6c.4.5.8.9,1.2,1.4.3.4.6.7.9,1-.3-.3-.6-.7-.9-1-.3-.4-.7-.9-1.2-1.4Z">
@@ -181,13 +181,13 @@
                                         </path>
                                     </g>
                                 </a>
-                                <a href="#daejeon" class="map--click" data-value="daejeon">
+                                <a href="#daejeon" class="map--click" data-value="1600">
                                     <path aria-label="선택됨" tabindex="5"
                                           class="cls-2 transition-[fill] ease-linear focus:outline-none" id="대전·충남"
                                           d="M248.7,411.5c.5-11.6-.5-11.1,8.6-16.2,9.1-5,14.6-7.6,6.1-7.1-8.6.5-9.6-4.5-17.7-7.6-3.4-1.3-8.4-.7-12.9.3,0,0,0,0,0,0,0,0,0,0,0,0,0-.4-.2-.8-.4-1.3,0,0,0-.1,0-.2-.2-.5-.4-.9-.7-1.4,0,0,0,0,0,0-6.9-13.1-7.6-8.3-11.8-18-.5-1.2-1-2.3-1.4-3.4-.2-.5-.4-1.1-.5-1.6-.4-1.5-.7-2.9-.8-4.2,0-1.3.1-2.6.5-3.8.1-.4.3-.8.5-1.2.4-.8.9-1.6,1.6-2.4s1.4-1.6,2.3-2.4c.5-.4,1-.8,1.5-1.2s1.1-.8,1.7-1.3c.5-.3.9-.6,1.4-.9.4-.3.9-.5,1.3-.7,1.2-.6,2.3-1,3.4-1.3,1.3-.4,2.6-.6,3.6-.8.2,0,.4,0,.6-.1.4,0,.8-.1,1.1-.2.5-.1.9-.2,1.2-.4.1,0,.2-.1.3-.2.2-.1.3-.3.4-.4,0-.2.1-.4.1-.6s0-.5-.2-.8c-.2-.5-.5-1.1-.9-1.8-.6-.9-1.4-2.1-2.6-3.6-1.4-1.8-2.4-3.2-3.1-4.2-.3-.4-.5-.8-.7-1.1-.3-.5-.5-.9-.7-1.2,0-.2-.1-.3-.2-.5,0,0,0-.1,0-.2,0-.1,0-.2-.1-.3,0,0,0,0,0,0,0-.1,0-.2,0-.3,0,0,0-.2,0-.2,0,0,0-.1,0-.2,0-.1,0-.2-.1-.4,0-.1,0-.2-.2-.4,0-.2-.2-.4-.4-.6,0-.1-.2-.3-.2-.4-.1-.2-.3-.4-.4-.7-.3-.4-.7-.9-1.1-1.6-.2-.2-.4-.5-.6-.7-.4-.5-.9-1.1-1.4-1.8-.3-.3-.6-.7-.9-1-.3-.4-.7-.9-1.2-1.4-.4-.5-.9-1-1.3-1.6-.3-.4-.7-.7-1-1.1-.2.2-.4.4-.6.6,0,0,0,0,0,0-.4.4-.8.7-1.2.9-.1,0-.3.1-.4.2-4.4,1.6-10.2-5.8-16.9-9.3-.5-.3-1-.5-1.5-.7-7.8-3.2-.4,6.9-6.8,6.5-.4,0-.9-.1-1.5-.2-2.2-.5-4.1-.7-5.7-.7-1,0-1.9,0-2.8.2-.6,0-1.1.2-1.7.4-1.2.3-2.4.8-3.7,1.2-.3.1-.6.2-.9.3-.8.3-1.7.6-2.6.9-.4.1-.8.3-1.3.4-.8.2-1.6.4-2.4.4,0,0-.1,0-.2,0-2.4.1-4.9-.3-7.1-1-.2,0-.5-.1-.7-.2v1.5c4.2,2.1,8.3,4.1,12.4,6.2v4.2c-7.6,4.2-10.8,11.5-17.6,16.6-3.8-7.7-5.3-17.4-5.2-29-8.1.7-9.8-1.2-18.7,0-3.1-8.3-6.5-10.6-10.4-16.6h-4.2c-.7,10.7-2.6,17.7,6.2,22.8v4.1c-7.2-1.4-9-2.6-12.4,4.1h-4.1c.9-11.1-1-12.1-2.1-22.8h-6.2c-.8,6.7,1.6,11,4.1,16.6-5.1,3.1-10,10.8-12.4,16.6-2.8-.7-5.5-1.4-8.3-2.1,2-4.5,4.7-9.6,8.3-12.4v-6.2h-4.1l-2.1,8.3c-3.1-1.2-3.5-1.8-8.3-2.1v8.3h-8.3v1c4.3,5.9,6.6,10.8,6.2,21.8,3.7-.8,3-.7,5.2-2.1l5.2,8.3,1,2.1c3.5-8.6,2.8-14.8,8.3-20.7,2.7,4.2,3.4,9,3.1,16.6h4.1c1-6,3.8-10.9,7.3-14.5,4.6,6.8,6.7,24.4,1,29,0,9.3,3.9,10.1,10.4,12.4-1.6,5-.3,3.7-6.2,4.1,1.5,2,2.6,2.1,4.1,4.2,2,1.5.6,0,2.1,2.1-2.8,1.4-5.5,2.8-8.3,4.1,1,5.2,2.3,6.3,6.2,8.3-.5,5.9,1,4.7-4.1,6.2,1.6,9.5,5.4,16.7,8.3,22.8-3.8,1.7-6.2,2.7-8.3,6.2-2,1.5-.6,0-2.1,2.1,9.8,4.4,11.7,11.9,18.7,17.3,2.1-.9,4-1.4,5.5-1.4,8.3,0,6.2,1.4,11.8-4.1,5.5-5.5,8.3,7.6,11.1-6.2,2.8-13.8-3.5-13.8,4.8-15.2,8.3-1.4,21.4.7,21.4,6.9s6.2,12.4,12.4,6.2c6.2-6.2,15.2-4.1,15.9-2.1.7,2.1,6.2-10.4,6.9-4.2.7,6.2,10.4,15.9,10.4,15.9,0,0,16.6,20.7,18.7,6.2,2.1-14.5,10.4-2.8,10.4-2.8,0,0,4.8-1.4,4.8-6.9s-.7-3-1.6-4.7c-1-1.7-2.3-3.5-3.5-5.6,0,0,0,0,0-.1-.5-.9-1-1.8-1.4-2.8,0,0,0-.1,0-.2-.2-.4-.3-.8-.5-1.3,0-.1,0-.2-.1-.3-.2-.5-.3-.9-.4-1.4,0,0,0,0,0,0-.1-.5-.2-1.1-.3-1.6,0-.1,0-.3,0-.4,0-.4,0-.9-.1-1.3,0-.2,0-.3,0-.5,0-.6,0-1.2,0-1.8,0-.6,0-1.3,0-1.9,0-.2,0-.4,0-.6,0-.4,0-.8,0-1.1,0-.2,0-.4,0-.6,0-.3,0-.6-.1-.9,0-.2,0-.4-.1-.6,0-.3-.1-.5-.2-.8,0-.2,0-.4-.2-.6,0-.2-.2-.5-.2-.7,0-.2-.1-.3-.2-.5-.1-.2-.2-.4-.3-.6,0-.1-.1-.3-.2-.4-.2-.3-.4-.6-.6-.8-.1-.1-.3-.2-.4-.4-.1-.1-.3-.2-.4-.3-.1-.1-.3-.2-.5-.3-.1,0-.3-.2-.4-.2-.2,0-.4-.2-.5-.2-.1,0-.3-.1-.4-.2-.2,0-.4-.1-.6-.2-.2,0-.3,0-.5,0-.2,0-.5,0-.7,0-.1,0-.3,0-.4,0-1,0-2,0-3.2.4,0,0,0,0,0,0,.3,0,.5-.1.8-.2.1-1,.2-2.1.3-3.2Z">
                                     </path>
                                 </a>
-                                <a href="#chungbok" class="map--click" data-value="chungbok">
+                                <a href="#chungbok" class="map--click" data-value="2000">
                                     <g aria-label="선택됨" tabindex="6" id="충북"
                                        class="cls-2 transition-[fill] ease-linear focus:outline-none">
                                         <path d="M298,477.7s0,0,0,0c-.4-.2-.9-.5-1.4-.7.5.2.9.5,1.4.7Z"></path>
@@ -197,25 +197,25 @@
                                         </path>
                                     </g>
                                 </a>
-                                <a href="#daegu" class="map--click" data-value="daegu">
-                                    <path aria-label="선택됨" tabindex="7" id="대구·경북"
+                                <a href="#daegu" class="map--click" data-value="1100">
+                                    <path tabindex="7" id="대구·경북"
                                           class="cls-2 transition-[fill] ease-linear focus:outline-none"
                                           d="M495.1,470c1.4-6.2,2.8-12.4,4.1-18.7-1.6-6.2-6.2-28.5-4.1-35.3,11.2-36.5,15.9-105.1-1-146.9-.5-1.2-1.3-2.5-2.1-3.5-4.1.9-7.9,3.1-9.8,7.5-5.5,12.4-9,21.4-16.6,15.2-6.6-5.4-11.2-9.8-16.4-7.6-.6.3-1.2.7-1.9,1.2-1.2.9-2.9,2-4.9,3-8,4.1-20.5,7.6-20.5,1.4s-6.2-10.4-7.6-2.8c-1.1,6.3-7.5,4.5-13.2.2-.5.4-1,.8-1.6,1.2-2.1,1.6-4.7,3.2-7.8,4.8-3.2,1.6-6.3,3.1-9,4.6-2.1,1.1-4,2.2-5.7,3.4-1.1.8-2.2,1.6-3.1,2.4-.9.8-1.8,1.7-2.5,2.6s-1.3,1.9-1.7,2.9c-.7,1.6-1,3.3-1,5.2s-.1,2.5-.3,3.6-.5,2.1-.8,3.1-.4.9-.6,1.3c-.6,1.3-1.4,2.3-2.3,3.1-.6.5-1.3.9-2,1.2-.7.3-1.4.4-2.2.4-1.1,0-2.3-.3-3.5-.9-.4-.2-.8-.5-1.2-.7-1.6-1.2-3.2-2.1-4.8-2.8-1.2-.5-2.3-.9-3.3-1.2-1-.3-2-.4-2.9-.4-.3,0-.6,0-.8,0-.5,0-1,.2-1.4.3-.6.3-1.1.6-1.5,1.2-1,1.6-2.9.8-5.2.5-1-.1-2.1-.2-3.2,0-.3,0-.6.2-.9.3-.6.2-1.1.6-1.7,1-.9.7-1.9,1.2-3,1.5-.7.2-1.5.4-2.2.6s-1.5.4-2.1.5c-3.1.9-5.3,2.3-3.8,7.5,1.4,4.5,3.4,6.8,3.6,7.8,0,0,0,0,0,0,.1.9-1.7.5-8.2-.5-2.4-.3-4.3-.5-5.7-.5-.2,0-.5,0-.7,0-5.5.3-3.9,4-4.6,13.4-.3,3.7-1.3,5-2.5,4.9-.1,0-.3,0-.4,0s-.3,0-.4-.1c-.3-.1-.5-.3-.8-.5-2.5-1.7-5.1-6.1-5.1-6.1l-6.5,11.1s10.1,3.7,10.1,11.1.4,4,.9,6.4c.2,1,.5,2.1.7,3.2.2.7.3,1.5.5,2.2.4,1.8.7,3.7.8,5.4,0,1.2,0,2.3-.1,3.3-.2,1.1-.4,2-.9,2.9s-1,1.7-1.9,2.4c-2.6,2.2-5.9,4.5-8,6.4-.8.7-1.5,1.4-1.9,2.1,0,.1-.2.3-.2.4-.2.4-.3.7-.3,1,0,.3.2.6.4.9.4.3,1,.6,1.9.8.7.2,1.5.3,2.6.4.3,0,.7,0,1,0s.6,0,1,0c.6,0,1.2,0,1.8,0,.8,0,1.6-.2,2.3-.3s.9-.2,1.4-.3c.4,0,.9-.2,1.3-.3,1.2-.3,2.3-.5,3.3-.5,2.5,0,4.8,1.3,8.2,6.9,1.4,2.2,2.7,3.9,3.8,5.1.2.2.4.4.5.6.4.4.8.8,1.2,1.1.1.1.3.2.4.3.7.6,1.2.9,1.5,1.1,0,0,.1,0,.1.1,0,0,0,0,0,.1,0,0,0,.1,0,.2,0,0,0,.1-.1.2,0,0,0,0-.2,0-.1,0-.3.1-.5.2-.2,0-.5.2-.8.3-.5.2-1.1.4-1.8.7-.7.3-1.5.6-2.5,1.1-2.5,1.2-3.7,2.9-4.4,4.9-.4,1.3-.5,2.7-.6,4.2,0,.3,0,.6,0,.9,0,.6,0,1.2-.1,1.8,0,.9-.2,1.9-.3,2.8,0,.6-.2,1.3-.4,1.9,0,.3-.2.6-.3.9-.2.6-.4,1.2-.7,1.8-.3.6-.7,1.2-1.1,1.8-.4.6-.9,1.1-1.5,1.7-1.1,1.1-2.6,2.1-4.4,3-.3.1-.6.3-.9.5,1.5,1.6,2.1,4.5,1.1,9.2-1.1,5.3-2.1,10.8-2.8,15.9,7.6,4,7.4,8.3,16.6,7.6,9.7-.7,14.5-3.5,16.6,10.4,2.1,13.8,4.8,27.7,13.1,23.5,8.3-4.1,4.1,0,14.5.7.6,0,1.1,0,1.6,0,0,0,0,0,0,0,7.9.2,2.4-2.9,12.2-3.5,4.7-.3,6,2.9,6,2.9,0,.2.1.5.1.5.6,2.3.8,4.9,6.3,4.9,10.4,0,17.3-2.8,20.1,1.4,2.8,4.1,9,15.9,15.9,3.5,6.9-12.4,16.6-9.7,16.6-9.7l9.7,2.8s1.4-8.3,6.2-11.8c4.8-3.5,18.7-13.8,21.4-4.8,2.8,9,9.7,12.4,13.1,7.6,3.5-4.8,0-4.8,7.6-2.1,3.3,1.2,7.7,3.7,11.5,7.5-.4,3-.9,6-1.3,8.9,3.6-24.8,7.4-55.2,13.9-59.9v-6.2c-13.2,6.8-8.8,11.2-24.9,8.3Z">
                                     </path>
                                 </a>
-                                <a href="#jeonbok" class="map--click" data-value="jeonbok">
+                                <a href="#jeonbok" class="map--click" data-value="2000">
                                     <path aria-label="선택됨" tabindex="8" id="전북"
                                           class="cls-2 transition-[fill] ease-linear focus:outline-none"
                                           d="M284.2,451.4c-4.2,0-9.4-2.6-19.5-7.2.9,1.6,1.5,3,1.5,4.5,0,5.5-4.8,6.9-4.8,6.9,0,0-8.3-11.8-10.4,2.8-2.1,14.5-18.7-6.2-18.7-6.2,0,0-9.7-9.7-10.4-15.9-.7-6.2-6.2,6.2-6.9,4.2-.7-2.1-9.7-4.2-15.9,2.1-6.2,6.2-12.4,0-12.4-6.2s-13.1-8.3-21.4-6.9c-8.3,1.4-2.1,1.4-4.8,15.2-2.8,13.8-5.5.7-11.1,6.2-5.5,5.5-3.5,4.1-11.8,4.1s-3.4.5-5.5,1.4c-3.5-2.7-5.7-5.9-8.3-9,3.1,3.7,5.6,7.5,10.4,10.4-1.9,5.5-5.5,5.8-8.3,10.4-2.3,2.3-2.3,5.4-2.1,10.4h18.7v2.1l-6.2,4.1c.7,4.4,1.4,6.1,4.1,8.3v8.3c-5.5-.7-11.1-1.4-16.6-2.1-4.7,10.5-15.8,15.9-24.9,21.8,1.5,2.4,1.8,2.7,2.1,7.3,9,.7,18,1.4,27,2.1v8.3c-6.5,1.5-13,3-19.5,4.5,3,2.1,1.5,6.9,1.5,10.2,0,5.4,1.5,13,18.4,9.2,16.9-3.8,12.3-1.5,15.3-15.3,3.1-13.8,24.5,3.1,24.5,3.1,0,0,16.1-15.3,13,8.4-3.1,23.7,16.1,7.7,25.3,7.7s6.1,3.1,18.4,3.1,13.8-10.7,18.4-8.4c2.9,1.4,10.3,7.4,15.5,11.7,1.7-6.6,5.4-5.3,5.4-15.4s4.2-12.4,0-22.8c-4.1-10.4-13.1-2.1-.7-27,0,0,13.1-13.8,16.6-19.4,3.5-5.5,7.6-15.2,16.6-11.1.5.2.9.5,1.4.7.7-5.1,1.6-10.6,2.8-15.9,3.5-15.9-11.8-10.4-16.6-10.4Z">
                                     </path>
                                 </a>
-                                <a href="#busan" class="map--click" data-value="busan">
+                                <a href="#busan" class="map--click" data-value="1200">
                                     <path aria-label="선택됨" tabindex="9" id="부산·울산·경남"
                                           class="cls-2 transition-[fill] ease-linear focus:outline-none"
                                           d="M495.8,511.5c-7.6-2.8-4.1-2.8-7.6,2.1-3.5,4.8-10.4,1.4-13.1-7.6-2.8-9-16.6,1.4-21.4,4.8-3.4,2.5-5.1,7.3-5.8,10-.1.5-.2,1-.3,1.4,0,.2,0,.4,0,.4h0s-9.7-2.8-9.7-2.8c0,0-9.7-2.8-16.6,9.7-6.9,12.5-13.1.7-15.9-3.5-2.8-4.1-9.7-1.4-20.1-1.4s-2.1-9-12.4-8.3c-10.4.7-3.5,4.1-13.8,3.5-10.4-.7-6.2-4.8-14.5-.7-8.3,4.2-11.1-9.7-13.1-23.5-2.1-13.8-6.9-11.1-16.6-10.4-9.7.7-9-4.1-18-8.3-9-4.1-13.1,5.5-16.6,11.1-3.5,5.5-16.6,19.4-16.6,19.4-12.4,24.9-3.5,16.6.7,27,4.2,10.4,0,10.4,0,22.8s-5.5,7.6-6.2,21.4c-.7,13.8,2.1,7.6,12.4,23.5,10.4,15.9,8.3,13.1,8.3,28.3s-.1,8.5-.3,11.9c2.6.8,5,1.3,7.2-.1,3.3-2.2,5.2-6,8.3-8.3,3-1.6,2.4.7,8.3,2.1.4-4.4,0-4.1,2.1-6.2,2.5-3.2,4.7-3.9,10.4-4.1-.4,8-2.8,17.5,0,20.7,4.5,5.9,27.4,5.6,31.1,2.1,9.2,1,5.9,5.5,10.4,10.4v2.1h8.3c-1.3-6.2-3.8-7.9-6.2-12.4,6.5-3.4,11.9-9.1,12.4-18.7-3.5.7-6.9,1.4-10.4,2.1,1.4-4.1,2.8-8.3,4.2-12.4,9.7.2,18.7-1.2,22.8,6.2h4.1c-1.4-4.1-2.8-8.3-4.1-12.4,2.1-2,1.1-.4,2.1-4.1,10.7,2.5,11.7,9.1,23.7,10.2,1,.1,2.1.2,3.3.2,2.1-3.5,4.1-6.9,6.2-10.4,1.4,2,3.3,6.2-.3,8.7l.3,4.4c2.8-2.1,1.4-4.8,4.1-6.9,3.6-2.2,3.4,2.2,9.3-2.1l5.2,10.4c2.9,1.5,7-4.5,14.5-2.1l4.1-8.3c10.6-6.1,13.4-4.9,12.4-22.8,8.3-3.8,12.3-9.3,18.7-14.5,0-.7-.2-1.3-.3-2-.6-3.4-1.8-6.5-3.8-8.4.7-9.9,4-7,6.2-14.5,2.4,2.1,4.8,4.1,7.3,6.2,2.6-6.7,4.7-22,7.1-38.1-3.8-3.7-8.2-6.3-11.5-7.5Z">
                                     </path>
                                 </a>
-                                <a href="#gwangju" class="map--click" data-value="gwangju">
+                                <a href="#gwangju" class="map--click" data-value="1800">
                                     <g aria-label="선택됨" tabindex="10" id="광주·전남"
                                        class="cls-2 transition-[fill] ease-linear focus:outline-none">
                                         <path
@@ -223,7 +223,7 @@
                                         </path>
                                     </g>
                                 </a>
-                                <a href="#jeju" class="map--click" data-value="jeju">
+                                <a href="#jeju" class="map--click" data-value="1100">
                                     <path aria-label="선택됨" tabindex="11" id="제주도"
                                           class="cls-2 transition-[fill] ease-linear focus:outline-none" stroke="0"
                                           d="M125.9,793.4c24.9-.6,27.9,6.4,41.5,14.5v6.2c-4.8,6.2-9.7,12.4-14.5,18.7-9.9,7-51.8,13.7-64.3,8.3-8.4-3.6-12,5.9-14.5,2.1-7.8-4-12.8-10.4-12.4-22.8,1.4-.4,2.8-.7,4.1-1,7-3.9,10.4-12,16.6-15.6,13.7-7.8,33.8.8,43.6-10.4Z">
@@ -253,13 +253,13 @@
                                     <tspan x="0" y="0">광주·전남</tspan>
                                 </text>
                                 <text class="cls-1 " transform="translate(91.1 826.4)">
-                                    <tspan x="0" y="0">제주도</tspan>
+                                    <tspan x="0" y="0">제주</tspan>
                                 </text>
                                 <text class="cls-1 " transform="translate(171.9 142.2)">
-                                    <tspan x="0" y="0">경기북부</tspan>
+                                    <tspan x="0" y="0">경기·북부</tspan>
                                 </text>
                                 <text class="cls-1 " transform="translate(195 260)">
-                                    <tspan x="0" y="0">경기남부</tspan>
+                                    <tspan x="0" y="0">경기·남부</tspan>
                                 </text>
                                 <text class="cls-1 " transform="translate(176.5 196)">
                                     <tspan x="0" y="0">서울</tspan>
@@ -275,22 +275,793 @@
             </div>
             <div class="map--right">
                 <div class="map--tab">
-                    <div id="northGeogngi">경기북부입니다.</div>
-                    <div id="gangwon">강원</div>
-                    <div id="incheon">인천·부천</div>
-                    <div id="seoul">서울</div>
-                    <div id="southGeonggi">경기남부</div>
-                    <div id="daejeon">대전·충남</div>
-                    <div id="chungbok">충북</div>
-                    <div id="daegu">대구·경북</div>
-                    <div id="jeonbok">전북</div>
-                    <div id="busan">부산·울산·경남</div>
-                    <div id="gwangju">광주·전남</div>
-                    <div id="jeju">제주도</div>
+
+                    <div id="northGeogngi">
+                        <h2 style="text-align: center; margin: 70px 0; font-size: 26px;">경기·북부 가해자법규위반명별 사망자수, 부상자수, 중상자수 통계</h2>
+                        <canvas id="myCharte"></canvas>
+                    </div>
+                    <div id="gangwon">
+                        <h2 style="text-align: center; margin: 70px 0; font-size: 26px;">강원 가해자법규위반명별 사망자수, 부상자수, 중상자수 통계</h2>
+                        <canvas id="myChartr"></canvas>
+                    </div>
+                    <div id="incheon">
+                        <h2 style="text-align: center; margin: 70px 0; font-size: 26px;">인천·부천 가해자법규위반명별 사망자수, 부상자수, 중상자수 통계</h2>
+                        <canvas id="myChartd"></canvas>
+                    </div>
+                    <div id="seoul" data-value="1100">
+                        <h2 style="text-align: center; margin: 70px 0; font-size: 26px;">서울 가해자법규위반명별 사망자수, 부상자수, 중상자수 통계</h2>
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <div id="southGeonggi">
+                        <h2 style="text-align: center; margin: 70px 0; font-size: 26px;">경기·남부 가해자법규위반명별 사망자수, 부상자수, 중상자수 통계</h2>
+                        <canvas id="myCharh"></canvas>
+                    </div>
+                    <div id="daejeon">
+                        <h2 style="text-align: center; margin: 70px 0; font-size: 26px;">대전·충남 가해자법규위반명별 사망자수, 부상자수, 중상자수 통계</h2>
+                        <canvas id="myChartz"></canvas>
+                    </div>
+                    <div id="chungbok">
+                        <h2 style="text-align: center; margin: 70px 0; font-size: 26px;">충북 가해자법규위반명별 사망자수, 부상자수, 중상자수 통계</h2>
+                        <canvas id="myChartb"></canvas>
+                    </div>
+                    <div id="daegu">
+                        <h2 style="text-align: center; margin: 70px 0; font-size: 26px;">대구·경북 가해자법규위반명별 사망자수, 부상자수, 중상자수 통계</h2>
+                        <canvas id="myCharta"></canvas>
+                    </div>
+                    <div id="jeonbok">
+                        <h2 style="text-align: center; margin: 70px 0; font-size: 26px;">전북 가해자법규위반명별 사망자수, 부상자수, 중상자수 통계</h2>
+                        <canvas id="myChartv"></canvas>
+                    </div>
+                    <div id="busan" data-value="1200">
+                        <h2 style="text-align: center; margin: 70px 0; font-size: 26px;">부산·울산·경남 가해자법규위반명별 사망자수, 부상자수, 중상자수 통계</h2>
+                        <canvas id="myCharts"></canvas>
+                    </div>
+                    <div id="gwangju">
+                        <h2 style="text-align: center; margin: 70px 0; font-size: 26px;">광주·전남 가해자법규위반명별 사망자수, 부상자수, 중상자수 통계</h2>
+                        <canvas id="myChartw"></canvas>
+                    </div>
+                    <div id="jeju">
+                        <h2 style="text-align: center; margin: 70px 0; font-size: 26px;">제주 가해자법규위반명별 사망자수, 부상자수, 중상자수 통계</h2>
+                        <canvas id="myChartq"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <script>
+        let myChart;
+        function countChart(data) {
+            const labels = data.map(item => item.asltVtrCd);
+            const deathCounts = data.map(item => item.deathCount);
+            const injuredCounts = data.map(item => item.injuredCount);
+            const seriousInjuriesCount = data.map(item => item.seriousInjuriesCount);
+            const minorInjuriesCount = data.map(item => item.minorInjuriesCount);
+
+            const ctx = document.getElementById('myChart').getContext('2d');
+
+            // 차트가 이미 존재하는 경우 파괴
+            if (myChart) {
+                myChart.destroy(); // 이전 차트가 있으면 파괴
+            }
+
+            // 새로운 차트 인스턴스 생성
+            myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: '사망자 수',
+                            data: deathCounts,
+                            backgroundColor: 'rgba(255, 99, 132, 1)',
+                            borderColor: 'rgba(255, 177, 193, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '부상자 수',
+                            data: injuredCounts,
+                            backgroundColor: 'rgba(54, 162, 235, 1)',
+                            borderColor: 'rgba(154, 208, 245, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '중상자 수',
+                            data: seriousInjuriesCount,
+                            backgroundColor: 'rgba(75, 192, 192, 1)',
+                            borderColor: 'rgba(165, 233, 235, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '경상자 수',
+                            data: minorInjuriesCount,
+                            backgroundColor: 'rgba(255, 205, 86, 1)',
+                            borderColor: 'rgba(255, 230, 170, 1)',
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        let myCharts;
+        function countCharts(data) {
+            const labels = data.map(item => item.asltVtrCd);
+            const deathCounts = data.map(item => item.deathCount);
+            const injuredCounts = data.map(item => item.injuredCount);
+            const seriousInjuriesCount = data.map(item => item.seriousInjuriesCount);
+            const minorInjuriesCount = data.map(item => item.minorInjuriesCount);
+
+            const ctx = document.getElementById('myCharts').getContext('2d');
+
+            // 차트가 이미 존재하는 경우 파괴
+            if (myCharts) {
+                myCharts.destroy(); // 이전 차트가 있으면 파괴
+            }
+
+            // 새로운 차트 인스턴스 생성
+            myCharts = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: '사망자 수',
+                            data: deathCounts,
+                            backgroundColor: 'rgba(255, 99, 132, 1)',
+                            borderColor: 'rgba(255, 177, 193, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '부상자 수',
+                            data: injuredCounts,
+                            backgroundColor: 'rgba(54, 162, 235, 1)',
+                            borderColor: 'rgba(154, 208, 245, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '중상자 수',
+                            data: seriousInjuriesCount,
+                            backgroundColor: 'rgba(75, 192, 192, 1)',
+                            borderColor: 'rgba(165, 233, 235, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '경상자 수',
+                            data: minorInjuriesCount,
+                            backgroundColor: 'rgba(255, 205, 86, 1)',
+                            borderColor: 'rgba(255, 230, 170, 1)',
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        let myChartz;
+        function countChartz(data) {
+            const labels = data.map(item => item.asltVtrCd);
+            const deathCounts = data.map(item => item.deathCount);
+            const injuredCounts = data.map(item => item.injuredCount);
+            const seriousInjuriesCount = data.map(item => item.seriousInjuriesCount);
+            const minorInjuriesCount = data.map(item => item.minorInjuriesCount);
+
+            const ctx = document.getElementById('myChartz').getContext('2d');
+
+            // 차트가 이미 존재하는 경우 파괴
+            if (myChartz) {
+                myChartz.destroy(); // 이전 차트가 있으면 파괴
+            }
+
+            // 새로운 차트 인스턴스 생성
+            myChartz = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: '사망자 수',
+                            data: deathCounts,
+                            backgroundColor: 'rgba(255, 99, 132, 1)',
+                            borderColor: 'rgba(255, 177, 193, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '부상자 수',
+                            data: injuredCounts,
+                            backgroundColor: 'rgba(54, 162, 235, 1)',
+                            borderColor: 'rgba(154, 208, 245, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '중상자 수',
+                            data: seriousInjuriesCount,
+                            backgroundColor: 'rgba(75, 192, 192, 1)',
+                            borderColor: 'rgba(165, 233, 235, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '경상자 수',
+                            data: minorInjuriesCount,
+                            backgroundColor: 'rgba(255, 205, 86, 1)',
+                            borderColor: 'rgba(255, 230, 170, 1)',
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        let myChartw;
+        function countChartw(data) {
+            const labels = data.map(item => item.asltVtrCd);
+            const deathCounts = data.map(item => item.deathCount);
+            const injuredCounts = data.map(item => item.injuredCount);
+            const seriousInjuriesCount = data.map(item => item.seriousInjuriesCount);
+            const minorInjuriesCount = data.map(item => item.minorInjuriesCount);
+
+            const ctx = document.getElementById('myChartw').getContext('2d');
+
+            // 차트가 이미 존재하는 경우 파괴
+            if (myChartw) {
+                myChartw.destroy(); // 이전 차트가 있으면 파괴
+            }
+
+            // 새로운 차트 인스턴스 생성
+            myChartw = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: '사망자 수',
+                            data: deathCounts,
+                            backgroundColor: 'rgba(255, 99, 132, 1)',
+                            borderColor: 'rgba(255, 177, 193, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '부상자 수',
+                            data: injuredCounts,
+                            backgroundColor: 'rgba(54, 162, 235, 1)',
+                            borderColor: 'rgba(154, 208, 245, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '중상자 수',
+                            data: seriousInjuriesCount,
+                            backgroundColor: 'rgba(75, 192, 192, 1)',
+                            borderColor: 'rgba(165, 233, 235, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '경상자 수',
+                            data: minorInjuriesCount,
+                            backgroundColor: 'rgba(255, 205, 86, 1)',
+                            borderColor: 'rgba(255, 230, 170, 1)',
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        let myCharta;
+        function countCharta(data) {
+            const labels = data.map(item => item.asltVtrCd);
+            const deathCounts = data.map(item => item.deathCount);
+            const injuredCounts = data.map(item => item.injuredCount);
+            const seriousInjuriesCount = data.map(item => item.seriousInjuriesCount);
+            const minorInjuriesCount = data.map(item => item.minorInjuriesCount);
+
+            const ctx = document.getElementById('myCharta').getContext('2d');
+
+            // 차트가 이미 존재하는 경우 파괴
+            if (myCharta) {
+                myCharta.destroy(); // 이전 차트가 있으면 파괴
+            }
+
+            // 새로운 차트 인스턴스 생성
+            myCharta = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: '사망자 수',
+                            data: deathCounts,
+                            backgroundColor: 'rgba(255, 99, 132, 1)',
+                            borderColor: 'rgba(255, 177, 193, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '부상자 수',
+                            data: injuredCounts,
+                            backgroundColor: 'rgba(54, 162, 235, 1)',
+                            borderColor: 'rgba(154, 208, 245, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '중상자 수',
+                            data: seriousInjuriesCount,
+                            backgroundColor: 'rgba(75, 192, 192, 1)',
+                            borderColor: 'rgba(165, 233, 235, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '경상자 수',
+                            data: minorInjuriesCount,
+                            backgroundColor: 'rgba(255, 205, 86, 1)',
+                            borderColor: 'rgba(255, 230, 170, 1)',
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        let myCharte;
+        function countCharte(data) {
+            const labels = data.map(item => item.asltVtrCd);
+            const deathCounts = data.map(item => item.deathCount);
+            const injuredCounts = data.map(item => item.injuredCount);
+            const seriousInjuriesCount = data.map(item => item.seriousInjuriesCount);
+            const minorInjuriesCount = data.map(item => item.minorInjuriesCount);
+
+            const ctx = document.getElementById('myCharte').getContext('2d');
+
+            // 차트가 이미 존재하는 경우 파괴
+            if (myCharte) {
+                myCharte.destroy(); // 이전 차트가 있으면 파괴
+            }
+
+            // 새로운 차트 인스턴스 생성
+            myCharte = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: '사망자 수',
+                            data: deathCounts,
+                            backgroundColor: 'rgba(255, 99, 132, 1)',
+                            borderColor: 'rgba(255, 177, 193, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '부상자 수',
+                            data: injuredCounts,
+                            backgroundColor: 'rgba(54, 162, 235, 1)',
+                            borderColor: 'rgba(154, 208, 245, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '중상자 수',
+                            data: seriousInjuriesCount,
+                            backgroundColor: 'rgba(75, 192, 192, 1)',
+                            borderColor: 'rgba(165, 233, 235, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '경상자 수',
+                            data: minorInjuriesCount,
+                            backgroundColor: 'rgba(255, 205, 86, 1)',
+                            borderColor: 'rgba(255, 230, 170, 1)',
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        let myChartr;
+        function countChartr(data) {
+            const labels = data.map(item => item.asltVtrCd);
+            const deathCounts = data.map(item => item.deathCount);
+            const injuredCounts = data.map(item => item.injuredCount);
+            const seriousInjuriesCount = data.map(item => item.seriousInjuriesCount);
+            const minorInjuriesCount = data.map(item => item.minorInjuriesCount);
+
+            const ctx = document.getElementById('myChartr').getContext('2d');
+
+            // 차트가 이미 존재하는 경우 파괴
+            if (myChartr) {
+                myChartr.destroy(); // 이전 차트가 있으면 파괴
+            }
+
+            // 새로운 차트 인스턴스 생성
+            myChartr = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: '사망자 수',
+                            data: deathCounts,
+                            backgroundColor: 'rgba(255, 99, 132, 1)',
+                            borderColor: 'rgba(255, 177, 193, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '부상자 수',
+                            data: injuredCounts,
+                            backgroundColor: 'rgba(54, 162, 235, 1)',
+                            borderColor: 'rgba(154, 208, 245, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '중상자 수',
+                            data: seriousInjuriesCount,
+                            backgroundColor: 'rgba(75, 192, 192, 1)',
+                            borderColor: 'rgba(165, 233, 235, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '경상자 수',
+                            data: minorInjuriesCount,
+                            backgroundColor: 'rgba(255, 205, 86, 1)',
+                            borderColor: 'rgba(255, 230, 170, 1)',
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        let myChartd;
+        function countChartd(data) {
+            const labels = data.map(item => item.asltVtrCd);
+            const deathCounts = data.map(item => item.deathCount);
+            const injuredCounts = data.map(item => item.injuredCount);
+            const seriousInjuriesCount = data.map(item => item.seriousInjuriesCount);
+            const minorInjuriesCount = data.map(item => item.minorInjuriesCount);
+
+            const ctx = document.getElementById('myChartd').getContext('2d');
+
+            // 차트가 이미 존재하는 경우 파괴
+            if (myChartd) {
+                myChartd.destroy(); // 이전 차트가 있으면 파괴
+            }
+
+            // 새로운 차트 인스턴스 생성
+            myChartd = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: '사망자 수',
+                            data: deathCounts,
+                            backgroundColor: 'rgba(255, 99, 132, 1)',
+                            borderColor: 'rgba(255, 177, 193, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '부상자 수',
+                            data: injuredCounts,
+                            backgroundColor: 'rgba(54, 162, 235, 1)',
+                            borderColor: 'rgba(154, 208, 245, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '중상자 수',
+                            data: seriousInjuriesCount,
+                            backgroundColor: 'rgba(75, 192, 192, 1)',
+                            borderColor: 'rgba(165, 233, 235, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '경상자 수',
+                            data: minorInjuriesCount,
+                            backgroundColor: 'rgba(255, 205, 86, 1)',
+                            borderColor: 'rgba(255, 230, 170, 1)',
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        let myChartv;
+        function countChartv(data) {
+            const labels = data.map(item => item.asltVtrCd);
+            const deathCounts = data.map(item => item.deathCount);
+            const injuredCounts = data.map(item => item.injuredCount);
+            const seriousInjuriesCount = data.map(item => item.seriousInjuriesCount);
+            const minorInjuriesCount = data.map(item => item.minorInjuriesCount);
+
+            const ctx = document.getElementById('myChartv').getContext('2d');
+
+            // 차트가 이미 존재하는 경우 파괴
+            if (myChartv) {
+                myChartv.destroy(); // 이전 차트가 있으면 파괴
+            }
+
+            // 새로운 차트 인스턴스 생성
+            myChartv = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: '사망자 수',
+                            data: deathCounts,
+                            backgroundColor: 'rgba(255, 99, 132, 1)',
+                            borderColor: 'rgba(255, 177, 193, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '부상자 수',
+                            data: injuredCounts,
+                            backgroundColor: 'rgba(54, 162, 235, 1)',
+                            borderColor: 'rgba(154, 208, 245, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '중상자 수',
+                            data: seriousInjuriesCount,
+                            backgroundColor: 'rgba(75, 192, 192, 1)',
+                            borderColor: 'rgba(165, 233, 235, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '경상자 수',
+                            data: minorInjuriesCount,
+                            backgroundColor: 'rgba(255, 205, 86, 1)',
+                            borderColor: 'rgba(255, 230, 170, 1)',
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        let myChartb;
+        function countChartb(data) {
+            const labels = data.map(item => item.asltVtrCd);
+            const deathCounts = data.map(item => item.deathCount);
+            const injuredCounts = data.map(item => item.injuredCount);
+            const seriousInjuriesCount = data.map(item => item.seriousInjuriesCount);
+            const minorInjuriesCount = data.map(item => item.minorInjuriesCount);
+
+            const ctx = document.getElementById('myChartb').getContext('2d');
+
+            // 차트가 이미 존재하는 경우 파괴
+            if (myChartb) {
+                myChartb.destroy(); // 이전 차트가 있으면 파괴
+            }
+
+            // 새로운 차트 인스턴스 생성
+            myChartb = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: '사망자 수',
+                            data: deathCounts,
+                            backgroundColor: 'rgba(255, 99, 132, 1)',
+                            borderColor: 'rgba(255, 177, 193, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '부상자 수',
+                            data: injuredCounts,
+                            backgroundColor: 'rgba(54, 162, 235, 1)',
+                            borderColor: 'rgba(154, 208, 245, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '중상자 수',
+                            data: seriousInjuriesCount,
+                            backgroundColor: 'rgba(75, 192, 192, 1)',
+                            borderColor: 'rgba(165, 233, 235, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '경상자 수',
+                            data: minorInjuriesCount,
+                            backgroundColor: 'rgba(255, 205, 86, 1)',
+                            borderColor: 'rgba(255, 230, 170, 1)',
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        let myCharh;
+        function countCharth(data) {
+            const labels = data.map(item => item.asltVtrCd);
+            const deathCounts = data.map(item => item.deathCount);
+            const injuredCounts = data.map(item => item.injuredCount);
+            const seriousInjuriesCount = data.map(item => item.seriousInjuriesCount);
+            const minorInjuriesCount = data.map(item => item.minorInjuriesCount);
+
+            const ctx = document.getElementById('myCharh').getContext('2d');
+
+            // 차트가 이미 존재하는 경우 파괴
+            if (myCharh) {
+                myCharh.destroy(); // 이전 차트가 있으면 파괴
+            }
+
+            // 새로운 차트 인스턴스 생성
+            myCharh = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: '사망자 수',
+                            data: deathCounts,
+                            backgroundColor: 'rgba(255, 99, 132, 1)',
+                            borderColor: 'rgba(255, 177, 193, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '부상자 수',
+                            data: injuredCounts,
+                            backgroundColor: 'rgba(54, 162, 235, 1)',
+                            borderColor: 'rgba(154, 208, 245, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '중상자 수',
+                            data: seriousInjuriesCount,
+                            backgroundColor: 'rgba(75, 192, 192, 1)',
+                            borderColor: 'rgba(165, 233, 235, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '경상자 수',
+                            data: minorInjuriesCount,
+                            backgroundColor: 'rgba(255, 205, 86, 1)',
+                            borderColor: 'rgba(255, 230, 170, 1)',
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        let myChartq;
+        function countChartq(data) {
+            const labels = data.map(item => item.asltVtrCd);
+            const deathCounts = data.map(item => item.deathCount);
+            const injuredCounts = data.map(item => item.injuredCount);
+            const seriousInjuriesCount = data.map(item => item.seriousInjuriesCount);
+            const minorInjuriesCount = data.map(item => item.minorInjuriesCount);
+
+            const ctx = document.getElementById('myChartq').getContext('2d');
+
+            // 차트가 이미 존재하는 경우 파괴
+            if (myChartq) {
+                myChartq.destroy(); // 이전 차트가 있으면 파괴
+            }
+
+            // 새로운 차트 인스턴스 생성
+            myChartq = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: '사망자 수',
+                            data: deathCounts,
+                            backgroundColor: 'rgba(255, 99, 132, 1)',
+                            borderColor: 'rgba(255, 177, 193, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '부상자 수',
+                            data: injuredCounts,
+                            backgroundColor: 'rgba(54, 162, 235, 1)',
+                            borderColor: 'rgba(154, 208, 245, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '중상자 수',
+                            data: seriousInjuriesCount,
+                            backgroundColor: 'rgba(75, 192, 192, 1)',
+                            borderColor: 'rgba(165, 233, 235, 1)',
+                            borderWidth: 2
+                        },
+                        {
+                            label: '경상자 수',
+                            data: minorInjuriesCount,
+                            backgroundColor: 'rgba(255, 205, 86, 1)',
+                            borderColor: 'rgba(255, 230, 170, 1)',
+                            borderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+    </script>
 </section>
 <script>
     const tabItem = document.querySelectorAll(".map--click");
@@ -332,6 +1103,30 @@
 
             // 해당 콘텐츠 활성화
             tabContent[index].classList.add("active");
+
+            fetch('/count/' + regionValue)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    countChart(data); // 차트를 그리는 함수 호출
+                    countCharts(data); // 차트를 그리는 함수 호출
+                    countChartz(data); // 차트를 그리는 함수 호출
+                    countChartw(data); // 차트를 그리는 함수 호출
+                    countCharta(data); // 차트를 그리는 함수 호출
+                    countCharte(data); // 차트를 그리는 함수 호출
+                    countChartr(data); // 차트를 그리는 함수 호출
+                    countChartd(data); // 차트를 그리는 함수 호출
+                    countChartv(data); // 차트를 그리는 함수 호출
+                    countChartb(data); // 차트를 그리는 함수 호출
+                    countCharth(data); // 차트를 그리는 함수 호출
+                    countChartq(data); // 차트를 그리는 함수 호출
+                })
+                .catch(error => console.error('Error fetching data:', error));
+
         });
     });
 
