@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../layout/header.jsp"%>
 <style>
 /* 상세보기 컨테이너 스타일 */
@@ -60,15 +59,6 @@
 	background-color: #0056b3;
 }
 
-/* 수정 및 삭제 버튼 스타일 */
-.btn-danger {
-	background-color: #dc3545;
-}
-
-.btn-danger:hover {
-	background-color: #c82333;
-}
-
 /* 반응형 디자인 */
 @media ( max-width : 600px) {
 	.inner--container {
@@ -83,31 +73,6 @@
 	.btn {
 		padding: 8px 12px;
 	}
-}
-/* 수정 버튼 스타일 */
-.btn-edit {
-	background-color: #28a745;
-	color: #ffffff;
-}
-
-/* 수정 버튼 호버 효과 */
-.btn-edit:hover {
-	background-color: #218838;
-}
-
-/* 삭제 버튼 스타일*/
-.btn-danger {
-	background-color: #dc3545;
-	color: #ffffff;
-	border: none;
-	padding: 10px 15px;
-	border-radius: 5px;
-	text-decoration: none;
-	transition: background-color 0.3s;
-}
-
-.btn-danger:hover {
-	background-color: #c82333;
 }
 </style>
 <div class="wrap">
@@ -126,31 +91,29 @@
 		</div>
 	</section>
 	<!-- 상단 이미지 & 서브 페이지 이동 END -->
+	<section class="sub--section">
+		<div class="inner--container">
+			<h1 class="sub--title">공지사항 작성</h1>
+		</div>
+	</section>
 
 	<div class="inner--container">
 		<div class="sub--content">
-			<h2 class="prih2">${notice.title}</h2>
-			<div class="notice-details">
-				<p>
-					<strong>작성일:</strong>
-					<fmt:formatDate value="${notice.createdAt}" pattern="yyyy-MM-dd HH:mm" />
-				</p>
-				<p>
-					<strong>내용:</strong>
-				</p>
-				<div>${notice.content}</div>
-			</div>
-			<a href="/notice/notice" class="btn back-button">목록으로 돌아가기</a>
-
-			<c:if test="${principal.role == 'admin'}">
-				<a href="/notice/update/${notice.id}" class="btn btn-edit">수정</a>
-				<form action="/notice/delete/${notice.id}" method="post" style="display: inline;">
-					<button type="submit" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</button>
-				</form>
-			</c:if>
+			<form action="/notice/create" method="post">
+				<div>
+					<label for="title">제목:</label> <input type="text" id="title" name="title" required>
+				</div>
+				<div>
+					<label for="content">내용:</label>
+					<textarea id="content" name="content" required></textarea>
+				</div>
+				<div>
+					<button type="submit">작성</button>
+				</div>
+			</form>
+			<a href="/notice/notices">목록으로 돌아가기</a>
 		</div>
 	</div>
-
 
 	<%@ include file="../layout/footer.jsp"%>
 </div>

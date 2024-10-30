@@ -76,4 +76,20 @@ public class NoticeService {
 	public int countNoticesByAll(String query) {
 		return noticeRepository.countByAll(query);
 	}
+
+	// 공지사항 작성 기능
+	@Transactional
+	public void createNotice(Notice notice) {
+		noticeRepository.createNotice(notice);
+	}
+
+	// 공지사항 삭제 기능
+	public void deleteNotice(int id) {
+		noticeRepository.deleteNotice(id);
+	}
+	
+	// 공지사항 수정 폼 페이지
+	public void updateNotice(Notice notice) {
+		noticeRepository.updateNotice(notice);
+	}
 }

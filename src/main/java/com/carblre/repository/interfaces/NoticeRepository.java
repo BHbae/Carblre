@@ -38,4 +38,13 @@ public interface NoticeRepository {
 	public List<Notice> findByAll(@Param("query") String query, @Param("offset") int offset, @Param("limit") int limit);
 
 	public int countByAll(@Param("query") String query);
+
+	// 공지사항 작성
+	public void createNotice(Notice notice);
+
+	// 공지사항 삭제
+	public void deleteNotice(int id);
+
+	// 공지사항 수정
+	public void updateNotice(Notice notice);
 }

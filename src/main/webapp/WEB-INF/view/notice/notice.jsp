@@ -29,6 +29,7 @@
 	<div class="inner--container">
 		<div class="sub--content">
 			<h2 class="prih2">공지사항</h2>
+
 			<div class="search-container" style="display: flex; justify-content: center; margin-bottom: 20px;">
 				<form action="/notice/search" method="get" style="display: flex; align-items: center; width: 100%;">
 					<input type="text" name="query" placeholder="검색어를 입력하세요" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; flex: 1; margin-right: 5px;"> <select name="type"
@@ -75,8 +76,10 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			<div>
-				<ul class="page--button btn">
+
+			<div style="display: flex; justify-content: center; align-items: center; margin-top: 0px;">
+				<!-- 중앙 정렬을 위해 변경 -->
+				<ul class="page--button btn" style="display: flex; justify-content: center;">
 					<c:if test="${currentPage > 1}">
 						<li><a href="/notice/notice?page=${currentPage - 1}&size=${size}">◀</a></li>
 					</c:if>
@@ -88,9 +91,14 @@
 					<c:if test="${currentPage < totalPages}">
 						<li><a href="/notice/notice?page=${currentPage + 1}&size=${size}">▶</a></li>
 					</c:if>
+					<c:if test="${principal.role == 'admin'}">
+						<a href="/notice/create" style="padding: 10px 15px; background-color: #28a745; color: white; border-radius: 4px; text-decoration: none; margin-left: 20px;"> <strong>글쓰기</strong>
+						</a>
+					</c:if>
 				</ul>
 			</div>
 		</div>
 	</div>
 
 	<%@ include file="../layout/footer.jsp"%>
+</div>

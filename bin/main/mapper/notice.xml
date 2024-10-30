@@ -12,7 +12,7 @@
 
 	<select id="findAllNotice" resultType="com.carblre.repository.model.Notice">
 		SELECT * FROM notice_tb
-		ORDER BY created_at DESC
+		ORDER BY id DESC
 		LIMIT #{limit} OFFSET #{offset}
 	</select>
 
@@ -24,7 +24,7 @@
 	<select id="findByTitle" resultType="com.carblre.repository.model.Notice">
 		SELECT * FROM notice_tb
 		WHERE title LIKE CONCAT('%', #{title}, '%')
-		ORDER BY created_at DESC
+		ORDER BY id DESC
 		LIMIT #{limit} OFFSET #{offset}
 	</select>
 
@@ -37,7 +37,7 @@
 	<select id="findByContent" resultType="com.carblre.repository.model.Notice">
 		SELECT * FROM notice_tb
 		WHERE content LIKE CONCAT('%', #{content}, '%')
-		ORDER BY created_at DESC
+		ORDER BY id DESC
 		LIMIT #{limit} OFFSET #{offset}
 	</select>
 
@@ -51,7 +51,7 @@
 		SELECT * FROM notice_tb
 		WHERE title LIKE CONCAT('%', #{query}, '%')
 		OR content LIKE CONCAT('%', #{query}, '%')
-		ORDER BY created_at DESC
+		ORDER BY id DESC
 		LIMIT #{limit} OFFSET #{offset}
 	</select>
 
@@ -60,5 +60,18 @@
 		WHERE title LIKE CONCAT('%', #{query}, '%')
 		OR content LIKE CONCAT('%', #{query}, '%')
 	</select>
+
+	<insert id="createNotice">
+		INSERT INTO notice_tb (title, content, created_at)
+		VALUES (#{title}, #{content}, NOW())
+	</insert>
+
+	<delete id="deleteNotice">
+		DELETE FROM notice_tb WHERE id = #{id}
+	</delete>
+	<update id="updateNotice">
+		UPDATE notice_tb SET title = #{title}, content = #{content} WHERE id =
+		#{id}
+	</update>
 
 </mapper>
