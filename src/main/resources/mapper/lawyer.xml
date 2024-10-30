@@ -10,7 +10,7 @@
         SELECT
         ld.user_id AS userId,
         u.user_name AS userName,  <!-- userName을 추가 -->
-        ld.uploard_profile_name AS uploadProfileName,
+        ld.upload_profile_name AS uploadProfileName,
         ld.introduction,
         ld.law_firm AS lawFirm,
         ld.office_num AS officeNum
@@ -25,7 +25,7 @@
         SELECT
         ld.user_id AS userId,
         u.user_name AS userName,
-        ld.uploard_profile_name AS uploadProfileName,
+        ld.upload_profile_name AS uploadProfileName,
         ld.introduction,
         ld.law_firm AS lawFirm,
         ld.office_num AS officeNum
@@ -36,5 +36,35 @@
         WHERE
         ld.user_id = #{userId}
     </select>
+
+    <insert id="insertLawyerDetail" parameterType="com.carblre.repository.model.LawyerDetail">
+        INSERT INTO lawyer_detail_tb(user_id, origin_profile_name ,
+                                     upload_profile_name, origin_license_name, upload_license_name,
+                                     introduction, law_firm, office_num)
+        VALUES (
+                   #{userId}, #{getProfileName}, #{uploadProfileName},
+                   #{getLicenseName}, #{uploadLicenseName},
+                   #{introduction}, #{lawFirm}, #{officeNum})
+    </insert>
+
+    <!-- 변호사 디테일 조회 -->
+    <select id="findLawyerInfoById"  resultType="com.carblre.repository.model.LawyerDetail">
+        SELECT * FROM lawyer_detail_tb
+        WHERE user_id = #{id}
+
+    </select>
+
+    <!-- 모든 변호사 조회 -->
+    <select id="findAllLawyer" resultType="com.carblre.dto.userdto.UserDTO">
+        SELECT * FROM user_tb
+        where status=1 and
+            role= 'lawyer'
+    </select>
+
+    <!-- 모든 변호사 정보 조회 -->
+    <select id="findAllLawyerDetail" resultType="com.carblre.repository.model.LawyerDetail">
+        SELECT * FROM lawyer_detail_tb
+    </select>
+
 
 </mapper>

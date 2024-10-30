@@ -67,6 +67,7 @@
 				<li
 					class="page-item <c:if test='${currentPage == totalPages}'>disabled</c:if>">
 					<a class="page-link" href="/board/boardList?page=${currentPage + 1}">▶</a>
+
 				</li>
 			</ul>
         </div>

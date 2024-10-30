@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="../layout/header.jsp" %>
 
+<section id="main--section" class="section">
 <div class="wrap">
     <!-- 상단 이미지 & 서브 페이지 이동 START -->
     <section class="sub--section">
@@ -75,7 +76,7 @@
         </div>
     </div>
 </div>
-
+</section>
 <script>
 
     function checkUserCounsel() {

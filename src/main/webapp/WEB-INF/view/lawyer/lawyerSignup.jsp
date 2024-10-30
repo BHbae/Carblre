@@ -4,7 +4,7 @@
 <div class="container">
     <h1>변호사 회원가입</h1>
 
-    <form action="/user/lawyerSignUp" method="POST"  enctype="multipart/form-data">
+    <form action="/lawyer/lawyerSignUp" method="POST"  enctype="multipart/form-data">
         <!-- 사용자 이름 -->
         <div class="form-group">
             <label for="userName">이름 </label>

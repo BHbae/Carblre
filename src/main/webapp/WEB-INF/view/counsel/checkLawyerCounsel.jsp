@@ -4,7 +4,11 @@
 <%@ include file="../layout/header.jsp"%>
 
 
+<<<<<<< HEAD
 <section>
+=======
+<section id="main--section" class="section">
+>>>>>>> e0ca003223d78ab7c2ee3c9c89d159240e9e9170
         <p>${user.userName} 님의 예약 현황 </p>
     <c:choose>
         <c:when test="${empty counsel}">

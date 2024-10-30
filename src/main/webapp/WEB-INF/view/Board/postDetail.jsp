@@ -402,7 +402,11 @@
             })
             .then(data => {
                 console.log('Response data:', data);
+<<<<<<< HEAD
          
+=======
+                alert('test : ', data.message);
+>>>>>>> e0ca003223d78ab7c2ee3c9c89d159240e9e9170
                 getComment('newest');
                 getReplyComment(${post.id});
             })
@@ -473,6 +477,10 @@
                 console.log('getReplyComment 호출 시작');
                 getReplyComment(${post.id});
 
+<<<<<<< HEAD
+=======
+                alert(data.message);
+>>>>>>> e0ca003223d78ab7c2ee3c9c89d159240e9e9170
 
             })
             .catch(error => {

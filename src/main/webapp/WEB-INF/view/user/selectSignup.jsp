@@ -48,7 +48,7 @@ function signUpUserId() {
 }
 
 function signUpLawyerId() {
-    window.location.href = "/user/lawyerSignUp";  // window.location.href는 값으로 할당
+    window.location.href = "/lawyer/lawyerSignUp";  // window.location.href는 값으로 할당
 }
  </script>
 <%@ include file="../layout/footer.jsp"%>

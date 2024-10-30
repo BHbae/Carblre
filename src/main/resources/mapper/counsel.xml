@@ -40,7 +40,40 @@
 		WHERE user_id = #{id}
 	</update>
 
+	<!-- 유저 예약 신청 -->
+	<insert id="insertCounsel">
+		INSERT INTO counsel_request_tb(
+		user_id, lawyer_id,
+		start_time, end_time,
+		content, status, created_at)
+		VALUES (
+		#{userId}, #{lawyerId},
+		#{startTime},#{endTime},
+		#{content},#{status}, now())
+	</insert>
 
+	<!-- 전체 counsel 조회 -->
+	<select id="findCounselAll"  resultType="com.carblre.repository.model.Counsel">
+		select *
+		from counsel_request_tb
+	</select>
 
+	<select id="findReservationsByDateTime" resultType="com.carblre.dto.userdto.LawyerReservationDTO">
+		SELECT id, user_id, lawyer_id, status, start_time, end_time, created_at, cancel_at
+		FROM counsel_request_tb
+		WHERE YEAR(start_time) = #{year}
+		  AND MONTH(start_time) = #{month}
+		  AND DAY(start_time) = #{day}
+		  AND HOUR(start_time) = #{hour}
+		  AND MINUTE(start_time) = #{minute}
+		  AND lawyer_id = #{lawyer_id}
+	</select>
 
+	<select id="findReservationByLawyerId">
+		SELECT
+		*
+		FROM
+		counsel_request_tb AS c
+		WHERE c.lawyer_id = #{lawyerId}
+	</select>
 </mapper>

@@ -1,11 +1,15 @@
 package com.carblre.repository.interfaces;
 
+import com.carblre.dto.counsel.CounselDTO;
+import com.carblre.dto.userdto.LawyerReservationDTO;
+import com.carblre.dto.userdto.UserDTO;
 import com.carblre.repository.model.Counsel;
 import com.carblre.repository.model.LawyerDetail;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import javax.lang.model.element.Name;
+import java.util.List;
 
 import java.util.List;
 
@@ -25,4 +29,24 @@ public interface CounselRepository {
 
     int updateUserStatusById(@Param("id") int id,@Param("status") int status);
 
+    // 예약 하기
+    int insertCounsel(CounselDTO counselDTO);
+
+    List<Counsel> findCounselAll();
+
+    // 변호사 예약 정보 조회
+    List<LawyerReservationDTO> findReservation();
+
+
+    List<CounselDTO> findReservationByLawyerId(@Param("lawyerId") int lawyerId);
+
+
+    List<LawyerReservationDTO> findReservationsByDateTime(
+            @Param("year") int year,
+            @Param("month") int month,
+            @Param("day") int day,
+            @Param("hour") int hour,
+            @Param("minute") int minute,
+            @Param("id") int id
+    );
 }

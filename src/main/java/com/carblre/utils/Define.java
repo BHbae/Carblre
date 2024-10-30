@@ -75,5 +75,6 @@ public class Define {
 	
 	// SignIn 
 	public static final String PROFILE_SUSPENDING = "현재 이계정은 정지 상태입니다.";
-	
+
+	public static final String EXISTING_COUNSEL = "선택하신 시간에 이미 예약이 있습니다. 다른 시간을 선택해주세요.";
 }
