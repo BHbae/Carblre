@@ -13,10 +13,13 @@ import java.util.List;
 @Mapper
 public interface CounselRepository {
     // 유저 예약현황
-    List<Counsel> findCounselOfUserById(int userId);
+    List<Counsel> findCounselOfUserById(int lawyerId);
 
-    // 변호사 예약 현황
-    Counsel findCounselOfLawyerById(int userId);
+    // 변호사 전체예약 현황
+    List<Counsel> findCounselOfLawyerById(int lawyerId);
+
+    // 특정 변호사 예약 현황
+    Counsel findCounselByIdLawyerId(@Param("lawyerId")int lawyerId,@Param("id") int id);
 
     // 변호사 예약 상태변경
     int updateStatusById(@Param("id") int id,@Param("status") int status);

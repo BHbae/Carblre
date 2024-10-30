@@ -8,14 +8,22 @@
 	<!-- 유저의  변호사 예약 상황 -->
 	<select id="findCounselOfUserById"  resultType="com.carblre.repository.model.Counsel">
 		SELECT * FROM counsel_request_tb
-		where user_id= #{userId}
+		where lawyer_id= #{lawyerId}
 		order by created_at asc;
 	</select>
 
 	<!--  변호사 예약 상황 -->
 	<select id="findCounselOfLawyerById"  resultType="com.carblre.repository.model.Counsel">
 		SELECT * FROM counsel_request_tb
-		where lawyer_id = #{userId}
+		where lawyer_id = #{lawyerId}
+		order by created_at asc;
+	</select>
+
+	<!--  변호사 특정예약 상황 -->
+	<select id="findCounselByIdLawyerId"  resultType="com.carblre.repository.model.Counsel">
+		SELECT * FROM counsel_request_tb
+		where lawyer_id = #{lawyerId}
+		and id=${id}
 		order by created_at asc;
 	</select>
 

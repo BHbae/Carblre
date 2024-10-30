@@ -16,7 +16,7 @@
         <div style="border-bottom: 1px solid #bababa;">
             <div class="inner--container">
                 <ul class="sub--top--menu">
-                    <li class="subtop--active"><a href="/user/mypage">마이페이지</a></li>
+                    <li class="subtop--active"><a href="/lawyer/lawyerPage">마이페이지</a></li>
                 </ul>
             </div>
         </div>
@@ -30,40 +30,18 @@
             <div class="info infoupdate">
                 <div class="btn btn--wrap">
                     <div id="mypage--counsel">
-                        <c:choose>
-                            <%-- principal.role이 'user'일 경우 --%>
-                            <c:when test="${principal.role == 'user'}">
-                                <p class="update-info" onclick="checkUserCounsel()"> 예약 현황 </p>
-                            </c:when>
-
-                            <%-- principal.role이 'lawyer'일 경우 --%>
-                            <c:when test="${principal.role == 'lawyer'}">
-                                <p class="update-info" onclick="checkLawyerCounsel()"> 변호 예약 현황 </p>
-                            </c:when>
-                        </c:choose>
+                       <p class="update-info" onclick="checkLawyerCounsel()"> 변호 예약 현황 </p>
                     </div>
                 </div>
-
-
-
-                <c:if test="${principal.site != '서버'}">
-                    <p> 이름: ${principal.userName}</p>
-                    <p> 아이디: ${principal.site}</p>
-                    <p> 이메일: ${principal.email}</p>
-                </c:if>
-                <c:if test="${principal.site == '서버'}">
                     <p> 이름: ${principal.userName}</p>
                     <p> 아이디: ${principal.nickName}</p>
                     <p> 이메일: ${principal.email}</p>
-                    <c:if test="${principal.role == 'lawyer'}">
                         <p> 법인명: ${lawyer.lawFirm}</p>
                         <p> 법인 전화번호: ${lawyer.officeNum}</p>
                         <p> 소개: ${lawyer.introduction}</p>
                         <p> 프로필 사진: </p>
                         <img src="${lawyer.uploadProfileName}" alt="Profile Image" />
                         <p> 지정 10분 상담가격: ${lawyer.counselingAmount}</p>
-                    </c:if>
-                </c:if>
                 <div class="btn btn--wrap">
                     <div id="mypage--edit">
                         <p class="update-info" onclick="infoUpdate()"> 개인정보 수정 </p>
@@ -84,7 +62,7 @@
     }
 
     function checkLawyerCounsel() {
-        window.location.href = "/user/checkLawyerCounsel";
+        window.location.href = "/lawyer/checkLawyerCounsel";
     }
 
 

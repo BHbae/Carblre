@@ -40,16 +40,17 @@ public class CounselController {
 
 
     @PostMapping("/updateStatus")
-    public ResponseEntity<Map<String,Object>> updateStatus(@RequestBody Map<String, String> reqData,
+    public ResponseEntity<Map<String,Object>> updateStatus(@RequestBody Map<String, Object> reqData,
                                                            HttpSession session){
         UserDTO userDTO = (UserDTO) session.getAttribute("principal");
-        int counselId = Integer.parseInt(reqData.get("counselId"));
-        int statusValue = Integer.parseInt(reqData.get("statusValue"));
+        int counselId = (Integer) reqData.get("counselId");
+        int statusValue = Integer.parseInt((String) reqData.get("statusValue"));
+
         System.out.println("counselId"+counselId +"statusValue"+statusValue);
         // 값 받아오기
         Map<String, Object> response = new HashMap<>();
         int result= counselService.updateStatusById(counselId,statusValue);
-        MyCounselDTO dto=counselService.findMyCounselByLawyerId(userDTO.getId());
+        MyCounselDTO dto=counselService.findCounselOfIdLawyerById(userDTO.getId(),counselId);
         System.out.println("result"+result);
         if (result == 1) {
             response.put("success", true);  // 성공

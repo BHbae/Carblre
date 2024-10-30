@@ -1,6 +1,7 @@
 package com.carblre.controller;
 
 import com.carblre.dto.LawyerDetailDTO;
+import com.carblre.dto.MyCounselDTO;
 import com.carblre.dto.userdto.LawyerSignUpDTO;
 import com.carblre.dto.userdto.UserDTO;
 import com.carblre.handler.exception.UnAuthorizedException;
@@ -76,9 +77,11 @@ public class LawyerController {
             com.carblre.dto.userdto.LawyerDetailDTO lawyerDetailDTO= lawyerService.findLawyerInfoById(userDTO.getId());
             System.out.println(lawyerDetailDTO);
             model.addAttribute("lawyer",lawyerDetailDTO);
+        }else{
+            throw new UnAuthorizedException("변호사 전용 입니다", HttpStatus.UNAUTHORIZED);
         }
         // 유저 인포 해야됨
-        return "user/myPage";
+        return "lawyer/lawyerPage";
     }
 
     @GetMapping("/lawyers")
@@ -97,4 +100,25 @@ public class LawyerController {
         return "lawyer/lawyerInfo";
     }
 
+    /**
+     *  변호사 예약 체크 현황
+     * @param model
+     * @return
+     */
+    @GetMapping("checkLawyerCounsel")
+    public String checkLawyerCounselPage(Model model){
+        UserDTO userDTO = (UserDTO) session.getAttribute("principal"); //dto변경해야함
+        if (userDTO == null) {
+            // 엔티티가 존재하지 않을 때 NotFoundException 던짐
+            throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
+        }
+        // 유저 인포 해야됨
+        List< MyCounselDTO> counsel= counselService.findMyCounselByLawyerId(userDTO.getId());
+        System.out.println("counsel"+counsel);
+
+
+        model.addAttribute("counselList",counsel);
+
+        return  "counsel/checkLawyerCounsel";
+    }
 }

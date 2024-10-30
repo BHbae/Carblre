@@ -45,11 +45,28 @@ public class CounselService {
      * @param id
      * @return
      */
-    public MyCounselDTO findMyCounselByLawyerId(int id) {
-        Counsel counsel= counselRepository.findCounselOfLawyerById(id);
-        if(counsel==null){
-            return  new MyCounselDTO();
+    public List<MyCounselDTO> findMyCounselByLawyerId(int id) {
+        List<Counsel> counselList = counselRepository.findCounselOfLawyerById(id);
+        List<MyCounselDTO> myCounselDTOS = new ArrayList<>();
+
+        for (Counsel counsel : counselList) {
+            // counsel이 null이 아니고 id가 0인 경우 리스트에 추가하지 않음
+            if (counsel != null && counsel.getId() != 0) {
+                myCounselDTOS.add(counsel.toMycounselDTO());
+            }
         }
+
+        return myCounselDTOS.isEmpty() ? null : myCounselDTOS;
+    }
+
+    /**
+     *  특정 예약 수정
+     * @param id
+     * @return
+     */
+    public MyCounselDTO findCounselOfIdLawyerById(int lawyerId,int id){
+       Counsel counsel= counselRepository.findCounselByIdLawyerId(lawyerId,id);
+
         return  counsel.toMycounselDTO();
     }
 

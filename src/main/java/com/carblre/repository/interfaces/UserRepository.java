@@ -54,7 +54,7 @@ public interface UserRepository {
 	int updatePass(@Param("password")String password,@Param("id")int id);
 
 	// 회원정보 변경
-	int updateInfo(String email, int id);
+	int updateInfo(@Param("email")String email,@Param("id")int id);
 
 
 	// 가장 최근 auto_increment된 id

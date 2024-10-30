@@ -54,14 +54,23 @@
 		<div id="icon--container">
 			<ul class="info--container">
 			<c:choose>
-				<c:when test="${principal != null}">
-					<li>
-						<a href="/user/logout">로그아웃</a>
-					</li>
-					<li>
-						<a href="/user/myPage">마이페이지</a>
-					</li>
-				</c:when>
+                <c:when test="${principal != null}">
+                    <li>
+                        <a href="/user/logout">로그아웃</a>
+                    </li>
+                    <c:choose>
+                        <c:when test="${principal.role == 'user'}">
+                            <li>
+                                <a href="/user/myPage">마이페이지</a>
+                            </li>
+                        </c:when>
+                        <c:when test="${principal.role == 'lawyer'}">
+                            <li>
+                                <a href="/lawyer/myPage">마이페이지</a>
+                            </li>
+                        </c:when>
+                    </c:choose>
+                </c:when>
 				<c:otherwise>
 					<li>
 						<a href="/user/signIn">로그인</a>

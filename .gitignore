@@ -42,3 +42,6 @@ application-secure.yml
 # Ignore caches directory
 caches/
 
+
+.DS_Store
+

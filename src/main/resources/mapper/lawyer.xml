@@ -37,4 +37,10 @@
         ld.user_id = #{userId}
     </select>
 
+
+    <!-- 변호사 디테일 조회 -->
+    <select id="findLawyerInfoById"  resultType="com.carblre.repository.model.LawyerDetail">
+        SELECT * FROM lawyer_detail_tb
+        WHERE user_id = #{id}
+    </select>
 </mapper>

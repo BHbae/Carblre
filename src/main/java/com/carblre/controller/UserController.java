@@ -47,6 +47,7 @@ import com.carblre.utils.Define;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Slf4j
 @Controller
@@ -593,12 +594,17 @@ public class UserController {
      * @return
      */
     @PostMapping("/infoUpdate")
-    public String infoUpdateProc(UserDTO updateDto) {
+    public String infoUpdateProc(UserDTO updateDto, RedirectAttributes redirectAttributes) {
+        UserDTO userDTO = (UserDTO) session.getAttribute("principal");
 
+        int result=userService.updateInfo(updateDto.getEmail(),userDTO.getId());
+        if(result==1){
+            redirectAttributes.addFlashAttribute("message", "정보가 수정되었습니다.");
+        }else{
+            redirectAttributes.addFlashAttribute("message", "수정에 실패했습니다.");
+        }
 
-        userService.updateInfo(updateDto.getEmail(),(updateDto.getId()));
-
-        return "redirect:/user/index";
+        return "redirect:/user/infoUpdate";
     }
 
     @GetMapping("/infoUpdatePass")
@@ -608,7 +614,7 @@ public class UserController {
             // 엔티티가 존재하지 않을 때 NotFoundException 던짐
             throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
         }
-        UserDTO dto = userService.findIdByEmailNick(userDTO.getEmail(), userDTO.getNickName());
+        UserDTO dto = userService.findById((userDTO.getId()));
         System.out.println(dto);
         model.addAttribute("UserId", dto.getId());
         return "user/infoUpdatePass";
@@ -662,28 +668,17 @@ public class UserController {
         return  "counsel/checkUserCounsel";
     }
 
-    /**
-     *  변호사 예약 체크 현황
-     * @param model
-     * @return
-     */
-    @GetMapping("checkLawyerCounsel")
-    public String checkLawyerCounselPage(Model model){
-        UserDTO userDTO = (UserDTO) session.getAttribute("principal"); //dto변경해야함
+
+
+    @GetMapping("/myPage")
+    public String myPage(Model model) {
+        UserDTO userDTO = (UserDTO) session.getAttribute("principal");
         if (userDTO == null) {
             // 엔티티가 존재하지 않을 때 NotFoundException 던짐
             throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
         }
         // 유저 인포 해야됨
-        MyCounselDTO counsel= counselService.findMyCounselByLawyerId(userDTO.getId());
-        UserDTO user=userService.findById(userDTO.getId());
-
-        model.addAttribute("counsel",counsel);
-        model.addAttribute("user",user);
-
-        return  "counsel/checkLawyerCounsel";
+        return "user/userPage";
     }
-
-
 
 }

@@ -41,7 +41,7 @@
                 <!-- 이메일 입력란 -->
                 <div class="form-group emailsend">
                     <label for="email">이메일</label>
-                    <input type="email" class="form-control" id="email" placeholder="example@carblre.com" name="email"  required>
+                    <input type="email" class="form-control" id="email" placeholder="${originUser.email}" name="email"  required>
                 </div>
 
                 <!-- 이메일 인증코드 발송 -->
@@ -61,5 +61,12 @@
         </div>
     </div>
 </div>
-
+<script>
+    window.onload = function() {
+        const message = "${message}";  // Flash Attribute로 넘어온 메시지
+        if (message) {
+            alert(message);  // 메시지가 있으면 알림 창 띄우기
+        }
+    };
+</script>
 <%@ include file="../layout/footer.jsp" %>
