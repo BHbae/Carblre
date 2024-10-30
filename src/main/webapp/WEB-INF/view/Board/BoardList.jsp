@@ -24,41 +24,29 @@
     </section>
     <!-- 상단 이미지 & 서브 페이지 이동 END -->
 
-    <div class="inner--container">
-        <div class="sub--content">
-            <h2 class="prih2">의뢰자</h2>
-            <table class="table">
-                <thead>
-                    <th>No</th>
-                    <th>제목</th>
-                    <th>작성자 ()추후 아이디로 변경)</th>
-                    <th>작성일</th>
-                </thead>
-                <tbody>
-                    <c:forEach items="${boards}" var="boards">
-                        <tr>
-                            <td>${boards.id}</td>
-                            <td>
-                                <a href="<c:url value='/board/detail/${boards.id}' />">${boards.title}</a>
-                            </td>
-                            <td>${boards.createdAt}</td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-            <div class="btn btn--wrap">
-				<div id="write--button">
-					<a href="/cs/write">글쓰기</a>
-				</div>
-			</div>
-			<ul class="page--button btn">
-				<li
-					class="page-item <c:if test='${currentPage == 1}'>disabled</c:if>">
-					<a class="page-link" href="/cs/cs?page=${currentPage - 1}">◀</a>
-				</li>
-				<c:forEach begin="1" end="${totalPages}" var="page">
-                    <li class="<c:if test="${currentPage == page}">page--active</c:if>" ><a href="/cs/cs?page=${page}">${page}</a></li>
-                </c:forEach>
+<main>
+		<table>
+			<tr>
+				<th>게시글 번호</th>
+				<th>제목</th>
+				<th>작성자 ()추후 아이디로 변경)</th>
+				<th>작성일</th>
+			</tr>
+				<c:forEach items="${boards}" var="boards">
+			<tr>
+				<td>${boards.id}</td>
+				<td>
+    				<a href="<c:url value='/board/detail/${boards.id}' />">${boards.title}</a>
+				</td>
+				<td>
+
+				</td>
+				<td>${boards.createdAt}</td>
+			</tr>
+	</c:forEach>
+		</table>
+</main>
+
 
 				<li
 					class="page-item <c:if test='${currentPage == totalPages}'>disabled</c:if>">
@@ -69,4 +57,4 @@
     </div>
 </div>
 
-<%@ include file="../layout/footer.jsp" %>
+<%@ include file="../layout/footer.jsp"%>

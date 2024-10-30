@@ -61,11 +61,6 @@ public interface UserRepository {
 	@Select("SELECT LAST_INSERT_ID()")
 	int getLastInsertId();
 
-	// 변호사 디테일
-	int insertLawyerDetail(LawyerDetail lawyerDetail);
-
-	// 변호사 정보
-	 LawyerDetail findLawyerInfoById(int id);
 
 	 // 변호사 전체조회
 	List<UserDTO> findAllLawyer();

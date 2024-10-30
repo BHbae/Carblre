@@ -76,12 +76,12 @@ function showLawyerLogin() {
 // 페이지 이동
 function findId()
 {
-    window.open("/user/findId", "popupWindow", "width=400,height=500")
+    window.open("/user/findId", "popupWindow", "width=470px,height=430px")
 }
 
 function findPass()
 {
-    window.open("/user/findPass", "popupWindow", "width=400,height=500")
+    window.open("/user/findPass", "popupWindow", "width=470,height=430")
 }
 
 

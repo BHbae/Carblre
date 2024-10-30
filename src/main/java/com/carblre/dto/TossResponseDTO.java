@@ -5,6 +5,8 @@ import lombok.*;
 @Data
 @Builder
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class TossResponseDTO {
     String mid; // 가맹점 ID
     String paymentKey; // 결제 키

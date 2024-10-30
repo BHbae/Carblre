@@ -1,44 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!-- <%@ include file="../layout/header.jsp"%> -->
+<%--<%@ include file="../layout/header.jsp"%>--%>
 
 
         변호사 정보
+        <select id="lawyerInfo" name="lawyerInfo" onchange="showLawyerInfo()">
+              <option value="" selected disabled>정보찾기</option>
+            <c:forEach var="lawyer" items="${dtoList}">
+                <option value="${lawyer.lawyerId}"
+                        data-lawfirm="${lawyer.lawFirm}"
+                        data-amount="${lawyer.counselingAmount}">
+                            ${lawyer.lawyerName}
+                </option>
+            </c:forEach>
+        </select>
 
+    <!-- 변호사 정보를 표시할 영역 -->
+    <div id="lawyerInfo">
+        <p id="lawyerName"></p>
+        <p id="lawyerFirm"></p>
+        <p id="counselingAmount"></p>
+    </div>
 
     <div>
-
-                <H3>변호사명</h3>
+        <table>
+            <tr>
+                <th>변호사명</th>
+                <th>상담 시작 시간</th>
+                <th>상담 종료 시간</th>
+                <th>내용</th>
+            </tr>
+            <tr>
+              <td>
                  <!-- 변호사 선택 -->
-                <select id="lawyerInfo" name="lawyerInfo" onchange="showLawyerInfo()">
-                      <option value="" selected disabled>정보찾기</option>
-                    <c:forEach var="lawyer" items="${dtoList}">
-                        <option value="${lawyer.lawyerId}"
-                                data-lawfirm="${lawyer.lawFirm}"
-                                data-amount="${lawyer.counselingAmount}">
-                                    ${lawyer.lawyerName}
-                        </option>
-                    </c:forEach>
-                </select>
-                <!-- 변호사 정보를 표시할 영역 -->
-                <div id="lawyerInfo">
-                    <p id="lawyerName"></p>
-                    <p id="lawyerFirm"></p>
-                    <p id="counselingAmount"></p>
-                </div>
-                상담 시작 시간
-                상담 종료 시간
-                내용
+                 <select name="lawyerId" id="lawyerSelect" onchange="filterAvailableTimes()">
+                     <option value="" selected disabled required>변호사</option>
+                     <c:forEach var="lawyer" items="${dtoList}">
+                         <option value="${lawyer.lawyerId}"
+                            data-startTime="${lawyer.startTime}"
+                            data-endTime="${lawyer.endTime}">
+                          ${lawyer.lawyerName}</option>
+                     </c:forEach>
+                 </select>
+             </td>
 
-
-
-
-<input type="datetime-local" id="startTime" required onchange="setEndTimeMin()">
-<input type="datetime-local" id="endTime" required>
-<textarea id="content" rows="4" cols="50" placeholder="상담 내용을 입력하세요" required></textarea>
-
-
+            <td><textarea id="content" rows="4" cols="50" placeholder="상담 내용을 입력하세요" required></textarea></td>
+            </tr>
+        </table>
         <button type="button" onclick="submitForm()">예약 제출</button>
     </div>
 
@@ -53,11 +62,11 @@ function setEndTimeMin() {
     }
 }
 
+
 function showLawyerInfo() {
     const select = document.getElementById("lawyerInfo");
-    const lawyerId =select.value;
     const selectedOption = select.options[select.selectedIndex];
-    console.log("id"+lawyerId)
+
     const lawyerName = selectedOption.text;
     const lawFirm = selectedOption.getAttribute("data-lawfirm");
     const counselingAmount = selectedOption.getAttribute("data-amount");
@@ -65,16 +74,6 @@ function showLawyerInfo() {
     document.getElementById("lawyerName").innerText = lawyerName + "님의 정보";
     document.getElementById("lawyerFirm").innerText = "소속: " + lawFirm;
     document.getElementById("counselingAmount").innerText = "상담료: " + counselingAmount;
-
-
-            fetch('/counsel/getReservation?id='+lawyerId)
-               .then(response => {
-                               if (!response.ok) {
-                                console.log(response)
-                               }else{
-                               return response.json();
-                               }
-                               })
 }
 
 function submitForm(){

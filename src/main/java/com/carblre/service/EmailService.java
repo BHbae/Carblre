@@ -57,13 +57,11 @@ public class EmailService {
      * @param subject
      * @param dto
      */
-    public void sendMailByUserId(String to, String subject, PrincipalDTO dto) {
+    public void findIdByEmail(String to, String subject, PrincipalDTO dto) {
         try {
             // Thymeleaf 문법
             // Context 클래스를 이용하여 템플릿에 필요한 데이터를 설정합니다.
             Context context = new Context();
-            context.setVariable("username", dto.getUsername());
-            context.setVariable("userId", dto.getUserId());
 
             // 템플릿 처리(이메일 본문)
             String htmlFile = templateEngine.process("findUserIdByEmail", context);
