@@ -62,13 +62,21 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			<ul class="page--button btn">
-				<li>◀</li>
-				<li class="page--active">1</li>
-				<li>2</li>
-				<li>3</li>
-				<li>▶</li>
-			</ul>
+			<div>
+				<ul class="page--button btn">
+					<c:if test="${currentPage > 1}">
+						<li><a href="/notice/notice?page=${currentPage - 1}&size=${size}">◀</a></li>
+					</c:if>
+
+					<c:forEach var="i" begin="1" end="${totalPages}">
+						<li class="${currentPage == i ? 'page--active' : ''}"><a href="/notice/notice?page=${i}&size=${size}" <c:if test="${currentPage == i}">style="pointer-events: none; color: white;"</c:if>> ${i} </a></li>
+					</c:forEach>
+
+					<c:if test="${currentPage < totalPages}">
+						<li><a href="/notice/notice?page=${currentPage + 1}&size=${size}">▶</a></li>
+					</c:if>
+				</ul>
+			</div>
 		</div>
 	</div>
 

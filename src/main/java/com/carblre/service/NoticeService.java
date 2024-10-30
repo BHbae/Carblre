@@ -28,4 +28,17 @@ public class NoticeService {
 		return noticeRepository.readNoticeById(id);
 	}
 
+	// 페이징 처리
+	@Transactional
+	public List<Notice> findAllNotice(int page, int size) {
+		int offset = (page - 1) * size;
+		return noticeRepository.findAllNotice(offset, size);
+	}
+
+	// 공지 수 조회
+	@Transactional
+	public int countNotice() {
+		return noticeRepository.countNotice();
+	}
+
 }

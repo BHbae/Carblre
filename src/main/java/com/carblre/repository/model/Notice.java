@@ -15,7 +15,7 @@ import lombok.ToString;
 @ToString
 public class Notice {
 
-	private int id;
+	private Long id;
 	private String title;
 	private String content;
 	private Timestamp createdAt;

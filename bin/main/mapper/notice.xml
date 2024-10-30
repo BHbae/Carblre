@@ -10,4 +10,13 @@
 		select * from notice_tb where id = #{id}
 	</select>
 	
+	<select id="findAllNotice" resultType="com.carblre.repository.model.Notice">
+        SELECT * FROM notice_tb
+        ORDER BY created_at DESC
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <select id="countNotice" resultType="int">
+        SELECT COUNT(*) FROM notice_tb
+    </select>
 </mapper>
