@@ -69,4 +69,36 @@ public class NoticeController {
 		return "notice/notice";
 	}
 
+	// 검색 기능 추가
+	@GetMapping("/search")
+	public String searchNotices(@RequestParam(name = "query") String query,
+			@RequestParam(name = "type", defaultValue = "all") String type,
+			@RequestParam(name = "page", defaultValue = "1") int page,
+			@RequestParam(name = "size", defaultValue = "10") int size, Model model) {
+
+		List<Notice> noticeList;
+		int totalNotices;
+
+		if ("title".equals(type)) {
+			noticeList = noticeService.searchByTitle(query, page, size);
+			totalNotices = noticeService.countNoticesByTitle(query);
+		} else if ("content".equals(type)) {
+			noticeList = noticeService.searchByContent(query, page, size);
+			totalNotices = noticeService.countNoticesByContent(query);
+		} else {
+			noticeList = noticeService.searchByAll(query, page, size);
+			totalNotices = noticeService.countNoticesByAll(query);
+		}
+
+		int totalPages = (int) Math.ceil((double) totalNotices / size);
+
+		model.addAttribute("noticeList", noticeList);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("size", size);
+		model.addAttribute("query", query);
+		model.addAttribute("type", type);
+
+		return "notice/notice";
+	}
 }

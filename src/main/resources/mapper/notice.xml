@@ -1,22 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.carblre.repository.interfaces.NoticeRepository">
-	
-	<select id="readAllNotice" resultType="com.carblre.repository.model.Notice">
-		select * from notice_tb order by id desc
-	</select>
-	
-	<select id="readNoticeById" resultType="com.carblre.repository.model.Notice">
-		select * from notice_tb where id = #{id}
-	</select>
-	
-	<select id="findAllNotice" resultType="com.carblre.repository.model.Notice">
-        SELECT * FROM notice_tb
-        ORDER BY created_at DESC
-        LIMIT #{limit} OFFSET #{offset}
-    </select>
 
-    <select id="countNotice" resultType="int">
-        SELECT COUNT(*) FROM notice_tb
-    </select>
+	<select id="readAllNotice" resultType="com.carblre.repository.model.Notice">
+		SELECT * FROM notice_tb ORDER BY id DESC
+	</select>
+
+	<select id="readNoticeById" resultType="com.carblre.repository.model.Notice">
+		SELECT * FROM notice_tb WHERE id = #{id}
+	</select>
+
+	<select id="findAllNotice" resultType="com.carblre.repository.model.Notice">
+		SELECT * FROM notice_tb
+		ORDER BY created_at DESC
+		LIMIT #{limit} OFFSET #{offset}
+	</select>
+
+	<select id="countNotice" resultType="int">
+		SELECT COUNT(*) FROM notice_tb
+	</select>
+
+	<!-- 제목으로 검색 -->
+	<select id="findByTitle" resultType="com.carblre.repository.model.Notice">
+		SELECT * FROM notice_tb
+		WHERE title LIKE CONCAT('%', #{title}, '%')
+		ORDER BY created_at DESC
+		LIMIT #{limit} OFFSET #{offset}
+	</select>
+
+	<select id="countByTitle" resultType="int">
+		SELECT COUNT(*) FROM notice_tb
+		WHERE title LIKE CONCAT('%', #{title}, '%')
+	</select>
+
+	<!-- 내용으로 검색 -->
+	<select id="findByContent" resultType="com.carblre.repository.model.Notice">
+		SELECT * FROM notice_tb
+		WHERE content LIKE CONCAT('%', #{content}, '%')
+		ORDER BY created_at DESC
+		LIMIT #{limit} OFFSET #{offset}
+	</select>
+
+	<select id="countByContent" resultType="int">
+		SELECT COUNT(*) FROM notice_tb
+		WHERE content LIKE CONCAT('%', #{content}, '%')
+	</select>
+
+	<!-- 제목과 내용 모두 검색 -->
+	<select id="findByAll" resultType="com.carblre.repository.model.Notice">
+		SELECT * FROM notice_tb
+		WHERE title LIKE CONCAT('%', #{query}, '%')
+		OR content LIKE CONCAT('%', #{query}, '%')
+		ORDER BY created_at DESC
+		LIMIT #{limit} OFFSET #{offset}
+	</select>
+
+	<select id="countByAll" resultType="int">
+		SELECT COUNT(*) FROM notice_tb
+		WHERE title LIKE CONCAT('%', #{query}, '%')
+		OR content LIKE CONCAT('%', #{query}, '%')
+	</select>
+
 </mapper>

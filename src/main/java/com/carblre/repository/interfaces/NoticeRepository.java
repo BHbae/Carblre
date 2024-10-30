@@ -21,4 +21,21 @@ public interface NoticeRepository {
 
 	// 공지수 조회
 	public int countNotice();
+
+	// 제목으로 검색
+	public List<Notice> findByTitle(@Param("title") String title, @Param("offset") int offset,
+			@Param("limit") int limit);
+
+	public int countByTitle(@Param("title") String title);
+
+	// 내용으로 검색
+	public List<Notice> findByContent(@Param("content") String content, @Param("offset") int offset,
+			@Param("limit") int limit);
+
+	public int countByContent(@Param("content") String content);
+
+	// 제목과 내용 모두 검색
+	public List<Notice> findByAll(@Param("query") String query, @Param("offset") int offset, @Param("limit") int limit);
+
+	public int countByAll(@Param("query") String query);
 }
