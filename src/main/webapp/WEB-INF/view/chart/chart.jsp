@@ -74,6 +74,10 @@
         const ct = document.getElementById('yearCharts').getContext('2d');
         const yearCharts = new Chart(ct, config);
     });
+
+
+
+
     <!-- 년도별 사망자수 통계 차트 END -->
     const accidentChartData = JSON.parse('${accidentChartData}');
     const label = accidentChartData.map(accidentChartData => accidentChartData.asltVtrNm);

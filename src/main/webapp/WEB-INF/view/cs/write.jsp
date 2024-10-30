@@ -30,21 +30,18 @@
 		<div class="sub--content">
 			<h2 class="prih2">고객센터</h2>
 
-			<form action="/cs/created" method="POST"
-				enctype="multipart/form-data">
-				<input class="" type="text" name="title" id="title"
-					placeholder="제목을 입력해주세요">
-				<textarea type="text" name="content" id="content"
-					placeholder="내용을 입력해주세요"></textarea>
+			<form action="/cs/created" method="POST" enctype="multipart/form-data">
+				<input class="" type="text" name="title" id="title" placeholder="제목을 입력해주세요">
+				<textarea type="text" name="content" id="content" placeholder="내용을 입력해주세요"></textarea>
 
-			<div class="btn btn--wrap">
-				<div id="list--button">
-					<a href="/cs/cs">목록</a>
+				<div class="btn btn--wrap">
+					<div id="list--button">
+						<a href="/cs/cs">목록</a>
+					</div>
+					<div id="enter--button">
+						<button type="submit">글쓰기</button>
+					</div>
 				</div>
-				<div id="enter--button">
-					<button type="submit">글쓰기</button>
-				</div>
-			</div>
 			</form>
 		</div>
 

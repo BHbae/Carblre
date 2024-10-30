@@ -9,8 +9,8 @@
     <section class="sub--section">
         <div class="section--background" id="notice--background">
             <div class="inner--container">
-                <sub class="eng">Notice</sub>
-                <h1 class="sub--title">고객센터</h1>
+                <sub class="eng">My Page</sub>
+                <h1 class="sub--title">마이페이지</h1>
             </div>
         </div>
         <div style="border-bottom: 1px solid #bababa;">
@@ -25,7 +25,7 @@
 
     <div class="inner--container">
         <div class="sub--content">
-            <h2 class="prih2">마이페이지</h2>
+            <h2 class="prih2 user--form">마이페이지</h2>
 
             <div class="info infoupdate">
                 <div class="btn btn--wrap">
@@ -37,14 +37,20 @@
 
 
                 <c:if test="${principal.site != '서버'}">
-                    <p> 이름: ${principal.userName}</p>
-                    <p> 아이디: ${principal.site}</p>
-                    <p> 이메일: ${principal.email}</p>
+                    <p class="label--info">이름</p>
+                    <p class="label--value">${principal.userName}</p>
+                    <p class="label--info">아이디</p>
+                    <p class="label--value">${principal.site}</p>
+                    <p class="label--info">이메일</p>
+                    <p class="label--value">${principal.email}</p>
                 </c:if>
                 <c:if test="${principal.site == '서버'}">
-                    <p> 이름: ${principal.userName}</p>
-                    <p> 아이디: ${principal.nickName}</p>
-                    <p> 이메일: ${principal.email}</p>
+                    <p class="label--info">이름</p>
+                    <p class="label--value">${principal.userName}</p>
+                    <p class="label--info">아이디</p>
+                    <p class="label--value">${principal.nickName}</p>
+                    <p class="label--info">이메일</p>
+                    <p class="label--value">${principal.email}</p>
                 </c:if>
                 <div class="btn btn--wrap">
                     <div id="mypage--edit">

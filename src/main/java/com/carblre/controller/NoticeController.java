@@ -19,4 +19,19 @@ public class NoticeController {
         return "notice/notice";
     }
 
+    @GetMapping("/detail")
+    public String noticeDetailPage() {
+        return "notice/detail";
+    }
+
+    @GetMapping("/edit")
+    public String noticeEditPage() {
+        return "notice/edit";
+    }
+
+    @GetMapping("/write")
+    public String noticeWritePage() {
+        return "notice/write";
+    }
+
 }

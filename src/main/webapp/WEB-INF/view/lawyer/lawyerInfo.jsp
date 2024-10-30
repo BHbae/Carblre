@@ -5,7 +5,7 @@
 <div class="wrap">
     <!-- 상단 이미지 & 서브 페이지 이동 START -->
     <section class="sub--section">
-        <div class="section--background" id="notice--background">
+        <div class="section--background" id="lawyer--background">
             <div class="inner--container">
                 <sub class="eng">Lawyer</sub>
                 <h1 class="sub--title">변호사</h1>

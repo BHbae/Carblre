@@ -36,6 +36,7 @@ input{
     border-radius: 5px;
     padding: 10px;
     box-sizing: border-box;
+    color: #666;
 }
 button{
     font-size: 16px;
@@ -49,7 +50,7 @@ button{
     color: #fff;
     border-radius: 5px;
 }
-#mypage--edit, #mypage--password, #mypage--counsel{
+#mypage--edit, #mypage--password, #mypage--counsel, #edit--password, #go--back{
     width: 100px;
     height: 35px;
     background-color: #b19837;
@@ -62,14 +63,32 @@ button{
 #write--button a, #delete--button a, #enter--button a, #list--button a, #edit--button a {
     display: block;
 }
+#edit--password{
+    width: 90px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 14px;
+    border: 0;
+    border-radius: 5px;
+    margin-top: 5px;
+    background-color: #b19837;
+    color: #fff;
+}
+#go--back{
+    border: 0;
+    float: right;
+}
 textarea{
     width: 100%;
-    height: 300px;
+    height: 100px;
     border: 1px solid #bababa;
     border-radius: 5px;
     padding: 10px;
     margin-top: 10px;
     box-sizing: border-box;
+}
+textarea#introduction{
+    margin-top: 0 !important;
 }
 .page--button{
     display: flex;
@@ -103,6 +122,11 @@ textarea{
     background-color: inherit;
     color: #fff;
 }
+#edit--password button{
+    border: 0;
+    background-color: inherit;
+    color: #fff;
+}
 .board--info {
     display: flex;
     justify-content: space-between;
@@ -123,6 +147,217 @@ textarea{
     width: 100%;
     height: 300px;
     margin-bottom: 50px;
-    padding: 50px 10px;
+    padding: 50px 10px 30px;
     line-height: 1.5;
+    border-bottom: 1px solid #bababa;
+    box-sizing: border-box;
+}
+.board--reply{
+    width: 100%;
+    height: 150px;
+    padding: 0 10px;
+}
+.waitingbox{
+    color: #666;
+}
+.selectbox{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+    gap: 5px;
+}
+.selectbox #status{
+    margin-right: 10px;
+}
+select{
+    width: 100px;
+    height: 25px;
+    border: 1px solid #bababa;
+    font-family: 'Pretendard-Regular';
+    border-radius: 5px;
+    color: #333;
+}
+/* 댓글 작성자 스타일 */
+.comment--author {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+/* 댓글 내용 스타일 */
+.comment--content {
+    border: 1px solid #bababa;
+    padding: 10px;
+    border-radius: 5px;
+    color: #333;
+}
+
+/* 대댓글 목록 스타일 */
+.reply-comment-section {
+    margin-left: 50px; /* 대댓글을 원 댓글보다 들여쓰기 */
+    padding-top: 10px;
+}
+
+/* 대댓글 컨테이너 스타일 */
+.reply-comment-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+}
+
+/* 대댓글 작성자 및 작성일 스타일 */
+.reply--header {
+    display: flex;
+    justify-content: space-between;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+/* 대댓글 작성자 스타일 */
+.reply--author {
+    font-weight: bold;
+    color: #666;
+}
+
+/* 대댓글 작성일 스타일 */
+.reply--timestamp {
+    font-size: 12px;
+    color: #999;
+}
+
+/* 대댓글 내용 스타일 */
+.reply--content {
+    text-align: left; /* 텍스트를 왼쪽 정렬 */
+    font-size: 14px;
+    color: #444;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+/* 댓글 달기 버튼 스타일 */
+.comment button, .reply-comment-container button {
+    margin-top: 10px;
+    background-color: #b19837;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+/* 댓글 작성 텍스트 박스 */
+.write--box {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.write--box textarea {
+    border: 1px solid #bababa;
+    padding: 10px;
+}
+
+.write--box button {
+    align-self: flex-end;
+    margin-top: 10px;
+    background-color: #b19837 !important;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* 대댓글 영역 */
+.reply-comment-section {
+    padding-left: 20px;
+    margin-top: 10px;
+    border-left: 2px solid #e6e6e6;
+}
+
+.reply-comment {
+    padding: 10px 0;
+}
+
+.reply--header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.reply--author {
+    font-weight: bold;
+    color: #606060;
+}
+
+.reply--timestamp {
+    color: #909090;
+}
+
+.reply--content {
+    margin-top: 5px;
+    color: #333333;
+    font-size: 14px;
+}
+
+/* 대댓글 작성 박스 */
+.reply--comment--box {
+    margin-top: 10px;
+    padding-left: 20px;
+    border-left: 2px solid #e6e6e6;
+}
+
+.reply--comment--box textarea {
+    border: 1px solid #d3d3d3;
+    padding: 8px;
+    width: 100%;
+    border-radius: 4px;
+    font-size: 14px;
+    resize: none;
+}
+
+.reply--comment--box button {
+    margin-top: 5px;
+    background-color: #b19837;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* 댓글 영역 아래 공간 확보 */
+.comments--option {
+    margin-bottom: 20px;
+}
+.commentwrap{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+.replywrap{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+.reply--infom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px !important;
+}
+.comment{
+    margin-bottom: 50px;
+}
+.comment:last-child{
+    margin-bottom: 0;
+}
+.comments--content .write--box{
+    border-top: 1px solid #bababa;
 }
