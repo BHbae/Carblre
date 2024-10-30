@@ -30,18 +30,18 @@
 <header>
 	<div id="in--header">
 		<div id="logo">
-			<a href="/" alt="헤더 로고">logo</a>
+			<a href="/" alt="헤더 로고"><img src="/image/logo.png"></a>
 		</div>
 
 		<ul id="menu--container">
 			<li>
-				<a href="/boardList">의뢰자</a>
+				<a href="/board/boardList">의뢰자</a>
 			</li>
 			<li>
 				<a href="/aiounseling">AI 간편상담</a>
 			</li>
 			<li>
-				<a href="/reservation/reservation">변호사</a>
+				<a href="/lawyer/lawyers">변호사</a>
 			</li>
 			<li>
 				<a href="/notice/notice">공지사항</a>
@@ -103,3 +103,4 @@
 	});
 
 </script>
+

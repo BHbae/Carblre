@@ -2,12 +2,12 @@ package com.carblre.repository.interfaces;
 
 import java.util.List;
 
-import com.carblre.dto.SignUpDTO;
+import com.carblre.dto.userdto.LawyerDetailDTO;
+import com.carblre.dto.userdto.LawyerReservationDTO;
 import com.carblre.repository.model.LawyerDetail;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.carblre.dto.userdto.SignDTO;
 import com.carblre.dto.userdto.UserDTO;
 import com.carblre.repository.model.User;
 import org.apache.ibatis.annotations.Select;
@@ -61,6 +61,5 @@ public interface UserRepository {
 	@Select("SELECT LAST_INSERT_ID()")
 	int getLastInsertId();
 
-	// 변호사 디테일
-	int insertLawyerDetail(LawyerDetail lawyerDetail);
+
 }

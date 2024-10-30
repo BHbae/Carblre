@@ -41,6 +41,17 @@ input {
 	box-sizing: border-box;
 }
 
+#mypage--edit, #mypage--password, #mypage--counsel {
+	width: 100px;
+	height: 35px;
+	background-color: #b19837;
+	text-align: center;
+	line-height: 35px;
+	color: #fff;
+	border-radius: 5px;
+	margin-top: 50px;
+}
+
 button {
 	font-size: 16px;
 }

@@ -1,0 +1,75 @@
+/* Container for the entire page */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Heading style */
+.container h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Lawyer list grid */
+.lawyer-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Individual lawyer card */
+.lawyer-card {
+    width: 250px;
+    height: 280px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.lawyer-card:hover {
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+/* Profile image */
+.lawyer-card img {
+    width: 70px; /* Set a fixed width */
+    height: 70px; /* Set a fixed height */
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover; /* Ensure the image fills the circle without distortion */
+    margin-bottom: 10px;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.1);
+}
+
+/* Lawyer introduction text */
+.lawyer-card p {
+    font-size: 14px;
+    color: #555;
+    margin: 8px 0;
+}
+
+/* Lawyer name styling */
+.lawyer-card p strong {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Button styling */
+.lawyer-card button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 3px;
+    background-color: #f7f7f7;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+

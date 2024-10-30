@@ -5,7 +5,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,6 +31,7 @@ import com.carblre.dto.userdto.UserDTO;
 import com.carblre.repository.model.Post;
 import com.carblre.service.CommentService;
 import com.carblre.service.TestBoardService;
+import com.carblre.service.UserService;
 import com.carblre.utils.Define;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -46,6 +49,8 @@ public class TestBoardController {
 
 	@Autowired
 	private HttpSession session;
+	@Autowired
+	private UserService userService;
 
 	// -----게시글 상세보기
 	@GetMapping("/detail/{id}")
@@ -144,6 +149,14 @@ public class TestBoardController {
 	public ResponseEntity<?> addComment(@RequestBody CommentDTO commentDTO) {
 
 		UserDTO principal = (UserDTO) session.getAttribute("principal");
+
+		Map<String, String> response = new HashMap<>();
+
+		if (principal == null) {
+			response.put("message", Define.ENTER_YOUR_LOGIN);
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+		}
+
 		CommentDTO commentBuilder = CommentDTO.builder().commentId(commentDTO.getCommentId())
 				.postId(commentDTO.getPostId()).userId(principal.getId()).comment(commentDTO.getComment())
 				.createdAt(commentDTO.getCreatedAt()).userName(principal.getUserName()).build();
@@ -160,17 +173,19 @@ public class TestBoardController {
 	 * @return ResponseEntity
 	 */
 	@GetMapping("/deleteComment")
-	public ResponseEntity<String> deleteComment(@RequestParam(name = "commentId") int commentId,
+	public ResponseEntity<?> deleteComment(@RequestParam(name = "commentId") int commentId,
 			@RequestParam(name = "userId") int userId) {
 		System.out.println("HELLO IT IS DELETE METHOD");
 		UserDTO principal = (UserDTO) session.getAttribute("principal");
-
+		Map<String, String> response = new HashMap<>();
 		if (principal == null) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Define.ENTER_YOUR_LOGIN);
+			response.put("message", Define.ENTER_YOUR_LOGIN);
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
 		}
 
 		if (principal.getId() != userId) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Define.NOT_AN_AUTHENTICATED_USER);
+			response.put("message", Define.NOT_AN_AUTHENTICATED_USER);
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
 		}
 
 		int result = commentService.deleteComment(commentId);
@@ -178,8 +193,8 @@ public class TestBoardController {
 		if (result != 1) {
 			return ResponseEntity.status(500).build();
 		}
-
-		return ResponseEntity.ok("삭제하였습니다.");
+		response.put("message", "삭제하였습니다.");
+		return ResponseEntity.ok(response);
 
 	}
 

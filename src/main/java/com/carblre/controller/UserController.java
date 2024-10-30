@@ -31,9 +31,8 @@ import com.carblre.config.MyWebSocketHandler;
 import com.carblre.dto.MyCounselDTO;
 import com.carblre.dto.SignUpDTO;
 import com.carblre.dto.userdto.KakaoOAuthToken;
-import com.carblre.dto.userdto.LawyerSignUpDTO;
-import com.carblre.dto.userdto.SignDTO;
 import com.carblre.dto.userdto.SignInDTO;
+import com.carblre.dto.userdto.SocialSignUpDTO;
 import com.carblre.dto.userdto.UserDTO;
 import com.carblre.handler.exception.DataDeliveryException;
 import com.carblre.handler.exception.UnAuthorizedException;
@@ -124,7 +123,6 @@ public class UserController {
 
 		// 위의 검사를 모두 통과했다면 'principal' Session 부여합니다.
 		session.setAttribute("principal", userDTO);
-		session.setAttribute("role", userDTO.getRole());
 
 		// 마지막으로 페이지 이동 처리를 진행합니다.
 		return "redirect:/user/index";// 임시 인덱스 장소로 이동함
@@ -283,9 +281,9 @@ public class UserController {
 		// 최초 시도
 		if (principial == null) {
 
-			SignDTO signDTO = SignDTO.builder().email(email).nickName(kakaoIdStr).userName(nickname).build();
-
-			userService.saveUser(signDTO); // MyBatis Mapper를 사용하여 DB에 저장
+			SocialSignUpDTO socialSignUpDTO = SocialSignUpDTO.builder().email(email).nickName(kakaoIdStr)
+					.userName(nickname).site("카카오").role("user").status(1).build();
+			userService.saveUser(socialSignUpDTO); // MyBatis Mapper를 사용하여 DB에 저장
 
 		}
 
@@ -382,9 +380,10 @@ public class UserController {
 		UserDTO principial = userService.findByNickId(naverId);
 
 		if (principial == null) {
-			SignDTO signDTO = SignDTO.builder().email(email).nickName(naverId).userName(name).build();
+			SocialSignUpDTO socialSignUpDTO = SocialSignUpDTO.builder().email(email).nickName(naverId).userName(name)
+					.site("네이버").role("user").status(1).build();
 
-			userService.saveUser(signDTO);
+			userService.saveUser(socialSignUpDTO);
 			principial = userService.findByNickId(naverId);
 		}
 		System.out.println("프린시펄" + principial);
@@ -456,9 +455,10 @@ public class UserController {
 			UserDTO principial = userService.findByNickId(googleId);
 
 			if (principial == null) {
-				SignDTO signDTO = SignDTO.builder().email(email).nickName(googleId).userName(name).build();
-
-				userService.saveApiUser(signDTO); // 사용자 정보 저장
+				SocialSignUpDTO socialSignUpDTO = SocialSignUpDTO.builder().email(email).nickName(googleId)
+						.userName(name).site("구글").role("user").status(1).build();
+				System.out.println(socialSignUpDTO);
+				userService.saveApiUser(socialSignUpDTO); // 사용자 정보 저장
 				principial = userService.findByNickId(googleId); // 다시 조회하여 세션에 저장
 			}
 
@@ -550,55 +550,6 @@ public class UserController {
 		return ResponseEntity.ok(response);
 	}
 
-	/**
-	 * 유저 가입 선택 페이지
-	 *
-	 * @return
-	 */
-	@GetMapping("/selectSignUp")
-	public String selectSignupPage() {
-		System.out.println("Here in selectSignUpPage(UserController)");
-		return "user/selectSignup";
-	}
-
-	/**
-	 * 변호사 가입페지이 이동
-	 *
-	 * @return
-	 */
-	@GetMapping("/lawyerSignUp")
-	public String lawyerSignupPage() {
-		System.out.println("Here in lawyerSignUpPage(UserController)");
-		return "user/lawyerSignup";
-	}
-
-	/**
-	 * [POST] 변호사 회원가입 로직
-	 *
-	 * @param lawyerSignUpDTO = 사용자의 입력값
-	 * @return signIn.jsp
-	 */
-	@PostMapping("/lawyerSignUp")
-	public String lawyerSignUpProc(LawyerSignUpDTO lawyerSignUpDTO) {
-		// HTML required 속성으로 null 체크 X
-		userService.createLawyerUser(lawyerSignUpDTO);
-
-		// signIn (Login Page) 이동 처리
-		return "redirect:/user/signIn";
-	}
-
-	@GetMapping("/myPage")
-	public String myPage(Model model) {
-		UserDTO userDTO = (UserDTO) session.getAttribute("principal");
-		if (userDTO == null) {
-			// 엔티티가 존재하지 않을 때 NotFoundException 던짐
-			throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
-		}
-
-		// 유저 인포 해야됨
-		return "user/myPage";
-	}
-
 	@GetMapping("/infoUpdate")
 	public String infoUpdatePage(Model model) throws NotFoundException {
 		UserDTO userDTO = (UserDTO) session.getAttribute("principal");
@@ -611,6 +562,17 @@ public class UserController {
 
 		model.addAttribute("originUser", originUser);
 		return "user/infoUpdate";
+	}
+
+	/**
+	 * 유저 가입 선택 페이지
+	 *
+	 * @return
+	 */
+	@GetMapping("/selectSignUp")
+	public String selectSignupPage() {
+		System.out.println("Here in selectSignUpPage(UserController)");
+		return "user/selectSignup";
 	}
 
 	/**
@@ -698,14 +660,15 @@ public class UserController {
 	 */
 	@GetMapping("checkLawyerCounsel")
 	public String checkLawyerCounselPage(Model model) {
-		UserDTO userDTO = (UserDTO) session.getAttribute("principal");
+		UserDTO userDTO = (UserDTO) session.getAttribute("principal"); // dto변경해야함
 		if (userDTO == null) {
 			// 엔티티가 존재하지 않을 때 NotFoundException 던짐
 			throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
 		}
 		// 유저 인포 해야됨
 		MyCounselDTO counsel = counselService.findMyCounselByLawyerId(userDTO.getId());
-		UserDTO user = userService.findById(counsel.getLawyerId());
+		UserDTO user = userService.findById(userDTO.getId());
+
 		model.addAttribute("counsel", counsel);
 		model.addAttribute("user", user);
 

@@ -5,7 +5,7 @@
 <footer>
     <div id="in--footer">
         <div id="footer--logo">
-            <a href="/" alt="푸터 로고">logo</a>
+            <a href="/" alt="푸터 로고"><img src="/image/footerlogo.png"></a>
         </div>
 
         <div id="footer--container">
