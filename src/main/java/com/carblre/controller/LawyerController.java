@@ -1,6 +1,7 @@
 package com.carblre.controller;
 
 import com.carblre.dto.LawyerDetailDTO;
+import com.carblre.dto.counsel.CounselDTO;
 import com.carblre.dto.userdto.LawyerSignUpDTO;
 import com.carblre.dto.userdto.UserDTO;
 import com.carblre.handler.exception.UnAuthorizedException;
@@ -95,8 +96,22 @@ public class LawyerController {
     public String LawyerInfoPage(@PathVariable(name = "userId") int userId , Model model){
         LawyerDetailDTO dto = lawyerService.selectByLawyerId(userId);
         UserDTO principal = (UserDTO) session.getAttribute("principal");
-        model.addAttribute("lawyer" ,dto);
+
+        List<CounselDTO> counselDTO = counselService.getCounselReservationByLawyerId(userId);
+        System.out.println("COUNSEL DTO : " + counselDTO);
+
+        // CounselDTO에서 각 예약의 시간 데이터를 추출하여 시작 및 종료 시간을 숫자로 변환하여 모델에 추가
+        for (CounselDTO counselItem : counselDTO) {
+            int counselStartHour = Integer.parseInt(counselItem.getStartTime().substring(11, 13)); // 예: '2024-10-30 03:00:00'에서 '03' 추출
+            int counselEndHour = Integer.parseInt(counselItem.getEndTime().substring(11, 13)); // 예: '09' 추출
+            model.addAttribute("counselStartHour", counselStartHour);
+            model.addAttribute("counselEndHour", counselEndHour);
+        }
+
+        model.addAttribute("lawyer", dto);
         model.addAttribute("principal", principal);
+        model.addAttribute("counsel", counselDTO);
+
         return "lawyer/lawyerInfo";
     }
 

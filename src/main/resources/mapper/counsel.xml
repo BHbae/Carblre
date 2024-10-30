@@ -42,13 +42,14 @@
 
 	<!-- 유저 예약 신청 -->
 	<insert id="insertCounsel">
-		INSERT INTO counsel_request_tb(user_id, start_time,
-		end_time, content,
-		lawyer_id, status )
+		INSERT INTO counsel_request_tb(
+		user_id, lawyer_id,
+		start_time, end_time,
+		content, status, created_at)
 		VALUES (
-		#{userId}, #{startTime},
-		#{endTime}, #{content},
-		#{lawyerId},#{status})
+		#{userId}, #{lawyerId},
+		#{startTime},#{endTime},
+		#{content},#{status}, now())
 	</insert>
 
 	<!-- 전체 counsel 조회 -->
@@ -68,4 +69,11 @@
 		  AND lawyer_id = #{lawyer_id}
 	</select>
 
+	<select id="findReservationByLawyerId">
+		SELECT
+		*
+		FROM
+		counsel_request_tb AS c
+		WHERE c.lawyer_id = #{lawyerId}
+	</select>
 </mapper>

@@ -89,35 +89,6 @@
 		WHERE id = #{id}
 	</update>
 
-    <insert id="insertLawyerDetail" parameterType="com.carblre.repository.model.LawyerDetail">
-        INSERT INTO lawyer_detail_tb(user_id, origin_profile_name ,
-        upload_profile_name, origin_license_name, upload_license_name,
-        introduction, law_firm, office_num)
-        VALUES (
-        #{userId}, #{getProfileName}, #{uploadProfileName},
-        #{getLicenseName}, #{uploadLicenseName},
-        #{introduction}, #{lawFirm}, #{officeNum})
-    </insert>
-
-	<!-- 변호사 디테일 조회 -->
-	<select id="findLawyerInfoById"  resultType="com.carblre.repository.model.LawyerDetail">
-		SELECT * FROM lawyer_detail_tb
-		WHERE user_id = #{id}
-
-    </select>
-
-    <!-- 모든 변호사 조회 -->
-    <select id="findAllLawyer" resultType="com.carblre.dto.userdto.UserDTO">
-        SELECT * FROM user_tb
-        where status=1 and
-        role= 'lawyer'
-    </select>
-
-    <!-- 모든 변호사 정보 조회 -->
-    <select id="findAllLawyerDetail" resultType="com.carblre.repository.model.LawyerDetail">
-        SELECT * FROM lawyer_detail_tb
-    </select>
-
 
 	<!-- 모든 변호사 정보 조회 -->
 	<select id="findReservation" resultType="com.carblre.dto.userdto.LawyerReservationDTO">

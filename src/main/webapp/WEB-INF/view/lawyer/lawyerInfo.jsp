@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ include file="../layout/header.jsp"%>
 <link rel="stylesheet" href="/css/lawyerInfo.css">
 
@@ -47,27 +48,57 @@
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>상담 예약</h2>
         <form action="/counsel/reservation" method="post">
+            <input type="hidden" name="lawyerId" value="${lawyer.userId}">
+
             <label for="date">날짜 선택:</label>
-            <input type="date" id="date" name="date" required oninput="formatDate(this)">
+            <input type="date" id="date" name="date" required="required">
 
+            <label for="startTime">시작 시간 선택:</label>
+            <select id="startTime" name="startTime">
+                <c:forEach var="i" begin="9" end="17">
+                    <c:set var="isAvailable" value="true" />
 
-            <label for="startTimeHour">시작 시간 선택:</label>
-            <select id="startTimeHour" name="startTimeHour">
-                <% for (int i = 0; i < 24; i++) { %>
-                <option value="<%= i %>"><%= String.format("%02d", i) %></option>
-                <% } %>
+                    <!-- Counsel 데이터에 대해 시간 확인 -->
+                    <c:forEach var="counselItem" items="${counsel}">
+                        <c:if test="${counselItem.date == date}">
+                            <c:if test="${i >= counselStartHour && i < counselEndHour}">
+                                <c:set var="isAvailable" value="false" />
+                            </c:if>
+                        </c:if>
+                    </c:forEach>
+
+                    <!-- 시간이 사용 가능한 경우에만 옵션 추가 -->
+                    <c:if test="${isAvailable}">
+                        <option value="${i}"><fmt:formatNumber value="${i}" pattern="00" /></option>
+                    </c:if>
+                </c:forEach>
             </select>
             시
-            <label for="endTimeHour">종료 시간 선택:</label>
-            <select id="endTimeHour" name="endTimeHour">
-                <% for (int i = 0; i < 24; i++) { %>
-                <option value="<%= i %>"><%= String.format("%02d", i) %></option>
-                <% } %>
+
+            <label for="endTime">종료 시간 선택:</label>
+            <select id="endTime" name="endTime">
+                <c:forEach var="i" begin="10" end="18">
+                    <c:set var="isAvailable" value="true" />
+
+                    <!-- Counsel 데이터에 대해 시간 확인 -->
+                    <c:forEach var="counselItem" items="${counsel}">
+                        <c:if test="${counselItem.date == date}">
+                            <c:if test="${i >= counselStartHour && i < counselEndHour}">
+                                <c:set var="isAvailable" value="false" />
+                            </c:if>
+                        </c:if>
+                    </c:forEach>
+
+                    <!-- 시간이 사용 가능한 경우에만 옵션 추가 -->
+                    <c:if test="${isAvailable}">
+                        <option value="${i}"><fmt:formatNumber value="${i}" pattern="00" /></option>
+                    </c:if>
+                </c:forEach>
             </select>
             시
 
-            <label for="details">상담 내용:</label>
-            <textarea id="details" name="details" rows="4" cols="50" placeholder="상담 내용을 입력하세요" required></textarea>
+            <label for="content">상담 내용:</label>
+            <textarea id="content" name="content" rows="4" cols="50" placeholder="상담 내용을 입력하세요" required></textarea>
 
             <button type="submit">예약 제출</button>
         </form>
@@ -77,6 +108,7 @@
 <%@ include file="../layout/footer.jsp"%>
 
 <script>
+
     // 모달 열기
     function openModal() {
         document.getElementById("reservationModal").style.display = "block";
@@ -112,6 +144,15 @@
         }
     });
 
+    // 오늘 날짜를 YYYY-MM-DD 형식으로 가져오기
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
+    const day = String(today.getDate()).padStart(2, '0');
+    const formattedDate = year + '-' + month + '-' + day;
+
+    // min 속성 설정
+    document.getElementById('date').setAttribute('min', formattedDate);
 </script>
 
 <style>
