@@ -56,17 +56,17 @@
 			<ul class="page--button btn">
 				<li
 					class="page-item <c:if test='${currentPage == 1}'>disabled</c:if>">
-					<a class="page-link" href="/cs/cs?page=${currentPage - 1}">◀</a>
+					<a class="page-link" href="/board/boardList?page=${currentPage - 1}">◀</a>
 				</li>
 				<c:forEach begin="1" end="${totalPages}" var="page">
-                    <li class="<c:if test="${currentPage == page}">page--active</c:if>" ><a href="/cs/cs?page=${page}">${page}</a></li>
+                    <li class="<c:if test="${currentPage == page}">page--active</c:if>" ><a href="/board/boardList?page=${page}">${page}</a></li>
                 </c:forEach>
 
 
 
 				<li
 					class="page-item <c:if test='${currentPage == totalPages}'>disabled</c:if>">
-					<a class="page-link" href="/cs/cs?page=${currentPage + 1}">▶</a>
+					<a class="page-link" href="/board/boardList?page=${currentPage + 1}">▶</a>
 				</li>
 			</ul>
         </div>

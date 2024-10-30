@@ -38,11 +38,13 @@ public class TestBoardService {
 		return post;
 	}
 
-
+	public int boardAllCount() {
+		return boardRepository.boardAllCount();
+	}
 	
 	
-	public List<Post> findAllBoards() {
-		List<Post> boards = boardRepository.findAllBoard();
+	public List<Post> findAllBoards(int limit, int offset) {
+		List<Post> boards = boardRepository.findAllBoard(limit, offset);
 		return boards;
 	}
 
@@ -100,5 +102,7 @@ public class TestBoardService {
 
 		return new String[] { mFile.getOriginalFilename(), uploadFileName };
 	}
+
+	
 
 }

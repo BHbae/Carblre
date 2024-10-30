@@ -70,10 +70,29 @@ public class TestBoardController {
 
 	// --- 게시글 리스트
 	@GetMapping("/boardList")
-	public String getMethodName(Model model) {
+	public String getMethodName(Model model, @RequestParam(name = "page", defaultValue = "1") int page,
+			@RequestParam(name = "size", defaultValue = "5") int limit) {
+		
+		int count = boardService.boardAllCount();
+		
+		// 총페이지수
+		int totalPages = (int) Math.ceil((double) count / (double) limit);
 
-		List<Post> boards =  boardService.findAllBoards();
+		int offset = (page - 1) * limit;
+		if (page <= 1) {
+			page = 1;
+		} else if (page >= totalPages) {
+			page = totalPages;
+		}
 
+		
+		
+		
+		List<Post> boards =  boardService.findAllBoards(limit, offset);
+		
+		
+		model.addAttribute("currentPage", page);
+		model.addAttribute("totalPages", totalPages);
 		model.addAttribute("boards",boards);
 		
 		return "/Board/BoardList";

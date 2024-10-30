@@ -28,7 +28,7 @@
 
 	<select id="findAllBoard"
 		resultType="com.carblre.repository.model.Post">
-		SELECT * FROM post_tb
+		SELECT * FROM post_tb ORDER BY id DESC limit #{limit} offset #{offset}
 	</select>
 
 	<select id="selectByPostId"
@@ -39,5 +39,11 @@
 		on p.user_id = u.id
 		WHERE p.id = #{id};
 	</select>
+	
+	<select id="boardAllCount" resultType="int">
+		select count(*) from post_tb
+	</select>
+	
+	
 
 </mapper>

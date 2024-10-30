@@ -402,7 +402,7 @@
             })
             .then(data => {
                 console.log('Response data:', data);
-                alert(data.message);
+         
                 getComment('newest');
                 getReplyComment(${post.id});
             })
@@ -473,7 +473,6 @@
                 console.log('getReplyComment 호출 시작');
                 getReplyComment(${post.id});
 
-                alert(data.message);
 
             })
             .catch(error => {
@@ -537,7 +536,6 @@
                             }
                         }
 
-                        alert(data.message);
                     });
                 }
             })
