@@ -46,7 +46,7 @@
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>상담 예약</h2>
-        <form>
+        <form action="/counsel/reservation" method="post">
             <label for="date">날짜 선택:</label>
             <input type="date" id="date" name="date" required oninput="formatDate(this)">
 
@@ -58,13 +58,6 @@
                 <% } %>
             </select>
             시
-            <select id="startTimeMinute" name="startTimeMinute">
-                <% for (int i = 0; i <= 50; i += 10) { %>
-                <option value="<%= i %>"><%= String.format("%02d", i) %></option>
-                <% } %>
-            </select>
-            분
-
             <label for="endTimeHour">종료 시간 선택:</label>
             <select id="endTimeHour" name="endTimeHour">
                 <% for (int i = 0; i < 24; i++) { %>
@@ -72,17 +65,11 @@
                 <% } %>
             </select>
             시
-            <select id="endTimeMinute" name="endTimeMinute">
-                <% for (int i = 0; i <= 50; i += 10) { %>
-                <option value="<%= i %>"><%= String.format("%02d", i) %></option>
-                <% } %>
-            </select>
-            분
 
             <label for="details">상담 내용:</label>
             <textarea id="details" name="details" rows="4" cols="50" placeholder="상담 내용을 입력하세요" required></textarea>
 
-            <button type="submit" onclick="sendReservation()">예약 제출</button>
+            <button type="submit">예약 제출</button>
         </form>
     </div>
 </div>
@@ -125,51 +112,6 @@
         }
     });
 
-    function sendReservation()
-    {
-        // 시작 시간(Hour)
-        const startTimeHour = document.getElementById('startTimeHour').value;
-        // 시작 분(Minute)
-        const startTimeMinute = document.getElementById('startTimeMinute').value;
-        // 시작 시간(Hour + Minute)
-        const startTime = startTimeHour + startTimeMinute;
-
-        // 종료 시간(Hour)
-        const endTimeHour = document.getElementById('endTimeHour').value;
-        // 종료 분(Minute)
-        const endTimeMinute = document.getElementById('endTimeMinute').value;
-        // 종료 시간(Hour + Minute)
-        const endTime = endTimeHour + endTimeMinute;
-
-        // 상담 내용
-        const details = document.getElementById('details');
-
-        const requestData = {
-            <%--"laywerId" : ${dtoList.}--%>
-            "startTime" : startTime,
-            "endTime" : endTime,
-            "details" : details
-        }
-
-        fetch('http://localhost:8080/counsel/reservation', {
-            method: 'POST',
-            body: JSON.stringify(requestData)
-        })
-            .then(response => {
-                if(!response.ok) {
-                    throw new Error("상담 예약 실패 : 서버 오류 발생");
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                alert(data.message);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-
-    }
 </script>
 
 <style>

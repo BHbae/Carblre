@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.List;
 @Slf4j
 @Controller
@@ -93,7 +94,9 @@ public class LawyerController {
     @GetMapping("/lawyerInfo/{userId}")
     public String LawyerInfoPage(@PathVariable(name = "userId") int userId , Model model){
         LawyerDetailDTO dto = lawyerService.selectByLawyerId(userId);
+        UserDTO principal = (UserDTO) session.getAttribute("principal");
         model.addAttribute("lawyer" ,dto);
+        model.addAttribute("principal", principal);
         return "lawyer/lawyerInfo";
     }
 

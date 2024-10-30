@@ -100,30 +100,9 @@ public class CounselController {
 
 
     @PostMapping("/reservation")
-    public ResponseEntity<Map<String,Object>> reservationProc(HttpSession session,
-                                                              @RequestBody Map<String, String> reqData){
-        UserDTO userDTO = (UserDTO) session.getAttribute("principal");
-        int lawyerId = Integer.parseInt(reqData.get("lawyerId"));
-        String startTime =reqData.get("startTime");
-        String endTime =reqData.get("endTime");
-        String content =reqData.get("content");
-        startTime = startTime.replace("T", " ");
-        endTime = endTime.replace("T", " ");
+    public ResponseEntity<Map<String,Object>> reservationProc(){
 
-         LawyerReservationDTO dto=LawyerReservationDTO.builder()
-                .lawyerId(lawyerId).startTime(startTime)
-                .endTime(endTime).content(content)
-                .build();
-        System.out.println("dto:"+dto);
-        int result =counselService.insertCounselReservation(userDTO.getId(),dto);
-        Map<String, Object> response = new HashMap<>();
-        if (result==1) {
-            response.put("success", true);
-        } else {
-            response.put("success", false);
-        }
-
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok().build();
     }
 
 

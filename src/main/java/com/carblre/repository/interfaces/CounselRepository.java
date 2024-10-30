@@ -30,12 +30,10 @@ public interface CounselRepository {
 
     List<Counsel> findCounselAll();
 
-
-
-
-
-    // 변호사 전체정보 조회
+    // 변호사 예약 정보 조회
     List<LawyerReservationDTO> findReservation();
+
+
     List<LawyerReservationDTO> findReservationsByDateTime(
             @Param("year") int year,
             @Param("month") int month,
