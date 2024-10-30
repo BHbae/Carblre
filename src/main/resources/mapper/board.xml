@@ -9,16 +9,14 @@
 	<insert id="savePost">
 		INSERT INTO post_tb (
 		user_id,
-		status,
 		category,
 		title,
 		content,
 		origin_file_name,
 		upload_file_name,
-		create_at
+		created_at
 		) VALUES (
-		1,
-		#{status},
+		#{userId},
 		#{category},
 		#{title},
 		#{content},
@@ -27,13 +25,19 @@
 		NOW()
 		)
 	</insert>
-	
-	<select id="findAllBoard" resultType="com.carblre.repository.model.Post">
+
+	<select id="findAllBoard"
+		resultType="com.carblre.repository.model.Post">
 		SELECT * FROM post_tb
 	</select>
 
-	<select id="selectByPostId" parameterType="int" resultType="com.carblre.dto.DetailDTO">
-		SELECT * FROM post_tb WHERE id = #{id}
+	<select id="selectByPostId"
+		resultType="com.carblre.dto.DetailDTO">
+		SELECT * FROM
+		post_tb as p
+		JOIN user_tb as u
+		on p.user_id = u.id
+		WHERE p.id = #{id};
 	</select>
 
 </mapper>

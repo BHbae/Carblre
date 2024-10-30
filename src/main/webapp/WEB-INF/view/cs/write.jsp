@@ -15,7 +15,7 @@
 		<div style="border-bottom: 1px solid #bababa;">
 			<div class="inner--container">
 				<ul class="sub--top--menu">
-					<li><a href="/notice/notice">의뢰자</a></li>
+					<li><a href="/board/boardList">의뢰자</a></li>
 					<li><a href="/aiounseling">AI 간편상담</a></li>
 					<li><a href="/notice/notice">변호사</a></li>
 					<li><a href="/notice/notice">공지사항</a></li>

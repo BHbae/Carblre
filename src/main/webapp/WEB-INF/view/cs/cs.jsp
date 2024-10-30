@@ -15,7 +15,7 @@
 		<div style="border-bottom: 1px solid #bababa;">
 			<div class="inner--container">
 				<ul class="sub--top--menu">
-					<li><a href="/notice/notice">의뢰자</a></li>
+					<li><a href="/board/boardList">의뢰자</a></li>
 					<li><a href="/aiounseling">AI 간편상담</a></li>
 					<li><a href="/notice/notice">변호사</a></li>
 					<li><a href="/notice/notice">공지사항</a></li>
@@ -40,13 +40,11 @@
 					<c:forEach items="${csList}" var="csList">
 						<tr>
 							<td class="notice--no">${csList.id}</td>
-							<td class="notice--con">${csList.title}</td>
-							<td class="notice--name">${csList.title}</td>
+							<td class="notice--con"><a href="/cs/detail/${csList.id}">${csList.title}</a></td>
+							<td class="notice--name">${csList.userName}</td>
 							<td class="notice--date">${csList.requestTime}</td>
 						</tr>
 					</c:forEach>
-
-
 				</tbody>
 			</table>
 			<div class="btn btn--wrap">
@@ -62,7 +60,6 @@
 				<c:forEach begin="1" end="${totalPages}" var="page">
                     <li class="<c:if test="${currentPage == page}">page--active</c:if>" ><a href="/cs/cs?page=${page}">${page}</a></li>
                 </c:forEach>
-
 				<li
 					class="page-item <c:if test='${currentPage == totalPages}'>disabled</c:if>">
 					<a class="page-link" href="/cs/cs?page=${currentPage + 1}">▶</a>

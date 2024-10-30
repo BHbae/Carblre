@@ -14,16 +14,11 @@ header {
     justify-content: space-between;
 }
 
-#logo {
-    width: 200px;
-    height: 70px;
-    background-color: palevioletred;
-}
-
 #menu--container {
     display: flex;
     gap: 80px;
     font-size: 18px;
+    color: #fff;
 }
 
 #icon--container {
@@ -31,10 +26,11 @@ header {
     gap: 30px;
 }
 
-.info--container{
+.info--container {
     display: flex;
     align-items: center;
     gap: 20px;
+    color: #fff;
 }
 
 #search {
@@ -44,9 +40,16 @@ header {
 }
 
 #moblie--menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+#moblie--menu div {
     width: 30px;
-    height: 30px;
-    background-color: #000;
+    height: 2px;
+    background-color: #fff;
 }
 
 .downn {

@@ -67,8 +67,10 @@ public class Define {
 	public static final String MISSING_REQUIRED_FILES = "첫 번째와 두 번째 사진은 반드시 등록하셔야 합니다.";
 	
 	
-	// cd
+	// cs
 	public static final String CREATED_CS_ERROR = "게시물 업로드중 오류발생";
+	public static final String NOT_CS_AN_USER = "게시물 열람 권한이 없습니다.";
+	public static final String NOT_CS_UPDATE = "이미 댓글이 달려 수정할수없습니다.";
 	
 	
 	// SignIn 

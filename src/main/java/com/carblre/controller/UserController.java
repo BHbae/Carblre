@@ -1,38 +1,51 @@
 package com.carblre.controller;
 
-import java.util.HashMap;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import com.carblre.config.MyWebSocketHandler;
-import com.carblre.dto.MyCounselDTO;
-import com.carblre.dto.SignUpDTO;
-import com.carblre.dto.userdto.*;
-import com.carblre.handler.exception.UnAuthorizedException;
-import com.carblre.service.CounselService;
 import org.apache.ibatis.javassist.NotFoundException;
-import com.carblre.dto.userdto.KakaoOAuthToken;
-import com.carblre.dto.userdto.SignDTO;
-import com.carblre.dto.userdto.UserDTO;
-import com.carblre.handler.exception.DataDeliveryException;
-import com.carblre.service.QrcodeService;
-import com.carblre.service.UserService;
-import com.carblre.utils.Define;
-import jakarta.servlet.http.HttpSession;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import com.carblre.config.MyWebSocketHandler;
+import com.carblre.dto.MyCounselDTO;
+import com.carblre.dto.SignUpDTO;
+import com.carblre.dto.userdto.KakaoOAuthToken;
+import com.carblre.dto.userdto.LawyerDetailDTO;
+import com.carblre.dto.userdto.LawyerSignUpDTO;
+import com.carblre.dto.userdto.SignInDTO;
+import com.carblre.dto.userdto.SocialSignUpDTO;
+import com.carblre.dto.userdto.UserDTO;
+import com.carblre.handler.exception.DataDeliveryException;
+import com.carblre.handler.exception.UnAuthorizedException;
+import com.carblre.service.CounselService;
+import com.carblre.service.QrcodeService;
+import com.carblre.service.UserService;
+import com.carblre.utils.Define;
+
+import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
@@ -64,36 +77,37 @@ public class UserController {
     private String kakaoRedirectUri;
 
 
+
     private final UserService userService;
     private final QrcodeService qrcodeService;
     private final CounselService counselService;
 
-    private final HttpSession session;
+	private final HttpSession session;
 
-    private final MyWebSocketHandler webSocketHandler;
+	private final MyWebSocketHandler webSocketHandler;
 
-    private final PasswordEncoder passwordEncoder;
+	private final PasswordEncoder passwordEncoder;
 
-    @GetMapping("/signIn")
-    public String signPage() {
+	@GetMapping("/signIn")
+	public String signPage() {
 
-        return "user/signin";
-    }
+		return "user/signin";
+	}
 
-    /**
-     * [POST] 로그인 프로세스입니다.
+	/**
+	 * [POST] 로그인 프로세스입니다.
      *
-     * @param dto = SignInDTO <- String nickName, String password(유저가 입력한 값)
-     * @return 유효성 검사, 회원 존재 여부, 회원 정보 일치 여부 확인 후 맞는 응답(Exception OR Return jsp) 내려줌
-     */
-    @PostMapping("/signIn")
-    public String signInProc(SignInDTO dto) {
+	 * @param dto = SignInDTO <- String nickName, String password(유저가 입력한 값)
+	 * @return 유효성 검사, 회원 존재 여부, 회원 정보 일치 여부 확인 후 맞는 응답(Exception OR Return jsp) 내려줌
+	 */
+	@PostMapping("/signIn")
+	public String signInProc(SignInDTO dto) {
 
-        String nickName = dto.getNickName(); // 유저가 입력한 아이디
-        String password = dto.getPassword(); // 유저가 입력한 비밀번호
+		String nickName = dto.getNickName(); // 유저가 입력한 아이디
+		String password = dto.getPassword(); // 유저가 입력한 비밀번호
 
-        // nickName 을 사용하여 유저가 존재하는지 판단합니다.
-        UserDTO userDTO = userService.findByNickId(nickName);
+		// nickName 을 사용하여 유저가 존재하는지 판단합니다.
+		UserDTO userDTO = userService.findByNickId(nickName);
 
         if (userDTO == null) {
             // 유저가 존재하지 않는다면 DataDeliveryException 을 사용하여 Alert
@@ -271,9 +285,10 @@ public class UserController {
         // 최초 시도
         if (principial == null) {
 
-            SignDTO signDTO = SignDTO.builder().email(email).nickName(kakaoIdStr).userName(nickname).build();
-
-            userService.saveUser(signDTO); // MyBatis Mapper를 사용하여 DB에 저장
+            SocialSignUpDTO socialSignUpDTO = SocialSignUpDTO.builder().email(email).nickName(kakaoIdStr).userName(nickname)
+                    .site("카카오").role("user").status(1)
+                    .build();
+            userService.saveUser(socialSignUpDTO); // MyBatis Mapper를 사용하여 DB에 저장
 
         }
 
@@ -370,9 +385,11 @@ public class UserController {
         UserDTO principial = userService.findByNickId(naverId);
 
         if (principial == null) {
-            SignDTO signDTO = SignDTO.builder().email(email).nickName(naverId).userName(name).build();
+            SocialSignUpDTO socialSignUpDTO = SocialSignUpDTO.builder().email(email).nickName(naverId).userName(name)
+                    .site("네이버").role("user").status(1)
+                    .build();
 
-            userService.saveUser(signDTO);
+            userService.saveUser(socialSignUpDTO);
             principial = userService.findByNickId(naverId);
         }
         System.out.println("프린시펄" + principial);
@@ -445,9 +462,11 @@ public class UserController {
             UserDTO principial = userService.findByNickId(googleId);
 
             if (principial == null) {
-                SignDTO signDTO = SignDTO.builder().email(email).nickName(googleId).userName(name).build();
-
-                userService.saveApiUser(signDTO); // 사용자 정보 저장
+                SocialSignUpDTO socialSignUpDTO = SocialSignUpDTO.builder().email(email).nickName(googleId).userName(name)
+                        .site("구글").role("user").status(1)
+                        .build();
+                System.out.println(socialSignUpDTO);
+                userService.saveApiUser(socialSignUpDTO); // 사용자 정보 저장
                 principial = userService.findByNickId(googleId); // 다시 조회하여 세션에 저장
             }
 
@@ -586,7 +605,11 @@ public class UserController {
             // 엔티티가 존재하지 않을 때 NotFoundException 던짐
             throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
         }
-
+        if(userDTO.getRole().equals("lawyer")){
+         LawyerDetailDTO lawyerDetailDTO= userService.findLawyerInfoById(userDTO.getId());
+            System.out.println(lawyerDetailDTO);
+         model.addAttribute("lawyer",lawyerDetailDTO);
+        }
         // 유저 인포 해야됨
         return "user/myPage";
     }
@@ -690,19 +713,21 @@ public class UserController {
      */
     @GetMapping("checkLawyerCounsel")
     public String checkLawyerCounselPage(Model model){
-        UserDTO userDTO = (UserDTO) session.getAttribute("principal");
+        UserDTO userDTO = (UserDTO) session.getAttribute("principal"); //dto변경해야함
         if (userDTO == null) {
             // 엔티티가 존재하지 않을 때 NotFoundException 던짐
             throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
         }
         // 유저 인포 해야됨
         MyCounselDTO counsel= counselService.findMyCounselByLawyerId(userDTO.getId());
-        UserDTO user=userService.findById(counsel.getLawyerId());
+        UserDTO user=userService.findById(userDTO.getId());
+
         model.addAttribute("counsel",counsel);
         model.addAttribute("user",user);
 
         return  "counsel/checkLawyerCounsel";
     }
+
 
 
 }

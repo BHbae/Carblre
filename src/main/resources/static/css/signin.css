@@ -15,12 +15,21 @@ form {
 
 
 
-.social{
-    margin: 10px;
+.social a{
+display:block;
 }
-.image-link {
-    margin:20px;
-    text-decoration: none;
+.image-link.google{
+    border: 1px solid #bababa;
+    border-radius: 5px;
+    height: 47px;
+    width: 380px;
+}
+
+.image-link{
+
+
+    height: 49px;
+    width: 380px;
 }
 .find-info {
     display: inline-block; /* 블록처럼 취급되지만, 크기는 텍스트에 맞게 설정 */
@@ -39,4 +48,8 @@ form {
 }
 #lawyer-login-form {
     display: none;
+}
+.login-button{
+    width: 100%;
+    margin-top: 10px;
 }

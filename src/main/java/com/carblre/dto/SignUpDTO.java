@@ -18,6 +18,8 @@ public class SignUpDTO {
     private String email;
     private String phoneNum;
     private String role;
+    private String site;
+    private int status;
 
     public User toUser()
     {
@@ -28,6 +30,8 @@ public class SignUpDTO {
                 .email(email)
                 .phoneNum(phoneNum)
                 .role(role)
+                .site(site)
+                .status(status)
                 .build();
     }
 }

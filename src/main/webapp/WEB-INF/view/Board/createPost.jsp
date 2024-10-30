@@ -2,46 +2,62 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 
-<h1>게시글 작성</h1>
-
-	<form action="/savePost" method="post" enctype="multipart/form-data">
-		
-		
-		<label for="status">유형</label> 
-		<select id="status" name="status">
-			<option value=1>가해자</option>
-			<option value=2>피해자</option>
-		</select> 
-		
-		<label for="category">카테고리</label> 
-		<select id="category" name="category">
-			<option value="차량단독">차량단독</option>
-			<option value="차대차">차대차</option>
-			<option value="차대보행자">차대보행자</option>
-			<option value="차대이륜차">차대이륜차</option>
-		</select> 
-		
-		
-		
-		<label>제목</label> 
-		<input type="text" name="title" value="titleTest">
-		
-		<br>
-		<label>내용</label>
-		<textarea rows="20" cols="50" name="content">contentTest</textarea>
-		<br>
-		
-		<label>업로드 동영상(20MB 이하)</label>
-		<input type="file" name="uploardFileName">
-		
-		<br>
-		<button  type="submit"> 작성 </button>
-		
-	</form>
-		
+<div class="wrap">
+	<!-- 상단 이미지 & 서브 페이지 이동 START -->
+	<section class="sub--section">
+		<div class="section--background" id="notice--background">
+			<div class="inner--container">
+				<sub class="eng">게사판</sub>
+				<h1 class="sub--title">게시판</h1>
+			</div>
+		</div>
+		<div style="border-bottom: 1px solid #bababa;">
+			<div class="inner--container">
+				<ul class="sub--top--menu">
+					<li class="subtop--active"><a href="/board/boardList">의뢰자</a></li>
+					<li><a href="/aiounseling">AI 간편상담</a></li>
+					<li><a href="/notice/notice">변호사</a></li>
+					<li><a href="/notice/notice">공지사항</a></li>
+					<li ><a href="/cs/cs">고객센터</a></li>
+				</ul>
+			</div>
+		</div>
+	</section>
+	<!-- 상단 이미지 & 서브 페이지 이동 END -->
 
 
 
+	<div class="inner--container">
+		<div class="sub--content">
+			<h2 class="prih2">게시글 작성</h2>
+			<form action="/board/savePost" method="post" enctype="multipart/form-data">
+				
+				 <label for="category">카테고리</label> <select id="category"
+					name="category">
+					<option value="차량단독">차량단독</option>
+					<option value="차대차">차대차</option>
+					<option value="차대보행자">차대보행자</option>
+					<option value="차대이륜차">차대이륜차</option>
+				</select> 
+				<input class="" type="text" name="title" id="title"
+					placeholder="제목을 입력해주세요">
+
+				<textarea type="text" name="content" id="content"
+					placeholder="내용을 입력해주세요"></textarea>
+
+				<label>업로드 동영상(20MB 이하)</label> <input type="file"
+					name="uploardFileName">
 
 
-<%@ include file="../layout/footer.jsp"%>
+				<div id="enetr--buuton">
+					<button type="submit">작성</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+
+
+
+	<%@ include file="../layout/footer.jsp"%>

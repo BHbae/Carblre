@@ -49,7 +49,7 @@ button{
     color: #fff;
     border-radius: 5px;
 }
-#mypage--edit, #mypage--password{
+#mypage--edit, #mypage--password, #mypage--counsel{
     width: 100px;
     height: 35px;
     background-color: #b19837;

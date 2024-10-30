@@ -219,6 +219,29 @@
         margin-bottom: 20px;
     }
 </style>
+<div class="wrap">
+	<section class="sub--section">
+		<div class="section--background" id="notice--background">
+			<div class="inner--container">
+				<sub class="eng">게시판</sub>
+				<h1 class="sub--title">상세보기</h1>
+			</div>
+		</div>
+		<div style="border-bottom: 1px solid #bababa;">
+			<div class="inner--container">
+				<ul class="sub--top--menu">
+					<li class="subtop--active"><a href="/notice/notice">의뢰자</a></li>
+					<li><a href="/aiounseling">AI 간편상담</a></li>
+					<li><a href="/notice/notice">변호사</a></li>
+					<li><a href="/notice/notice">공지사항</a></li>
+					<li ><a href="/cs/cs">고객센터</a></li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+<div class="inner--container">
+		<div class="sub--content">
 <h1>게시글 상세보기</h1>
 <table>
 	<tr>
@@ -227,18 +250,18 @@
 	</tr>
     <tr>
         <th>작성자</th>
-        <td>${post.userName}</td>
+        <td>${post.nickName}</td>
     </tr>
 	<tr>
 		<th>내용</th>
+        <td>${post.content}</td>
 	</tr>
 	<tr>
-<%--		<c:if test="${post.uploardFileName != null}">--%>
-<%--			<td><video width="600" controls>--%>
-<%--					<source src="/vidio/${post.uploardFileName}" >--%>
-<%--				</video></td>--%>
-<%--		</c:if>--%>
-		<td>${post.content}</td>
+		<c:if test="${post.uploadFileName != null}">
+		<td><video width="600" controls>
+					<source src="/video/${post.uploadFileName}" >
+				</video></td>
+		</c:if>
 	</tr>
 </table>
 <!-- 댓글 부분 -->
@@ -270,8 +293,10 @@
         <textarea id="comment" name="comment" rows="4" cols="50" placeholder="댓글을 입력하세요"></textarea>
         <button type="submit" onclick="addComment()">댓글입력</button>
     </div>
-
 </section>
+	</div>
+	</div>
+
 <script>
     window.onload = function()
     {
@@ -377,11 +402,13 @@
             })
             .then(data => {
                 console.log('Response data:', data);
+                alert(data.message);
                 getComment('newest');
                 getReplyComment(${post.id});
             })
             .catch(error => {
-                console.error('Error:', error.message);
+                alert(error.message);
+                window.location.href = "http://localhost:8080/user/signIn";
             });
 
     }
@@ -446,6 +473,8 @@
                 console.log('getReplyComment 호출 시작');
                 getReplyComment(${post.id});
 
+                alert(data.message);
+
             })
             .catch(error => {
                 console.log(error.message);
@@ -507,11 +536,14 @@
                                 replyCommentSection.appendChild(replyDiv);
                             }
                         }
+
+                        alert(data.message);
                     });
                 }
             })
             .catch(error => {
-                console.log(error.message);
+                alert(error.message);
+                window.location.href = "http://localhost:8080/user/signIn";
             });
     }
 
@@ -535,13 +567,10 @@
                 return response.text(); // 성공적인 응답일 경우 JSON으로 변환
             })
             .then(data => {
-                alert(data);
+                alert(data.message);
                 // 추가적인 성공 처리 로직을 여기에 작성
                 refreshCommentsAndReplies();
-                if(data.message === 'success')
-                {
 
-                }
             })
             .catch(error => {
                 console.error(error.message);
@@ -575,5 +604,5 @@
     }
 
 </script>
-
+</div>
 <%@ include file="../layout/footer.jsp"%>
