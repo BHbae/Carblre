@@ -81,7 +81,7 @@ public class PaymentService {
     }
 
     /**
-     * 고유 주믄Id (orderId) 생성
+     * 고유 주문Id (orderId) 생성
      * @return 랜덤
      */
     public String getOrderId() {
