@@ -23,23 +23,25 @@
 		</div>
 	</section>
 	<!-- 상단 이미지 & 서브 페이지 이동 END -->
-	
+
 	<div class="inner--container">
 		<div class="sub--content">
-			<form action="/notice/update/${notice.id}" method="post">
+			<form action="/notice/update/${notice.id}" method="POST" enctype="multipart/form-data">
 				<div>
-					<label for="title">제목:</label> <input type="text" id="title" name="title" value="${notice.title}" required>
+					<label for="title">제목:</label>
+					<input type="text" id="title" name="title" value="${notice.title}" required>
 				</div>
 				<div>
 					<label for="content">내용:</label>
 					<textarea id="content" name="content" required>${notice.content}</textarea>
 				</div>
-				<div id="enter--button">
-					<button type="submit">수정하기</button>
-				</div>
-				<br>
-				<div id="list--button">
-					<a href="/cs/cs">목록</a>
+				<div class="btn--wrap">
+					<div id="list--button">
+						<a href="/notice/notice">목록</a>
+					</div>
+					<div>
+						<button type="submit" class="write--btn" style="border: none;">수정하기</button>
+					</div>
 				</div>
 			</form>
 		</div>

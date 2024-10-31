@@ -28,7 +28,6 @@
 	<div class="inner--container">
 		<div class="sub--content">
 			<h2 class="prih2">고객센터</h2>
-
 			<form action="/cs/edit/${dto.id}" method="POST" enctype="multipart/form-data">
 				<input class="" type="text" name="title" id="title" value="${dto.title}">
 				<textarea type="text" name="content" id="content">${dto.request}</textarea>
@@ -37,8 +36,8 @@
 					<div id="list--button">
 						<a href="/cs/cs">목록</a>
 					</div>
-					<div id="enter--button">
-						<button type="submit">수정하기</button>
+					<div>
+						<button type="submit" class="write--btn" style="border: none;">수정하기</button>
 					</div>
 				</div>
 			</form>

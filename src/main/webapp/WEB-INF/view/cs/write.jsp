@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../layout/header.jsp"%>
 
@@ -30,21 +29,18 @@
 		<div class="sub--content">
 			<h2 class="prih2">고객센터</h2>
 
-			<form action="/cs/created" method="POST"
-				enctype="multipart/form-data">
-				<input class="" type="text" name="title" id="title"
-					placeholder="제목을 입력해주세요">
-				<textarea type="text" name="content" id="content"
-					placeholder="내용을 입력해주세요"></textarea>
+			<form action="/cs/created" method="POST" enctype="multipart/form-data">
+				<input class="" type="text" name="title" id="title" placeholder="제목을 입력해주세요" required="required">
+				<textarea type="text" name="content" id="content" placeholder="내용을 입력해주세요" required="required"></textarea>
 
-			<div class="btn--wrap">
-				<div id="list--button">
-					<a href="/cs/cs">목록</a>
+				<div class="btn--wrap">
+					<div id="list--button">
+						<a href="/cs/cs">목록</a>
+					</div>
+					<div>
+						<button type="submit" class="write--btn" style="border: none;">작성</button>
+					</div>
 				</div>
-				<div id="list--button">
-					<button type="submit">글쓰기</button>
-				</div>
-			</div>
 			</form>
 		</div>
 

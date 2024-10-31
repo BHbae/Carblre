@@ -114,6 +114,16 @@ button {
 	font-size: 16px;
 }
 
+.write--btn {
+	width: 75px;
+	height: 35px;
+	background-color: #b19837;
+	text-align: center;
+	line-height: 35px;
+	color: #fff;
+	border-radius: 5px;
+}
+
 #write--button, #delete--button, #enter--button, #list--button,
 	#edit--button {
 	width: 75px;
@@ -125,6 +135,19 @@ button {
 	border-radius: 5px;
 }
 
+#write--button a, #delete--button a, #enter--button a, #list--button a,
+	#edit--button a {
+	display: block;
+}
+
+#write--button button, #delete--button button, #enter--button button,
+	#list--button button, #edit--button button {
+	display: inline-block;
+	border: none;
+	background-color: inherit;
+	color: #fff;
+}
+
 #mypage--edit, #mypage--password {
 	width: 100px;
 	height: 35px;
@@ -134,11 +157,6 @@ button {
 	color: #fff;
 	border-radius: 5px;
 	margin-top: 50px;
-}
-
-#write--button a, #delete--button a, #enter--button a, #list--button a,
-	#edit--button a {
-	display: block;
 }
 
 textarea {
@@ -177,12 +195,7 @@ textarea {
 	display: block;
 }
 
-#write--button button, #delete--button button, #enter--button button,
-	#list--button button, #edit--button button {
-	border: 0;
-	background-color: inherit;
-	color: #fff;
-}
+
 
 #edit--password button {
 	border: 0;
@@ -248,21 +261,6 @@ textarea {
 	font-size: 14px;
 	color: #444;
 	margin-top: 10px;
-}
-
-/* 돌아가기 버튼 스타일 */
-.btn {
-	display: inline-block;
-	background-color: #007bff;
-	color: #ffffff;
-	padding: 10px 15px;
-	border-radius: 5px;
-	text-decoration: none;
-	transition: background-color 0.3s;
-}
-
-.btn:hover {
-	background-color: #0056b3;
 }
 
 /* 수정 및 삭제 버튼 스타일 */

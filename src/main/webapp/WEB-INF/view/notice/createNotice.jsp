@@ -59,17 +59,22 @@
 		<div class="sub--content">
 			<form action="/notice/create" method="post">
 				<div>
-					<label for="title">제목:</label> <input type="text" id="title" name="title" required>
+					<label for="title">제목:</label>
+					<input type="text" id="title" name="title" required>
 				</div>
 				<div>
 					<label for="content">내용:</label>
 					<textarea id="content" name="content" required></textarea>
 				</div>
-				<div>
-					<button type="submit" class="btn btn-submit">작성</button>
+				<div class="btn--wrap">
+					<div id="list--button">
+						<a href="/notice/notice">목록</a>
+					</div>
+					<div>
+						<button type="submit" class="write--btn" style="border: none;">작성</button>
+					</div>
 				</div>
 			</form>
-			<a href="/notice/notice" class="btn btn-back">목록으로 돌아가기</a>
 		</div>
 	</div>
 

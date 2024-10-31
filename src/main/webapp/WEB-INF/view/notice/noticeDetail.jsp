@@ -38,14 +38,21 @@
 				</p>
 				<div>${notice.content}</div>
 			</div>
-			<a href="/notice/notice" class="btn back-button">목록으로 돌아가기</a>
-
-			<c:if test="${principal.role == 'admin'}">
-				<a href="/notice/update/${notice.id}" class="btn btn-edit">수정</a>
-				<form action="/notice/delete/${notice.id}" method="post" style="display: inline;">
-					<button type="submit" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</button>
-				</form>
-			</c:if>
+			<div class="btn--wrap">
+				<div id="list--button">
+					<a href="/notice/notice">목록</a>
+				</div>
+				<c:if test="${principal.role == 'admin'}">
+					<div id="edit--button">
+						<a href="/notice/update/${notice.id}">수정하기</a>
+					</div>
+					<div>
+						<form action="/notice/delete/${notice.id}" method="post">
+							<button type="submit" id="delete--button" onclick="return confirm('정말 삭제하시겠습니까?');" style="border: none;">삭제</button>
+						</form>
+					</div>
+				</c:if>
+			</div>
 		</div>
 	</div>
 
