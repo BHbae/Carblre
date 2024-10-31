@@ -169,6 +169,7 @@
                 const startTimeSelect = document.getElementById('startTime');
                 const endTimeSelect = document.getElementById('endTime');
                 startTimeSelect.innerHTML = ''; // 기존 옵션 삭제
+                endTimeSelect.innerHTML = '';
 
                 // 고정된 시간대 옵션 추가
                 for (let i = 9; i <= 17; i++) {
@@ -178,6 +179,14 @@
                     // 사용 가능한 경우에만 추가
                     if (data.availableTimes.includes(i)) {
                         startTimeSelect.appendChild(option); // 새 옵션 추가
+                    }
+                }
+                for (let i = 10; i <= 18; i++) {
+                    const option = document.createElement('option');
+                    option.value = i; // 시간 설정
+                    option.textContent = i;
+                    // 사용 가능한 경우에만 추가
+                    if (data.availableTimes.includes(i)) {
                         endTimeSelect.appendChild(option);
                     }
                 }
