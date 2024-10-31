@@ -13,6 +13,8 @@ import com.carblre.handler.exception.UnAuthorizedException;
 import com.carblre.service.CounselService;
 import com.carblre.service.LawyerService;
 import com.carblre.service.UserService;
+import com.carblre.utils.Define;
+
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -108,6 +110,9 @@ public class LawyerController {
 	public String LawyerInfoPage(@PathVariable(name = "userId") int userId, Model model) {
 		LawyerDetailDTO dto = lawyerService.selectByLawyerId(userId);
 		UserDTO principal = (UserDTO) session.getAttribute("principal");
+		if(principal == null) {
+			throw new UnAuthorizedException(Define.ENTER_YOUR_LOGIN, HttpStatus.UNAUTHORIZED);
+		}
 
 		List<CounselDTO> counselDTO = counselService.getCounselReservationByLawyerId(userId);
 		System.out.println("COUNSEL DTO : " + counselDTO);

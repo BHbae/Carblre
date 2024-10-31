@@ -10,6 +10,9 @@
 <script src="https://js.tosspayments.com/v1/payment"></script>
 </head>
 <body>
+<input type="hidden" name="suDTO" value="${suDTO}">
+<input type="hidden">
+<input type="hidden">
 <script>
     // ------ 클라이언트 키로 객체 초기화 ------
     var clientKey = 'test_ck_4yKeq5bgrpz5kx50PN943GX0lzW6';

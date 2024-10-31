@@ -171,7 +171,7 @@ public class CounselController {
     }
     @GetMapping("/api/available-times")
     @ResponseBody
-    public ResponseEntity<Map<String, Object>> getAvailableTimes(@RequestParam String date, @RequestParam int lawyerId) {
+    public ResponseEntity<Map<String, Object>> getAvailableTimes(@RequestParam(name="date")String date, @RequestParam(name="lawyerId") int lawyerId) {
         List<Integer> availableTimes = new ArrayList<>();
 
         // 9시부터 17시까지의 시간 리스트

@@ -22,8 +22,8 @@ import org.springframework.web.client.RestTemplate;
 
 import com.carblre.dto.LawyerChoiceDTO;
 import com.carblre.dto.TossResponseDTO;
+import com.carblre.dto.successDTO;
 import com.carblre.dto.userdto.UserDTO;
-import com.carblre.repository.model.User;
 import com.carblre.service.LawyerService;
 import com.carblre.service.PaymentService;
 
@@ -62,13 +62,17 @@ public class PaymentController {
 			return "redirect:/user/signIn"; // 로그인이 필요하다면 로그인 페이지로 리디렉션
 		}
 		
+		
 		LawyerChoiceDTO lawyerChoiceDTO = lawyerService.lawyerChoice(lawyerId);
-		
-		String startTimeStr = date + startTime;
-		String endTimeStr = date + endTime;
-		
-		
 		int amount = (endTime - startTime) * lawyerChoiceDTO.getCounselingAmount();
+		
+		successDTO suDTO = successDTO.builder()
+				.lawyerId(lawyerId).date(date)
+				.startTime(startTime).endTime(endTime)
+				.content(content).build();
+		
+		
+		
 		
 		String orderId = UUID.randomUUID().toString();
 		String orderName = "상담"; 
@@ -77,6 +81,7 @@ public class PaymentController {
 		model.addAttribute("orderId", orderId);
 		model.addAttribute("orderName", orderName);
 		model.addAttribute("customerName", customerName);
+		model.addAttribute("suDTO", suDTO);
 
 
 		return "payment";
@@ -96,6 +101,7 @@ public class PaymentController {
 	@GetMapping("/success")
 	public String success(@RequestParam(name = "orderId") String orderId,
 			@RequestParam(name = "paymentKey") String paymentKey, @RequestParam(name = "amount") String amount,
+			@RequestParam(name="suDTO")successDTO dto,
 			@SessionAttribute(name = "principal") UserDTO principal) throws IOException, InterruptedException {
 
 		System.out.println("orderId : " + orderId);
@@ -103,7 +109,8 @@ public class PaymentController {
 		System.out.println("amount : " + amount);
 
 		RestTemplate restTemplate = new RestTemplate();
-
+		
+		
 		// 헤더
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", "Basic "
@@ -125,6 +132,7 @@ public class PaymentController {
 
 			TossResponseDTO response2 = response.getBody();
 			service.insertTossHistory(response2, principal.getId());
+			
 		} catch (HttpClientErrorException e) {
 			System.err.println("Error status code: " + e.getStatusCode());
 			System.err.println("Error response body: " + e.getResponseBodyAsString());

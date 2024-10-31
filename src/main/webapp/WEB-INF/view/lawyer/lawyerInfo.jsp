@@ -47,7 +47,7 @@
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>상담 예약</h2>
-        <form action="/counsel/reservation" method="post">
+			<form id="reservationForm" onsubmit="return openNewWindow();">
             <input type="hidden" name="lawyerId" value="${lawyer.userId}">
 
             <label for="date">날짜 선택:</label>
@@ -192,6 +192,29 @@
                 }
             })
             .catch(error => console.error('Error fetching available times:', error));
+    }
+    
+    function openNewWindow() {
+        // 폼 데이터를 수집
+        var lawyerId = document.querySelector('input[name="lawyerId"]').value;
+        var date = document.getElementById("date").value;
+        var startTime = document.getElementById("startTime").value;
+        var endTime = document.getElementById("endTime").value;
+        var content = document.getElementById("content").value;
+		
+        if (startTime >= endTime) {
+            alert("시작 시간이 종료 시간보다 클 수 없습니다.");
+            return false; // 함수 종료
+        }
+        
+        // 새로운 URL 패치 변수
+        var url = "/toss/payment/" + lawyerId + "/" + date + "/" + startTime + "/" + endTime + "/" + content ;
+        var windowFeatures = "width=700,height=700,resizable=yes,scrollbars=yes"; // 윈도우 사이즈
+
+        window.open(url, "_blank", windowFeatures);
+        
+        // 이벤트 방지
+        return false;
     }
 </script>
 
