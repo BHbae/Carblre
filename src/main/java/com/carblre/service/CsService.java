@@ -29,8 +29,9 @@ public class CsService {
 
 	} // end saveCs
 
-	public List<CsAllDTO> findAllCs(int limit, int offset) {
-		return csRepository.findAllCs(limit, offset);
+	public List<CsAllDTO> findAllCs(int page, int size) {
+		int offset = (page - 1) * size;
+		return csRepository.findAllCs(offset, size);
 	} // end findAllCs
 
 	public int countAllCs() {

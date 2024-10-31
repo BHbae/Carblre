@@ -10,14 +10,12 @@
 
 	<select
 		id="findAllCs" resultType="com.carblre.dto.CsAllDTO">
-		SELECT cs.id
-		,cs.title,u.user_name ,cs.request_time
+		SELECT *
 		FROM customer_service_tb cs
-		JOIN
-		user_tb u ON cs.user_id = u.id
+		LEFT JOIN user_tb u ON cs.user_id = u.id
+		WHERE u.id IS NULL OR u.id IS NOT NULL
 		ORDER BY cs.id DESC
-		limit #{limit} offset
-		#{offset}
+		limit #{limit} offset ${offset};
 	</select>
 
 	<select
@@ -28,12 +26,11 @@
 
 	<select
 		id="findById" resultType="com.carblre.dto.CsFindByIdDTO">
-		SELECT cs.id,u.id as user_id
-		,cs.title,u.user_name,cs.request,cs.request_time
-		,cs.response,cs.response_time
+		SELECT cs.id, u.id AS user_id,
+		cs.title, u.user_name, cs.request,
+		cs.request_time, cs.response, cs.response_time
 		FROM customer_service_tb cs
-		JOIN user_tb u
-		ON cs.user_id = u.id
+		LEFT JOIN user_tb u ON cs.user_id = u.id
 		WHERE cs.id = #{id}
 		ORDER BY cs.id DESC
 	</select>

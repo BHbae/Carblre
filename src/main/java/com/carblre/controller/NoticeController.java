@@ -48,8 +48,8 @@ public class NoticeController {
 			@RequestParam(name = "size", defaultValue = "10") int size, Model model) {
 
 		List<Notice> noticeList = noticeService.findAllNotice(page, size);
-		int totalNotices = noticeService.countNotice();
-		int totalPages = (int) Math.ceil((double) totalNotices / size);
+		int count = noticeService.countNotice();
+		int totalPages = (int) Math.ceil((double) count / size);
 
 		model.addAttribute("noticeList", noticeList);
 		model.addAttribute("currentPage", page);

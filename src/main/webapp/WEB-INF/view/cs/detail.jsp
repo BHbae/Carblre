@@ -37,14 +37,21 @@
 				<div>${dto.request}</div>
 			</div>
 			<div class="board--content">
-				<c:choose>
-					<c:when test="${dto.response != null}">
-						<div>${dto.response}</div>
-						<div>${dto.responseTime}</div>
-					</c:when>
-					<c:otherwise>
-						<div>답변을 기다리는중입니다</div>
-					</c:otherwise>
+				<div class="board--info">
+					<div class="board--title">답변</div>
+					<c:choose>
+						<c:when test="${dto.response != null}">
+							<div class="board--detail">
+								<span>작성일: ${dto.responseTime}</span>
+							</div>
+				</div>
+				<div class="board--content">
+					<div>${dto.response}</div>
+				</div>
+				</c:when>
+				<c:otherwise>
+					<div><h3>답변을 기다리는중입니다</h3></div>
+				</c:otherwise>
 				</c:choose>
 
 
@@ -53,7 +60,6 @@
 				<div class="reply-form">
 					<form action="/cs/reply/${dto.id}" method="post">
 						<div>
-							<label for="response">답변:</label>
 							<textarea id="response" name="response" required style="resize: none;"></textarea>
 						</div>
 						<div id="reply--button">

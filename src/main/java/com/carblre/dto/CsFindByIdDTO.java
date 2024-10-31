@@ -9,7 +9,7 @@ public class CsFindByIdDTO {
 	private int userId;
 	private String title;
 	private String userName;	
-	private String request;	
+	private String request;
 	private String requestTime;
 	private String response;
 	private String responseTime;

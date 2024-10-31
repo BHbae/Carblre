@@ -35,30 +35,22 @@ public class CsController {
 	 * @return
 	 */
 	@GetMapping("/cs")
-	public String csPage(Model model, @RequestParam(name = "page", defaultValue = "1") int page,
-			@RequestParam(name = "size", defaultValue = "5") int limit) {
+	public String csPage(@RequestParam(name = "page", defaultValue = "1") int page,
+			@RequestParam(name = "size", defaultValue = "10") int size, Model model) {
+
+		// 리스트
+		List<CsAllDTO> csList = csService.findAllCs(page, size);
 
 		// row의 갯수
 		int count = csService.countAllCs();
 
-		// 현재 페이지
-
 		// 총페이지수
-		int totalPages = (int) Math.ceil((double) count / (double) limit);
-
-		int offset = (page - 1) * limit;
-		if (page <= 1) {
-			page = 1;
-		} else if (page >= totalPages) {
-			page = totalPages;
-		}
-
-		// 리스트
-		List<CsAllDTO> csList = csService.findAllCs(limit, offset);
+		int totalPages = (int) Math.ceil((double) count / size);
 
 		model.addAttribute("csList", csList);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("size", size);
 
 		return "cs/cs";
 	}

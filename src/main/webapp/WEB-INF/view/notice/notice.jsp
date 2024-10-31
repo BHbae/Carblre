@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="../layout/header.jsp"%>
-
 <div class="wrap">
 	<!-- 상단 이미지 & 서브 페이지 이동 START -->
 	<section class="sub--section">
@@ -83,23 +80,20 @@
 					</div>
 				</div>
 			</c:if>
-			<div style="display: flex; justify-content: center; align-items: center; margin-top: 0px;">
-				<!-- 중앙 정렬을 위해 변경 -->
-				<ul class="page--button" style="display: flex; justify-content: center;">
-					<c:if test="${currentPage > 1}">
-						<li><a href="/notice/notice?page=${currentPage - 1}&size=${size}">◀</a></li>
-					</c:if>
+			<ul class="page--button" style="display: flex; justify-content: center;">
+				<c:if test="${currentPage > 1}">
+					<li><a href="/notice/notice?page=${currentPage - 1}&size=${size}">◀</a></li>
+				</c:if>
 
-					<c:forEach var="i" begin="1" end="${totalPages}">
-						<li class="${currentPage == i ? 'page--active' : ''}"><a href="/notice/notice?page=${i}&size=${size}" <c:if test="${currentPage == i}">style="pointer-events: none; color: white;"</c:if>> ${i} </a></li>
-					</c:forEach>
+				<c:forEach var="i" begin="1" end="${totalPages}">
+					<li class="${currentPage == i ? 'page--active' : ''}"><a href="/notice/notice?page=${i}&size=${size}" <c:if test="${currentPage == i}">style="pointer-events: none; color: white;"</c:if>> ${i} </a></li>
+				</c:forEach>
 
-					<c:if test="${currentPage < totalPages}">
-						<li><a href="/notice/notice?page=${currentPage + 1}&size=${size}">▶</a></li>
-					</c:if>
+				<c:if test="${currentPage < totalPages}">
+					<li><a href="/notice/notice?page=${currentPage + 1}&size=${size}">▶</a></li>
+				</c:if>
 
-				</ul>
-			</div>
+			</ul>
 		</div>
 	</div>
 

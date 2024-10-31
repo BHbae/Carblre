@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../layout/header.jsp"%>
 
@@ -52,18 +51,18 @@
 					<a href="/cs/write">글쓰기</a>
 				</div>
 			</div>
-			<ul class="page--button">
-				<li
-					class="page-item <c:if test='${currentPage == 1}'>disabled</c:if>">
-					<a class="page-link" href="/cs/cs?page=${currentPage - 1}">◀</a>
-				</li>
-				<c:forEach begin="1" end="${totalPages}" var="page">
-                    <li class="<c:if test="${currentPage == page}">page--active</c:if>" ><a href="/cs/cs?page=${page}">${page}</a></li>
-                </c:forEach>
-				<li
-					class="page-item <c:if test='${currentPage == totalPages}'>disabled</c:if>">
-					<a class="page-link" href="/cs/cs?page=${currentPage + 1}">▶</a>
-				</li>
+			<ul class="page--button" style="display: flex; justify-content: center;">
+				<c:if test="${currentPage > 1}">
+					<li><a href="/cs/cs?page=${currentPage - 1}&size=${size}">◀</a></li>
+				</c:if>
+
+				<c:forEach var="i" begin="1" end="${totalPages}">
+					<li class="${currentPage == i ? 'page--active' : ''}"><a href="/cs/cs?page=${i}&size=${size}" <c:if test="${currentPage == i}">style="pointer-events: none; color: white;"</c:if>> ${i} </a></li>
+				</c:forEach>
+
+				<c:if test="${currentPage < totalPages}">
+					<li><a href="/cs/cs?page=${currentPage + 1}&size=${size}">▶</a></li>
+				</c:if>
 			</ul>
 		</div>
 	</div>

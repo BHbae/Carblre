@@ -13,7 +13,7 @@ public interface CsRepository {
 
 	int insetCs(@Param("id") int id, @Param("title") String title, @Param("content") String content);
 
-	List<CsAllDTO> findAllCs(@Param("limit") int limit, @Param("offset") int offset);
+	List<CsAllDTO> findAllCs(@Param("offset") int offset, @Param("limit") int limit);
 
 	int countAllCs();
 
