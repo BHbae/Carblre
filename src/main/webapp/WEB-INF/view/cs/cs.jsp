@@ -47,12 +47,12 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			<div class="btn btn--wrap">
+			<div class="btn--wrap">
 				<div id="write--button">
 					<a href="/cs/write">글쓰기</a>
 				</div>
 			</div>
-			<ul class="page--button btn">
+			<ul class="page--button">
 				<li
 					class="page-item <c:if test='${currentPage == 1}'>disabled</c:if>">
 					<a class="page-link" href="/cs/cs?page=${currentPage - 1}">◀</a>

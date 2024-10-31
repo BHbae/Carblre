@@ -169,4 +169,20 @@ public class CsController {
 		return "redirect:/cs/detail/" + id;
 	}
 
+	/**
+	 * 삭제하기 처리
+	 */
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable(name = "id") int id, @SessionAttribute(name = Define.PRINCIPAL) UserDTO user) {
+		CsFindByIdDTO dto = csService.findById(id);
+		if (user.getId() != dto.getUserId() && !user.getRole().equals("admin")) {
+			throw new DataDeliveryException(Define.NOT_CS_DELETE_USER, HttpStatus.BAD_REQUEST);
+		}
+
+		csService.deleteCsById(id);
+
+		return "redirect:/cs/cs";
+
+	}
+
 }

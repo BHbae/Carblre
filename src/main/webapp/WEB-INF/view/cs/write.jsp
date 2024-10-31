@@ -37,11 +37,11 @@
 				<textarea type="text" name="content" id="content"
 					placeholder="내용을 입력해주세요"></textarea>
 
-			<div class="btn btn--wrap">
+			<div class="btn--wrap">
 				<div id="list--button">
 					<a href="/cs/cs">목록</a>
 				</div>
-				<div id="enter--button">
+				<div id="list--button">
 					<button type="submit">글쓰기</button>
 				</div>
 			</div>

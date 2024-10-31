@@ -75,6 +75,7 @@ public class Define {
 	public static final String NOT_CS_AN_USER = "게시물 열람 권한이 없습니다.";
 	public static final String NOT_CS_UPDATE = "이미 댓글이 달려 수정할수없습니다.";
 	public static final String NOT_CS_UPDATE_USER = "수정할 권한이 없습니다.";
+	public static final String NOT_CS_DELETE_USER = "삭제할 권한이 없습니다.";
 
 	// SignIn
 	public static final String PROFILE_SUSPENDING = "현재 이계정은 정지 상태입니다.";

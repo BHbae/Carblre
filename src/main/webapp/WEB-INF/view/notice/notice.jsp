@@ -77,7 +77,7 @@
 				</tbody>
 			</table>
 			<c:if test="${principal.role == 'admin'}">
-				<div class="btn btn--wrap">
+				<div class="btn--wrap">
 					<div id="write--button">
 						<a href="/notice/create">글쓰기</a>
 					</div>
@@ -85,7 +85,7 @@
 			</c:if>
 			<div style="display: flex; justify-content: center; align-items: center; margin-top: 0px;">
 				<!-- 중앙 정렬을 위해 변경 -->
-				<ul class="page--button btn" style="display: flex; justify-content: center;">
+				<ul class="page--button" style="display: flex; justify-content: center;">
 					<c:if test="${currentPage > 1}">
 						<li><a href="/notice/notice?page=${currentPage - 1}&size=${size}">◀</a></li>
 					</c:if>

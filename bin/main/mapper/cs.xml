@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="com.carblre.repository.interfaces.CsRepository">
+<mapper namespace="com.carblre.repository.interfaces.CsRepository">
 
 	<insert id="insetCs">
 		INSERT INTO customer_service_tb (user_id, title,
@@ -9,7 +8,8 @@
 		VALUES(#{id}, #{title}, #{content}, now())
 	</insert>
 
-	<select id="findAllCs" resultType="com.carblre.dto.CsAllDTO">
+	<select
+		id="findAllCs" resultType="com.carblre.dto.CsAllDTO">
 		SELECT cs.id
 		,cs.title,u.user_name ,cs.request_time
 		FROM customer_service_tb cs
@@ -20,12 +20,14 @@
 		#{offset}
 	</select>
 
-	<select id="countAllCs" resultType="int">
+	<select
+		id="countAllCs" resultType="int">
 		select count(*) from
 		customer_service_tb
 	</select>
 
-	<select id="findById" resultType="com.carblre.dto.CsFindByIdDTO">
+	<select
+		id="findById" resultType="com.carblre.dto.CsFindByIdDTO">
 		SELECT cs.id,u.id as user_id
 		,cs.title,u.user_name,cs.request,cs.request_time
 		,cs.response,cs.response_time
@@ -36,7 +38,8 @@
 		ORDER BY cs.id DESC
 	</select>
 
-	<update id="updateByIdAndUserId">
+	<update
+		id="updateByIdAndUserId">
 		UPDATE customer_service_tb
 		SET
 		title = #{title},
@@ -44,7 +47,8 @@
 		WHERE id = #{id}
 	</update>
 
-	<update id="createResponse">
+	<update
+		id="createResponse">
 		UPDATE customer_service_tb
 		SET
 		response = #{response},
@@ -52,5 +56,9 @@
 		WHERE id = #{id}
 	</update>
 
-
+	<delete
+		id="deleteCsById">
+		delete from customer_service_tb where id = #{id}
+	</delete>
 </mapper>
+	

@@ -21,7 +21,10 @@ public interface CsRepository {
 
 	int updateByIdAndUserId(@Param("id") int id, @Param("title") String title, @Param("content") String content);
 
-	// 답변하기
+	// 답변하기 처리
 	public int createResponse(@Param("id") int id, @Param("response") String response);
+
+	// 삭제하기 처리
+	public int deleteCsById(int id);
 
 }

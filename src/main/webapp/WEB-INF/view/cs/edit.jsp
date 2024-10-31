@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../layout/header.jsp"%>
 
@@ -34,14 +33,14 @@
 				<input class="" type="text" name="title" id="title" value="${dto.title}">
 				<textarea type="text" name="content" id="content">${dto.request}</textarea>
 
-			<div class="btn btn--wrap">
-				<div id="list--button">
-					<a href="/cs/cs">목록</a>
+				<div class="btn--wrap">
+					<div id="list--button">
+						<a href="/cs/cs">목록</a>
+					</div>
+					<div id="enter--button">
+						<button type="submit">수정하기</button>
+					</div>
 				</div>
-				<div id="enter--button">
-					<button type="submit">수정하기</button>
-				</div>
-			</div>
 			</form>
 		</div>
 

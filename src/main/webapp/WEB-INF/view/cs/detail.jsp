@@ -6,7 +6,7 @@
 	<section class="sub--section">
 		<div class="section--background" id="notice--background">
 			<div class="inner--container">
-				<sub class="eng">Notice</sub>
+				<sub class="eng">Customer Service Center</sub>
 				<h1 class="sub--title">고객센터</h1>
 			</div>
 		</div>
@@ -62,14 +62,18 @@
 					</form>
 				</div>
 			</c:if>
-			<div class="btn btn--wrap">
+			<div class="btn--wrap">
 				<div id="list--button">
 					<a href="/cs/cs">목록</a>
 				</div>
 				<div id="edit--button">
-					<button onclick="location.href='/cs/edit/${dto.id}'">수정하기</button>
+					<a href="/cs/edit/${dto.id}">수정하기</a>
+				</div>
+				<div id="delete--button">
+					<a href="/cs/delete/${dto.id}" onclick="if(!confirm('정말로 삭제하시겠습니까?')) return false;"> 삭제하기 </a>
 				</div>
 			</div>
+
 		</div>
 	</div>
 

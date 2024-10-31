@@ -50,4 +50,9 @@ public class CsService {
 		return csRepository.createResponse(id, response);
 	}
 
+	// 삭제하기 처리
+	public int deleteCsById(int id) {
+		return csRepository.deleteCsById(id);
+	}
+
 }
