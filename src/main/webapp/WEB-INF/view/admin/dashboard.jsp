@@ -50,10 +50,10 @@
 								</div>
 								<div class="card-stacked red">
 									<div class="card-content">
-										<h3>84,198</h3>
+										<h3>${generalUserCount + lawyerUserCount}</h3>
 									</div>
 									<div class="card-action">
-										<strong>방문자수</strong>
+										<strong>총 가입자 수</strong>
 									</div>
 								</div>
 							</div>
@@ -67,10 +67,10 @@
 								</div>
 								<div class="card-stacked orange">
 									<div class="card-content">
-										<h3>300,000,000</h3>
+										<h3>${lawyerUserCount}</h3>
 									</div>
 									<div class="card-action">
-										<strong>이 달의 결제금액</strong>
+										<strong>법인 가입자 수</strong>
 									</div>
 								</div>
 							</div>
@@ -83,10 +83,10 @@
 								</div>
 								<div class="card-stacked blue">
 									<div class="card-content">
-										<h3>5</h3>
+										<h3>${WaitingLawyerUserCount}</h3>
 									</div>
 									<div class="card-action">
-										<strong>법인 회원가입 대기자수</strong>
+										<strong>법인 가입 대기자수</strong>
 									</div>
 								</div>
 							</div>

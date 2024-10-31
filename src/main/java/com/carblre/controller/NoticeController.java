@@ -2,6 +2,7 @@ package com.carblre.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.carblre.handler.exception.DataDeliveryException;
 import com.carblre.repository.model.Notice;
 import com.carblre.service.NoticeService;
+import com.carblre.utils.Define;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,7 +25,6 @@ import lombok.RequiredArgsConstructor;
 public class NoticeController {
 
 	private final NoticeService noticeService;
-
 
 	/**
 	 * 공지 사항 상세보기 페이지
@@ -100,9 +102,14 @@ public class NoticeController {
 	@PostMapping("/create")
 	public String createNotice(@RequestParam(name = "title") String title,
 			@RequestParam(name = "content") String content) {
-		Notice notice = new Notice();
-		notice.setTitle(title);
-		notice.setContent(content);
+		if (title.length() > 50) {
+			throw new DataDeliveryException(Define.TOO_LONG_TITLE_LENGTH, HttpStatus.BAD_REQUEST);
+		}
+		if (content.length() > 3000) {
+			throw new DataDeliveryException(Define.TOO_LONG_CONTENT_LENGTH, HttpStatus.BAD_REQUEST);
+		}
+
+		Notice notice = Notice.builder().title(title).content(content).build();
 		noticeService.createNotice(notice);
 
 		return "redirect:/notice/notice"; // 작성 후 공지사항 리스트로 리다이렉트
@@ -126,6 +133,12 @@ public class NoticeController {
 	// 공지사항 수정 처리
 	@PostMapping("/update/{id}")
 	public String updateNotice(@ModelAttribute Notice notice) {
+		if (notice.getTitle().length() > 50) {
+			throw new DataDeliveryException(Define.TOO_LONG_TITLE_LENGTH, HttpStatus.BAD_REQUEST);
+		}
+		if (notice.getContent().length() > 3000) {
+			throw new DataDeliveryException(Define.TOO_LONG_CONTENT_LENGTH, HttpStatus.BAD_REQUEST);
+		}
 		noticeService.updateNotice(notice); // 수정 서비스 호출
 		return "redirect:/notice/notice"; // 수정 후 공지사항 리스트로 리다이렉트
 	}

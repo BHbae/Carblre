@@ -42,4 +42,16 @@ public interface AdminRepository {
 	// 전체 결제 내역 조회
 	public List<AdminTossHistoryDTO> readAllPayment();
 
+	// 일반 유저 수 조회
+	public int generalUserCount();
+
+	// 법인 유저 수 조회
+	public int lawyerUserCount();
+
+	// 전체 공지사항 조회
+	public List<Notice> readAllNotice();
+
+	// 법인 대기유저 수 조회
+	public int WaitingLawyerUserCount();
+
 }

@@ -59,4 +59,22 @@
 		select * from toss_history_tb
 	</select>
 	
+	<select id="generalUserCount" resultType="int">
+		select count(*) from user_tb where role = 'user' and status = 1
+	</select>
+	
+	<select id="lawyerUserCount" resultType="int">
+		select count(*) from user_tb where role = 'lawyer' and status = 1
+	</select>
+	
+	<select id="readAllNotice" resultType="com.carblre.repository.model.Notice">
+		SELECT * FROM notice_tb
+	</select>
+	
+	<select id="WaitingLawyerUserCount" resultType="int">
+		select count(*) from user_tb where role = 'lawyer' and status = 0
+	</select>
+	
+	
+	
 </mapper>

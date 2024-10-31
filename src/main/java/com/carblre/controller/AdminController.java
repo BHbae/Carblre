@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;	
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +17,7 @@ import com.carblre.dto.admin.AdminLawyerUserDTO;
 import com.carblre.dto.admin.AdminPostDTO;
 import com.carblre.dto.admin.AdminTossHistoryDTO;
 import com.carblre.repository.model.AdminUser;
+import com.carblre.repository.model.Notice;
 import com.carblre.service.AdminService;
 
 import lombok.RequiredArgsConstructor;
@@ -36,9 +37,16 @@ public class AdminController {
 	@GetMapping("")
 	public String mainPage(Model model) {
 
-		// TODO 관리자 권한 확인
-
 		model.addAttribute("status", "dashboard");
+
+		int generalUserCount = adminService.generalUserCount();
+		model.addAttribute("generalUserCount", generalUserCount);
+
+		int lawyerUserCount = adminService.lawyerUserCount();
+		model.addAttribute("lawyerUserCount", lawyerUserCount);
+
+		int WaitingLawyerUserCount = adminService.WaitingLawyerUserCount();
+		model.addAttribute("WaitingLawyerUserCount", WaitingLawyerUserCount);
 
 		return "admin/dashboard";
 	}
@@ -148,18 +156,18 @@ public class AdminController {
 	}
 
 	/**
-	 * AI 대화내역 관리 페이지
+	 * 공지사항 관리 페이지
 	 * 
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/ai-chat")
+	@GetMapping("/notice")
 	public String aiChatListPage(Model model) {
-//		List<AdminPost> aiChatList = adminService.readAllPost();
-		model.addAttribute("status", "aiChatList");
-//		model.addAttribute("aiChatList", aiChatList);
+		List<Notice> noticeList = adminService.readAllNotice();
+		model.addAttribute("status", "noticeList");
+		model.addAttribute("noticeList", noticeList);
 
-		return "admin/aiChatList";
+		return "admin/noticeList";
 	}
 
 //	/**

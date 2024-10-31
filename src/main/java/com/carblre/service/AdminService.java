@@ -71,4 +71,28 @@ public class AdminService {
 		return adminRepository.readAllPayment();
 	}
 
+	// 일반유저 수 조회
+	@Transactional
+	public int generalUserCount() {
+		return adminRepository.generalUserCount();
+	}
+
+	// 법인유저 수 조회
+	@Transactional
+	public int lawyerUserCount() {
+		return adminRepository.lawyerUserCount();
+	}
+
+	// 전체 공지사항 조회
+	@Transactional
+	public List<Notice> readAllNotice() {
+		return adminRepository.readAllNotice();
+	}
+
+	// 법인유저 대기 수 조회
+	@Transactional
+	public int WaitingLawyerUserCount() {
+		return adminRepository.WaitingLawyerUserCount();
+	}
+
 }

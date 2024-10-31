@@ -66,6 +66,10 @@ public class Define {
 	public static final String FILE_UPLOAD_ERROR = "파일 업로드 중에 오류가 발생 했습니다.";
 	public static final String MISSING_REQUIRED_FILES = "첫 번째와 두 번째 사진은 반드시 등록하셔야 합니다.";
 
+	// board_length
+	public static final String TOO_LONG_TITLE_LENGTH = "제목은 50자 이내로 작성해주세요";
+	public static final String TOO_LONG_CONTENT_LENGTH = "내용은 3000자 이내로 작성해주세요";
+	
 	// cs
 	public static final String CREATED_CS_ERROR = "게시물 업로드중 오류발생";
 	public static final String NOT_CS_AN_USER = "게시물 열람 권한이 없습니다.";
