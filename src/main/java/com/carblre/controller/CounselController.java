@@ -48,16 +48,17 @@ public class CounselController {
     private HttpSession session;
 
     @PostMapping("/updateStatus")
-    public ResponseEntity<Map<String,Object>> updateStatus(@RequestBody Map<String, String> reqData,
+    public ResponseEntity<Map<String,Object>> updateStatus(@RequestBody Map<String, Object> reqData,
                                                            HttpSession session){
         UserDTO userDTO = (UserDTO) session.getAttribute("principal");
-        int counselId = Integer.parseInt(reqData.get("counselId"));
-        int statusValue = Integer.parseInt(reqData.get("statusValue"));
+        int counselId = (Integer) reqData.get("counselId");
+        int statusValue = Integer.parseInt((String) reqData.get("statusValue"));
+
         System.out.println("counselId"+counselId +"statusValue"+statusValue);
         // 값 받아오기
         Map<String, Object> response = new HashMap<>();
         int result= counselService.updateStatusById(counselId,statusValue);
-        MyCounselDTO dto=counselService.findMyCounselByLawyerId(userDTO.getId());
+        MyCounselDTO dto=counselService.findCounselOfIdLawyerById(userDTO.getId(),counselId);
         System.out.println("result"+result);
         if (result == 1) {
             response.put("success", true);  // 성공
@@ -78,15 +79,15 @@ public class CounselController {
      * @return
      */
     @PostMapping("/cancelStatus")
-    public ResponseEntity<Map<String, Object>> cancelStatusProc(@RequestBody Map<String, String> reqData,
-                                        HttpSession session ) {
+    public ResponseEntity<Map<String, Object>> cancelStatusProc(@RequestBody Map<String, String> reqData,HttpSession session ) {
         UserDTO userDTO = (UserDTO) session.getAttribute("principal");
 
         int status = Integer.parseInt(reqData.get("status"));
-        System.out.println("status"+status);
+        int id = Integer.parseInt(reqData.get("id"));
+        System.out.println("status"+status+"id"+id);
         Map<String, Object> response = new HashMap<>();
-        int result = counselService.updateUserStatusById(userDTO.getId(),status);// 패스워드 확인
-        MyCounselDTO counselDTO=counselService.findMyStatusById(userDTO.getId());
+        int result = counselService.updateUserStatusById(userDTO.getId(),status,id);// 패스워드 확인
+        MyCounselDTO counselDTO=counselService.findMyStatusById(userDTO.getId(),id);
         System.out.println("result" + result);
         if (result==1) {
             response.put("success", true);
@@ -96,6 +97,7 @@ public class CounselController {
         }
         return ResponseEntity.ok(response);
     }
+
 
 
     @GetMapping("/reservation")

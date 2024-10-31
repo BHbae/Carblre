@@ -65,6 +65,18 @@
     <select id="findAllLawyerDetail" resultType="com.carblre.repository.model.LawyerDetail">
         SELECT * FROM lawyer_detail_tb
     </select>
+    
+    <select id="lawyerChoice" resultType="com.carblre.dto.LawyerChoiceDTO">
+    	SELECT * FROM lawyer_detail_tb WHERE user_id = #{id}
+    </select>
+    
+    
 
+	<!-- 상담가 수정 -->
+    <update id="updateAmount" >
+        UPDATE lawyer_detail_tb
+        SET counseling_amount = #{amount}
+        WHERE user_id = #{id}
+    </update>
 
 </mapper>

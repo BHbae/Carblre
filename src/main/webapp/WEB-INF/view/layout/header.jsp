@@ -16,6 +16,8 @@
 	<link href="/css/notice.css" rel="stylesheet">
 	<link href="/css/privacy.css" rel="stylesheet">
 	<link href="/css/mypage.css" rel="stylesheet">
+    <link href="/css/lawyerList.css" rel="stylesheet">
+    <link href="/css/lawyerInfo.css" rel="stylesheet">
 	<link href="/css/font.css" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,9 +60,18 @@
 					<li>
 						<a href="/user/logout">로그아웃</a>
 					</li>
-					<li>
-						<a href="/user/myPage">마이페이지</a>
-					</li>
+					<c:choose>
+                        <c:when test="${principal.role == 'user'}">
+                            <li>
+                                <a href="/user/myPage">마이페이지</a>
+                            </li>
+                        </c:when>
+                        <c:when test="${principal.role == 'lawyer'}">
+                            <li>
+                                <a href="/lawyer/myPage">마이페이지</a>
+                            </li>
+                        </c:when>
+                    </c:choose>
 				</c:when>
 				<c:otherwise>
 					<li>
@@ -73,11 +84,36 @@
 			</c:choose>
 		</ul>
 			<!--div id="search"></div-->
-			<div id="moblie--menu">
-				<div></div>
-				<div></div>
-				<div></div>
-			</div>
+			 <div class="hd-menubtn menubtn">
+                <div class="m_menu">
+                    <div class="menubar">
+                        <span class="bar bar01"></span>
+                        <span class="bar bar02"></span>
+                        <span class="bar bar03"></span>
+                    </div>
+                    <div class="gnb-all">
+                        <div class="all-bg"></div>
+                        <div class="all-menu">
+                            <ul>
+                                <li>
+                                    <a href="/board/boardList">의뢰자</a>
+                                </li>
+                                <li>
+                                    <a href="/aiounseling">AI 간편상담</a>
+                                </li>
+                                <li>
+                                    <a href="/lawyer/lawyers">변호사</a>
+                                </li>
+                                <li>
+                                    <a href="/notice/notice">공지사항</a>
+                                </li>
+                                <li>
+                                    <a href="/cs/cs">고객센터</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 		</div>
 	</div>
 </header>
@@ -101,6 +137,70 @@
 			$header.toggleClass('downn', scrolled); // 클래스 토글
 		});
 	});
+	 $(document).ready(function () {
+	        $(".hd-search").click(function () {
+	            $("header").toggleClass("top");
+	            $(".hd-search-box").toggleClass("hd-sch-open");
+	            $(".hd-search").toggleClass("close");
+	            $(".hd-logo").toggleClass("show");
+	            $("html,body").toggleClass("scr-none");
+	        });
+	        $("header .gnb-wrap .gnb > li > ul").hide();
+	        $("header .gnb-wrap .gnb > li").mouseover(function () {
+	            $("header .gnb-wrap .gnb > li").removeClass("on");
+	            $("header .gnb-wrap .gnb > li > ul").stop().fadeOut(200);
+	            $(this).addClass("on");
+	            $(this).find("ul").stop().fadeIn(200);
+	        });
+	        $("header").mouseleave(function () {
+	            $("header .gnb-wrap .gnb > li").removeClass("on");
+	            $("header .gnb-wrap .gnb > li > ul").stop().fadeOut(200);
+	        });
+	        $(".btn-language").mouseover(function () {
+	            $(".hd-language ul").stop().fadeIn();
+	        });
+	        $(".hd-language").mouseleave(function () {
+	            $(".hd-language ul").stop().fadeOut();
+	        });
 
+	        if (matchMedia("screen and (max-width: 1920px)").matches) {
+	            //mobile
+	            $(".menubar").click(function () {
+	                $("header").toggleClass("gnb-open");
+	                $("header").toggleClass("top");
+	                $(".all-bg").toggle();
+	                $(".all-menu > ul > li:not(.gnb-sns) > ul").slideUp();
+	                $(".all-menu > ul > li:not(.gnb-sns) > ul").slideUp();
+	                $(".all-menu > ul > li:not(.gnb-sns) a").removeClass("on");
+	            });
+	            $(".all-menu > ul > li:not(.gnb-sns) > ul").addClass("dep2");
+	            $(".all-menu > ul > li:not(.gnb-sns) > a").click(function () {
+	                $(".all-menu > ul > li:not(.gnb-sns) a").removeClass("on");
+	                $(".all-menu > ul > li:not(.gnb-sns) > ul").slideUp();
+	                $(".all-menu > ul > li:not(.gnb-sns) > ul.dep2 ul").stop().slideUp();
+	                if (!$(this).parent().find(".dep2").is(":visible")) {
+	                    $(this).parent().find(".dep2").stop().slideDown();
+	                    $(this).addClass("on");
+	                }
+	            });
+	            $(".all-menu > ul > li:not(.gnb-sns) > ul > li > a").click(function () {
+	                $(".all-menu > ul > li:not(.gnb-sns) > ul > li.dep3 > a").removeClass(
+	                    "on"
+	                );
+	                $(".all-menu > ul > li:not(.gnb-sns) > ul.dep2 ul").stop().slideUp();
+	                if (!$(this).parent().find("ul").is(":visible")) {
+	                    $(this).parent().find("ul").stop().slideDown();
+	                    $(this).addClass("on");
+	                }
+	            });
+	        } else {
+	            $(".menubar").click(function () {
+	                //pc
+	                $("header").toggleClass("gnb-open");
+	                $("header").toggleClass("top");
+	                $("html,body").toggleClass("scr-none");
+	            });
+	        }
+	    });
 </script>
 

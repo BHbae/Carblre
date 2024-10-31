@@ -78,6 +78,8 @@ dependencies {
     // JSON
     implementation 'org.json:json:20210307' // XML to JSON 의존성 추가
     implementation 'com.googlecode.json-simple:json-simple:1.1.1' // json 의존성 추가
+    
+    
 }
 
 tasks.named('test') {

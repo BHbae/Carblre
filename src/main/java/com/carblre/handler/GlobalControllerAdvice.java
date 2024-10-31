@@ -30,7 +30,6 @@ public class GlobalControllerAdvice {
 		sb.append(" alert('" + e.getMessage() + "');");
 		sb.append(" location.href='/user/signIn';");
 		sb.append(" </script>");
-
 		return sb.toString();
 	}
 	

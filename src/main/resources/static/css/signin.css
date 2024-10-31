@@ -6,50 +6,160 @@
     height: 80vh;
     text-align: center;
 }
-
-form {
-    display: inline-block;
-    text-align: left;
-    margin-bottom: 20px;
+.social a {
+    display: block;
 }
-
-
-
-.social a{
-display:block;
-}
-.image-link.google{
-    border: 1px solid #bababa;
-    border-radius: 5px;
-    height: 47px;
-    width: 380px;
-}
-
-.image-link{
-
-
+.image-link {
     height: 49px;
     width: 380px;
 }
-.find-info {
-    display: inline-block; /* 블록처럼 취급되지만, 크기는 텍스트에 맞게 설정 */
-    color: #3498db; /* 링크와 같은 파란색 */
-    text-decoration: none; /* 밑줄 없애기 */
-    font-size: 16px; /* 글자 크기 */
-    cursor: pointer; /* 마우스를 올리면 포인터 커서로 변경 */
-}
-
-.find-info:hover {
-    text-decoration: underline; /* 마우스를 올리면 밑줄 표시 */
-    color: #2980b9; /* 호버 시 색상 조금 어둡게 변경 */
-}
-.input-info{
-    width:200px;
+.input-info {
+    width: 200px;
 }
 #lawyer-login-form {
     display: none;
 }
+.login-side.infoupdate{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px auto;
+}
 .login-button{
     width: 100%;
-    margin-top: 10px;
+    height: 35px;
+    text-align: center;
+    border: 0;
+    border-radius: 5px;
+    transition-duration: 0.1s;
+    margin-top: 20px;
+    transition-duration: 0.2s;
+}
+.login-button:hover {
+    background-color: #b19837;
+    color: #fff;
+}
+
+#ProfileImagePreview, #LawyerImagePreview {
+    width: 100px !important;
+    margin-bottom: 20px;
+    border: 1px solid #bababa;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: -10px;
+}
+
+.terms--into {
+    width: 100%;
+    height: 150px;
+    border: 1px solid #bababa;
+    border-radius: 5px;
+    padding: 20px;
+    overflow-y: scroll;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #666;
+}
+
+.terms--into::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+.terms--into::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 10px;
+}
+
+.terms--into::-webkit-scrollbar-track {
+    background: rgba(27, 27, 27, 0.1);
+}
+.checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 30px !important;
+}
+.checkbox label {
+    font-size: 12px;
+    color: #c70000;
+    display: flex;
+    gap: 10px;
+}
+.checkbox input[type="checkbox"]{
+    width: 15px;
+    height: 15px;
+}
+.signup-btn {
+    width: 100%;
+    display: inline-block;
+    padding: 20px;
+    color: #000;
+    border: 1px solid #bababa;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition-duration: 0.2s;
+    box-sizing: border-box;
+}
+.signup-btn:hover{
+    color: #fff;
+    border: 0;
+    background-color: #b19837;
+}
+.choose--button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+}
+.choose--button span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #b19837;
+    display: block;
+    margin: 0 auto 10px;
+}
+.choose--button button{
+    border: 0;
+    background: inherit;
+}
+.social--wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+.social--wrap img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.social--line{
+    position: relative;
+}
+.social--line:after {
+    content: '';
+    width: 39%;
+    height: 1px;
+    background-color: #999;
+    position: absolute;
+    top: 9px;
+    left: 0;
+}
+.social--line:before {
+    content: '';
+    width: 39%;
+    height: 1px;
+    background-color: #999;
+    position: absolute;
+    top: 9px;
+    right: 0;
+}
+.find-info{
+    cursor: pointer;
 }

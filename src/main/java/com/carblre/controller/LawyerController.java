@@ -1,6 +1,7 @@
 package com.carblre.controller;
 
 import com.carblre.dto.LawyerDetailDTO;
+import com.carblre.dto.MyCounselDTO;
 import com.carblre.service.LawyerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,10 +27,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -56,7 +61,7 @@ public class LawyerController {
 	@GetMapping("/lawyerSignUp")
 	public String lawyerSignupPage() {
 		System.out.println("Here in lawyerSignUpPage(UserController)");
-		return "lawyer/lawyerSignup";
+		return "user/lawyerSignup";
 	}
 
 	/**
@@ -87,7 +92,7 @@ public class LawyerController {
 			model.addAttribute("lawyer", lawyerDetailDTO);
 		}
 		// 유저 인포 해야됨
-		return "user/myPage";
+		return "lawyer/lawyerPage";
 	}
 
 	@GetMapping("/lawyers")
@@ -122,6 +127,55 @@ public class LawyerController {
 		model.addAttribute("counsel", counselDTO);
 
 		return "lawyer/lawyerInfo";
+	}
+
+	/**
+	 * 
+	 * 변호사 예약 체크 현황
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("checkLawyerCounsel")
+	public String checkLawyerCounselPage(Model model) {
+		UserDTO userDTO = (UserDTO) session.getAttribute("principal"); // dto변경해야함
+		if (userDTO == null) {// 엔티티가 존재하지 않을 때 NotFoundException 던짐
+			throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
+		} // 유저 인포 해야됨
+		List<MyCounselDTO> counsel = counselService.findMyCounselByLawyerId(userDTO.getId());
+		System.out.println("counsel" + counsel);
+
+		model.addAttribute("counselList", counsel);
+
+		return "counsel/checkLawyerCounsel";
+	}
+
+	@GetMapping("amountUpdate")
+	public String amountPage(Model model) {
+		UserDTO userDTO = (UserDTO) session.getAttribute("principal"); // dto변경해야함
+
+		com.carblre.dto.userdto.LawyerDetailDTO dto = lawyerService.findLawyerInfoById(userDTO.getId());
+		System.out.println("dto" + dto);
+
+		model.addAttribute("dto", dto);
+
+		return "lawyer/amountUpdate";
+	}
+
+	@PostMapping("amountUpdate")
+	public ResponseEntity<Map<String, Object>> amountProc(@RequestBody Map<String, String> reqData) {
+		UserDTO userDTO = (UserDTO) session.getAttribute("principal");
+		int amount = Integer.parseInt(reqData.get("counselingAmount"));
+		int result = lawyerService.updateAmount(userDTO.getId(), amount);
+		Map<String, Object> response = new HashMap<>();
+		if (result == 1) {
+			response.put("status", 1); // 성공
+			response.put("message", "변경되었습니다");
+		} else {
+			response.put("status", 0); // 실패
+			response.put("message", "변경에 실패하였습니다");
+		}
+		return ResponseEntity.ok(response);
 	}
 
 }

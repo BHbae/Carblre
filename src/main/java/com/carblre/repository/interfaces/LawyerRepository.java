@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.carblre.dto.LawyerChoiceDTO;
 import com.carblre.dto.LawyerDetailDTO;
 import com.carblre.dto.userdto.UserDTO;
 import com.carblre.repository.model.LawyerDetail;
@@ -25,4 +26,10 @@ public interface LawyerRepository {
 
     // 변호사 전체조회
     List<UserDTO> findAllLawyer();
+    
+    int updateAmount(@Param("id")int id,@Param("amount") int amount);
+
+	LawyerChoiceDTO lawyerChoice(int id);
+    
+    
 }

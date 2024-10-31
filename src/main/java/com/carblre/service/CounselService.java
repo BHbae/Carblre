@@ -31,10 +31,14 @@ public class CounselService {
      * @param id //userId
      * @return
      */
-    public MyCounselDTO findMyCounselByUserId(int id){
-       Counsel counsel= counselRepository.findCounselOfUserById(id);
+    public List<MyCounselDTO> findMyCounselByUserId(int id){
+       List<Counsel> counsel= counselRepository.findCounselOfUserById(id);
+        List<MyCounselDTO> dto=new ArrayList<>();
         System.out.println(counsel);
-       return  counsel.toMycounselDTO();
+           for(Counsel coun :counsel){
+              dto.add(coun.toMycounselDTO());
+           }
+       return  dto;
     }
 
     /**
@@ -42,41 +46,59 @@ public class CounselService {
      * @param id
      * @return
      */
-    public MyCounselDTO findMyCounselByLawyerId(int id) {
-        Counsel counsel= counselRepository.findCounselOfLawyerById(id);
-        if(counsel==null){
-            return  new MyCounselDTO();
+    public List<MyCounselDTO> findMyCounselByLawyerId(int id) {
+        List<Counsel> counselList = counselRepository.findCounselOfLawyerById(id);
+        List<MyCounselDTO> myCounselDTOS = new ArrayList<>();
+
+        for (Counsel counsel : counselList) {
+            // counsel이 null이 아니고 id가 0인 경우 리스트에 추가하지 않음
+            if (counsel != null && counsel.getId() != 0) {
+                myCounselDTOS.add(counsel.toMycounselDTO());
+            }
         }
-        return  counsel.toMycounselDTO();
+
+        return myCounselDTOS.isEmpty() ? null : myCounselDTOS;
     }
 
     /**
-     * 변호사의 예약 상태변경
-     * @param id
-     * @param status
-     * @return
-     */
+    
+    특정 예약 수정
+    @param id
+    @return
+    */
+    public MyCounselDTO findCounselOfIdLawyerById(int lawyerId,int id){
+      Counsel counsel= counselRepository.findCounselByIdLawyerId(lawyerId,id);
+
+            return  counsel.toMycounselDTO();
+        }
+
+        /**
+         
+    변호사의 예약 상태변경
+    @param id
+    @param status
+    @return*/
     public int updateStatusById(int id,int status) {
 
-        return counselRepository.updateStatusById(id,status);
-    }
+            return counselRepository.updateStatusById(id,status);
+        }
 
-    public MyCounselDTO findMyStatusById(int id){
-        Counsel counsel= counselRepository.findStatusById(id);
-        return  MyCounselDTO.builder().status(counsel.getStatus()).build();
-    }
+        public MyCounselDTO findMyStatusById(int userId,int id){
+            Counsel counsel= counselRepository.findStatusById(userId,id);
+            return  MyCounselDTO.builder().status(counsel.getStatus()).build();
+        }
 
-    /**
-     * 유저 예약 취소
-     * @param id
-     * @param status
-     * @return
-     */
-    public int updateUserStatusById(int id, int status) {
+        /**
+         
+    유저 예약 취소
+    @param id
+    @param status
+    @return*/
+    public int updateUserStatusById(int userId, int status,int id) {
 
-        return counselRepository.updateUserStatusById( id, status);
+            return counselRepository.updateUserStatusById(userId, status,id);
 
-    }
+        }
 
 
     /**

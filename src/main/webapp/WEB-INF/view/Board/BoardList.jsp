@@ -15,7 +15,7 @@
                 <ul class="sub--top--menu">
                     <li class="subtop--active"><a href="/board/boardList">의뢰자</a></li>
                     <li><a href="/aiounseling">AI 간편상담</a></li>
-                    <li><a href="/notice/notice">변호사</a></li>
+                    <li><a href="/lawyer/lawyers">변호사</a></li>
                     <li><a href="/notice/notice">공지사항</a></li>
                     <li><a href="/cs/cs">고객센터</a></li>
                 </ul>
@@ -36,15 +36,12 @@
                 </thead>
                 <tbody>
                     <c:forEach items="${boards}" var="boards">
-                        <tr>
-                            <td>${boards.id}</td>
-                            <td>
-                                <a href="<c:url value='/board/detail/${boards.id}' />">${boards.title}</a>
-                            </td>
-                            
-                            <td>${boards.userId}</td>
-                            <td>${boards.createdAt}</td>
-                        </tr>
+                    <tr>
+                        <td class="notice--no">${boards.id}</td>
+                        <td class="notice--con"><a href="<c:url value='/board/detail/${boards.id}' />">${boards.title}</a></td>
+                        <td class="notice--name">${boards.userId}</td>
+                        <td class="notice--date">${boards.createdAt}</td>
+                    </tr>
                     </c:forEach>
                 </tbody>
             </table>
@@ -61,9 +58,6 @@
 				<c:forEach begin="1" end="${totalPages}" var="page">
                     <li class="<c:if test="${currentPage == page}">page--active</c:if>" ><a href="/board/boardList?page=${page}">${page}</a></li>
                 </c:forEach>
-
-
-
 				<li
 					class="page-item <c:if test='${currentPage == totalPages}'>disabled</c:if>">
 					<a class="page-link" href="/board/boardList?page=${currentPage + 1}">▶</a>

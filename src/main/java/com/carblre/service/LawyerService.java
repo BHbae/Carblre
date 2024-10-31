@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.carblre.dto.LawyerChoiceDTO;
 import com.carblre.dto.LawyerDetailDTO;
 import com.carblre.dto.userdto.LawyerSignUpDTO;
 import com.carblre.dto.userdto.UserDTO;
@@ -147,5 +148,19 @@ public class LawyerService {
 		return lawyerDetailDTO;
 
 	}
-
+	
+    /**
+     * 상담가 수정
+     * @param id
+     * @param amount
+     */
+    public int updateAmount(int id, int amount) {
+        return lawyerRepository.updateAmount(id,amount);
+    }
+    
+    public LawyerChoiceDTO lawyerChoice(int id) {
+    	return lawyerRepository.lawyerChoice(id);
+    }
+    
+    
 }
