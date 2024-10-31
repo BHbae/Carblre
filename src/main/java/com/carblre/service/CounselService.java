@@ -122,4 +122,13 @@ public class CounselService {
     public List<CounselDTO> getCounselReservationByLawyerId(int id) {
         return counselRepository.findReservationByLawyerId(id);
     }
+
+    /**
+     * 특정 변호사 ID + 날짜로 예약 정보 불러오기
+     *
+     */
+    public List<CounselDTO> getCounselReservationByLawyerIdAndDate(int id, String date)
+    {
+        return counselRepository.findReservationByLawyerIdAndDate(id, date);
+    }
 }

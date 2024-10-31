@@ -14,10 +14,10 @@ public class CounselDTO {
     private int id;
     private int lawyerId;
     private int userId;
-    private String date;
     private String startTime;
     private String endTime;
     private String content;
+    private String date;
     private int status;
 
 }

@@ -44,11 +44,11 @@
 	<insert id="insertCounsel">
 		INSERT INTO counsel_request_tb(
 		user_id, lawyer_id,
-		start_time, end_time,
+		start_time, end_time, date,
 		content, status, created_at)
 		VALUES (
 		#{userId}, #{lawyerId},
-		#{startTime},#{endTime},
+		#{startTime},#{endTime}, #{date},
 		#{content},#{status}, now())
 	</insert>
 
@@ -75,5 +75,16 @@
 		FROM
 		counsel_request_tb AS c
 		WHERE c.lawyer_id = #{lawyerId}
+	</select>
+
+	<select id="findReservationByLawyerIdAndDate">
+		SELECT
+			*
+		FROM
+			counsel_request_tb AS c
+		WHERE
+		    c.lawyer_id = #{lawyerId}
+			AND
+		    c.date = #{date}
 	</select>
 </mapper>
