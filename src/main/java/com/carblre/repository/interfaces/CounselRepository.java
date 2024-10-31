@@ -1,5 +1,6 @@
 package com.carblre.repository.interfaces;
 
+import com.carblre.dto.counsel.CounselDTO;
 import com.carblre.dto.userdto.LawyerReservationDTO;
 import com.carblre.dto.userdto.UserDTO;
 import com.carblre.repository.model.Counsel;
@@ -29,16 +30,18 @@ public interface CounselRepository {
 
     int updateUserStatusById(@Param("userId") int userId,@Param("status") int status,@Param("id")int id);
 
-    int insertCounsel(Counsel counsel);
+    // 예약 하기
+    int insertCounsel(CounselDTO counselDTO);
 
     List<Counsel> findCounselAll();
 
-
-
-
-
-    // 변호사 전체정보 조회
+    // 변호사 예약 정보 조회
     List<LawyerReservationDTO> findReservation();
+
+
+    List<CounselDTO> findReservationByLawyerId(@Param("lawyerId") int lawyerId);
+
+
     List<LawyerReservationDTO> findReservationsByDateTime(
             @Param("year") int year,
             @Param("month") int month,

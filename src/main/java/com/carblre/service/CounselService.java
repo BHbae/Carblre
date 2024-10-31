@@ -1,6 +1,7 @@
 package com.carblre.service;
 
 import com.carblre.dto.MyCounselDTO;
+import com.carblre.dto.counsel.CounselDTO;
 import com.carblre.dto.userdto.LawyerDetailDTO;
 import com.carblre.dto.userdto.LawyerReservationDTO;
 import com.carblre.dto.userdto.LawyerSignUpDTO;
@@ -123,15 +124,23 @@ public class CounselService {
      * @param dto
      * @return
      */
-    public int insertCounselReservation(int id, LawyerReservationDTO dto) {
-       Counsel counsel= dto.toCounsel();
-       counsel.setUserId(id);
-       counsel.setStatus(0);
-        System.out.println("counsel:"+counsel);
-       return  counselRepository.insertCounsel(counsel);
+    public int insertCounselReservation(CounselDTO counselDTO)
+    {
+        int result = counselRepository.insertCounsel(counselDTO);
+
+        if(result != 1)
+        {
+            return 0;
+        }
+        return 1;
     }
 
-    public List<LawyerReservationDTO> findReservationsByDateTime(int year, int month, int day, int hour, int minute, int id) {
-        return counselRepository.findReservationsByDateTime(year, month, day, hour, minute, id);
+    /**
+     * 특정 변호사의 예약 정보 불러오기
+     * @param id
+     * @return
+     */
+    public List<CounselDTO> getCounselReservationByLawyerId(int id) {
+        return counselRepository.findReservationByLawyerId(id);
     }
 }
