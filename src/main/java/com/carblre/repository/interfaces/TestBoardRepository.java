@@ -13,10 +13,12 @@ public interface TestBoardRepository {
 
 	public int savePost(Post post);
 
-	public List<Post> findAllBoard();
+	public List<Post> findAllBoard(@Param("limit")int limit, @Param("offset")int offset);
 
 	public Post findById(@Param("id")int postId);
 
 	public DetailDTO selectByPostId(@Param("id")int id);
+
+	public int boardAllCount();
 
 }

@@ -2,6 +2,7 @@ package com.carblre.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.carblre.config.MyWebSocketHandler;
 import com.carblre.dto.MyCounselDTO;
@@ -582,11 +584,17 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping("/infoUpdate")
-	public String infoUpdateProc(UserDTO updateDto) {
+	public String infoUpdateProc(UserDTO updateDto, RedirectAttributes redirectAttributes) {
+		UserDTO userDTO = (UserDTO) session.getAttribute("principal");
 
-		userService.updateInfo(updateDto.getEmail(), (updateDto.getId()));
+		int result = userService.updateInfo(updateDto.getEmail(), userDTO.getId());
+		if (result == 1) {
+			redirectAttributes.addFlashAttribute("message", "정보가 수정되었습니다.");
+		} else {
+			redirectAttributes.addFlashAttribute("message", "수정에 실패했습니다.");
+		}
 
-		return "redirect:/user/index";
+		return "redirect:/user/infoUpdate";
 	}
 
 	@GetMapping("/infoUpdatePass")
@@ -631,6 +639,7 @@ public class UserController {
 	}
 
 	/**
+	 * 
 	 * 유저의 예약현황 확인 페이지
 	 * 
 	 * @param model
@@ -639,40 +648,25 @@ public class UserController {
 	@GetMapping("checkUserCounsel")
 	public String checkUserCounselPage(Model model) {
 		UserDTO userDTO = (UserDTO) session.getAttribute("principal");
-		if (userDTO == null) {
-			// 엔티티가 존재하지 않을 때 NotFoundException 던짐
+		if (userDTO == null) {// 엔티티가 존재하지 않을 때 NotFoundException 던짐
 			throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
-		}
-		// 유저 인포 해야됨
-		MyCounselDTO counsel = counselService.findMyCounselByUserId(userDTO.getId());
-		UserDTO user = userService.findById(counsel.getLawyerId());
-		model.addAttribute("counsel", counsel);
-		model.addAttribute("user", user);
+		} // 유저 인포 해야됨
+		List<MyCounselDTO> counsel = counselService.findMyCounselByUserId(userDTO.getId());
+		System.out.println("counsel확인" + counsel);
+		model.addAttribute("counselList", counsel);
 
 		return "counsel/checkUserCounsel";
 	}
 
-	/**
-	 * 변호사 예약 체크 현황
-	 * 
-	 * @param model
-	 * @return
-	 */
-	@GetMapping("checkLawyerCounsel")
-	public String checkLawyerCounselPage(Model model) {
-		UserDTO userDTO = (UserDTO) session.getAttribute("principal"); // dto변경해야함
+	@GetMapping("/myPage")
+	public String myPage(Model model) {
+		UserDTO userDTO = (UserDTO) session.getAttribute("principal");
 		if (userDTO == null) {
 			// 엔티티가 존재하지 않을 때 NotFoundException 던짐
 			throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
 		}
 		// 유저 인포 해야됨
-		MyCounselDTO counsel = counselService.findMyCounselByLawyerId(userDTO.getId());
-		UserDTO user = userService.findById(userDTO.getId());
-
-		model.addAttribute("counsel", counsel);
-		model.addAttribute("user", user);
-
-		return "counsel/checkLawyerCounsel";
+		return "user/myPage";
 	}
 
 }

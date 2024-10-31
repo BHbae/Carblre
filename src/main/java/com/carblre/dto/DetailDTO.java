@@ -13,13 +13,12 @@ import java.sql.Timestamp;
 
 
 public class DetailDTO {
-    private String uploardFileName;
     private int id;
-    private int nickName;
-    private int status; //  1. 가해자 , 2.피해자
+    private int userId;
+    private String category;
     private String title;
     private String content;
-    private String comment;
-    private String userName;
+    private String uploadFileName;
     private String createdAt;
+    private String nickName;
 }

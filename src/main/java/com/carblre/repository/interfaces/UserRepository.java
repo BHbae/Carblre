@@ -2,15 +2,13 @@ package com.carblre.repository.interfaces;
 
 import java.util.List;
 
-import com.carblre.dto.userdto.LawyerDetailDTO;
-import com.carblre.dto.userdto.LawyerReservationDTO;
-import com.carblre.repository.model.LawyerDetail;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import com.carblre.dto.userdto.UserDTO;
+import com.carblre.repository.model.LawyerDetail;
 import com.carblre.repository.model.User;
-import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface UserRepository {
@@ -54,12 +52,16 @@ public interface UserRepository {
 	int updatePass(@Param("password")String password,@Param("id")int id);
 
 	// 회원정보 변경
-	int updateInfo(String email, int id);
+	int updateInfo(@Param("email")String email, @Param("id")int id);
 
 
 	// 가장 최근 auto_increment된 id
 	@Select("SELECT LAST_INSERT_ID()")
 	int getLastInsertId();
+	// 변호사 디테일
+	int insertLawyerDetail(LawyerDetail lawyerDetail);
 
 
+	 LawyerDetail findLawyerInfoById(int id);
+	 
 }

@@ -103,7 +103,7 @@
 <body>
 <div class="container">
     <div class="header">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9c/Wix.com_Logo.png" alt="Wix Logo">
+        <img src="../resources/static/image/logo.png">
     </div>
 
     <div class="title">인증이 완료되었습니다.</div>

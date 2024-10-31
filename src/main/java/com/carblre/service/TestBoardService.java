@@ -38,18 +38,22 @@ public class TestBoardService {
 		return post;
 	}
 
-	public List<Post> findAllBoards() {
-		List<Post> boards = boardRepository.findAllBoard();
+	public int boardAllCount() {
+		return boardRepository.boardAllCount();
+	}
+
+	public List<Post> findAllBoards(int limit, int offset) {
+		List<Post> boards = boardRepository.findAllBoard(limit, offset);
 		return boards;
 	}
 
 	@Transactional
-	public void savePost(int status, String category, String tile, String content, MultipartFile vidio) {
+	public void savePost(int userId, String category, String tile, String content, MultipartFile vidio) {
 
 		// 파일 업로드 로직
 		String[] fileName = uploadFile(vidio);
 
-		Post post = Post.builder().userId(1).status(status).category(content).title(tile).content(content)
+		Post post = Post.builder().userId(userId).category(category).title(tile).content(content)
 				.originFileName(fileName[0]).uploadFileName(fileName[1]).build();
 
 		boardRepository.savePost(post);

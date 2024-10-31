@@ -24,7 +24,7 @@ public class Counsel {
     private String content;
     private int lawyerId;
     private int status;
-    private int userStatus;
+
 
     public MyCounselDTO toMycounselDTO(){
         // Timestamp를 분까지 String타입으로 변환
@@ -40,7 +40,7 @@ public class Counsel {
         return  MyCounselDTO.builder()
                 .id(id)
                 .userId(userId).startTime(startFormattedDate).endTime(endFormattedDate).content(content)
-                .lawyerId(lawyerId).status(status).userStatus(userStatus)
+                .lawyerId(lawyerId).status(status)
                 .build();
     }
 

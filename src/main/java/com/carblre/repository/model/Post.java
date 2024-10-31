@@ -17,7 +17,6 @@ public class Post {
 
 	private int id;
 	private int userId;
-	private int status; //  1. 가해자 , 2.피해자
 	private String category;
 	private String title;
 	private String content;

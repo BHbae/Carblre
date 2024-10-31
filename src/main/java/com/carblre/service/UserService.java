@@ -1,25 +1,18 @@
 package com.carblre.service;
 
-import com.carblre.dto.SignUpDTO;
-import com.carblre.dto.userdto.*;
-import com.carblre.repository.interfaces.CounselRepository;
-import com.carblre.repository.model.LawyerDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.carblre.dto.SignUpDTO;
+import com.carblre.dto.userdto.SocialSignUpDTO;
+import com.carblre.dto.userdto.UserDTO;
+import com.carblre.repository.interfaces.CounselRepository;
 import com.carblre.repository.interfaces.UserRepository;
 import com.carblre.repository.model.User;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -147,5 +140,3 @@ public class UserService {
 
 
 }
-
-

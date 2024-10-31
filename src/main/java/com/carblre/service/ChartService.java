@@ -1,15 +1,15 @@
 package com.carblre.service;
 
-import com.carblre.repository.Interface.ChartRepository;
-import com.carblre.repository.model.AccidentDamageCount;
-import com.carblre.repository.model.Chart;
-import com.carblre.repository.model.DeathToYearCount;
-import lombok.Data;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.carblre.repository.Interface.ChartRepository;
+import com.carblre.repository.model.DeathToYearCount;
+
+import lombok.Data;
 
 @Data
 @Service
@@ -21,16 +21,9 @@ public class ChartService {
     private DeathToYearCount deathToYearCount;
 
     @Transactional
-    public List<DeathToYearCount> deathToYearCount() {
-        List<DeathToYearCount> result = chartRepository.deathToYearCount();
-        System.out.println("년도별 사망 및 부상자 통계 : " + result); // 추가된 로그
-        return result;
-    }
-
-    @Transactional
-    public List<AccidentDamageCount> accidentDamageCount() {
-        List<AccidentDamageCount> result = chartRepository.accidentDamageCount();
-        System.out.println("가해자 법규 위반별 사망 및 부상자 통계 : " + result); // 추가된 로그
+    public List<DeathToYearCount> seoulCounts(int regionCode) {
+        List<DeathToYearCount> result = chartRepository.seoulCount(regionCode);
+        System.out.println("2023년 시도 법규위반에 따른 사망, 부상, 중상, 경상자수 : " + result); // 추가된 로그
         return result;
     }
 

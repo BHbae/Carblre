@@ -13,7 +13,7 @@ public class Define {
 
 	// 이미지 관련
 	public static final String UPLOAD_FILE_DERECTORY = "C:\\work_spring\\upload/";
-	public static final int MAX_FILE_SIZE = 1024 * 1024 * 20; // 20MB
+	public static final int MAX_FILE_SIZE = 1024 * 1024 * 100; // 100MB
 
 	// admin
 	public static final String NOT_ADMIN = "관리자 권한이 필요합니다";
@@ -69,7 +69,7 @@ public class Define {
 	// board_length
 	public static final String TOO_LONG_TITLE_LENGTH = "제목은 50자 이내로 작성해주세요";
 	public static final String TOO_LONG_CONTENT_LENGTH = "내용은 3000자 이내로 작성해주세요";
-	
+
 	// cs
 	public static final String CREATED_CS_ERROR = "게시물 업로드중 오류발생";
 	public static final String NOT_CS_AN_USER = "게시물 열람 권한이 없습니다.";
@@ -80,4 +80,5 @@ public class Define {
 	// SignIn
 	public static final String PROFILE_SUSPENDING = "현재 이계정은 정지 상태입니다.";
 
+	public static final String EXISTING_COUNSEL = "선택하신 시간에 이미 예약이 있습니다. 다른 시간을 선택해주세요.";
 }

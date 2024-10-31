@@ -12,43 +12,56 @@
 		order by created_at asc;
 	</select>
 
-	<!--  변호사 예약 상황 -->
-	<select id="findCounselOfLawyerById"  resultType="com.carblre.repository.model.Counsel">
-		SELECT * FROM counsel_request_tb
-		where lawyer_id = #{userId}
-		order by created_at asc;
-	</select>
+	<!--  변호사 전체예약 상황 -->
+    <select id="findCounselOfLawyerById"  resultType="com.carblre.repository.model.Counsel">
+        SELECT * FROM counsel_request_tb
+        where lawyer_id = #{lawyerId}
+        order by created_at asc;
+    </select>
 
-	<!-- 변호사 예약 상태 변경 -->
-	<update id="updateStatusById" >
-		UPDATE counsel_request_tb
-		SET status = #{status}
-		WHERE id = #{id}
-	</update>
+	<!--  변호사 특정예약 상황 -->
+    <select id="findCounselByIdLawyerId"  resultType="com.carblre.repository.model.Counsel">
+        SELECT * FROM counsel_request_tb
+        where lawyer_id = #{lawyerId}
+        and id=${id}
+        order by created_at asc;
+    </select>
 
-	<!-- id값으로 변경된 status 조회 -->
-	<select id="findStatusById"  resultType="com.carblre.repository.model.Counsel">
-		select status
-		from counsel_request_tb
-		where user_id = #{id}
-	</select>
 
-	<!-- 유저 예약 취소 -->
-	<update id="updateUserStatusById" >
-		UPDATE counsel_request_tb
-		SET user_status = #{status}
-		WHERE user_id = #{id}
-	</update>
+    <!-- 변호사 예약 상태 변경 -->
+    <update id="updateStatusById" >
+        UPDATE counsel_request_tb
+        SET status = #{status}
+        WHERE id = #{id}
+    </update>
+
+    <!-- id값으로 변경된 status 조회 -->
+    <select id="findStatusById"  resultType="com.carblre.repository.model.Counsel">
+        select status
+        from counsel_request_tb
+        where user_id = #{userId}
+        and id = #{id}
+
+    </select>
+
+    <!-- 유저 예약 취소 -->
+    <update id="updateUserStatusById" >
+        UPDATE counsel_request_tb
+        SET status = #{status}
+        WHERE user_id = #{userId}
+        and  id=#{id}
+    </update>
 
 	<!-- 유저 예약 신청 -->
 	<insert id="insertCounsel">
-		INSERT INTO counsel_request_tb(user_id, start_time,
-		end_time, content,
-		lawyer_id, status )
+		INSERT INTO counsel_request_tb(
+		user_id, lawyer_id,
+		start_time, end_time, date,
+		content, status, created_at)
 		VALUES (
-		#{userId}, #{startTime},
-		#{endTime}, #{content},
-		#{lawyerId},#{status})
+		#{userId}, #{lawyerId},
+		#{startTime},#{endTime}, #{date},
+		#{content},#{status}, now())
 	</insert>
 
 	<!-- 전체 counsel 조회 -->
@@ -68,4 +81,22 @@
 		  AND lawyer_id = #{lawyer_id}
 	</select>
 
+	<select id="findReservationByLawyerId">
+		SELECT
+		*
+		FROM
+		counsel_request_tb AS c
+		WHERE c.lawyer_id = #{lawyerId}
+	</select>
+
+	<select id="findReservationByLawyerIdAndDate">
+		SELECT
+			*
+		FROM
+			counsel_request_tb AS c
+		WHERE
+		    c.lawyer_id = #{lawyerId}
+			AND
+		    c.date = #{date}
+	</select>
 </mapper>

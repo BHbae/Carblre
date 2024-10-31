@@ -1,10 +1,5 @@
 package com.carblre.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,20 +16,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import com.carblre.dto.CommentDTO;
 import com.carblre.dto.DetailDTO;
 import com.carblre.dto.ReplyCommentDTO;
 import com.carblre.dto.userdto.UserDTO;
+import com.carblre.handler.exception.UnAuthorizedException;
 import com.carblre.repository.model.Post;
 import com.carblre.service.CommentService;
 import com.carblre.service.TestBoardService;
 import com.carblre.service.UserService;
 import com.carblre.utils.Define;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -55,49 +50,34 @@ public class TestBoardController {
 	// -----게시글 상세보기
 	@GetMapping("/detail/{id}")
 	public String detailPage(@PathVariable(name = "id") int postId, Model model) {
-		System.out.println("HERE INT DETAIL PAGE");
-		System.out.println("ID : " + postId);
 		DetailDTO detailDTO = boardService.selectByPostId(postId);
+		System.out.println(detailDTO);
 		model.addAttribute("post", detailDTO);
 
 		return "Board/postDetail";
 	}
 
-	@GetMapping("/download")
-	public StreamingResponseBody stream(HttpServletRequest req, @RequestParam("fileName") String fileName)
-			throws Exception {
-
-		String DIR = "C:\\Users\\KDP\\git\\Carblre\\src\\main\\resources\\static\\uploardVidio/";
-
-		File file = new File(DIR + fileName);
-		final InputStream is = new FileInputStream(file);
-		return os -> {
-			readAndWrite(is, os);
-		};
-	}
-
-	private void readAndWrite(final InputStream is, OutputStream os) throws IOException {
-		byte[] data = new byte[8192]; // 8KB 버퍼
-		int totalRead = 0;
-		int read;
-
-		while ((read = is.read(data)) > 0) {
-			totalRead += read;
-			if (totalRead > 20 * 1024 * 1024) { // 20MB 초과 체크
-				throw new IOException("파일 크기가 20MB를 초과했습니다.");
-			}
-			os.write(data, 0, read);
-		}
-
-		os.flush();
-	}
-
 	// --- 게시글 리스트
 	@GetMapping("/boardList")
-	public String getMethodName(Model model) {
+	public String getMethodName(Model model, @RequestParam(name = "page", defaultValue = "1") int page,
+			@RequestParam(name = "size", defaultValue = "5") int limit) {
 
-		List<Post> boards = boardService.findAllBoards();
+		int count = boardService.boardAllCount();
 
+		// 총페이지수
+		int totalPages = (int) Math.ceil((double) count / (double) limit);
+
+		int offset = (page - 1) * limit;
+		if (page <= 1) {
+			page = 1;
+		} else if (page >= totalPages) {
+			page = totalPages;
+		}
+
+		List<Post> boards = boardService.findAllBoards(limit, offset);
+
+		model.addAttribute("currentPage", page);
+		model.addAttribute("totalPages", totalPages);
 		model.addAttribute("boards", boards);
 
 		return "/Board/BoardList";
@@ -106,21 +86,24 @@ public class TestBoardController {
 
 	// --- 게시글 작성
 	@GetMapping("/createBoard")
-	public String test() {
+	public String test(@SessionAttribute(name = Define.PRINCIPAL) UserDTO dto) {
+		if (dto == null) {
+			throw new UnAuthorizedException(Define.ENTER_YOUR_LOGIN, HttpStatus.UNAUTHORIZED);
+		}
 
 		return "/Board/createPost";
 	}
 
 	@PostMapping("/savePost")
 	// TODO - 세션값 받아와서 User_id 셋 해야됨
-	public String postMethodName(@RequestParam(name = "status") int status,
-			@RequestParam(name = "category") String category, @RequestParam(name = "title") String title,
-			@RequestParam(name = "content") String content,
-			@RequestParam(name = "uploardFileName") MultipartFile vidio) {
+	public String postMethodName(@RequestParam(name = "category") String category,
+			@RequestParam(name = "title") String title, @RequestParam(name = "content") String content,
+			@RequestParam(name = "uploardFileName") MultipartFile vidio,
+			@SessionAttribute(name = Define.PRINCIPAL) UserDTO dto) {
 
-		boardService.savePost(status, category, title, content, vidio);
+		boardService.savePost(dto.getId(), category, title, content, vidio);
 
-		return "redirect:/createBoard";
+		return "redirect:/board/boardList";
 	}
 	// --- END 게시글 작성 로직
 

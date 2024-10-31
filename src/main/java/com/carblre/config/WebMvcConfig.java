@@ -24,7 +24,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/video/**").addResourceLocations(
-				"file:\\C:\\spring_jpa_work_class\\Carblre\\src\\main\\resources\\static\\uploardVidio/");
+				"file:\\C:\\Users\\KDP\\git\\Carblre\\src\\main\\resources\\static\\uploardVidio/");
 
 	}
 

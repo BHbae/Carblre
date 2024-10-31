@@ -1,16 +1,14 @@
 package com.carblre.repository.Interface;
 
-import com.carblre.repository.model.AccidentDamageCount;
-import com.carblre.repository.model.DeathToYearCount;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
-import java.util.List;
+import com.carblre.repository.model.DeathToYearCount;
 
 @Mapper
 public interface ChartRepository {
 
-    public List<DeathToYearCount> deathToYearCount();
-
-    public List<AccidentDamageCount> accidentDamageCount();
+    public List<DeathToYearCount> seoulCount(int regionCode);
 
 }

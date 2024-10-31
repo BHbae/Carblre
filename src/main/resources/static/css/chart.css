@@ -2,14 +2,15 @@ header h1 {
     color: red;
 }
 
-#accidentTypeChart {
-    border: 1px solid #000;
+#myChart {
     width: 700px !important;
     height: 700px !important;
 }
 
-#yearCharts {
-    border: 1px solid #000;
+#myCharts {
     width: 900px !important;
     height: 600px !important;
+}
+canvas{
+    height: 700px !important;
 }

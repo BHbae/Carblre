@@ -73,6 +73,10 @@ h1.sub--title{
     box-sizing: border-box;
     padding: 50px;
 }
+.user--form.prih2{
+    position: relative;
+    font-family: 'Spoqa Han Sans', sans-serif;
+}
 .prih2 {
     margin-bottom: 80px;
     font-size: 48px;

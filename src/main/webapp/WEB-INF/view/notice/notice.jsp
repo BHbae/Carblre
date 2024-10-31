@@ -12,9 +12,9 @@
 		<div style="border-bottom: 1px solid #bababa;">
 			<div class="inner--container">
 				<ul class="sub--top--menu">
-					<li><a href="/notice/notice">의뢰자</a></li>
+					<li><a href="/board/boardList">의뢰자</a></li>
 					<li><a href="/aiounseling">AI 간편상담</a></li>
-					<li><a href="/reservation/reservation">변호사</a></li>
+					<li><a href="/lawyer/lawyers">변호사</a></li>
 					<li class="subtop--active"><a href="/notice/notice">공지사항</a></li>
 					<li><a href="/cs/cs">고객센터</a></li>
 				</ul>
@@ -29,8 +29,8 @@
 
 			<div class="search-container" style="display: flex; justify-content: center; margin-bottom: 20px;">
 				<form action="/notice/search" method="get" style="display: flex; align-items: center; width: 100%;">
-					<input type="text" name="query" placeholder="검색어를 입력하세요" value="${query}" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; flex: 1; margin-right: 5px;"> <select name="type"
-						style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; margin-right: 5px;">
+					<input type="text" name="query" placeholder="검색어를 입력하세요" value="${query}" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; flex: 1; margin-right: 5px;">
+					<select name="type" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; margin-right: 5px;">
 						<option value="title" <c:if test="${type == 'title'}">selected</c:if>>제목</option>
 						<option value="content" <c:if test="${type == 'content'}">selected</c:if>>내용</option>
 						<option value="all" <c:if test="${type == 'all'}">selected</c:if>>제목+내용</option>
@@ -52,23 +52,29 @@
 					<c:forEach var="notice" items="${noticeList}">
 						<tr onclick="location.href='/notice/${notice.id}'" style="cursor: pointer;">
 							<td>${notice.id}</td>
-							<td><c:choose>
+							<td>
+								<c:choose>
 									<c:when test="${fn:length(notice.title) > 20}">
 										${fn:substring(notice.title, 0, 20)}...
 									</c:when>
 									<c:otherwise>
 										${notice.title}
 									</c:otherwise>
-								</c:choose></td>
-							<td><c:choose>
+								</c:choose>
+							</td>
+							<td>
+								<c:choose>
 									<c:when test="${fn:length(notice.content) > 50}">
 										${fn:substring(notice.content, 0, 50)}...
 									</c:when>
 									<c:otherwise>
 										${notice.content}
 									</c:otherwise>
-								</c:choose></td>
-							<td><fmt:formatDate value="${notice.createdAt}" pattern="yyyy-MM-dd HH:mm" /></td>
+								</c:choose>
+							</td>
+							<td>
+								<fmt:formatDate value="${notice.createdAt}" pattern="yyyy-MM-dd HH:mm" />
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>

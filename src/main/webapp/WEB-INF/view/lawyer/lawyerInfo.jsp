@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ include file="../layout/header.jsp"%>
 <link rel="stylesheet" href="/css/lawyerInfo.css">
 
@@ -46,43 +47,60 @@
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>상담 예약</h2>
-        <form>
+			<form id="reservationForm" onsubmit="return openNewWindow();">
+            <input type="hidden" name="lawyerId" value="${lawyer.userId}">
+
             <label for="date">날짜 선택:</label>
-            <input type="date" id="date" name="date" required oninput="formatDate(this)">
+            <input type="date" id="date" name="date" required="required" onchange="updateAvailableTimes()">
 
+            <label for="startTime">시작 시간 선택:</label>
+            <select id="startTime" name="startTime">
+                <c:forEach var="i" begin="9" end="17">
+                    <c:set var="isAvailable" value="true" />
 
-            <label for="startTimeHour">시작 시간 선택:</label>
-            <select id="startTimeHour" name="startTimeHour">
-                <% for (int i = 0; i < 24; i++) { %>
-                <option value="<%= i %>"><%= String.format("%02d", i) %></option>
-                <% } %>
+                    <!-- Counsel 데이터에 대해 시간 확인 -->
+                    <c:forEach var="counselItem" items="${counsel}">
+                        <c:if test="${counselItem.date == date}">
+                            <c:if test="${i >= counselStartHour && i < counselEndHour}">
+                                <c:set var="isAvailable" value="false" />
+                            </c:if>
+                        </c:if>
+                    </c:forEach>
+
+                    <!-- 시간이 사용 가능한 경우에만 옵션 추가 -->
+                    <c:if test="${isAvailable}">
+                        <option value="${i}"><fmt:formatNumber value="${i}" pattern="00" /></option>
+                    </c:if>
+                </c:forEach>
             </select>
             시
-            <select id="startTimeMinute" name="startTimeMinute">
-                <% for (int i = 0; i <= 50; i += 10) { %>
-                <option value="<%= i %>"><%= String.format("%02d", i) %></option>
-                <% } %>
-            </select>
-            분
 
-            <label for="endTimeHour">종료 시간 선택:</label>
-            <select id="endTimeHour" name="endTimeHour">
-                <% for (int i = 0; i < 24; i++) { %>
-                <option value="<%= i %>"><%= String.format("%02d", i) %></option>
-                <% } %>
+            <label for="endTime">종료 시간 선택:</label>
+            <select id="endTime" name="endTime">
+                <c:forEach var="i" begin="10" end="18">
+                    <c:set var="isAvailable" value="true" />
+
+                    <!-- Counsel 데이터에 대해 시간 확인 -->
+                    <c:forEach var="counselItem" items="${counsel}">
+                        <c:if test="${counselItem.date == date}">
+                            <c:if test="${i >= counselStartHour && i < counselEndHour}">
+                                <c:set var="isAvailable" value="false" />
+                            </c:if>
+                        </c:if>
+                    </c:forEach>
+
+                    <!-- 시간이 사용 가능한 경우에만 옵션 추가 -->
+                    <c:if test="${isAvailable}">
+                        <option value="${i}"><fmt:formatNumber value="${i}" pattern="00" /></option>
+                    </c:if>
+                </c:forEach>
             </select>
             시
-            <select id="endTimeMinute" name="endTimeMinute">
-                <% for (int i = 0; i <= 50; i += 10) { %>
-                <option value="<%= i %>"><%= String.format("%02d", i) %></option>
-                <% } %>
-            </select>
-            분
 
-            <label for="details">상담 내용:</label>
-            <textarea id="details" name="details" rows="4" cols="50" placeholder="상담 내용을 입력하세요" required></textarea>
+            <label for="content">상담 내용:</label>
+            <textarea id="content" name="content" rows="4" cols="50" placeholder="상담 내용을 입력하세요" required></textarea>
 
-            <button type="submit" onclick="sendReservation()">예약 제출</button>
+            <button type="submit">예약 제출</button>
         </form>
     </div>
 </div>
@@ -90,6 +108,7 @@
 <%@ include file="../layout/footer.jsp"%>
 
 <script>
+
     // 모달 열기
     function openModal() {
         document.getElementById("reservationModal").style.display = "block";
@@ -125,50 +144,77 @@
         }
     });
 
-    function sendReservation()
-    {
-        // 시작 시간(Hour)
-        const startTimeHour = document.getElementById('startTimeHour').value;
-        // 시작 분(Minute)
-        const startTimeMinute = document.getElementById('startTimeMinute').value;
-        // 시작 시간(Hour + Minute)
-        const startTime = startTimeHour + startTimeMinute;
+    // 오늘 날짜를 YYYY-MM-DD 형식으로 가져오기
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
+    const day = String(today.getDate()).padStart(2, '0');
+    const formattedDate = year + '-' + month + '-' + day;
 
-        // 종료 시간(Hour)
-        const endTimeHour = document.getElementById('endTimeHour').value;
-        // 종료 분(Minute)
-        const endTimeMinute = document.getElementById('endTimeMinute').value;
-        // 종료 시간(Hour + Minute)
-        const endTime = endTimeHour + endTimeMinute;
+    // min 속성 설정
+    document.getElementById('date').setAttribute('min', formattedDate);
 
-        // 상담 내용
-        const details = document.getElementById('details');
+    function updateAvailableTimes() {
+        const date = document.getElementById('date').value;
+        const lawyerId = document.querySelector('input[name="lawyerId"]').value; // lawyerId를 hidden input 또는 다른 방법으로 가져옴
 
-        const requestData = {
-            <%--"laywerId" : ${dtoList.}--%>
-            "startTime" : startTime,
-            "endTime" : endTime,
-            "details" : details
-        }
-
-        fetch('http://localhost:8080/counsel/reservation', {
-            method: 'POST',
-            body: JSON.stringify(requestData)
-        })
-            .then(response => {
-                if(!response.ok) {
-                    throw new Error("상담 예약 실패 : 서버 오류 발생");
-                }
-                return response.json();
-            })
+        // 날짜가 선택되지 않았으면 종료
+        if (!date || !lawyerId) return;
+        console.log('날짜', date);
+        console.log('변호사 아이디', ${lawyer.userId});
+        fetch('/counsel/api/available-times?date=' + date + '&lawyerId=' + ${lawyer.userId})
+            .then(response => response.json())
             .then(data => {
                 console.log(data);
-                alert(data.message);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+                const startTimeSelect = document.getElementById('startTime');
+                const endTimeSelect = document.getElementById('endTime');
+                startTimeSelect.innerHTML = ''; // 기존 옵션 삭제
+                endTimeSelect.innerHTML = '';
 
+                // 고정된 시간대 옵션 추가
+                for (let i = 9; i <= 17; i++) {
+                    const option = document.createElement('option');
+                    option.value = i; // 시간 설정
+                    option.textContent = i;
+                    // 사용 가능한 경우에만 추가
+                    if (data.availableTimes.includes(i)) {
+                        startTimeSelect.appendChild(option); // 새 옵션 추가
+                    }
+                }
+                for (let i = 10; i <= 18; i++) {
+                    const option = document.createElement('option');
+                    option.value = i; // 시간 설정
+                    option.textContent = i;
+                    // 사용 가능한 경우에만 추가
+                    if (data.availableTimes.includes(i)) {
+                        endTimeSelect.appendChild(option);
+                    }
+                }
+            })
+            .catch(error => console.error('Error fetching available times:', error));
+    }
+    
+    function openNewWindow() {
+        // 폼 데이터를 수집
+        var lawyerId = document.querySelector('input[name="lawyerId"]').value;
+        var date = document.getElementById("date").value;
+        var startTime = document.getElementById("startTime").value;
+        var endTime = document.getElementById("endTime").value;
+        var content = document.getElementById("content").value;
+		
+        if (startTime >= endTime) {
+            alert("시작 시간이 종료 시간보다 클 수 없습니다.");
+            return false; // 함수 종료
+        }
+        
+        // 새로운 URL 패치 변수
+        var url = "/toss/payment/" + lawyerId + "/" + date + "/" + startTime + "/" + endTime + "/" + content ;
+        var windowFeatures = "width=700,height=700,resizable=yes,scrollbars=yes"; // 윈도우 사이즈
+
+        window.open(url, "_blank", windowFeatures);
+        
+        // 이벤트 방지
+        return false;
     }
 </script>
 
