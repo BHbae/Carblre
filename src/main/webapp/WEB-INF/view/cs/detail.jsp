@@ -28,9 +28,9 @@
 		<div class="sub--content">
 			<h2 class="prih2">고객센터</h2>
 			<div class="board--info">
-				<div class="board--title">제목</div>
+				<div class="board--title">${dto.title}</div>
 				<div class="board--detail">
-					<span>작성자: ${dto.userName}</span> <span>작성일: ${dto.requestTime}</span>
+					<span>작성자: ${dto.userName}</span> |<span>작성일: ${dto.requestTime}</span>
 				</div>
 			</div>
 			<div class="board--content">

@@ -24,6 +24,47 @@
 		customer_service_tb
 	</select>
 
+	<!-- 제목으로 검색 -->
+	<select id="findByTitle" resultType="com.carblre.dto.CsAllDTO">
+		SELECT * FROM customer_service_tb
+		WHERE title LIKE CONCAT('%', #{title}, '%')
+		ORDER BY id DESC
+		LIMIT #{limit} OFFSET #{offset}
+	</select>
+
+	<select id="countByTitle" resultType="int">
+		SELECT COUNT(*) FROM customer_service_tb
+		WHERE title LIKE CONCAT('%', #{title}, '%')
+	</select>
+
+	<!-- 내용으로 검색 -->
+	<select id="findByContent" resultType="com.carblre.dto.CsAllDTO">
+		SELECT * FROM customer_service_tb
+		WHERE request LIKE CONCAT('%', #{content}, '%')
+		ORDER BY id DESC
+		LIMIT #{limit} OFFSET #{offset}
+	</select>
+
+	<select id="countByContent" resultType="int">
+		SELECT COUNT(*) FROM customer_service_tb
+		WHERE request LIKE CONCAT('%', #{content}, '%')
+	</select>
+
+	<!-- 제목과 내용 모두 검색 -->
+	<select id="findByAll" resultType="com.carblre.dto.CsAllDTO">
+		SELECT * FROM customer_service_tb
+		WHERE title LIKE CONCAT('%', #{query}, '%')
+		OR request LIKE CONCAT('%', #{query}, '%')
+		ORDER BY id DESC
+		LIMIT #{limit} OFFSET #{offset}
+	</select>
+
+	<select id="countByAll" resultType="int">
+		SELECT COUNT(*) FROM customer_service_tb
+		WHERE title LIKE CONCAT('%', #{query}, '%')
+		OR request LIKE CONCAT('%', #{query}, '%')
+	</select>
+
 	<select
 		id="findById" resultType="com.carblre.dto.CsFindByIdDTO">
 		SELECT cs.id, u.id AS user_id,

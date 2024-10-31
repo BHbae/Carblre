@@ -55,6 +55,39 @@ public class CsController {
 		return "cs/cs";
 	}
 
+	// 검색 기능 추가
+	@GetMapping("/search")
+	public String searchNotices(@RequestParam(name = "query") String query,
+			@RequestParam(name = "type", defaultValue = "all") String type,
+			@RequestParam(name = "page", defaultValue = "1") int page,
+			@RequestParam(name = "size", defaultValue = "10") int size, Model model) {
+
+		List<CsAllDTO> csList;
+		int count;
+
+		if ("title".equals(type)) {
+			csList = csService.searchByTitle(query, page, size);
+			count = csService.countCsByTitle(query);
+		} else if ("content".equals(type)) {
+			csList = csService.searchByContent(query, page, size);
+			count = csService.countCsByContent(query);
+		} else {
+			csList = csService.searchByAll(query, page, size);
+			count = csService.countCsByAll(query);
+		}
+
+		int totalPages = (int) Math.ceil((double) count / size);
+
+		model.addAttribute("csList", csList);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("size", size);
+		model.addAttribute("query", query);
+		model.addAttribute("type", type);
+
+		return "cs/cs";
+	}
+
 	/**
 	 * 고객센터 글작성 폼
 	 * 
