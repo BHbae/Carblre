@@ -133,15 +133,6 @@ public class CounselController {
         // 기존 예약 목록을 조회하여 중복 체크
         List<CounselDTO> existingReservations = counselService.getCounselReservationByLawyerId(counselDTO.getLawyerId());
 
-        // 예약 일 체크
-        LocalDate today = LocalDate.now();
-
-        // YY-MM-DD 형식으로 포맷 설정
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-        // 포맷에 맞게 날짜를 문자열로 변환
-        String formattedDate = today.format(formatter);
-
         // 새로운 예약의 시작과 끝 시간을 LocalTime으로 변환
         LocalTime newStartTime = LocalTime.parse(startTimeFormatted); // :00이 이미 추가됨
         LocalTime newEndTime = LocalTime.parse(endTimeFormatted); // :00이 이미 추가됨
@@ -164,7 +155,7 @@ public class CounselController {
                 .userId(principal.getId())
                 .startTime(startTime)
                 .endTime(endTime)
-                .date(formattedDate)
+                .date(date)
                 .content(counselDTO.getContent())
                 .status(0) // 초기 상태 설정
                 .build();
