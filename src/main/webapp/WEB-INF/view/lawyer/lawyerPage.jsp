@@ -41,7 +41,8 @@
                         <p> 소개: ${lawyer.introduction}</p>
                         <p> 프로필 사진: </p>
                         <img src="${lawyer.uploadProfileName}" alt="Profile Image" />
-                        <p> 지정 10분 상담가격: ${lawyer.counselingAmount}</p>
+                        <p  > 지정 상담가격: ${lawyer.counselingAmount}</p>
+                        <button onclick="amountUpdate()"> 수정하기</button>
                 <div class="btn btn--wrap">
                     <div id="mypage--edit">
                         <p class="update-info" onclick="infoUpdate()"> 개인정보 수정 </p>
@@ -73,6 +74,10 @@
     function infoUpdatePass() {
         window.location.href = "/user/infoUpdatePass";
     }
+      function amountUpdate() {
+            window.open("/lawyer/amountUpdate", "상담 가격", "width=600,height=400");
+    }
+    amountUpdate
 </script>
 
 <%@ include file="../layout/footer.jsp" %>

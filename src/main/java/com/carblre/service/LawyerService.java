@@ -145,5 +145,13 @@ public class LawyerService {
 
     }
 
+    /**
+     * 상담가 수정
+     * @param id
+     * @param amount
+     */
+    public int updateAmount(int id, int amount) {
 
+        return lawyerRepository.updateAmount(id,amount);
+    }
 }

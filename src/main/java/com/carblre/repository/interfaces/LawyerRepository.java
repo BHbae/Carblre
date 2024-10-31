@@ -24,4 +24,7 @@ public interface LawyerRepository {
 
     // 변호사 전체조회
     List<UserDTO> findAllLawyer();
+
+    // 상담가 수정
+    int updateAmount(@Param("id")int id,@Param("amount") int amount);
 }

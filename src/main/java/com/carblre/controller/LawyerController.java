@@ -14,14 +14,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -120,5 +121,33 @@ public class LawyerController {
         model.addAttribute("counselList",counsel);
 
         return  "counsel/checkLawyerCounsel";
+    }
+
+    @GetMapping("amountUpdate")
+    public String amountPage(Model model){
+        UserDTO userDTO = (UserDTO) session.getAttribute("principal"); //dto변경해야함
+
+        com.carblre.dto.userdto.LawyerDetailDTO dto=lawyerService.findLawyerInfoById(userDTO.getId());
+        System.out.println("dto"+dto);
+
+        model.addAttribute("dto",dto);
+
+        return "lawyer/amountUpdate";
+    }
+
+    @PostMapping("amountUpdate")
+    public ResponseEntity<Map<String, Object>> amountProc(@RequestBody Map<String, String> reqData ){
+        UserDTO userDTO = (UserDTO) session.getAttribute("principal");
+        int amount=Integer.parseInt( reqData.get("counselingAmount"));
+        int result= lawyerService.updateAmount(userDTO.getId(),amount);
+        Map<String, Object> response = new HashMap<>();
+        if(result== 1){
+            response.put("status", 1);  // 성공
+            response.put("message", "변경되었습니다");
+        }else{
+            response.put("status", 0);  // 실패
+            response.put("message", "변경에 실패하였습니다");
+        }
+        return ResponseEntity.ok(response);
     }
 }
