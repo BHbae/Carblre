@@ -74,7 +74,8 @@ public class CounselController {
     }
 
     /**
-     *  유저의 예약 취소
+     * 유저의 예약 취소
+     *
      * @param reqData
      * @return
      */
@@ -88,8 +89,9 @@ public class CounselController {
         Map<String, Object> response = new HashMap<>();
         int result = counselService.updateUserStatusById(userDTO.getId(),status,id);// 패스워드 확인
         MyCounselDTO counselDTO=counselService.findMyStatusById(userDTO.getId(),id);
+
         System.out.println("result" + result);
-        if (result==1) {
+        if (result == 1) {
             response.put("success", true);
             response.put("newStatus", counselDTO.getStatus());
         } else {
@@ -101,10 +103,11 @@ public class CounselController {
 
 
     @GetMapping("/reservation")
-    public String reservation(Model model){
-        List<LawyerReservationDTO> lawyerList= counselService.findReservation();
-        System.out.println(lawyerList);;
-        model.addAttribute("dtoList",lawyerList);
+    public String reservation(Model model) {
+        List<LawyerReservationDTO> lawyerList = counselService.findReservation();
+        System.out.println(lawyerList);
+        ;
+        model.addAttribute("dtoList", lawyerList);
         return "counsel/counselReservation";
     }
 
@@ -119,17 +122,29 @@ public class CounselController {
 
         // 날짜와 시간을 조합하여 timestamp 형식으로 설정
         String date = counselDTO.getDate();
-        String startTime = String.format("%s %s:00", date, counselDTO.getStartTime());
-        String endTime = String.format("%s %s:00", date, counselDTO.getEndTime());
+
+        // startTime과 endTime을 "HH:mm" 형식으로 변환
+        String startTimeFormatted = String.format("%02d:00", Integer.parseInt(counselDTO.getStartTime()));
+        String endTimeFormatted = String.format("%02d:00", Integer.parseInt(counselDTO.getEndTime()));
+
+        String startTime = String.format("%s %s", date, startTimeFormatted);
+        String endTime = String.format("%s %s", date, endTimeFormatted);
 
         // 기존 예약 목록을 조회하여 중복 체크
         List<CounselDTO> existingReservations = counselService.getCounselReservationByLawyerId(counselDTO.getLawyerId());
 
-        // 새로운 예약의 시작과 끝 시간을 LocalTime으로 변환
-        LocalTime newStartTime = LocalTime.parse(counselDTO.getStartTime() + ":00"); // :00 추가
-        LocalTime newEndTime = LocalTime.parse(counselDTO.getEndTime() + ":00"); // :00 추가
+        // 예약 일 체크
+        LocalDate today = LocalDate.now();
 
-        // 중복 체크
+        // YY-MM-DD 형식으로 포맷 설정
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        // 포맷에 맞게 날짜를 문자열로 변환
+        String formattedDate = today.format(formatter);
+
+        // 새로운 예약의 시작과 끝 시간을 LocalTime으로 변환
+        LocalTime newStartTime = LocalTime.parse(startTimeFormatted); // :00이 이미 추가됨
+        LocalTime newEndTime = LocalTime.parse(endTimeFormatted); // :00이 이미 추가됨
 
         // 중복 체크
         for (CounselDTO existingCounsel : existingReservations) {
@@ -149,6 +164,7 @@ public class CounselController {
                 .userId(principal.getId())
                 .startTime(startTime)
                 .endTime(endTime)
+                .date(formattedDate)
                 .content(counselDTO.getContent())
                 .status(0) // 초기 상태 설정
                 .build();
@@ -161,5 +177,41 @@ public class CounselController {
         }
 
         return "redirect:/lawyer/lawyerInfo/" + counselDTO.getLawyerId();
+    }
+    @GetMapping("/api/available-times")
+    @ResponseBody
+    public ResponseEntity<Map<String, Object>> getAvailableTimes(@RequestParam String date, @RequestParam int lawyerId) {
+        List<Integer> availableTimes = new ArrayList<>();
+
+        // 9시부터 17시까지의 시간 리스트
+        for (int i = 9; i <= 17; i++) {
+            boolean isAvailable = true;
+
+            // 기존 예약 목록 조회
+            List<CounselDTO> existingReservations = counselService.getCounselReservationByLawyerIdAndDate(lawyerId, date);
+
+            for (CounselDTO existing : existingReservations) {
+                // 기존 예약의 시작과 끝 시간 파싱
+                LocalTime existingStartTime = LocalTime.parse(existing.getStartTime().substring(11, 16));
+                LocalTime existingEndTime = LocalTime.parse(existing.getEndTime().substring(11, 16));
+                LocalTime newStartTime = LocalTime.of(i, 0); // 새 예약 시작 시간
+                LocalTime newEndTime = LocalTime.of(i + 1, 0); // 새 예약 끝 시간
+
+                // 겹치는 시간 확인
+                if ((newStartTime.isBefore(existingEndTime) && newEndTime.isAfter(existingStartTime)) ||
+                        (newStartTime.equals(existingStartTime) || newEndTime.equals(existingEndTime))) {
+                    isAvailable = false;
+                    break;
+                }
+            }
+
+            if (isAvailable) {
+                availableTimes.add(i); // 사용 가능한 시간 추가
+            }
+        }
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("availableTimes", availableTimes);
+        return ResponseEntity.ok(response);
     }
 }

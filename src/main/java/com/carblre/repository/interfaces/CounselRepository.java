@@ -38,9 +38,11 @@ public interface CounselRepository {
     // 변호사 예약 정보 조회
     List<LawyerReservationDTO> findReservation();
 
-
+    // 최초 로딩 시 아이디로 불러오기
     List<CounselDTO> findReservationByLawyerId(@Param("lawyerId") int lawyerId);
 
+    // 비동기 함수 컨택 시 예약 시간 불러오기
+    List<CounselDTO> findReservationByLawyerIdAndDate(@Param("lawyerId") int lawyerId, @Param("date") String date);
 
     List<LawyerReservationDTO> findReservationsByDateTime(
             @Param("year") int year,

@@ -1,235 +1,235 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ include file="../layout/header.jsp"%>
+<link rel="stylesheet" href="/css/lawyerInfo.css">
 
 <div class="wrap">
-	<!-- 상단 이미지 & 서브 페이지 이동 START -->
-	<section class="sub--section">
-		<div class="section--background" id="notice--background">
-			<div class="inner--container">
-				<sub class="eng">Lawyer</sub>
-				<h1 class="sub--title">변호사</h1>
-			</div>
-		</div>
-		<div style="border-bottom: 1px solid #bababa;">
-			<div class="inner--container">
-				<ul class="sub--top--menu">
-					<li><a href="/board/boardList">의뢰자</a></li>
-					<li><a href="/aiounseling">AI 간편상담</a></li>
-					<li class="subtop--active"><a href="/lawyer/lawyers">변호사</a></li>
-					<li><a href="/notice/notice">공지사항</a></li>
-					<li><a href="/cs/cs">고객센터</a></li>
-				</ul>
-			</div>
-		</div>
-	</section>
-	<!-- 상단 이미지 & 서브 페이지 이동 END -->
+    <!-- 상단 이미지 & 서브 페이지 이동 START -->
+    <section class="sub--section">
+        <div class="section--background" id="notice--background">
+            <div class="inner--container">
+                <sub class="eng">Lawyer</sub>
+                <h1 class="sub--title">변호사</h1>
+            </div>
+        </div>
+        <div style="border-bottom: 1px solid #bababa;">
+            <div class="inner--container">
+                <ul class="sub--top--menu">
+                    <li><a href="/board/boardList">의뢰자</a></li>
+                    <li><a href="/aiounseling">AI 간편상담</a></li>
+                    <li class="subtop--active"><a href="/lawyer/lawyers">변호사</a></li>
+                    <li><a href="/notice/notice">공지사항</a></li>
+                    <li><a href="/cs/cs">고객센터</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- 상단 이미지 & 서브 페이지 이동 END -->
 
-	<div class="inner--container">
-		<div class="sub--content">
-			<h2 class="prih2">변호사 정보</h2>
+    <div class="inner--container">
+        <div class="sub--content">
+            <h2 class="prih2"> 변호사 정보 </h2>
 
-			<div class="lawyer-details">
-				<img src="/image/lawyer/${lawyer.uploadProfileName}"
-					alt="Profile Image" style="width: 20%; height: auto;" />
-				<div class="lawyer-info">
-					<p class="lawyer-name">
-						<strong>${lawyer.userName}</strong> 변호사
-					</p>
-					<br>
-					<p class="lawyer-Introduction eng">
-						<strong>Introduction</strong>
-					<p>
-					<p>${lawyer.introduction}</p>
-					<br> <br>
-					<p>
-						<strong>법무법인 :</strong> ${lawyer.lawFirm}
-					</p>
-					<p>
-						<strong>사무실 전화 :</strong> ${lawyer.officeNum}
-					</p>
-					<br>
+            <div class="lawyer-details">
+                <img src="/image/lawyer/${lawyer.uploadProfileName}" alt="Profile Image" style="width: 20%; height: auto;" />
+                <p>${lawyer.userName} <strong> 변호사</strong></p>
+                <p><strong>소개:</strong> ${lawyer.introduction}</p>
+                <p><strong>법무법인:</strong> ${lawyer.lawFirm}</p>
+                <p><strong>사무실 전화:</strong> ${lawyer.officeNum}</p>
+            </div>
+            <button onclick="openModal()">상담예약</button>
+        </div>
+    </div>
+</div>
 
-					<button onclick="openModal()" class="appointment-button">상담예약</button>
-				</div>
-			</div>
-		</div>
-	</div>
+<!-- 예약 모달 -->
+<div id="reservationModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>상담 예약</h2>
+        <form action="/counsel/reservation" method="post">
+            <input type="hidden" name="lawyerId" value="${lawyer.userId}">
 
-	<!-- 예약 모달 -->
-	<div id="reservationModal" class="modal">
-		<div class="modal-content">
-			<div>
-				<span class="close" onclick="closeModal()">&times;</span>
-				<h2 style="margin-bottom: 20px;">상담 예약</h2>
-			</div>
-			<form id="reservationForm" onsubmit="return openNewWindow();">
-				<input type="hidden" name="lawyerId" value="${lawyer.userId}">
+            <label for="date">날짜 선택:</label>
+            <input type="date" id="date" name="date" required="required" onchange="updateAvailableTimes()">
 
-				<label for="date" style="display: block; margin-bottom: 10px;">날짜
-					선택:</label> <input type="date" id="date" name="date" required="required"
-					style="margin-bottom: 10px;"> <label for="startTime">시작
-					시간 선택:</label> <select id="startTime" name="startTime">
-					<c:forEach var="i" begin="9" end="17">
-						<c:set var="isAvailable" value="true" />
+            <label for="startTime">시작 시간 선택:</label>
+            <select id="startTime" name="startTime">
+                <c:forEach var="i" begin="9" end="17">
+                    <c:set var="isAvailable" value="true" />
 
-						<!-- Counsel 데이터에 대해 시간 확인 -->
-						<c:forEach var="counselItem" items="${counsel}">
-							<c:if test="${counselItem.date == date}">
-								<c:if test="${i >= counselStartHour && i < counselEndHour}">
-									<c:set var="isAvailable" value="false" />
-								</c:if>
-							</c:if>
-						</c:forEach>
+                    <!-- Counsel 데이터에 대해 시간 확인 -->
+                    <c:forEach var="counselItem" items="${counsel}">
+                        <c:if test="${counselItem.date == date}">
+                            <c:if test="${i >= counselStartHour && i < counselEndHour}">
+                                <c:set var="isAvailable" value="false" />
+                            </c:if>
+                        </c:if>
+                    </c:forEach>
 
-						<!-- 시간이 사용 가능한 경우에만 옵션 추가 -->
-						<c:if test="${isAvailable}">
-							<option value="${i}"><fmt:formatNumber value="${i}"
-									pattern="00" /></option>
-						</c:if>
-					</c:forEach>
-				</select> 시 / <label for="endTime">종료 시간 선택:</label> <select id="endTime"
-					name="endTime">
-					<c:forEach var="i" begin="10" end="18">
-						<c:set var="isAvailable" value="true" />
+                    <!-- 시간이 사용 가능한 경우에만 옵션 추가 -->
+                    <c:if test="${isAvailable}">
+                        <option value="${i}"><fmt:formatNumber value="${i}" pattern="00" /></option>
+                    </c:if>
+                </c:forEach>
+            </select>
+            시
 
-						<!-- Counsel 데이터에 대해 시간 확인 -->
-						<c:forEach var="counselItem" items="${counsel}">
-							<c:if test="${counselItem.date == date}">
-								<c:if test="${i >= counselStartHour && i < counselEndHour}">
-									<c:set var="isAvailable" value="false" />
-								</c:if>
-							</c:if>
-						</c:forEach>
+            <label for="endTime">종료 시간 선택:</label>
+            <select id="endTime" name="endTime">
+                <c:forEach var="i" begin="10" end="18">
+                    <c:set var="isAvailable" value="true" />
 
-						<!-- 시간이 사용 가능한 경우에만 옵션 추가 -->
-						<c:if test="${isAvailable}">
-							<option value="${i}"><fmt:formatNumber value="${i}"
-									pattern="00" /></option>
-						</c:if>
-					</c:forEach>
-				</select> 시 <label for="content" style="display: block; margin-top: 10px;">상담
-					내용:</label>
-				<textarea id="content" name="content" rows="4" cols="50"
-					placeholder="상담 내용을 입력하세요" required></textarea>
+                    <!-- Counsel 데이터에 대해 시간 확인 -->
+                    <c:forEach var="counselItem" items="${counsel}">
+                        <c:if test="${counselItem.date == date}">
+                            <c:if test="${i >= counselStartHour && i < counselEndHour}">
+                                <c:set var="isAvailable" value="false" />
+                            </c:if>
+                        </c:if>
+                    </c:forEach>
 
-				<div class="btn btn--wrap">
-					<div id="enter--button">
-						<button type="submit">예약 제출</button>
-					</div>
-				</div>
+                    <!-- 시간이 사용 가능한 경우에만 옵션 추가 -->
+                    <c:if test="${isAvailable}">
+                        <option value="${i}"><fmt:formatNumber value="${i}" pattern="00" /></option>
+                    </c:if>
+                </c:forEach>
+            </select>
+            시
 
-			</form>
-		</div>
-	</div>
+            <label for="content">상담 내용:</label>
+            <textarea id="content" name="content" rows="4" cols="50" placeholder="상담 내용을 입력하세요" required></textarea>
 
-	<%@ include file="../layout/footer.jsp"%>
+            <button type="submit">예약 제출</button>
+        </form>
+    </div>
+</div>
 
-	<script>
-		// 모달 열기
-		function openModal() {
-			document.getElementById("reservationModal").style.display = "block";
-		}
+<%@ include file="../layout/footer.jsp"%>
 
-		// 모달 닫기
-		function closeModal() {
-			document.getElementById("reservationModal").style.display = "none";
-		}
+<script>
 
-		// 모달 외부 클릭시 닫기
-		window.onclick = function(event) {
-			if (event.target == document.getElementById("reservationModal")) {
-				closeModal();
-			}
-		}
+    // 모달 열기
+    function openModal() {
+        document.getElementById("reservationModal").style.display = "block";
+    }
 
-		// 날짜 형식 맞추기
-		function formatDate(input) {
-			const value = input.value;
-			if (value) {
-				// yyyy-MM-dd 형식을 yyyy/MM/dd로 변경하여 보여주기
-				const formattedValue = value.replace(/-/g, '/');
-				input.setAttribute('data-date', formattedValue); // 사용자 정의 속성에 형식화된 날짜 저장
-			}
-		}
+    // 모달 닫기
+    function closeModal() {
+        document.getElementById("reservationModal").style.display = "none";
+    }
 
-		// 날짜 요소에 표시되는 형식을 yyyy/MM/dd로 설정
-		document.getElementById('date').addEventListener('input', function() {
-			// 아무 값도 선택하지 않았을 때 텍스트를 초기화
-			if (!this.value) {
-				this.placeholder = "YYYY/MM/DD"; // 기본 플레이스홀더
-			}
-		});
+    // 모달 외부 클릭시 닫기
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("reservationModal")) {
+            closeModal();
+        }
+    }
 
-		// 오늘 날짜를 YYYY-MM-DD 형식으로 가져오기
-		const today = new Date();
-		const year = today.getFullYear();
-		const month = String(today.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
-		const day = String(today.getDate()).padStart(2, '0');
-		const formattedDate = year + '-' + month + '-' + day;
+    // 날짜 형식 맞추기
+    function formatDate(input) {
+        const value = input.value;
+        if (value) {
+            // yyyy-MM-dd 형식을 yyyy/MM/dd로 변경하여 보여주기
+            const formattedValue = value.replace(/-/g, '/');
+            input.setAttribute('data-date', formattedValue); // 사용자 정의 속성에 형식화된 날짜 저장
+        }
+    }
 
-		// min 속성 설정
-		document.getElementById('date').setAttribute('min', formattedDate);
+    // 날짜 요소에 표시되는 형식을 yyyy/MM/dd로 설정
+    document.getElementById('date').addEventListener('input', function () {
+        // 아무 값도 선택하지 않았을 때 텍스트를 초기화
+        if (!this.value) {
+            this.placeholder = "YYYY/MM/DD"; // 기본 플레이스홀더
+        }
+    });
 
-		function openNewWindow() {
-			// 폼 데이터를 수집
-			// 각 입력 필드의 값 가져오기
-			var lawyerId = document.querySelector('input[name="lawyerId"]').value;
-			var date = document.getElementById("date").value;
-			var startTime = document.getElementById("startTime").value;
-			var endTime = document.getElementById("endTime").value;
-			var content = document.getElementById("content").value;
+    // 오늘 날짜를 YYYY-MM-DD 형식으로 가져오기
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
+    const day = String(today.getDate()).padStart(2, '0');
+    const formattedDate = year + '-' + month + '-' + day;
 
-			// 새로운 url 패치 배리어블
-		    var url = "/toss/payment/" + lawyerId + "/" + date + "/" + startTime + "/" + endTime + "/" + content;
-		    var windowFeatures = "width=700,height=700,resizable=yes,scrollbars=yes"; // 윈도우 사이즈
+    // min 속성 설정
+    document.getElementById('date').setAttribute('min', formattedDate);
 
-		    window.open(url, "_blank", windowFeatures);
-		    
-			//이벤트 방지
-			return false;
-		}
-	</script>
+    function updateAvailableTimes() {
+        const date = document.getElementById('date').value;
+        const lawyerId = document.querySelector('input[name="lawyerId"]').value; // lawyerId를 hidden input 또는 다른 방법으로 가져옴
 
+        // 날짜가 선택되지 않았으면 종료
+        if (!date || !lawyerId) return;
+        console.log('날짜', date);
+        console.log('변호사 아이디', ${lawyer.userId});
+        fetch('/counsel/api/available-times?date=' + date + '&lawyerId=' + ${lawyer.userId})
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                const startTimeSelect = document.getElementById('startTime');
+                const endTimeSelect = document.getElementById('endTime');
+                startTimeSelect.innerHTML = ''; // 기존 옵션 삭제
+                endTimeSelect.innerHTML = '';
 
+                // 고정된 시간대 옵션 추가
+                for (let i = 9; i <= 17; i++) {
+                    const option = document.createElement('option');
+                    option.value = i; // 시간 설정
+                    option.textContent = i;
+                    // 사용 가능한 경우에만 추가
+                    if (data.availableTimes.includes(i)) {
+                        startTimeSelect.appendChild(option); // 새 옵션 추가
+                    }
+                }
+                for (let i = 10; i <= 18; i++) {
+                    const option = document.createElement('option');
+                    option.value = i; // 시간 설정
+                    option.textContent = i;
+                    // 사용 가능한 경우에만 추가
+                    if (data.availableTimes.includes(i)) {
+                        endTimeSelect.appendChild(option);
+                    }
+                }
+            })
+            .catch(error => console.error('Error fetching available times:', error));
+    }
+</script>
 
+<style>
+    /* 모달 스타일 */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
 
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+    }
 
-	<style>
-/* 모달 스타일 */
-.modal {
-	display: none;
-	position: fixed;
-	z-index: 1;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	overflow: auto;
-	background-color: rgba(0, 0, 0, 0.5);
-}
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
 
-.modal-content {
-	background-color: #fefefe;
-	margin: 15% auto;
-	padding: 20px;
-	border: 1px solid #888;
-	width: 80%;
-	max-width: 500px;
-}
-
-.close {
-	color: #aaa;
-	float: right;
-	font-size: 28px;
-	font-weight: bold;
-	cursor: pointer;
-}
-
-.close:hover, .close:focus {
-	color: black;
-	text-decoration: none;
-	cursor: pointer;
-}
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
 </style>

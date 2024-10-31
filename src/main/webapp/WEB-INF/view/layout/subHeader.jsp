@@ -16,8 +16,6 @@
     <link href="/css/common.css" rel="stylesheet">
     <link href="/css/signin.css" rel="stylesheet">
     <link href="/css/notice.css" rel="stylesheet">
-    <link href="/css/lawyerList.css" rel="stylesheet">
-    <link href="/css/lawyerInfo.css" rel="stylesheet">
     <link href="/css/privacy.css" rel="stylesheet">
     <link href="/css/mypage.css" rel="stylesheet">
     <link href="/css/font.css" rel="stylesheet">
@@ -198,3 +196,4 @@
         }
     });
 </script>
+
