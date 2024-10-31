@@ -38,10 +38,13 @@
                                         수락
                                     </c:when>
                                     <c:when test="${counsel.status == 2}">
-                                        취소
+                                        거절
                                     </c:when>
                                     <c:when test="${counsel.status == 3}">
                                         종료
+                                    </c:when>
+                                    <c:when test="${counsel.status == 4}">
+                                        취소
                                     </c:when>
                                 </c:choose>
                             </td>
@@ -50,8 +53,9 @@
                                     <select name="status" id="status-select-${counsel.id}" onchange="updateStatus(${counsel.id})">
                                         <option value="0" ${counsel.status == 0 ? 'selected' : ''}>신청 (0)</option>
                                         <option value="1" ${counsel.status == 1 ? 'selected' : ''}>수락 (1)</option>
-                                        <option value="2" ${counsel.status == 2 ? 'selected' : ''}>취소 (2)</option>
+                                        <option value="2" ${counsel.status == 2 ? 'selected' : ''}>거절 (2)</option>
                                         <option value="3" ${counsel.status == 3 ? 'selected' : ''}>종료 (3)</option>
+                                        <option value="3" ${counsel.status == 4 ? 'selected' : ''}>취소 (4)</option>
                                     </select>
                                 </div>
                             </td>
