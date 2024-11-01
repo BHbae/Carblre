@@ -1,0 +1,68 @@
+.card {
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	padding: 30px;
+}
+
+.card-content {
+	line-height: 1.6;
+}
+
+.post-title {
+	font-size: 2.5em;
+	margin-bottom: 15px;
+	color: #333;
+	border-bottom: 2px solid #007bff;
+	padding-bottom: 10px;
+}
+
+.post-meta {
+	font-size: 1.1em;
+	color: #555;
+	margin-bottom: 20px;
+}
+
+.post-content {
+	font-size: 1.2em;
+	margin-bottom: 20px;
+	color: #333;
+}
+
+hr {
+	margin: 20px 0;
+	border: 1px solid #ddd;
+}
+
+.button-group {
+	margin-top: 20px;
+}
+
+.btn {
+	padding: 12px 20px;
+	font-size: 1em;
+	border-radius: 5px;
+	text-decoration: none;
+	margin-right: 10px;
+	transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-primary {
+	background-color: #007bff;
+	color: white;
+}
+
+.btn-danger {
+	background-color: #dc3545;
+	color: white;
+}
+
+.btn-secondary {
+	background-color: #6c757d;
+	color: white;
+}
+
+.btn:hover {
+	opacity: 0.9;
+	transform: translateY(-2px);
+}

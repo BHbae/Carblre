@@ -2,7 +2,6 @@ package com.carblre.repository.model;
 
 import java.sql.Timestamp;
 
-import com.carblre.dto.DetailDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class Post {
-	
+
 	private int id;
 	private int userId;
 	private String category;

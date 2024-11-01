@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../layout/header.jsp"%>
-
 <div class="wrap">
 	<!-- 상단 이미지 & 서브 페이지 이동 START -->
 	<section class="sub--section">
 		<div class="section--background" id="notice--background">
 			<div class="inner--container">
-				<sub class="eng">Notice</sub>
+				<sub class="eng">Customer Service Center</sub>
 				<h1 class="sub--title">고객센터</h1>
 			</div>
 		</div>
@@ -29,36 +28,58 @@
 		<div class="sub--content">
 			<h2 class="prih2">고객센터</h2>
 			<div class="board--info">
-				<div class="board--title">제목</div>
+				<div class="board--title">${dto.title}</div>
 				<div class="board--detail">
-					<span>작성자: ${dto.userName}</span> 
-					<span>작성일: ${dto.requestTime}</span>
+					<span>작성자: ${dto.userName}</span> |<span>작성일: ${dto.requestTime}</span>
 				</div>
 			</div>
 			<div class="board--content">
 				<div>${dto.request}</div>
 			</div>
 			<div class="board--content">
-				<c:choose>
-					<c:when test="${dto.response != null}">
-						<div>${dto.response}</div>
-						<div>${dto.responseTime}</div>
-					</c:when>
-					<c:otherwise>
-						<div>답변을 기다리는중입니다</div>
-					</c:otherwise>
+				<div class="board--info">
+					<div class="board--title">답변</div>
+					<c:choose>
+						<c:when test="${dto.response != null}">
+							<div class="board--detail">
+								<span>작성일: ${dto.responseTime}</span>
+							</div>
+				</div>
+				<div class="board--content">
+					<div>${dto.response}</div>
+				</div>
+				</c:when>
+				<c:otherwise>
+					<div><h3>답변을 기다리는중입니다</h3></div>
+				</c:otherwise>
 				</c:choose>
 
 
 			</div>
-			<div class="btn btn--wrap">
+			<c:if test="${principal.role == 'admin'}">
+				<div class="reply-form">
+					<form action="/cs/reply/${dto.id}" method="post">
+						<div>
+							<textarea id="response" name="response" required style="resize: none;"></textarea>
+						</div>
+						<div id="reply--button">
+							<button type="submit" onclick="location.href='/cs/reply/${dto.id}'">답변하기</button>
+						</div>
+					</form>
+				</div>
+			</c:if>
+			<div class="btn--wrap">
 				<div id="list--button">
 					<a href="/cs/cs">목록</a>
 				</div>
 				<div id="edit--button">
-					<button onclick="location.href='/cs/edit/${dto.id}'">수정하기</button>
+					<a href="/cs/edit/${dto.id}">수정하기</a>
+				</div>
+				<div id="delete--button">
+					<a href="/cs/delete/${dto.id}" onclick="if(!confirm('정말로 삭제하시겠습니까?')) return false;"> 삭제하기 </a>
 				</div>
 			</div>
+
 		</div>
 	</div>
 

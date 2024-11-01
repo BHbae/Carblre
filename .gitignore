@@ -13,8 +13,8 @@ build/
 .settings
 .springBeans
 .sts4-cache
-bin/
-!**/src/main/**/bin/
+
+
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
@@ -36,9 +36,14 @@ out/
 ### VS Code ###
 .vscode/
 
+<<<<<<< HEAD
+# Ignore the application-secure.yml file
+application-secure.yml
+=======
 # Ignore application-secure.yml file
 application-secure.yml
 
 # Ignore caches directory
+>>>>>>> 95ed7e15e48857748cb7432088691b8daef978f2
 caches/
 

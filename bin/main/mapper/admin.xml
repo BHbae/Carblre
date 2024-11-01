@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.carblre.repository.interfaces.AdminRepository">
+
+	<select id="readAllGeneralUser"
+		resultType="com.carblre.repository.model.AdminUser">
+		select * from user_tb where not role = 'lawyer' or role is null
+	</select>
+
+	<select id="readAlllawyerUser"
+		resultType="com.carblre.dto.admin.AdminLawyerUserDTO">
+		select u.id, u.user_name, u.nick_name, u.email, u.phone_num,
+		u.role, u.status, l.id lawyer_id, l.origin_profile_name,
+		l.upload_profile_name,
+		l.origin_license_name, l.upload_license_name, l.introduction,
+		l.law_firm, l.office_num, l.counseling_amount from user_tb u
+		left join lawyer_detail_tb l
+		on u.id = l.user_id
+		where u.role = 'lawyer'
+		order by field(status, 0, 1, 2)
+	</select>
+
+	<select id="readAllPost"
+		resultType="com.carblre.dto.admin.AdminPostDTO">
+		select p.*, u.nick_name from post_tb p
+		left join user_tb u
+		on p.user_id = u.id
+	</select>
+
+	<select id="readPostById"
+		resultType="com.carblre.dto.admin.AdminPostDTO">
+		select p.*, u.nick_name from post_tb p
+		left join user_tb u
+		on p.user_id = u.id
+		where p.id = #{id}
+	</select>
+
+
+	<select id="readAllCrush"
+		resultType="com.carblre.repository.model.AdminCrush">
+		select * from crushapi_tb
+	</select>
+
+	<select id="existsById" resultType="boolean">
+		select count(*) > 0 from post_tb where id = #{id}
+	</select>
+
+	<delete id="deleteById">
+		delete from post_tb where id = #{id}
+	</delete>
+
+	<update id="updateUserStatus" parameterType="map">
+		update user_tb
+		set status = #{status}
+		where id = #{id}
+	</update>
+	
+	<select id="readAllPayment" resultType="com.carblre.dto.admin.AdminTossHistoryDTO">
+		select * from toss_history_tb
+	</select>
+	
+	<select id="generalUserCount" resultType="int">
+		select count(*) from user_tb where role = 'user' and status = 1
+	</select>
+	
+	<select id="lawyerUserCount" resultType="int">
+		select count(*) from user_tb where role = 'lawyer' and status = 1
+	</select>
+	
+	<select id="readAllNotice" resultType="com.carblre.repository.model.Notice">
+		SELECT * FROM notice_tb
+	</select>
+	
+	<select id="WaitingLawyerUserCount" resultType="int">
+		select count(*) from user_tb where role = 'lawyer' and status = 0
+	</select>
+	
+	
+	
+</mapper>

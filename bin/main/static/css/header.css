@@ -1,0 +1,317 @@
+header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 99;
+}
+#background--black h1{
+    font-size: 62px;
+    font-family: 'Spoqa Han Sans', sans-serif;
+}
+
+#in--header {
+    width: 90%;
+    height: 100px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#menu--container {
+    display: flex;
+    gap: 80px;
+    font-size: 18px;
+    color: #fff;
+}
+
+#icon--container {
+    display: flex;
+    gap: 30px;
+}
+
+.info--container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #fff;
+}
+
+#search {
+    width: 30px;
+    height: 30px;
+    background-color: #ffddfd;
+}
+
+#moblie--menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+#moblie--menu div {
+    width: 30px;
+    height: 2px;
+    background-color: #fff;
+}
+
+#sub--Header .menubtn .menubar .bar {
+    background-color: #000;
+}
+
+.downn {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: rgb(255, 255, 255);
+    -webkit-transition-duration: 0.4s;
+    -webkit-transition-timing-function: ease;
+    transition-duration: 0.4s;
+    transition-timing-function: ease;
+}
+#sub--Header #menu--container, #sub--Header .info--container{
+    color: #000;
+}
+
+#sub--Header #moblie--menu div{
+    background-color: #000;
+}
+
+.subdown{
+    background-color: rgba(0, 0, 0, 0.1);
+    color: rgb(255, 255, 255);
+    -webkit-transition-duration: 0.4s;
+    -webkit-transition-timing-function: ease;
+    transition-duration: 0.4s;
+    transition-timing-function: ease;
+}
+
+.menubtn .menubar {
+    display: block;
+    width: 30px;
+    height: 23px;
+    cursor: pointer;
+    z-index: 9999;
+    position: relative;
+}
+.menubtn .menubar .bar {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    height: 2px;
+    transition: all ease 0.3s;
+    background-color: #fff;
+}
+.subheader .menubtn .menubar .bar {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    height: 2px;
+    transition: all ease 0.3s;
+    background-color: #000;
+}
+.menubtn .menubar .bar.bar01 {
+    width: 21px;
+}
+.menubtn .menubar .bar.bar02 {
+    top: 15px;
+    width: 21px;
+}
+.menubtn .menubar .bar.bar03 {
+    top: 25px;
+    width: 30px;
+}
+.gnb-all {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 0;
+    background: #fff;
+    z-index: 9;
+    overflow: hidden;
+    transition: all ease 0.6s;
+}
+.all-menu {
+    height: 100%;
+}
+.all-menu > ul {
+    display: flex;
+    height: 100%;
+    flex-wrap: wrap;
+    max-width: 1300px;
+    margin: auto;
+    align-content: center;
+}
+.all-menu > ul > li {
+    width: 100%;
+    padding: 0 3%;
+}
+.all-menu > ul > li > a {
+    display: block;
+    font-size: 36px;
+    font-weight: 700;
+    position: relative;
+    margin-bottom: 60px;
+    line-height: 1.2;
+    color: #000;
+    opacity: 0;
+    transition: all ease 1s;
+    transition-delay: 0.1s;
+    margin-left: -10px;
+    font-family: 'Spoqa Han Sans', sans-serif;
+}
+.all-menu > ul > li > ul > li {
+    transition: all ease 1s;
+    transition-delay: 0.2s;
+    opacity: 0;
+    margin-left: -10px;
+}
+.all-menu > ul > li > ul > li:nth-child(2) {
+    transition-delay: 0.3s;
+}
+.all-menu > ul > li > ul > li:nth-child(3) {
+    transition-delay: 0.4s;
+}
+.all-menu > ul > li > ul > li:nth-child(4) {
+    transition-delay: 0.5s;
+}
+.all-menu > ul > li > ul > li:nth-child(5) {
+    transition-delay: 0.6s;
+}
+.all-menu > ul > li > ul > li:nth-child(6) {
+    transition-delay: 0.8s;
+}
+.all-menu > ul > li:not(.gnb-sns) > a:before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #000;
+    position: absolute;
+    left: 0;
+    top: -20px;
+    opacity: 0;
+    transition: all ease 0.3s;
+}
+.all-menu > ul > li:not(.gnb-sns):hover > a:before {
+    top: -15px;
+    opacity: 1;
+}
+.all-menu > ul > li:not(.gnb-sns) > ul > li {
+    margin-bottom: 25px;
+}
+.all-menu > ul > li:not(.gnb-sns) > ul > li > a {
+    font-size: 22px;
+    font-weight: 500;
+    transition: all ease 0.3s;
+    color: #000;
+}
+.all-menu > ul > li:not(.gnb-sns) > ul > li > a:hover {
+    padding-left: 5px;
+    color: #000;
+    font-weight: 700;
+    cursor: pointer;
+}
+.all-menu > ul > li:not(.gnb-sns) > ul > li:hover > a {
+    padding-left: 5px;
+    color: #000;
+    font-weight: 700;
+}
+.all-menu > ul > li:not(.gnb-sns) > ul > li > ul {
+    padding-left: 5px;
+}
+.all-menu > ul > li:not(.gnb-sns) > ul > li > ul > li {
+    margin: 20px 0;
+}
+.all-menu > ul > li:not(.gnb-sns) > ul > li > ul > li > a {
+    font-size: 18px;
+    font-weight: 500;
+    transition: all ease 0.3s;
+    position: relative;
+    color: #000;
+}
+.all-menu > ul > li:not(.gnb-sns) > ul > li > ul > li > a:after {
+    content: "";
+    width: 0;
+    height: 1px;
+    background: #111;
+    position: absolute;
+    right: 0;
+    bottom: -5px;
+    transition: all ease 0.3s;
+}
+.all-menu > ul > li:not(.gnb-sns) > ul > li > ul > li > a:hover:after {
+    right: auto;
+    left: 0;
+    width: 100%;
+}
+.all-menu .gnb-sns {
+    display: flex;
+    align-items: end;
+}
+.all-menu .gnb-sns > ul > li {
+    margin: 20px 0;
+}
+.all-menu .gnb-sns > ul > li > a {
+    font-size: 16px;
+    position: relative;
+    font-weight: 500;
+}
+.all-menu .gnb-sns > ul > li > a:after {
+    content: "";
+    width: 0;
+    height: 1px;
+    background: #111;
+    position: absolute;
+    right: 0;
+    bottom: -2px;
+    transition: all ease 0.3s;
+}
+.all-menu .gnb-sns > ul > li > a:hover:after {
+    width: 100%;
+    right: auto;
+    left: 0;
+}
+/* hd gnb */
+header.gnb-open .all-menu > ul > li > a {
+    opacity: 1;
+    margin-left: 0;
+}
+header.gnb-open .all-menu > ul > li > a:hover {
+    cursor: pointer;
+}
+header.gnb-open .all-menu > ul > li > ul > li {
+    opacity: 1;
+    margin-left: 0;
+    width: 100%;
+}
+header.gnb-open .gnb-all {
+    height: 100vh;
+}
+header.gnb-open.trans {
+    position: fixed;
+}
+header.gnb-open.trans .menubtn .menubar .bar {
+    background-color: #fff;
+}
+header.gnb-open .menubtn .menubar .bar {
+    background-color: #000;
+}
+header.gnb-open .menubtn .menubar .bar.bar01 {
+    width: 30px;
+    top: 10px;
+    transform: rotate(45deg);
+}
+header.gnb-open .menubtn .menubar .bar.bar02 {
+    display: none;
+}
+header.gnb-open .menubtn .menubar .bar.bar03 {
+    width: 30px;
+    top: 10px;
+    transform: rotate(-45deg);
+}
+header.trans {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    background: transparent !important;
+    top: 0 !important;
+}

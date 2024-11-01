@@ -1,0 +1,16 @@
+header h1 {
+    color: red;
+}
+
+#myChart {
+    width: 700px !important;
+    height: 700px !important;
+}
+
+#myCharts {
+    width: 900px !important;
+    height: 600px !important;
+}
+canvas{
+    height: 700px !important;
+}

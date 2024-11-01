@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../layout/header.jsp"%>
 
@@ -29,6 +28,21 @@
 	<div class="inner--container">
 		<div class="sub--content">
 			<h2 class="prih2">고객센터</h2>
+
+			<div class="search-container" style="display: flex; justify-content: center; margin-bottom: 20px;">
+				<form action="/cs/search" method="get" style="display: flex; align-items: center; width: 100%;">
+					<input type="text" name="query" placeholder="검색어를 입력하세요" value="${query}" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; flex: 1; margin-right: 5px;">
+					<select name="type" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; margin-right: 5px; height: 40px;">
+						<option value="title" <c:if test="${type == 'title'}">selected</c:if>>제목</option>
+						<option value="content" <c:if test="${type == 'content'}">selected</c:if>>내용</option>
+						<option value="all" <c:if test="${type == 'all'}">selected</c:if>>제목+내용</option>
+					</select>
+					<button type="submit" style="padding: 10px 15px; background-color: #007BFF; color: white; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s;">
+						<strong>검색</strong>
+					</button>
+				</form>
+			</div>
+
 			<table class="table">
 				<thead>
 					<th>No</th>
@@ -40,30 +54,32 @@
 					<c:forEach items="${csList}" var="csList">
 						<tr>
 							<td class="notice--no">${csList.id}</td>
-							<td class="notice--con"><a href="/cs/detail/${csList.id}">${csList.title}</a></td>
+							<td class="notice--con">
+								<a href="/cs/detail/${csList.id}">${csList.title}</a>
+							</td>
 							<td class="notice--name">${csList.userName}</td>
 							<td class="notice--date">${csList.requestTime}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-			<div class="btn btn--wrap">
+			<div class="btn--wrap">
 				<div id="write--button">
 					<a href="/cs/write">글쓰기</a>
 				</div>
 			</div>
-			<ul class="page--button btn">
-				<li
-					class="page-item <c:if test='${currentPage == 1}'>disabled</c:if>">
-					<a class="page-link" href="/cs/cs?page=${currentPage - 1}">◀</a>
-				</li>
-				<c:forEach begin="1" end="${totalPages}" var="page">
-                    <li class="<c:if test="${currentPage == page}">page--active</c:if>" ><a href="/cs/cs?page=${page}">${page}</a></li>
-                </c:forEach>
-				<li
-					class="page-item <c:if test='${currentPage == totalPages}'>disabled</c:if>">
-					<a class="page-link" href="/cs/cs?page=${currentPage + 1}">▶</a>
-				</li>
+			<ul class="page--button" style="display: flex; justify-content: center;">
+				<c:if test="${currentPage > 1}">
+					<li><a href="/cs/cs?page=${currentPage - 1}&size=${size}">◀</a></li>
+				</c:if>
+
+				<c:forEach var="i" begin="1" end="${totalPages}">
+					<li class="${currentPage == i ? 'page--active' : ''}"><a href="/cs/cs?page=${i}&size=${size}" <c:if test="${currentPage == i}">style="pointer-events: none; color: white;"</c:if>> ${i} </a></li>
+				</c:forEach>
+
+				<c:if test="${currentPage < totalPages}">
+					<li><a href="/cs/cs?page=${currentPage + 1}&size=${size}">▶</a></li>
+				</c:if>
 			</ul>
 		</div>
 	</div>

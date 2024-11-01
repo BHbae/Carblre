@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.carblre.repository.Interface.ChartRepository">
+
+    <!-- 서울시 가해자법규위반명별 사망자수, 부상자수, 중상자수 통계 -->
+    <select id="seoulCount" resultType="com.carblre.repository.model.DeathToYearCount">
+        SELECT
+            ct.acc_year AS 'year',
+                st.sido_nm AS 'occrrncLcSidoCd',
+                lt.aslt_vtr_nm AS 'asltVtrCd',
+                SUM(ct.dth_dnv_cnt) AS 'deathCount',
+                SUM(ct.injpsn_cnt) AS 'injuredCount',
+                SUM(ct.se_dnv_cnt) AS 'seriousInjuriesCount',
+                SUM(sl_dnv_cnt) AS 'minorInjuriesCount'
+        FROM
+            crushApi_tb AS ct
+                LEFT JOIN
+            lawViolation_tb AS lt ON ct.aslt_vtr_cd = lt.aslt_vtr_cd
+                LEFT JOIN
+            sido_tb AS st ON ct.occrrnc_lc_sido_cd = st.sido
+        WHERE
+            ct.acc_year = 2023
+          AND ct.occrrnc_lc_sido_cd = #{regionCode}
+        GROUP BY
+            ct.acc_year, st.sido_nm, ct.aslt_vtr_cd, lt.aslt_vtr_nm
+        ORDER BY
+            lt.aslt_vtr_nm ASC;
+    </select>
+
+</mapper>
