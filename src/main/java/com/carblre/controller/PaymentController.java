@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,7 @@ import com.carblre.dto.LawyerChoiceDTO;
 import com.carblre.dto.TossResponseDTO;
 import com.carblre.dto.successDTO;
 import com.carblre.dto.userdto.UserDTO;
+import com.carblre.service.CounselService;
 import com.carblre.service.LawyerService;
 import com.carblre.service.PaymentService;
 
@@ -40,6 +42,8 @@ public class PaymentController {
 	private final PaymentService service;
 	
 	private final LawyerService lawyerService;
+	
+	private final CounselService counselService;
 
 	public static final String PRINCIPAL = "principal";
 
@@ -73,7 +77,6 @@ public class PaymentController {
 		
 		
 		
-		
 		String orderId = UUID.randomUUID().toString();
 		String orderName = "상담"; 
 		String customerName = principal.getUserName();
@@ -81,8 +84,8 @@ public class PaymentController {
 		model.addAttribute("orderId", orderId);
 		model.addAttribute("orderName", orderName);
 		model.addAttribute("customerName", customerName);
-		model.addAttribute("suDTO", suDTO);
 
+		counselService.insertCounsel(suDTO, principal.getId());
 
 		return "payment";
 	}
@@ -101,12 +104,8 @@ public class PaymentController {
 	@GetMapping("/success")
 	public String success(@RequestParam(name = "orderId") String orderId,
 			@RequestParam(name = "paymentKey") String paymentKey, @RequestParam(name = "amount") String amount,
-			@RequestParam(name="suDTO")successDTO dto,
 			@SessionAttribute(name = "principal") UserDTO principal) throws IOException, InterruptedException {
 
-		System.out.println("orderId : " + orderId);
-		System.out.println("paymentKey : " + paymentKey);
-		System.out.println("amount : " + amount);
 
 		RestTemplate restTemplate = new RestTemplate();
 		
@@ -133,6 +132,7 @@ public class PaymentController {
 			TossResponseDTO response2 = response.getBody();
 			service.insertTossHistory(response2, principal.getId());
 			
+			
 		} catch (HttpClientErrorException e) {
 			System.err.println("Error status code: " + e.getStatusCode());
 			System.err.println("Error response body: " + e.getResponseBodyAsString());
@@ -140,7 +140,7 @@ public class PaymentController {
 		}
 
 		// TODO! 성공 페이지 만들필요없이 , 바로 결제 내역 페이지로 이동
-		return "success";
+		return "index";
 	}
 
 	/**

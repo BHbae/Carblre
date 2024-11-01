@@ -1,24 +1,23 @@
 package com.carblre.service;
 
-import com.carblre.dto.MyCounselDTO;
-import com.carblre.dto.counsel.CounselDTO;
-import com.carblre.dto.userdto.LawyerDetailDTO;
-import com.carblre.dto.userdto.LawyerReservationDTO;
-import com.carblre.dto.userdto.LawyerSignUpDTO;
-import com.carblre.dto.userdto.UserDTO;
-import com.carblre.repository.interfaces.CounselRepository;
-import com.carblre.repository.model.Counsel;
-import com.carblre.repository.model.LawyerDetail;
-import lombok.RequiredArgsConstructor;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import com.carblre.dto.MyCounselDTO;
+import com.carblre.dto.successDTO;
+import com.carblre.dto.counsel.CounselDTO;
+import com.carblre.dto.userdto.LawyerReservationDTO;
+import com.carblre.handler.exception.DataDeliveryException;
+import com.carblre.repository.interfaces.CounselRepository;
+import com.carblre.repository.model.Counsel;
+import com.carblre.utils.Define;
+
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
@@ -158,5 +157,54 @@ public class CounselService {
 	 */
 	public List<CounselDTO> getCounselReservationByLawyerIdAndDate(int id, String date) {
 		return counselRepository.findReservationByLawyerIdAndDate(id, date);
+	}
+	
+	// 예약 insert
+	@Transactional
+	public void insertCounsel(successDTO suDTO, int id) {
+	    String date = suDTO.getDate();
+	    String startTilmeStr = suDTO.getStartTime() + "";
+	    String endTilmeStr = suDTO.getEndTime() + "";
+	    
+	    
+	    
+	    // startTime과 endTime을 "HH:mm" 형식으로 변환
+        String startTimeFormatted = String.format("%02d:00", Integer.parseInt(startTilmeStr));
+        String endTimeFormatted = String.format("%02d:00", Integer.parseInt(endTilmeStr));
+        
+        String startTime = String.format("%s %s", date, startTimeFormatted);
+        String endTime = String.format("%s %s", date, endTimeFormatted);
+        
+        List<CounselDTO> existingReservations = getCounselReservationByLawyerId(suDTO.getLawyerId());
+        
+        // 새로운 예약의 시작과 끝 시간을 LocalTime으로 변환
+        LocalTime newStartTime = LocalTime.parse(startTimeFormatted); // :00이 이미 추가됨
+        LocalTime newEndTime = LocalTime.parse(endTimeFormatted); // :00이 이미 추가됨
+        
+        for (CounselDTO existingCounsel : existingReservations) {
+            LocalTime existingStartTime = LocalTime.parse(existingCounsel.getStartTime().substring(11, 16));
+            LocalTime existingEndTime = LocalTime.parse(existingCounsel.getEndTime().substring(11, 16));
+
+            // 겹치는 시간 확인
+            if ((newStartTime.isBefore(existingEndTime) && newEndTime.isAfter(existingStartTime)) ||
+                    (newStartTime.equals(existingStartTime) || newEndTime.equals(existingEndTime))) {
+                throw new DataDeliveryException(Define.EXISTING_COUNSEL, HttpStatus.CONFLICT);
+            }
+        }
+        
+        CounselDTO newCounselDTO = CounselDTO.builder()
+                .lawyerId(suDTO.getLawyerId())
+                .userId(id)
+                .startTime(startTime)
+                .endTime(endTime)
+                .date(date)
+                .content(suDTO.getContent())
+                .status(0) // 초기 상태 설정
+                .build();
+        int result = insertCounselReservation(newCounselDTO);
+        if (result != 1) {
+            throw new DataDeliveryException(Define.UNKNOWN_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+		
 	}
 }

@@ -43,12 +43,6 @@ public class LawyerService {
 	@Transactional
 	public void createLawyerUser(LawyerSignUpDTO signUpDTO) {
 		try {
-			System.out.println("Here in Create User Method");
-			System.out.println("User Name : " + signUpDTO.getUserName());
-			System.out.println("User Nickname : " + signUpDTO.getNickName());
-			System.out.println("User Password : " + signUpDTO.getPassword());
-			System.out.println("User Email : " + signUpDTO.getEmail());
-			System.out.println("User phoneNumber : " + signUpDTO.getPhoneNum());
 			String hashPassword = passwordEncoder.encode(signUpDTO.getPassword());
 			signUpDTO.setPassword(hashPassword);
 			signUpDTO.setRole("lawyer"); // 임시 변호사 role
@@ -59,8 +53,6 @@ public class LawyerService {
 			signUpDTO.setGetLicenseName(signUpDTO.getLicenseImage().getOriginalFilename());
 			String uuidProFileName = signUpDTO.UUIDUploardProfileName();
 			String uuidLawyerName = signUpDTO.UUIDUploardLawyerName();
-			System.out.println("uuid" + uuidProFileName);
-			System.out.println("uuid" + uuidLawyerName);
 			String uploadProfileName = signUpDTO.getUPLOAD_PROFILE_DIR() + uuidProFileName;// 파일경로와 UUID파일이름
 			String uploadLicenseName = signUpDTO.getUPLOAD_LAWYER_DIR() + uuidLawyerName;// 파일경로와 UUID파일이름
 
@@ -91,9 +83,7 @@ public class LawyerService {
 			// 파일 저장 (바이트 배열로 파일을 쓰기)
 			Files.write(path, signUpDTO.getProfileImage().getBytes());
 			Files.write(LicensePath, signUpDTO.getLicenseImage().getBytes());
-			System.out.println(signUpDTO.toString());
 			int result = lawyerRepository.insertLawyerDetail(signUpDTO.toLawyerDetail()); // laywer_detail_tb insert
-			System.out.println("성공여부:" + result);
 		} catch (Exception e) {
 			System.out.println("Error in Create User : " + e.getMessage());
 		}
