@@ -51,7 +51,7 @@
             <input type="hidden" name="lawyerId" value="${lawyer.userId}">
 
             <label for="date">날짜 선택:</label>
-            <input type="date" id="date" name="date" required="required">
+            <input type="date" id="date" name="date" required="required" onchange="updateAvailableTimes()">
 
             <label for="startTime">시작 시간 선택:</label>
             <select id="startTime" name="startTime">
@@ -153,6 +153,46 @@
 
     // min 속성 설정
     document.getElementById('date').setAttribute('min', formattedDate);
+
+    function updateAvailableTimes() {
+        const date = document.getElementById('date').value;
+        const lawyerId = document.querySelector('input[name="lawyerId"]').value; // lawyerId를 hidden input 또는 다른 방법으로 가져옴
+
+        // 날짜가 선택되지 않았으면 종료
+        if (!date || !lawyerId) return;
+        console.log('날짜', date);
+        console.log('변호사 아이디', ${lawyer.userId});
+        fetch('/counsel/api/available-times?date=' + date + '&lawyerId=' + ${lawyer.userId})
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                const startTimeSelect = document.getElementById('startTime');
+                const endTimeSelect = document.getElementById('endTime');
+                startTimeSelect.innerHTML = ''; // 기존 옵션 삭제
+                endTimeSelect.innerHTML = '';
+
+                // 고정된 시간대 옵션 추가
+                for (let i = 9; i <= 17; i++) {
+                    const option = document.createElement('option');
+                    option.value = i; // 시간 설정
+                    option.textContent = i;
+                    // 사용 가능한 경우에만 추가
+                    if (data.availableTimes.includes(i)) {
+                        startTimeSelect.appendChild(option); // 새 옵션 추가
+                    }
+                }
+                for (let i = 10; i <= 18; i++) {
+                    const option = document.createElement('option');
+                    option.value = i; // 시간 설정
+                    option.textContent = i;
+                    // 사용 가능한 경우에만 추가
+                    if (data.availableTimes.includes(i)) {
+                        endTimeSelect.appendChild(option);
+                    }
+                }
+            })
+            .catch(error => console.error('Error fetching available times:', error));
+    }
 </script>
 
 <style>
