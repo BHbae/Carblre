@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.carblre.dto.admin.AdminLawyerUserDTO;
 import com.carblre.dto.admin.AdminPostDTO;
 import com.carblre.dto.admin.AdminTossHistoryDTO;
+import com.carblre.dto.userdto.LawyerDetailDTO;
 import com.carblre.repository.model.AdminCrush;
 import com.carblre.repository.model.AdminUser;
 import com.carblre.repository.model.Notice;
@@ -53,5 +54,8 @@ public interface AdminRepository {
 
 	// 법인 대기유저 수 조회
 	public int WaitingLawyerUserCount();
+
+	// 변호사 상세보기
+	public AdminLawyerUserDTO readLawyerById(int id);
 
 }

@@ -15,7 +15,7 @@
 			<li><a href="#" class="${fn:contains(status, 'payment') ? 'active-menu' : ''} waves-effect waves-dark"><i class="fa fa-sitemap"></i> 결제 관리<span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level ${fn:contains(status, 'payment') ? 'collapse in' : ''}">
 					<li><a href="/admin/payment" class="${status == 'paymentList' ? 'active-menu' : ''} waves-effect waves-dark"> 결제 내역</a></li>
-					<li><a href="/admin/cancel-payment" class="${status == 'cancelPaymentList' ? 'active-menu' : ''} waves-effect waves-dark"> 결제 취소</a></li>
+					<li><a href="/admin/payment-cancel" class="${status == 'paymentCancel' ? 'active-menu' : ''} waves-effect waves-dark"> 결제 취소</a></li>
 				</ul></li>
 			<li><a href="/admin/posts" class="${status == 'postList' ? 'active-menu' : ''} waves-effect waves-dark"><i class="fa fa-table"></i> 게시글 관리</a></li>
 			<li><a href="/notice/notice" class="waves-effect waves-dark"><i class="fa fa-table"></i> 공지사항 바로가기</a></li>

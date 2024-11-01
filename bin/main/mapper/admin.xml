@@ -75,6 +75,13 @@
 		select count(*) from user_tb where role = 'lawyer' and status = 0
 	</select>
 	
+	<select id="readLawyerById" resultType="com.carblre.dto.admin.AdminLawyerUserDTO">
+		select u.id, u.user_name, u.nick_name, u.email, u.phone_num, u.role, u.status, l.upload_profile_name, l.upload_license_name, l.introduction, l.law_firm, l.office_num, l.counseling_amount
+		from lawyer_detail_tb l
+		join user_tb u on l.user_id = u.id
+		where u.id = #{id}
+	</select>
+	
 	
 	
 </mapper>

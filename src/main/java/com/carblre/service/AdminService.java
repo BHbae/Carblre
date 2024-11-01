@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.carblre.dto.admin.AdminLawyerUserDTO;
 import com.carblre.dto.admin.AdminPostDTO;
 import com.carblre.dto.admin.AdminTossHistoryDTO;
+import com.carblre.dto.userdto.LawyerDetailDTO;
 import com.carblre.repository.interfaces.AdminRepository;
 import com.carblre.repository.model.AdminCrush;
 import com.carblre.repository.model.AdminUser;
@@ -93,6 +94,12 @@ public class AdminService {
 	@Transactional
 	public int WaitingLawyerUserCount() {
 		return adminRepository.WaitingLawyerUserCount();
+	}
+
+	// 변호사 상세보기
+	@Transactional
+	public AdminLawyerUserDTO readLawyerById(int id) {
+		return adminRepository.readLawyerById(id);
 	}
 
 }

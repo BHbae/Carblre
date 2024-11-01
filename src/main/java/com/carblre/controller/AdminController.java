@@ -83,6 +83,17 @@ public class AdminController {
 		return "admin/lawyerUserList";
 	}
 
+	@GetMapping("/lawyer-user/{id}")
+	public String lawyerUserDetailPage(@PathVariable(name = "id") int id, Model model) {
+
+		AdminLawyerUserDTO lawyer = adminService.readLawyerById(id);
+
+		model.addAttribute("status", "lawyerUserList");
+		model.addAttribute("lawyer", lawyer);
+
+		return "admin/lawyerUserDetail";
+	}
+
 	/**
 	 * 유저 계정 정지/해제 기능
 	 * 
@@ -107,11 +118,26 @@ public class AdminController {
 	@GetMapping("/payment")
 	public String paymentListPage(Model model) {
 		List<AdminTossHistoryDTO> paymentList = adminService.readAllPayment();
-//
+		
 		model.addAttribute("status", "paymentList");
 		model.addAttribute("paymentList", paymentList);
 
 		return "admin/paymentList";
+	}
+	
+	/**
+	 * 결제 취소 관리 페이지
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/payment-cancel")
+	public String paymentCancelListPage(Model model) {
+		List<AdminTossHistoryDTO> paymentList = adminService.readAllPayment();
+		
+		model.addAttribute("status", "paymentCancel");
+		model.addAttribute("paymentList", paymentList);
+
+		return "admin/paymentCancel";
 	}
 
 	/**

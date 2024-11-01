@@ -14,13 +14,10 @@ import lombok.ToString;
 public class AdminLawyerUserDTO {
 	private int id;
 
-	private int userId;
 	private String userName;
 	private String nickName;
-	private String password;
 	private String email;
 	private String phoneNum;
-	private String lawFirm;
 	private String role;
 	private int status;
 
@@ -29,6 +26,7 @@ public class AdminLawyerUserDTO {
 	private String originLicenseName;
 	private String uploadLicenseName;
 	private String introduction;
+	private String lawFirm;
 	private String officeNum;
 	private String counselingAmount;
 }
