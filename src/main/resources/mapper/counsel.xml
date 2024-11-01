@@ -8,7 +8,7 @@
 	<!-- 유저의  변호사 예약 상황 -->
 	<select id="findCounselOfUserById"  resultType="com.carblre.repository.model.Counsel">
 		SELECT * FROM counsel_request_tb
-		where lawyer_id= #{lawyerId}
+		where user_id= #{lawyerId}
 		order by created_at asc;
 	</select>
 

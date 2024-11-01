@@ -14,7 +14,6 @@
             <th>내용</th>
             <th>변호사</th>
             <th>예약 신청현황</th>
-            <th>예약 수임</th>
             <th>예약 취소</th>
         </tr>
             <c:forEach var="counsel" items="${counselList}">
@@ -24,10 +23,33 @@
                     <td>${counsel.endTime}</td>
                     <td>${counsel.content}</td>
                     <td>${counsel.lawyerId}</td>
-                    <td id="status"> ${counsel.status}</td>
+                    <td id="status">
+                      <c:choose>
+                            <c:when test="${counsel.status == 0}">
+                                예약신청
+                            </c:when>
+                            <c:when test="${counsel.status == 1}">
+                                수락
+                            </c:when>
+                            <c:when test="${counsel.status == 2}">
+                                거절
+                            </c:when>
+                            <c:when test="${counsel.status == 3}">
+                                종료
+                            </c:when>
+                            <c:when test="${counsel.status == 4}">
+                                취소
+                            </c:when>
+                        </c:choose>
+                    </td>
                     <td>
                         <input type="hidden" id="counselId-${counsel.id}" value="${counsel.id}">
+                        <c:if test="${counsel.status == 2 or counsel.status == 3 or counsel.status == 4}">
+                        <p> 불가</p>
+                        </c:if>
+                        <c:if test="${counsel.status != 2 and counsel.status != 3 and counsel.status != 4}">
                         <button type="button" onclick="confirmCancel(${counsel.id})">취소하기</button>
+                        </c:if>
                     </td>
                 </tr>
             </c:forEach>

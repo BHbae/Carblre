@@ -678,7 +678,7 @@ public class UserController {
             throw new UnAuthorizedException("로그인을 해주세요", HttpStatus.UNAUTHORIZED);
         }
         // 유저 인포 해야됨
-        return "user/userPage";
+        return "user/myPage";
     }
 
 }
