@@ -55,7 +55,12 @@
 									<strong>파일:</strong> <span class="post-file">${post.originFileName}</span>
 								</p>
 								<p>
-									<strong>업로드 파일:</strong> <span class="post-uploaded-file">${post.uploadFileName}</span>
+									<strong>업로드 파일:</strong>
+									<c:if test="${post.uploadFileName != null}">
+										<video width="200" controls>
+											<source src="/uploardVidio/${post.uploadFileName}">
+										</video>
+									</c:if>
 								</p>
 
 								<div class="button-group">

@@ -31,7 +31,7 @@
 		<!-- /. NAV SIDE  -->
 		<div id="page-wrapper">
 			<div class="header">
-				<h1 class="page-header">Dashboard</h1>
+				<h1 class="page-header"></h1>
 
 			</div>
 			<div id="page-inner">
@@ -96,10 +96,10 @@
 								</div>
 								<div class="card-stacked green">
 									<div class="card-content">
-										<h3>88,658</h3>
+										<h3>&#8361 8,350,000</h3>
 									</div>
 									<div class="card-action">
-										<strong>총 결제금액</strong>
+										<strong>이번달 매출액</strong>
 									</div>
 								</div>
 							</div>
@@ -181,23 +181,14 @@
 							</div>
 							<div class="card-image">
 								<div class="collection">
-									<a href="#!" class="collection-item">
-										Red<span class="new badge red" data-badge-caption="red">4</span>
+									<a href="/admin/lawyer-user" class="collection-item">
+										법인 가입 대기자<span class="badge red">${WaitingLawyerUserCount}</span>
 									</a>
-									<a href="#!" class="collection-item">
-										Blue<span class="new badge blue" data-badge-caption="blue">4</span>
+									<a href="/board/boardList" class="collection-item">
+										대기중인 상담<span class="black badge">3</span>
 									</a>
-									<a href="#!" class="collection-item">
-										<span class="badge">1</span>Alan
-									</a>
-									<a href="#!" class="collection-item">
-										<span class="new badge">4</span>Alan
-									</a>
-									<a href="#!" class="collection-item">
-										Alan<span class="new badge blue" data-badge-caption="blue">4</span>
-									</a>
-									<a href="#!" class="collection-item">
-										<span class="badge">14</span>Alan
+									<a href="/cs/cs" class="collection-item">
+										답변이 필요한 문의<span class="badge">6</span>
 									</a>
 									<!-- <a href="#!" class="collection-item">
 										Custom Badge Captions<span class="new badge" data-badge-caption="custom caption">4</span>
@@ -210,16 +201,16 @@
 						</div>
 					</div>
 
-					<div class="col-md-7">
+					<!-- <div class="col-md-7">
 						<div class="card">
 							<div class="card-image">
 								<div id="morris-bar-chart"></div>
 							</div>
 							<div class="card-action">
-								<b> 2024년 수익</b>
+								<b> 연도별 이용자 수</b>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 
 				<!-- <div class="row">
@@ -333,39 +324,36 @@
 	<script>
 		// 차트 데이터와 옵션 설정
 		const ctx = document.getElementById('myChart').getContext('2d');
-		const myChart = new Chart(ctx,
-				{
-					type : 'line', // 차트의 종류 ('bar', 'line', 'pie', 'doughnut' 등)
-					data : {
-						labels : [ '1월', '2월', '3월', '4월', '5월',
-								'6월', '7월', '8월', '9월', '10월', '11월', '12월'], // X축 레이블
-						datasets : [ {
-							label : '2024년 매출액',
-							data : [ 12, 19, 3, 5, 2, 3, 1, 2, 3, 4, 5, 6 ], // Y축 데이터
-							backgroundColor : [ 'rgba(255, 99, 132, 0.2)',
-									'rgba(54, 162, 235, 0.2)',
-									'rgba(255, 206, 86, 0.2)',
-									'rgba(75, 192, 192, 0.2)',
-									'rgba(153, 102, 255, 0.2)',
-									'rgba(255, 159, 64, 0.2)' ],
-							borderColor : [ 'rgba(255, 99, 132, 1)',
-									'rgba(54, 162, 235, 1)',
-									'rgba(255, 206, 86, 1)',
-									'rgba(75, 192, 192, 1)',
-									'rgba(153, 102, 255, 1)',
-									'rgba(255, 159, 64, 1)' ],
-							borderWidth : 5
-						} ]
-					},
-					options : {
-						scales : {
-							y : {
-								beginAtZero : true
-							// Y축 0에서 시작
-							}
-						}
+		const myChart = new Chart(ctx, {
+			type : 'line', // 차트의 종류 ('bar', 'line', 'pie', 'doughnut' 등)
+			data : {
+				labels : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월',
+						'9월', '10월', '11월', '12월' ], // X축 레이블
+				datasets : [ {
+					label : '2024년 매출액',
+					data : [ 12, 19, 3, 5, 2, 3, 1, 2, 3, 4, 5, 6 ], // Y축 데이터
+					backgroundColor : [ 'rgba(255, 99, 132, 0.2)',
+							'rgba(54, 162, 235, 0.2)',
+							'rgba(255, 206, 86, 0.2)',
+							'rgba(75, 192, 192, 0.2)',
+							'rgba(153, 102, 255, 0.2)',
+							'rgba(255, 159, 64, 0.2)' ],
+					borderColor : [ 'rgba(255, 99, 132, 1)',
+							'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)',
+							'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)',
+							'rgba(255, 159, 64, 1)' ],
+					borderWidth : 5
+				} ]
+			},
+			options : {
+				scales : {
+					y : {
+						beginAtZero : true
+					// Y축 0에서 시작
 					}
-				});
+				}
+			}
+		});
 	</script>
 
 

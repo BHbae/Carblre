@@ -55,6 +55,7 @@
 												<th>결제금액</th>
 												<th>결제요청일</th>
 												<th>결제승인일</th>
+												<th>기능</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -68,6 +69,9 @@
 													<td>${payment.amount}</td>
 													<td>${payment.requestedAt}</td>
 													<td>${payment.approvedAt}</td>
+													<td>
+														<button onclick="refundPayment(${payment.id})" class="btn btn-warning">환불</button>
+													</td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -118,6 +122,21 @@
 			$(document).ready(function() {
 				$('#dataTables-example').dataTable();
 			});
+		    function refundPayment(paymentId) {
+		        if (confirm('정말 환불하시겠습니까?')) {
+		            $.ajax({
+		                url: '/admin/payments/refund/' + paymentId,
+		                type: 'POST',
+		                success: function(result) {
+		                    alert('환불이 완료되었습니다.');
+		                    location.reload(); // 페이지 새로 고침
+		                },
+		                error: function(xhr, status, error) {
+		                    alert('환불 실패: ' + xhr.responseText);
+		                }
+		            });
+		        }
+		    }
 		</script>
 		<!-- Custom Js -->
 		<script src="/assets/js/custom-scripts.js"></script>

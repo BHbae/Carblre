@@ -31,7 +31,7 @@ public class AdminController {
 
 	/**
 	 * 관리자 메인페이지
-	 * 
+	 * 	
 	 * @return
 	 */
 	@GetMapping("")
