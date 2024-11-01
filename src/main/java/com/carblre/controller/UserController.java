@@ -588,7 +588,7 @@ public class UserController {
 
 
     /**
-     * TODO 정확히 어떤 정보를 수정할껀지 모르겠음 -ex:email 밖에 안떠오름 ,handler(email 중복에대한)
+     * 리다이렉트 이동시에 휘발성으로 메세지를 띄울수 있음-addFlashAttribute
      *
      * @param updateDto
      * @return
