@@ -32,7 +32,7 @@
                     <th>No</th>
                     <th>제목</th>
                     <th>작성자 ()추후 아이디로 변경)</th>
-                    <th>작성일</th>
+                    <th style="width: 233px">작성일</th>
                 </thead>
                 <tbody>
                     <c:forEach items="${boards}" var="boards">

@@ -220,7 +220,7 @@
         const email = document.getElementById('email').value;
         console.log('Email : ' + email);
 
-        fetch('http://localhost:8080/send-mail/email?email=' + email)
+        fetch('http://192.168.0.36:8080/send-mail/email?email=' + email)
             .then(response => {
                 if (!response.ok) {
                     return response.json().then(data => {
@@ -253,7 +253,7 @@
         const userId = document.getElementById('nickName').value;
         console.log('userId : ', userId);
 
-        fetch(`http://localhost:8080/user/checkId?userId=` + userId)
+        fetch(`http://192.168.0.36:8080/user/checkId?userId=` + userId)
             .then(response => {
                 if (!response.ok) {
                     return response.json().then(data => {
@@ -285,7 +285,7 @@
 
     function checkValidate() {
 
-        fetch('http://localhost:8080/send-mail/checkValidate')
+        fetch('http://192.168.0.36:8080/send-mail/checkValidate')
             .then(response => {
                 if (!response.ok) {
                     return response.json().then(data => {

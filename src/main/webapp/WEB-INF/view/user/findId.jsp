@@ -133,7 +133,7 @@
             const email = document.getElementById('email').value;
             console.log('Email : ' + email);
 
-            fetch('http://localhost:8080/send-mail/email?email=' + email)
+            fetch('http://192.168.0.36:8080/send-mail/email?email=' + email)
                 .then(response => {
                     if (!response.ok) {
                         return response.json().then(data => {
@@ -165,7 +165,7 @@
 
         function checkValidate() {
 
-            fetch('http://localhost:8080/send-mail/checkValidate')
+            fetch('http://192.168.0.36:8080/send-mail/checkValidate')
                 .then(response => {
                     if (!response.ok) {
                         return response.json().then(data => {
@@ -206,7 +206,7 @@
             const email = document.getElementById('email').value;  // 폼에서 가져오는 이메일 값
 
             try {
-                const response = await fetch('/user/email?email=' + email);
+                const response = await fetch('http://192.168.0.36:8080/user/email?email=' + email);
 
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

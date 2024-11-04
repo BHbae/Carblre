@@ -130,7 +130,7 @@ public class CsController {
 		}
 
 		CsFindByIdDTO dto = csService.findById(id);
-		if (userDTO.getId() != dto.getUserId() && !userDTO.getRole().equals("admin")) {
+		if (userDTO.getId() != dto.getUserId() && (userDTO.getRole() == null || !userDTO.getRole().equals("admin"))) {
 			throw new DataDeliveryException(Define.NOT_CS_AN_USER, HttpStatus.BAD_REQUEST);
 		}
 

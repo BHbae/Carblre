@@ -46,7 +46,7 @@
 					<th>No</th>
 					<th>제목</th>
 					<th>내용</th>
-					<th>작성일</th>
+					<th style="width: 233px">작성일</th>
 				</thead>
 				<tbody>
 					<c:forEach var="notice" items="${noticeList}">

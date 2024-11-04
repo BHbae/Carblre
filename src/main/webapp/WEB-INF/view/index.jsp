@@ -1104,7 +1104,7 @@
             // 해당 콘텐츠 활성화
             tabContent[index].classList.add("active");
 
-            fetch('/count/' + regionValue)
+            fetch('http://192.168.0.36:8080/count/' + regionValue)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');

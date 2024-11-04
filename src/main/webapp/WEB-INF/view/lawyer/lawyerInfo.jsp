@@ -162,7 +162,7 @@
         if (!date || !lawyerId) return;
         console.log('날짜', date);
         console.log('변호사 아이디', ${lawyer.userId});
-        fetch('/counsel/api/available-times?date=' + date + '&lawyerId=' + ${lawyer.userId})
+        fetch('http://192.168.0.36:8080/counsel/api/available-times?date=' + date + '&lawyerId=' + ${lawyer.userId})
             .then(response => response.json())
             .then(data => {
                 console.log(data);

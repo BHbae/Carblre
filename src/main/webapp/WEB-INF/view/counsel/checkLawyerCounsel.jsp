@@ -79,7 +79,7 @@ function updateStatus(counselId) {
 
     console.log("Request Data: ", requestData);
 
-    fetch('/counsel/updateStatus', {
+    fetch('http://192.168.0.36:8080/counsel/updateStatus', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

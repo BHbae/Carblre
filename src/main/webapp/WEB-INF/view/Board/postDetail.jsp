@@ -40,7 +40,7 @@
 					<div style="display: flex; flex-direction: column; gap: 10px;">
 						${post.content}
 						<c:if test="${post.uploadFileName != null}">
-							<video width="200" controls>
+							<video width="350" controls>
 								<source src="/video/${post.uploadFileName}">
 							</video>
 						</c:if>
@@ -117,7 +117,7 @@
 
         console.log('this is document Loaded' + sortBy);
 
-        fetch(`http://localhost:8080/board/comment?id=${post.id}&sortBy=` + sortBy)
+        fetch(`http://192.168.0.36:8080/board/comment?id=${post.id}&sortBy=` + sortBy)
             .then(response => {
                 if (!response.ok) {
                     return response.json().then(data => {
@@ -177,7 +177,7 @@
         }
 
 
-        fetch('http://localhost:8080/board/comment', {
+        fetch('http://192.168.0.36:8080/board/comment', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -240,7 +240,7 @@
             "postId": ${post.id},
         }
 
-        fetch('http://localhost:8080/board/replyComment', {
+        fetch('http://192.168.0.36:8080/board/replyComment', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -273,7 +273,7 @@
 
     function getReplyComment(postId) {
         console.log('getReplyComment postId', postId);
-        fetch('http://localhost:8080/board/replyComment?id=' + postId)
+        fetch('http://192.168.0.36:8080/board/replyComment?id=' + postId)
             .then(response => {
                 if (!response.ok) {
                     return response.json().then(data => {
@@ -350,7 +350,7 @@
 
     function deleteComment(commentId, userId) {
 
-        fetch('http://localhost:8080/board/deleteComment?commentId=' + commentId + '&userId=' + userId)
+        fetch('http://192.168.0.36:8080/board/deleteComment?commentId=' + commentId + '&userId=' + userId)
             .then(response => {
                 if (response.status === 500) {
                     throw new Error('댓글 삭제 실패: 서버 오류가 발생했습니다.');
@@ -371,7 +371,7 @@
 
 
     function deleteReply(replyId, userId) {
-        fetch('http://localhost:8080/board/deleteReply?replyId=' + replyId + '&userId=' + userId)
+        fetch('http://192.168.0.36:8080/board/deleteReply?replyId=' + replyId + '&userId=' + userId)
             .then(response => {
                 if (response.status === 500) {
                     throw new Error('댓글 삭제 실패: 서버 오류가 발생했습니다.');

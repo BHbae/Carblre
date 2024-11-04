@@ -26,7 +26,7 @@ function handleSubmit(event) {
     console.log(counselingAmount);
     const requestData = { counselingAmount: counselingAmount };
 
-    fetch('/lawyer/amountUpdate', {
+    fetch('http://192.168.0.36:8080/lawyer/amountUpdate', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

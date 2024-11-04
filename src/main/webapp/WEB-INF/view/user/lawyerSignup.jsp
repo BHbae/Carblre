@@ -254,7 +254,7 @@
         const email = document.getElementById('email').value;
         console.log('Email : ' + email);
 
-        fetch('http://localhost:8080/send-mail/email?email=' + email)
+        fetch('http://192.168.0.36:8080/send-mail/email?email=' + email)
             .then(response => {
                 if (!response.ok) {
                     return response.json().then(data => {

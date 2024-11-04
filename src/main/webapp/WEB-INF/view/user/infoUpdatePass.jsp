@@ -57,7 +57,7 @@
         const originPass = document.getElementById('originPass').value;
         console.log("originpass", originPass);
 
-        fetch('/user/checkOriginPass', {
+        fetch('http://192.168.0.36:8080/user/checkOriginPass', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -125,7 +125,7 @@
             id: id
         };
 
-        fetch('/user/updatePass', {
+        fetch('http://192.168.0.36:8080/user/updatePass', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -159,7 +159,7 @@
         chatInput.value = '';
 
         // 서버에 메시지 전송
-        fetch('http://localhost:8080/chatbot', {
+        fetch('http://192.168.0.36:8080/chatbot', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

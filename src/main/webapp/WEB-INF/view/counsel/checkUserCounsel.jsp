@@ -1,12 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="../layout/header.jsp"%>
-
+<%@ include file="../layout/subHeader.jsp"%>
+<style>
+	tr th{
+		padding: 10px 0;
+	}
+	tr td{
+		padding: 10px 0;
+	}
+</style>
 
     <section>
-    <div class="list">
-    <table border="1">
+    <div class="list" style="padding: 300px 0; display: flex; justify-content: center;">
+    <table border="1" style="width: 1500px; border-collapse: collapse; text-align:center;">
         <tr>
             <th>신청자 이름</th>
             <th>예약시작시간</th>
@@ -52,7 +59,7 @@
               { status:setStatus,
                 id:setId }
                 console.log("data",setData)
-        fetch('/counsel/cancelStatus', {
+        fetch('http://192.168.0.36:8080/counsel/cancelStatus', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

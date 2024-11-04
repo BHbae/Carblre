@@ -88,7 +88,7 @@ function submitForm(){
                 endTime: endTime,
                 content: content
             };
-        fetch("/counsel/reservation",
+        fetch("htt://192.168.0.36:8080/counsel/reservation",
            {method : 'POST',
             headers: {
                 'Content-Type': 'application/json',

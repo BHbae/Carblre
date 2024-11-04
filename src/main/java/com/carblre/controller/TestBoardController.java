@@ -98,10 +98,10 @@ public class TestBoardController {
 	// TODO - 세션값 받아와서 User_id 셋 해야됨
 	public String postMethodName(@RequestParam(name = "category") String category,
 			@RequestParam(name = "title") String title, @RequestParam(name = "content") String content,
-			@RequestParam(name = "uploardFileName") MultipartFile vidio,
+			@RequestParam(name = "uploardFileName") MultipartFile video,
 			@SessionAttribute(name = Define.PRINCIPAL) UserDTO dto) {
 
-		boardService.savePost(dto.getId(), category, title, content, vidio);
+		boardService.savePost(dto.getId(), category, title, content, video);
 
 		return "redirect:/board/boardList";
 	}

@@ -1,0 +1,557 @@
+[33mcommit a42f9758975b5effa9f4ab5710c5b4de410c0830[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mbbh[m[33m)[m
+Author: BHbae <majinga15@naver.com>
+Date:   Mon Nov 4 16:50:45 2024 +0900
+
+    local IP수정
+
+[33mcommit 4a9af0ce2f8003c3f5867e9104e83d1a9e40718b[m
+Author: BHbae <majinga15@naver.com>
+Date:   Mon Nov 4 16:49:01 2024 +0900
+
+    local IP변경
+
+[33mcommit 78dc9fb22113d958aa57d5b19f9cb7426c505eb9[m
+Author: BHbae <majinga15@naver.com>
+Date:   Mon Nov 4 16:41:55 2024 +0900
+
+    local IP수정
+
+[33mcommit 9f2462bc6c1ca2e760b5fc1e1a00cb244cfdb6bc[m
+Merge: 8fb5ebc f819685
+Author: BHbae <majinga15@naver.com>
+Date:   Fri Nov 1 10:32:04 2024 +0900
+
+    Merge branch 'sjw' of https://github.com/BHbae/Carblre into bbh
+
+[33mcommit 8fb5ebcd66efb3959a02af529c83b6ba077e1fdc[m[33m ([m[1;31morigin/bbh[m[33m)[m
+Author: BHbae <majinga15@naver.com>
+Date:   Fri Nov 1 10:31:20 2024 +0900
+
+    결제 예약 완
+
+[33mcommit f819685841edf362a4b97d984459719ca9906994[m[33m ([m[1;31morigin/sjw[m[33m)[m
+Author: ddg999 <slowman918@gmail.com>
+Date:   Thu Oct 31 19:25:15 2024 +0900
+
+    공지,cs css수정
+
+[33mcommit fa3b3220c2fb97d165db535dfe9f7c397a0b5d7e[m
+Merge: 0191da9 dc4618a
+Author: ddg999 <slowman918@gmail.com>
+Date:   Thu Oct 31 18:23:37 2024 +0900
+
+    충돌수정
+
+[33mcommit dc4618a87efa2588cf0363d3874976cd4b5dd626[m
+Author: BHbae <majinga15@naver.com>
+Date:   Thu Oct 31 17:58:58 2024 +0900
+
+    결제연동
+
+[33mcommit 0191da94c0a9f016776e684d2ef1a3bc92e8b6e9[m
+Author: ddg999 <slowman918@gmail.com>
+Date:   Thu Oct 31 17:25:03 2024 +0900
+
+    cs검색기능 추가
+
+[33mcommit dc63803499a08d957681f2d4c79c9505f9dbd6e1[m
+Merge: 86cd2ea 9df48b3
+Author: BHbae <majinga15@naver.com>
+Date:   Thu Oct 31 17:11:23 2024 +0900
+
+    Merge branch 'rePth' of https://github.com/BHbae/Carblre into bbh
+
+[33mcommit 86cd2ea764d3a3f30655fa198fe94c00b4fc3fc6[m
+Merge: 4a21fea d8918db
+Author: BHbae <majinga15@naver.com>
+Date:   Thu Oct 31 17:11:14 2024 +0900
+
+    충돌
+
+[33mcommit 9df48b369908a05f08447a1482bf94c8a7f85e9a[m[33m ([m[1;31morigin/rePth[m[33m)[m
+Author: thxtdy <thjjang0409@gmail.com>
+Date:   Thu Oct 31 17:07:54 2024 +0900
+
+    2024.10.31 17:07:40 // 진짜 디테일 끝났습니다
+
+[33mcommit 56740fe0ab177daaaa727a9a991fafe1ec725226[m
+Author: ddg999 <slowman918@gmail.com>
+Date:   Thu Oct 31 17:02:52 2024 +0900
+
+    cs페이징수정
+
+[33mcommit c904636f4b520866883c1cbe7d2604f95a699a97[m
+Author: thxtdy <thjjang0409@gmail.com>
+Date:   Thu Oct 31 16:50:56 2024 +0900
+
+    2024.10.31 // 찐 오류 끝
+
+[33mcommit f0762a533213feb5cfc01987ebe65582de0176a5[m
+Author: thxtdy <thjjang0409@gmail.com>
+Date:   Thu Oct 31 16:49:45 2024 +0900
+
+    2024.10.31 // 데이트 설정 오류 끝 pull 받아주세요
+
+[33mcommit 4a21fea3ed4b446431f395f9212d97ee687716e4[m
+Author: BHbae <majinga15@naver.com>
+Date:   Thu Oct 31 16:17:25 2024 +0900
+
+    결제연동
+
+[33mcommit a10c198ad1b1aef0fd1392c9a93a204857409952[m
+Author: ddg999 <slowman918@gmail.com>
+Date:   Thu Oct 31 16:13:05 2024 +0900
+
+    cs삭제기능,jsp수정
+
+[33mcommit 5a3ba7991669f1cc455279966cf52fcbf3af78c4[m
+Author: ddg999 <slowman918@gmail.com>
+Date:   Thu Oct 31 15:25:02 2024 +0900
+
+    관리자페이지수정 및 게시글글자수제한
+
+[33mcommit d8918dbcbfbf98b93d8673097715efbd28e3faa8[m
+Author: thxtdy <thjjang0409@gmail.com>
+Date:   Thu Oct 31 13:54:33 2024 +0900
+
+    2024.10.31 // 예약 디테일 끝
+
+[33mcommit fc05235c06f31adb110ff8a716376b4cdb6ec9f8[m
+Author: ddg999 <slowman918@gmail.com>
+Date:   Wed Oct 30 19:10:37 2024 +0900
+
+    cs답변하기(admin만) 기능
+
+[33mcommit 7a35551a8126a8126cf4ca1fd9f0f8648e65934f[m
+Author: ddg999 <slowman918@gmail.com>
+Date:   Wed Oct 30 17:50:58 2024 +0900
+
+    권한오류수정
+
+[33mcommit 7134ed1bb93d372724ae79e049d18bb648b80294[m
+Author: ddg999 <slowman918@gmail.com>
+Date:   Wed Oct 30 17:43:38 2024 +0900
+
+    공지사항crud(admin일때)기능
+
+[33mcommit 63b200b0c0406a6c35f135c813682ffd318e0fdd[m
+Merge: 5d80b98 95ed7e1
+Author: ddg999 <slowman918@gmail.com>
+Date:   Wed Oct 30 16:50:11 2024 +0900
+
+    충돌수정
+
+[33mcommit bf7e24bb257cb3c8c208d4afca17a37b9d3d1438[m
+Merge: dabd17d e0ca003
+Author: BHbae <majinga15@naver.com>
+Date:   Wed Oct 30 16:31:41 2024 +0900
+
+    rePth merge
+
+[33mcommit 5d80b980eb5757788a64e78697939357ae878fea[m
+Author: ddg999 <slowman918@gmail.com>
+Date:   Wed Oct 30 16:19:50 2024 +0900
+
+    공지사항검색기능
+
+[33mcommit e0ca003223d78ab7c2ee3c9c89d159240e9e9170[m
+Author: thxtdy <thjjang0409@gmail.com>
+Date:   Wed Oct 30 15:33:41 2024 +0900
+
+    2024.10.30 // 예약 날짜 처리 완료
+
+[33mcommit 69caee94bdfb4c39effaa4aa5da42cedf53654a7[m
+Author: ddg999 <slowman918@gmail.com>
+Date:   Wed Oct 30 15:31:36 2024 +0900
+
+    관리자페이지 접근권한 설정
+
+[33mcommit 0a4b21be0bc00a808e3ddd87e078eef558541bf9[m
+Author: ddg999 <slowman918@gmail.com>
+Date:   Wed Oct 30 14:52:50 2024 +0900
+
+    공지사항페이징처리
+
+[33mcommit dabd17d59d9daa579681c8d6589b7bfa7ecc4061[m
+Author: BHbae <majinga15@naver.com>
+Date:   Wed Oct 30 10:05:36 2024 +0900
+
+    boardList 페이징 처리
+
+[33mcommit 05061f0126ede7b71b438540fecfa4ed5f369de5[m
+Author: thxtdy <thjjang0409@gmail.com>
+Date:   Wed Oct 30 09:31:20 2024 +0900
+
+    2024.10.30 // 예약 => form으로 변경
+
+[33mcommit 83c701f369cf8e7079c14b0385415bf65734129e[m
+Author: BHbae <majinga15@naver.com>
+Date:   Wed Oct 30 09:02:41 2024 +0900
+
+    Stop tracking application-secure.yml and update .gitignore
+
+[33mcommit 0c274cfc9983820b1ee5bc39cc7fff24a0d5356e[m
+Author: thxtdy <thjjang0409@gmail.com>
+Date:   Tue Oct 29 19:58:30 2024 +0900
+
+    제발 secure 올리지 마세요. secure 를 추적 브랜치 merge하는 순간 해당 브랜치도 다시 secure 추적합니다..
+
+[33mcommit 5736d356465ff71d64a7a8783caac3bb0ea754d1[m
+Author: ddg999 <slowman918@gmail.com>
+Date:   Tue Oct 29 18:14:35 2024 +0900
+
+    공지사항상세보기(메인화면)
+
+[33mcommit 95ed7e15e48857748cb7432088691b8daef978f2[m[33m ([m[1;31morigin/pth[m[33m)[m
+Author: thxtdy <thjjang0409@gmail.com>
+Date:   Tue Oct 29 17:53:37 2024 +0900
+
+    2024.10.29 // Laywer, Counsel 파일 위치, Controller, Service, Repository 전부 수정했습니다. Pull 할때 유의하며 받아주세요. 앵간하면 무조건 제껄로 받으시면 됩니다.
+
+[33mcommit e77b3b1e45871547b930aa2859cfcf2cbe2ea9e6[m
+Merge: ddd5346 4bba995
+Author: ddg999 <slowman918@gmail.com>
+Date:   Tue Oct 29 17:19:45 2024 +0900
+
+    Merge branch 'bbh' of https://github.com/BHbae/Carblre into sjw
+
+[33mcommit ddd53460b823a05c2e478f472cabc9d024de7085[m
+Merge: 4a48957 6e421d0
+Author: ddg999 <slowman918@gmail.com>
+Date:   Tue Oct 29 17:18:55 2024 +0900
+
+    충돌
+
+[33mcommit 4a4895735dad898b6362141716c5a2fd8e793ece[m
+Author: ddg999 <slowman918@gmail.com>
+Date:   Tue Oct 29 16:55:12 2024 +0900
+
+    관리자페이지수정
+
+[33mcommit bb54870cfdf1e050fc0a406ebdb17a0a39a2cdfc[m
+Merge: d495a78 6c36422
+Author: thxtdy <thjjang0409@gmail.com>
+Date:   Tue Oct 29 15:29:49 2024 +0900
+
+    Merge remote-tracking branch 'origin/eor' into pth
+    
+    # Conflicts:
+    #       src/main/java/com/carblre/repository/interfaces/CounselRepository.java
+    #       src/main/java/com/carblre/repository/interfaces/UserRepository.java
+    #       src/main/resources/mapper/counsel.xml
+    #       src/main/resources/mapper/user.xml
+    #       src/main/webapp/WEB-INF/view/Board/BoardList.jsp
+
+[33mcommit 6c364228036b8991c459f49243f86acc8cce913b[m
+Author: BBangEor <eor1402@naver.com>
+Date:   Tue Oct 29 15:26:53 2024 +0900
+
+    lawyerList css 및 이미지 추가.
+    결제 error 해결
+
+[33mcommit d495a78de2d90fb6347fdd3617de115e48a42911[m
+Merge: b36f37b 4291968
+Author: thxtdy <thjjang0409@gmail.com>
+Date:   Tue Oct 29 11:33:31 2024 +0900
+
+    Merge remote-tracking branch 'origin/kmk' into pth
+
+[33mcommit 4291968157c0c9bb5ebdd00a89893f7f5903a3a5[m
+Author: ning00060 <ning00060@gmail.com>
+Date:   Tue Oct 29 11:33:14 2024 +0900
+
+    1-29 예약수정중
+
+[33mcommit 2a31ac6523a77aa4321ac1b03833dd151c5b4fb2[m
+Author: BBangEor <eor1402@naver.com>
+Date:   Tue Oct 29 10:25:17 2024 +0900
+
+    결제페이지 db 연결 및 단순화작업
+
+[33mcommit b36f37b0f75c844a2b2c4fe08f5790afa3676a7a[m
+Merge: e5bc0e0 459ad9f
+Author: thxtdy <thjjang0409@gmail.com>
+Date:   Tue Oct 29 10:16:06 2024 +0900
+
+    Merge remote-tracking branch 'origin/kmk' into pth
+    
+    # Conflicts:
+    #       src/main/webapp/WEB-INF/view/Board/BoardList.jsp
+
+[33mcommit 10f67e502c8816fda028300328bfa98ef3b75508[m
+Author: BBangEor <eor1402@naver.com>
+Date:   Tue Oct 29 09:13:38 2024 +0900
+
+    merging
+
+[33mcommit 80c77762be68a0a817e778de3f3e72f3d2fd8bde[m
+Author: BBangEor <eor1402@naver.com>
+Date:   Tue Oct 29 09:11:05 2024 +0900
+
+    merging
+
+[33mcommit 459ad9fdcebf51eff63f76a9d5e103d64818fba3[m
+Author: ning00060 <ning00060@gmail.com>
+Date:   Mon Oct 28 19:01:45 2024 +0900
+
+    10-28 유저 예약 신청 페이지
+    디버깅중
+    -날짜관련 오류 다수
+    daemon,wrapper삭제
+
+[33mcommit 3520f85408879bc758f5ee2141161ad586124ee1[m
+Author: BBangEor <eor1402@naver.com>
+Date:   Mon Oct 28 17:54:10 2024 +0900
+
+    update
+
+[33mcommit 7e154d87000c963d1c7c3de2e4985c34c701c372[m
+Author: BBangEor <eor1402@naver.com>
+Date:   Mon Oct 28 17:53:11 2024 +0900
+
+    결제 리팩토링 및 오류 수정중
+
+[33mcommit e93e3cb1f71c267f518115cbd46556844ef578f6[m
+Author: BBangEor <eor1402@naver.com>
+Date:   Mon Oct 28 17:51:24 2024 +0900
+
+    결제 리팩토링 및 오류 수정중
+
+[33mcommit d0411a75eac63a25fb62a6750763fd7c72879adf[m
+Author: BHbae <majinga15@naver.com>
+Date:   Mon Oct 28 10:33:46 2024 +0900
+
+    충돌 해결
+
+[33mcommit df152cb80504d3bb0fbaf0cb45c064caac2d7cf5[m
+Merge: a73705b 67e32f4
+Author: BHbae <majinga15@naver.com>
+Date:   Mon Oct 28 10:17:37 2024 +0900
+
+    kmk merge
+
+[33mcommit a73705b447232bbc71ac5d77f8d2e26590490437[m
+Merge: da7f03e 39cb0b0
+Author: BHbae <majinga15@naver.com>
+Date:   Mon Oct 28 10:13:00 2024 +0900
+
+    eor merge
+
+[33mcommit da7f03e138918cf1c8601f5e697822f5e358c764[m
+Merge: 92a2921 e5bc0e0
+Author: BHbae <majinga15@naver.com>
+Date:   Mon Oct 28 10:02:19 2024 +0900
+
+    Merge branch 'pth' of https://github.com/BHbae/Carblre into bbh
+
+[33mcommit e5bc0e0988e738a5cb25db6e717956795e4c2747[m
+Author: thxtdy <thjjang0409@gmail.com>
+Date:   Mon Oct 28 10:02:16 2024 +0900
+
+        2024.10.28 // BoardList.jsp, TestBoardController.java alert 수정
+
+[33mcommit 92a29216ccff872d618955054359776b65078b5f[m
+Merge: 977e99e e00a190
+Author: BHbae <majinga15@naver.com>
+Date:   Mon Oct 28 10:01:19 2024 +0900
+
+    Merge branch 'pth' of https://github.com/BHbae/Carblre into bbh
+
+[33mcommit 977e99ef004e7ee8c90f283edf4e0c8d33031a80[m
+Merge: 382e1e9 a194e7c
+Author: BHbae <majinga15@naver.com>
+Date:   Mon Oct 28 10:00:58 2024 +0900
+
+    pth merge
+
+[33mcommit e00a190c9d0fd00e1ea19b0ac02fc94826c28aba[m
+Author: thxtdy <thjjang0409@gmail.com>
+Date:   Mon Oct 28 09:42:22 2024 +0900
+
+    2024.10.28 // BoardList.jsp, TestBoardController.java 수정 2번
+
+[33mcommit 67e32f4b04d7f2f816fba6640c8d6e066bccba6e[m
+Author: ning00060 <ning00060@gmail.com>
+Date:   Mon Oct 28 09:32:27 2024 +0900
+
+    10-27 마이페이지 수정2(파일추가안함)
+
+[33mcommit a194e7c25c74e18762a6336f83ccb910bcd3f6b6[m
+Author: thxtdy <thjjang0409@gmail.com>
+Date:   Mon Oct 28 09:31:02 2024 +0900
+
+    2024.10.28 // BoardList.jsp, TestBoardController.java 수정
+
+[33mcommit ba11cccd7d076523ed7188bfc0a139faccad2b21[m
+Merge: 06a4b23 382e1e9
+Author: ning00060 <ning00060@gmail.com>
+Date:   Mon Oct 28 09:30:50 2024 +0900
+
+    10-27 마이페이지 수정
+
+[33mcommit 39cb0b06ccbaaa72bb02285140589c80fa7859fc[m
+Author: bbangEor <eor1402@naver.com>
+Date:   Mon Oct 28 01:54:46 2024 +0900
+
+    주문 ID 생성 방식 UUID로 단순화 리팩터링
+
+[33mcommit 06a4b23ab74deb408dfe556bfbbabe3f7a6a517a[m
+Author: ning00060 <ning00060@gmail.com>
+Date:   Sat Oct 26 18:36:42 2024 +0900
+
+    10-26 6:30 버그수정
+
+[33mcommit b5ec82c415eb6cc74bc9f2cace4f48665732c64b[m
+Author: ning00060 <ning00060@gmail.com>
+Date:   Fri Oct 25 20:17:17 2024 +0900
+
+    10-25 8:15 테이블 수정에 따른
+       코드수정
+
+[33mcommit 382e1e96c90653191a709ce4f7ccda973fb51cb3[m
+Merge: 499712c 2086b0a
+Author: hyeongjeongyoo <167273842+hyeongjeongyoo@users.noreply.github.com>
+Date:   Fri Oct 25 20:16:08 2024 +0900
+
+    마이페이지 수정중
+
+[33mcommit d68272986915eefdf3a91d25e9feb0a1333d68ed[m
+Author: BBangEor <eor1402@naver.com>
+Date:   Fri Oct 25 17:52:53 2024 +0900
+
+    lawyer Information UPDATE
+
+[33mcommit 499712c7749d0089123bdaa211457a8241390204[m[33m ([m[1;31morigin/yhjhj[m[33m)[m
+Author: hyeongjeongyoo <167273842+hyeongjeongyoo@users.noreply.github.com>
+Date:   Fri Oct 25 17:47:13 2024 +0900
+
+    의뢰인 작업 중
+
+[33mcommit 2086b0ac22f8dec3bcb0a32b4d8fac2b14e60480[m
+Author: BHbae <majinga15@naver.com>
+Date:   Fri Oct 25 17:45:29 2024 +0900
+
+    문의사항수정 구현
+
+[33mcommit 4bba995a2871f03c9a55edf18f835efbcaaa9577[m
+Merge: c87bd2b dc9dc63
+Author: hyeongjeongyoo <167273842+hyeongjeongyoo@users.noreply.github.com>
+Date:   Fri Oct 25 17:30:26 2024 +0900
+
+    MMerge remote-tracking branch 'origin/kmk' into yhj
+    ~
+    ~
+    ~
+    ~
+    ~
+    ~
+    ~
+    ~
+    ~
+    ~
+    ~
+    ~
+    ~
+    ~
+    ~
+    ~
+    .git/MERGE_MSG [unix] (17:30 25/10/2024) erge remote-tracking branch 'origin/kmk' into yhj
+
+[33mcommit 9b360ce6e87771f9b973d9fe546a6427dbc954ff[m
+Author: BHbae <majinga15@naver.com>
+Date:   Fri Oct 25 17:11:37 2024 +0900
+
+    cs 상세 보기 구현
+
+[33mcommit c87bd2ba31b0a5ae6a25824f626bf7748282a47f[m
+Merge: 9b5f76d 764a827
+Author: hyeongjeongyoo <167273842+hyeongjeongyoo@users.noreply.github.com>
+Date:   Fri Oct 25 17:02:39 2024 +0900
+
+    마이페이지 중
+
+[33mcommit 87fca5f6d530444f916b47aac19ed96b8d5416fe[m
+Merge: f45f950 a67cdad
+Author: BBangEor <eor1402@naver.com>
+Date:   Fri Oct 25 15:28:26 2024 +0900
+
+    merging
+
+[33mcommit f45f9509d787c1abd155d4435fc3bc03bd802c42[m
+Author: BBangEor <eor1402@naver.com>
+Date:   Fri Oct 25 15:17:40 2024 +0900
+
+    merging
+
+[33mcommit 834985695011eb9b0aeba815de48989ec94c0c84[m
+Author: BBangEor <eor1402@naver.com>
+Date:   Fri Oct 25 15:17:22 2024 +0900
+
+    merging
+
+[33mcommit 9b5f76dff370eb9a4071e341fbb66156efdc7f8e[m
+Merge: cef705f a67cdad
+Author: hyeongjeongyoo <167273842+hyeongjeongyoo@users.noreply.github.com>
+Date:   Fri Oct 25 14:37:18 2024 +0900
+
+    Your commit message here
+
+[33mcommit dc9dc635d95f639c22e181fc0b3cfd178453e3d5[m
+Author: ning00060 <ning00060@gmail.com>
+Date:   Fri Oct 25 14:33:50 2024 +0900
+
+    10-25  2:30기잇
+
+[33mcommit 764a82735dc6d2ac79f8401f122420f33e90abba[m
+Author: BHbae <majinga15@naver.com>
+Date:   Fri Oct 25 14:33:21 2024 +0900
+
+    cs list,cs scve 구현
+
+[33mcommit cef705fec6fbe6e9f3d0c296cda96353c2732264[m
+Merge: 4705436 6e421d0
+Author: hyeongjeongyoo <167273842+hyeongjeongyoo@users.noreply.github.com>
+Date:   Fri Oct 25 14:22:47 2024 +0900
+
+    Merge conflict resolved
+
+[33mcommit a67cdad0fbe6c7251b0cc857242dd3f62561f37f[m
+Author: ning00060 <ning00060@gmail.com>
+Date:   Fri Oct 25 14:19:49 2024 +0900
+
+    10-25  2:20분
+
+[33mcommit ec428c94576696e2e812f08ab31fc23e6a883533[m
+Author: BBangEor <eor1402@naver.com>
+Date:   Fri Oct 25 14:17:37 2024 +0900
+
+    merging push
+
+[33mcommit 0e7c473cf3e3d34d05688c6b3ff7b9d089eea801[m
+Merge: 0a7bfe9 f7c440d
+Author: ning00060 <ning00060@gmail.com>
+Date:   Fri Oct 25 14:06:53 2024 +0900
+
+    Merge remote-tracking branch 'origin/dev1' into kmk
+    
+    # Conflicts:
+    #       src/main/java/com/carblre/service/CounselService.java
+
+[33mcommit 07078d97c3520c0695a1f495f46e1620ef0d8878[m
+Author: BBangEor <eor1402@naver.com>
+Date:   Fri Oct 25 12:46:02 2024 +0900
+
+    update 변호사리스트 호출페이지
+
+[33mcommit 6e421d0386fb17d4578d018b212b5de02e71ea4f[m[33m ([m[1;31morigin/dev1[m[33m)[m
+Author: thxtdy <thjjang0409@gmail.com>
+Date:   Fri Oct 25 12:44:29 2024 +0900
+
+    2024.10.25 // 12:43:17 user_tb의 PK를 표현하는 id는 Int 타입입니다.
+    그리고 User, Lawyer 구분해서 만들어야 해요
+
+[33mcommit 0a7bfe946e2ce5c12ea74a7dd616fd35abb4b2bd[m
+Author: ning00060 <ning00060@gmail.com>
+Date:   Fri Oct 25 12:44:11 2024 +0900
+
+    10-25  사진업로드 불러오기수정

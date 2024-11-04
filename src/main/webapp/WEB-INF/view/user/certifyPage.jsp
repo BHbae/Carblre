@@ -42,7 +42,7 @@
                 phoneNumber : userInputPhoneNumber
             }
 
-        fetch("http://localhost:8080/sms/send" , {
+        fetch("http://192.168.0.36:8080/sms/send" , {
             method : 'POST',
             headers :
                 {
@@ -79,7 +79,7 @@
                 userInputCode : userInputCode
             }
 
-        fetch("http://localhost:8080/sms/certify", {
+        fetch("http://192.168.0.36:8080/sms/certify", {
             method : 'POST',
             headers :
                 {

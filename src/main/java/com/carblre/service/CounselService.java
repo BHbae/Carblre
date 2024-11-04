@@ -186,10 +186,7 @@ public class CounselService {
             LocalTime existingEndTime = LocalTime.parse(existingCounsel.getEndTime().substring(11, 16));
 
             // 겹치는 시간 확인
-            if ((newStartTime.isBefore(existingEndTime) && newEndTime.isAfter(existingStartTime)) ||
-                    (newStartTime.equals(existingStartTime) || newEndTime.equals(existingEndTime))) {
-                throw new DataDeliveryException(Define.EXISTING_COUNSEL, HttpStatus.CONFLICT);
-            }
+           
         }
         
         CounselDTO newCounselDTO = CounselDTO.builder()

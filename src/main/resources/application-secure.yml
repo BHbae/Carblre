@@ -1,8 +1,3 @@
-google:
-  client-id: "638590374988-00j27fgspf85dgtbau9i1c5svh8ciutu.apps.googleusercontent.com"
-  client-secret: "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"
-  redirect-uri: "http://localhost:8080/user/google"
-
 naver:
   client-id: "Qus9K_Ha8Jkwvf5bdI_n"
   client-secret: "T4LBmHLPwo"
@@ -36,7 +31,3 @@ spring:
       key: NCSOBIHPY5PGC43T
       secret: 0YPI29KTFNORDHMB6Y7UH4SUFOS41FB5
       number: 01074418574
-
-openai:
-  api:
-    key: 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

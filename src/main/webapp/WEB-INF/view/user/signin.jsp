@@ -48,7 +48,7 @@
             <div class="social infoupdate">
                 <div class="social--wrap">
                     <!-- 카카오 로그인 버튼 -->
-                    <a href="https://kauth.kakao.com/oauth/authorize?client_id=74ae415425bf1b53dc8f8dcf38efc2d4&redirect_uri=http://localhost:8080/user/kakao&response_type=code">
+                    <a href="https://kauth.kakao.com/oauth/authorize?client_id=74ae415425bf1b53dc8f8dcf38efc2d4&redirect_uri=http://192.168.0.36:8080/user/kakao&response_type=code">
                         <img src="/image/kakao.png" alt="카카오 로그인 버튼" lass="image-link">
                     </a>
                     <!-- 네이버 로그인 버튼 -->
@@ -56,7 +56,7 @@
                         <img src="/image/naver.png" alt="네이버 로그인 버튼" class="image-link">
                     </a>
                     <!-- 구글 로그인 버튼 -->
-                    <a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=638590374988-00j27fgspf85dgtbau9i1c5svh8ciutu.apps.googleusercontent.com&redirect_uri=http://localhost:8080/user/google&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile">
+                    <a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=638590374988-00j27fgspf85dgtbau9i1c5svh8ciutu.apps.googleusercontent.com&redirect_uri=http://192.168.0.36:8080/user/google&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile">
                         <img src="/image/google.png" alt="구글 로그인 버튼" class="image-link">
                     </a>
                 </div>

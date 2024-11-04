@@ -15,7 +15,7 @@
                 <p> ${lawyer.userName}<strong> 변호사</strong></p>
                 <p><strong>법무법인:</strong> ${lawyer.lawFirm}</p>
 
-                 <button onclick="location.href='/lawyer/lawyerInfo/${lawyer.userId}'">상세보기</button>
+                 <button onclick="location.href='http://192.168.0.36:8080/lawyer/lawyerInfo/${lawyer.userId}'">상세보기</button>
 
             </div>
         </c:forEach>
