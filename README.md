@@ -55,6 +55,8 @@ Spring Boot, MyBatis, JSP, Parsing, OpenAI 을 유저 모두가 판사가 되어
 	<li>SMTP 이메일 인증</li>
 </ul>
 
+![image](https://github.com/user-attachments/assets/8589bf56-7b75-4885-8c9e-58836e0959a4)
+
 <h5>메인 홈페이지</h5>
 <ul>
 	<li>공공 데이터 파싱 - 지역 사고별 사망률</li>
@@ -67,10 +69,15 @@ Spring Boot, MyBatis, JSP, Parsing, OpenAI 을 유저 모두가 판사가 되어
 	<li>대댓글 작성</li>
 </ul>
 
+![565](https://github.com/user-attachments/assets/f7f9793e-6fe8-4326-bc7a-772721ef9392)
+
+
 <h5>AI간편상담</h5>
 <ul>
 	<li>AI간편상담 - OpenAI를 파인튜닝한 챗봇으로 사고 비율 확인</li>
 </ul>
+
+![image](https://github.com/user-attachments/assets/3ab8c695-1657-496c-b568-0c38d22420ed)
 
 
 <h5>결제</h5>
@@ -84,12 +91,24 @@ Spring Boot, MyBatis, JSP, Parsing, OpenAI 을 유저 모두가 판사가 되어
 	<li>상담예약</li>
 </ul>
 
+![image](https://github.com/user-attachments/assets/2a254ff9-f05e-490e-859d-0233b3bbde8a)
+
+
 <h5>관리자 페이지 </h5>
 <ul>
 	<li>공지사항 CRUD</li>
 	<li>Chart.js</li>
 	<li>결제내역</li>
 </ul>
+
+![image](https://github.com/user-attachments/assets/0db2adda-1142-42ed-839a-d2e80219e08b)
+
+
+
+
+<h2>사이트맵</h2>
+![image](https://github.com/user-attachments/assets/f4a86723-31aa-458c-8025-4227af8c8736)
+
 
 
 ERD 다이어그램 
