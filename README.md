@@ -63,12 +63,21 @@ Spring Boot, MyBatis, JSP, Parsing, OpenAI 을 유저 모두가 판사가 되어
 	<li>대댓글 작성</li>
 </ul>
 
-<h5>AI간</h5>
+<h5>AI간편상담</h5>
+<ul>
+	<li>AI간편상담 - OpenAI를 파인튜닝한 챗봇으로 사고 비율 확인</li>
+</ul>
 
 
 <h5>결제</h5>
 <ul>
 		<li>토스 결제</li>      
+</ul>
+
+<h5>변호사</h5>
+<ul>
+	<li>변호사 리스트, 변호사 상세보기</li>
+	<li>상담예약</li>
 </ul>
 
 <h5>관리자 페이지 </h5>
