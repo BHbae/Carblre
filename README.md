@@ -1,7 +1,8 @@
 SpringBoot-Project-카블리
 =============
-스프링 부트 + 공공데이터 파싱을 이용한 영화예매 데이팅 사이트
-![Screenshot_2](https://github.com/user-attachments/assets/cfe5b064-4689-4f94-89b5-0a334853e015)
+스프링 부트 + 공공데이터 파싱,OpenAI를 활용한 변호사매칭사이트
+![Screenshot_5](https://github.com/user-attachments/assets/18a61ee3-0d93-48d8-a267-2c56b46987ae)
+
 
 
 
