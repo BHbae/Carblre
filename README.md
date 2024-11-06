@@ -44,6 +44,7 @@ Spring Boot, MyBatis, JSP, Parsing, OpenAI 을 유저 모두가 판사가 되어
 	<li>소셜 로그인</li>
 	<li>ID찾기, PW찾기</li>
 </ul>
+![image](https://github.com/user-attachments/assets/1b8be248-64a8-4b34-b474-75eb0beac823)
 
 <h5>회원가입 </h5>
 <ul>
