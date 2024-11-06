@@ -51,16 +51,25 @@ Spring Boot, MyBatis, JSP, Parsing, OpenAI 을 유저 모두가 판사가 되어
 	<li>SMTP 이메일 인증</li>
 </ul>
 
-<h5>메인 홈페이지 </a></h5>
+<h5>메인 홈페이지</h5>
+<ul>
+	<li>공공 데이터 파싱 - 지역 사고별 사망률</li>
+</ul>
+
+<H5>게시판</H5>
+<ul>
+	<li>게시글작성 - 동영상업로드</li>
+	<li>댓글 작성</li>
+	<li>대댓글 작성</li>
+</ul>
+
+<h5>AI간</h5>
 
 
 <h5>결제</h5>
 <ul>
 		<li>토스 결제</li>      
 </ul>
-
-
-	
 
 <h5>관리자 페이지 </h5>
 <ul>
