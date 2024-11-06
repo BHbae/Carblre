@@ -62,6 +62,9 @@ Spring Boot, MyBatis, JSP, Parsing, OpenAI 을 유저 모두가 판사가 되어
 	<li>공공 데이터 파싱 - 지역 사고별 사망률</li>
 </ul>
 
+![image](https://github.com/user-attachments/assets/17f9d57b-695e-4734-af22-9f3223f8bfc3)
+
+
 <H5>게시판</H5>
 <ul>
 	<li>게시글작성 - 동영상업로드</li>
