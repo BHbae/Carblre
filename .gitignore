@@ -36,6 +36,14 @@ out/
 ### VS Code ###
 .vscode/
 
+# Ignore the application-secure.yml file
+application-secure.yml
+
+# Ignore caches directory
+
+#이건 또 뭔데 ;;
+.DS_Store
+
 <<<<<<< HEAD
 # Ignore the application-secure.yml file
 application-secure.yml
